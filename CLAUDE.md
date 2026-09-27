@@ -24,7 +24,7 @@ wiki's copy of its icon — the browser is what fetches the images.
 pip install -e ".[dev]"              # runtime + test deps, all in pyproject.toml
 cp .env.example .env                 # APP_ENV + MONGO_URI
 
-python scripts/import_focuses.py              # data/foo.html -> JSON -> Mongo
+python scripts/import_focuses.py              # data/focuses.html -> JSON -> Mongo
 python scripts/import_focuses.py --from-json  # seed from the committed JSON (fast)
 python scripts/import_focuses.py --json-only  # re-parse the page, touch no database
 python scripts/import_focuses.py --from-json --env prod --mongo-uri mongodb://localhost:27018

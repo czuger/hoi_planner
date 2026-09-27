@@ -2,7 +2,7 @@
 
 No test here ever needs a running mongod or a network: the models are pointed at
 an in-memory mongomock server, and `core.db.connect_db()` — the one place that
-would reach for a server — is stubbed out. `data/foo.html` is never read either;
+would reach for a server — is stubbed out. `data/focuses.html` is never read either;
 the parser tests build the few rows of markup they need (`tests/helpers.py`).
 """
 

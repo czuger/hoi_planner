@@ -1,6 +1,6 @@
 """Seed the `focuses` collection from the saved wiki page.
 
-    python scripts/import_focuses.py              # data/foo.html -> JSON -> Mongo
+    python scripts/import_focuses.py              # data/focuses.html -> JSON -> Mongo
     python scripts/import_focuses.py --json-only  # stop at data/focuses.json
     python scripts/import_focuses.py --from-json  # skip the page, load the JSON
 
@@ -18,7 +18,7 @@ its own host only, so reach it through an SSH tunnel opened beside this
 `make seed` stays the other way round — the same JSON, seeded from inside the
 deployed container.
 
-**Nothing here fetches anything**, the database aside. `data/foo.html` is a copy
+**Nothing here fetches anything**, the database aside. `data/focuses.html` is a copy
 of the German national focus tree page saved by hand, and the icons stay where
 they are: the catalog keeps a link to the wiki's copy, and the browser is what
 fetches them.

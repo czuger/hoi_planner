@@ -16,7 +16,7 @@ DATA_DIR = ROOT / "data"
 # extracts from it. The JSON is the intermediate the import writes and the
 # database is seeded from — kept in the repo so a fresh checkout can seed itself
 # without re-parsing the 2 MB page.
-WIKI_PAGE = DATA_DIR / "foo.html"
+WIKI_PAGE = DATA_DIR / "focuses.html"
 FOCUSES_JSON = DATA_DIR / "focuses.json"
 
 load_dotenv(ROOT / ".env")

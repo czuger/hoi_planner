@@ -13,7 +13,7 @@ from helpers import wiki_heading, wiki_row
 @pytest.fixture
 def paths(tmp_path, monkeypatch):
     """The script pointed at a page and a JSON file of the test's own."""
-    page = tmp_path / "foo.html"
+    page = tmp_path / "focuses.html"
     catalog_json = tmp_path / "focuses.json"
     monkeypatch.setattr(import_focuses, "WIKI_PAGE", page)
     monkeypatch.setattr(import_focuses, "FOCUSES_JSON", catalog_json)
@@ -54,7 +54,7 @@ def test_from_json_seeds_without_reading_the_page(paths, fake_db):
 
 
 def test_a_missing_page_says_so(paths, fake_db):
-    with pytest.raises(FileNotFoundError, match="foo.html"):
+    with pytest.raises(FileNotFoundError, match="focuses.html"):
         import_focuses.main([])
 
 

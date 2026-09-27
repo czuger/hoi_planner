@@ -1,0 +1,3191 @@
+[
+  {
+    "id": "Develop_Modern_Maneuver_Warfare",
+    "name": "Develop Modern Maneuver Warfare",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/08/Focus_GER_army.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_army.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 0,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Fortify_the_Vaterland",
+    "name": "Fortify the Vaterland",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f5/Goal_generic_construct_military.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_military.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 1,
+    "requires": [
+      [
+        "Develop_Modern_Maneuver_Warfare"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Prussian_Legacy",
+    "name": "The Prussian Legacy",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b7/Focus_GER_prussian_legacy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_prussian_legacy.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 2,
+    "requires": [
+      [
+        "Develop_Modern_Maneuver_Warfare"
+      ]
+    ],
+    "excludes": [
+      "Adopt_New_Panzer_Doctrine"
+    ]
+  },
+  {
+    "id": "Improve_the_Motorized_Troops",
+    "name": "Improve the Motorized Troops",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f3/Goal_generic_army_motorized.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_army_motorized.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 3,
+    "requires": [
+      [
+        "The_Prussian_Legacy"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Lessons_of_the_Great_War",
+    "name": "Lessons of the Great War",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/32/Focus_generic_little_entente.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_little_entente.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 4,
+    "requires": [
+      [
+        "The_Prussian_Legacy"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Artillery_Bombardment",
+    "name": "Artillery Bombardment",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e1/Focus_SWE_let_fly_all_guns.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_SWE_let_fly_all_guns.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 5,
+    "requires": [
+      [
+        "Improve_the_Motorized_Troops"
+      ],
+      [
+        "Lessons_of_the_Great_War"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Stormtroopers",
+    "name": "Stormtroopers",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a7/Focus_CHL_departemento_de_las_tropas_nacistas_de_asalto.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_CHL_departemento_de_las_tropas_nacistas_de_asalto.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 6,
+    "requires": [
+      [
+        "Artillery_Bombardment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "All-Terrain_Military_Motorcycle",
+    "name": "All-Terrain Military Motorcycle",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f9/Focus_generic_motor_cycle.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_motor_cycle.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 7,
+    "requires": [
+      [
+        "The_Prussian_Legacy",
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Instill_Auftragstaktik",
+    "name": "Instill Auftragstaktik",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/94/Goal_generic_axis_build_infantry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_axis_build_infantry.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 8,
+    "requires": [
+      [
+        "The_Prussian_Legacy",
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_the_Afrikakorps",
+    "name": "Establish the Afrikakorps",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/22/Focus_GER_afrikakorps.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_afrikakorps.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 9,
+    "requires": [
+      [
+        "Instill_Auftragstaktik"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Panzergrenadier",
+    "name": "Panzergrenadier",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2f/Focus_generic_mechanized.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_mechanized.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 10,
+    "requires": [
+      [
+        "Instill_Auftragstaktik"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Nationalize_Ford_Factories",
+    "name": "Nationalize Ford Factories",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Focus_generic_truck.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_truck.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 11,
+    "requires": [
+      [
+        "Panzergrenadier"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improve_the_Logistics_System",
+    "name": "Improve the Logistics System",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ae/Focus_generic_reinforcing_the_supply_network.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_reinforcing_the_supply_network.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 12,
+    "requires": [
+      [
+        "Panzergrenadier"
+      ]
+    ],
+    "excludes": [
+      "Defend_the_Vaterland"
+    ]
+  },
+  {
+    "id": "Defend_the_Vaterland",
+    "name": "Defend the Vaterland",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Goal_generic_defence.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_defence.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 13,
+    "requires": [
+      [
+        "Panzergrenadier"
+      ]
+    ],
+    "excludes": [
+      "Improve_the_Logistics_System"
+    ]
+  },
+  {
+    "id": "Uranverein",
+    "name": "Uranverein",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/ce/Focus_wonderweapons.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_wonderweapons.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 14,
+    "requires": [
+      [
+        "Improve_the_Logistics_System",
+        "Defend_the_Vaterland"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Kriegslokomotiven",
+    "name": "Kriegslokomotiven",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/54/Focus_GER_kriegslokomotive.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_kriegslokomotive.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 15,
+    "requires": [
+      [
+        "Panzergrenadier"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_the_Skijäger",
+    "name": "Establish the Skijäger",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e0/Focus_GER_gebirgsjager.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_gebirgsjager.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 16,
+    "requires": [
+      [
+        "Instill_Auftragstaktik"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Salvage_Captured_Equipment",
+    "name": "Salvage Captured Equipment",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9b/Focus_generic_tank_assembly.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_tank_assembly.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 17,
+    "requires": [
+      [
+        "The_Prussian_Legacy",
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Adopt_New_Panzer_Doctrine",
+    "name": "Adopt New Panzer Doctrine",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Focus_GER_adopt_new_panzer_doctrine_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_adopt_new_panzer_doctrine_historical.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 18,
+    "requires": [
+      [
+        "Develop_Modern_Maneuver_Warfare"
+      ]
+    ],
+    "excludes": [
+      "The_Prussian_Legacy"
+    ]
+  },
+  {
+    "id": "Panzer_Troops_School",
+    "name": "Panzer Troops School",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e6/Goal_generic_army_tanks.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_army_tanks.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 19,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Panzer_Research",
+    "name": "Advanced Panzer Research",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b2/Focus_generic_army_tanks2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_army_tanks2.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 20,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_Kummersdorf's_Capacity",
+    "name": "Expand Kummersdorf's Capacity",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Focus_generic_heavy_tank.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_heavy_tank.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 21,
+    "requires": [
+      [
+        "Panzer_Troops_School"
+      ],
+      [
+        "Advanced_Panzer_Research"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Combined_Arms",
+    "name": "Combined Arms",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/79/Focus_GER_combined_arms_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_combined_arms_historical.png",
+    "section": "Develop Modern Maneuver Warfare Branch",
+    "position": 22,
+    "requires": [
+      [
+        "Advanced_Panzer_Research"
+      ],
+      [
+        "Dive_Bombers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expanding_the_Luftwaffe",
+    "name": "Expanding the Luftwaffe",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/75/Focus_GER_airforce.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_airforce.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 23,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Aeronautical_Research_Institute",
+    "name": "Aeronautical Research Institute",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Focus_generic_air_research_boost.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_air_research_boost.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 24,
+    "requires": [
+      [
+        "Expanding_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dive_Bombers",
+    "name": "Dive Bombers",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/23/Focus_GER_sturzkampfbomber_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_sturzkampfbomber_historical.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 25,
+    "requires": [
+      [
+        "Aeronautical_Research_Institute"
+      ]
+    ],
+    "excludes": [
+      "Tactical_Bombers",
+      "Uralbomber_Program"
+    ]
+  },
+  {
+    "id": "Tactical_Bombers",
+    "name": "Tactical Bombers",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8e/Goal_generic_air_bomber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_air_bomber.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 26,
+    "requires": [
+      [
+        "Aeronautical_Research_Institute"
+      ]
+    ],
+    "excludes": [
+      "Dive_Bombers",
+      "Uralbomber_Program"
+    ]
+  },
+  {
+    "id": "Uralbomber_Program",
+    "name": "Uralbomber Program",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7d/Focus_generic_long_range_aircraft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_long_range_aircraft.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 27,
+    "requires": [
+      [
+        "Aeronautical_Research_Institute"
+      ]
+    ],
+    "excludes": [
+      "Dive_Bombers",
+      "Tactical_Bombers"
+    ]
+  },
+  {
+    "id": "Rocketry_Innovations",
+    "name": "Rocketry Innovations",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f0/Focus_rocketry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_rocketry.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 28,
+    "requires": [
+      [
+        "Dive_Bombers",
+        "Tactical_Bombers",
+        "Uralbomber_Program"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fallschirmjäger",
+    "name": "Fallschirmjäger",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d6/Focus_generic_paratrooper.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_paratrooper.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 29,
+    "requires": [
+      [
+        "Expanding_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Form_the_Jagdwaffe",
+    "name": "Form the Jagdwaffe",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8d/Focus_SOV_flying_clubs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_SOV_flying_clubs.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 30,
+    "requires": [
+      [
+        "Expanding_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reorganize_the_Luftwaffe",
+    "name": "Reorganize the Luftwaffe",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/79/Goal_generic_build_airforce.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_build_airforce.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 31,
+    "requires": [
+      [
+        "Expanding_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Solve_the_Logistical_Bottlenecks",
+    "name": "Solve the Logistical Bottlenecks",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/10/Goal_generic_air_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_air_production.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 32,
+    "requires": [
+      [
+        "Reorganize_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Experimental_Rotorcrafts",
+    "name": "Experimental Rotorcrafts",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Focus_generic_early_helicopter.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_early_helicopter.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 33,
+    "requires": [
+      [
+        "Form_the_Jagdwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Defense_of_the_Reich",
+    "name": "Defense of the Reich",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/64/Goal_generic_CAS.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_CAS.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 34,
+    "requires": [
+      [
+        "Reorganize_the_Luftwaffe",
+        "Develop_the_Knickebein"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construct_the_Kammhuber_Line",
+    "name": "Construct the Kammhuber Line",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/Focus_generic_energy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_energy.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 35,
+    "requires": [
+      [
+        "Defense_of_the_Reich"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_Night_Fighter_Squadrons",
+    "name": "Establish Night Fighter Squadrons",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f4/Goal_generic_air_fighter2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_air_fighter2.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 36,
+    "requires": [
+      [
+        "Defense_of_the_Reich"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Aerodynamic_Research_Institute",
+    "name": "Aerodynamic Research Institute",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e0/Focus_generic_aircraft_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_aircraft_production.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 37,
+    "requires": [
+      [
+        "Rocketry_Innovations"
+      ],
+      [
+        "Solve_the_Logistical_Bottlenecks",
+        "Construct_the_Kammhuber_Line",
+        "Establish_Night_Fighter_Squadrons"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Amerikabomber",
+    "name": "Amerikabomber",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4a/Focus_GER_amerikabomber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_amerikabomber.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 38,
+    "requires": [
+      [
+        "Aerodynamic_Research_Institute"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Develop_the_Knickebein",
+    "name": "Develop the Knickebein",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ae/Goal_generic_radar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_radar.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 39,
+    "requires": [
+      [
+        "Form_the_Jagdwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Torpedobomber",
+    "name": "Torpedobomber",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c3/Goal_generic_air_naval_bomber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_air_naval_bomber.png",
+    "section": "Expanding the Luftwaffe Branch",
+    "position": 40,
+    "requires": [
+      [
+        "Develop_the_Knickebein"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Strengthen_the_Kriegsmarine",
+    "name": "Strengthen the Kriegsmarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Focus_GER_navy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_navy.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 41,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Plan_Z",
+    "name": "Plan Z",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Focus_generic_air_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_air_carrier.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 42,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Expand_the_Kriegsmarinewerft",
+    "name": "Expand the Kriegsmarinewerft",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Focus_POL_develop_polish_shipbuilding.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_POL_develop_polish_shipbuilding.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 43,
+    "requires": [
+      [
+        "Plan_Z"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construct_Aircraft_Carriers",
+    "name": "Construct Aircraft Carriers",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dc/Focus_GER_graf_zeppelin.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_graf_zeppelin.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 44,
+    "requires": [
+      [
+        "Expand_the_Kriegsmarinewerft"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_Carrier_Groups",
+    "name": "Establish Carrier Groups",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b5/Goal_generic_navy_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_navy_carrier.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 45,
+    "requires": [
+      [
+        "Torpedobomber"
+      ],
+      [
+        "Construct_Aircraft_Carriers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Grosskampfschiff_Construction",
+    "name": "Grosskampfschiff Construction",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a1/Focus_generic_navy_battleship2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_navy_battleship2.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 46,
+    "requires": [
+      [
+        "Expand_the_Kriegsmarinewerft"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_High_Seas_Fleet",
+    "name": "The High Seas Fleet",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/da/Focus_GER_high_seas_fleet.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_high_seas_fleet.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 47,
+    "requires": [
+      [
+        "Expand_the_Kriegsmarinewerft"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Re-establish_the_Seekriegsleitung",
+    "name": "Re-establish the Seekriegsleitung",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Goal_generic_build_navy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_build_navy.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 48,
+    "requires": [
+      [
+        "Strengthen_the_Kriegsmarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Form_the_Marine_Stosstrupp",
+    "name": "Form the Marine Stosstrupp",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/af/Goal_generic_amphibious_assault.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_amphibious_assault.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 49,
+    "requires": [
+      [
+        "Re-establish_the_Seekriegsleitung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Atlantic_Naval_Bases",
+    "name": "Atlantic Naval Bases",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/44/Focus_generic_atlantic_coast.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_atlantic_coast.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 50,
+    "requires": [
+      [
+        "Re-establish_the_Seekriegsleitung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Atlantic_Naval_Dominance",
+    "name": "Atlantic Naval Dominance",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e1/Focus_generic_north_atlantic_fleet.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_north_atlantic_fleet.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 51,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Trade_Interdiction",
+    "name": "Trade Interdiction",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Focus_GER_trade_interdiction_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_trade_interdiction_historical.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 52,
+    "requires": [
+      [
+        "Strengthen_the_Kriegsmarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Cruiser_Warfare",
+    "name": "Cruiser Warfare",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ee/Focus_generic_cruiser2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_cruiser2.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 53,
+    "requires": [
+      [
+        "Trade_Interdiction"
+      ],
+      [
+        "Unrestricted_Convoy_Raiding"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Panzerschiff_Raiders",
+    "name": "Panzerschiff Raiders",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d0/Focus_GER_panzerschiff.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_panzerschiff.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 54,
+    "requires": [
+      [
+        "Cruiser_Warfare"
+      ]
+    ],
+    "excludes": [
+      "U-Boat_Efforts",
+      "Unrestricted_Convoy_Raiding"
+    ]
+  },
+  {
+    "id": "Wolfpack_Tactics",
+    "name": "Wolfpack Tactics",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/Goal_generic_wolf_pack.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_wolf_pack.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 55,
+    "requires": [
+      [
+        "Trade_Interdiction"
+      ],
+      [
+        "Unrestricted_Convoy_Raiding"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "U-Boat_Efforts",
+    "name": "U-Boat Efforts",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7a/Goal_generic_navy_submarine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_navy_submarine.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 56,
+    "requires": [
+      [
+        "Wolfpack_Tactics"
+      ]
+    ],
+    "excludes": [
+      "Panzerschiff_Raiders",
+      "Unrestricted_Convoy_Raiding"
+    ]
+  },
+  {
+    "id": "Unrestricted_Convoy_Raiding",
+    "name": "Unrestricted Convoy Raiding",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0c/Goal_generic_navy_battleship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_navy_battleship.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 57,
+    "requires": [],
+    "excludes": [
+      "Panzerschiff_Raiders",
+      "U-Boat_Efforts"
+    ]
+  },
+  {
+    "id": "Seeherrschaft",
+    "name": "Seeherrschaft",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Focus_GER_seeherrschaft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_seeherrschaft.png",
+    "section": "Strengthen the Kriegsmarine Branch",
+    "position": 58,
+    "requires": [
+      [
+        "The_High_Seas_Fleet"
+      ],
+      [
+        "Unrestricted_Convoy_Raiding"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Prioritize_Economic_Growth",
+    "name": "Prioritize Economic Growth",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f0/Focus_usa_reestablish_the_gold_standard.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_usa_reestablish_the_gold_standard.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 59,
+    "requires": [],
+    "excludes": [
+      "The_Four-Year_Plan"
+    ]
+  },
+  {
+    "id": "Currency_Reforms",
+    "name": "Currency Reforms",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/68/Focus_generic_currency_reforms.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_currency_reforms.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 60,
+    "requires": [
+      [
+        "Prioritize_Economic_Growth"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Lower_Taxes",
+    "name": "Lower Taxes",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/61/Focus_mex_privatisation.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_mex_privatisation.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 61,
+    "requires": [
+      [
+        "Currency_Reforms"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Housing_Developments",
+    "name": "Housing Developments",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4f/Focus_generic_low_cost_housing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_low_cost_housing.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 62,
+    "requires": [
+      [
+        "Currency_Reforms"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Abolish_Price_Controls",
+    "name": "Abolish Price Controls",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d5/Focus_ARG_anti_corruption_policies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_ARG_anti_corruption_policies.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 63,
+    "requires": [
+      [
+        "Lower_Taxes"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Industrial_Expansion",
+    "name": "Industrial Expansion",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6c/Focus_generic_modernize_industry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_modernize_industry.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 64,
+    "requires": [
+      [
+        "Lower_Taxes"
+      ],
+      [
+        "Housing_Developments"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Worker's_Rights",
+    "name": "Worker's Rights",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7c/Focus_generic_workers.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_workers.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 65,
+    "requires": [
+      [
+        "Housing_Developments"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Increased_Trade",
+    "name": "Increased Trade",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fa/Goal_generic_positive_trade_relations.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_positive_trade_relations.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 66,
+    "requires": [
+      [
+        "Abolish_Price_Controls"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Invest_in_Vereinigte_Stahlwerke",
+    "name": "Invest in Vereinigte Stahlwerke",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/db/Focus_GER_vereinigte_stahlwerke.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_vereinigte_stahlwerke.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 67,
+    "requires": [
+      [
+        "Abolish_Price_Controls"
+      ],
+      [
+        "Industrial_Expansion"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Agricultural_Reforms",
+    "name": "Agricultural Reforms",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e2/Focus_generic_farmland.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_farmland.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 68,
+    "requires": [
+      [
+        "Industrial_Expansion"
+      ],
+      [
+        "Worker's_Rights"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Wirtschaftswunder",
+    "name": "Wirtschaftswunder",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7c/Focus_GER_wirtschaftswunder.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_wirtschaftswunder.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 69,
+    "requires": [
+      [
+        "Invest_in_Vereinigte_Stahlwerke"
+      ],
+      [
+        "Agricultural_Reforms"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mass_Production",
+    "name": "Mass Production",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/55/Focus_generic_military_industry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_military_industry.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 70,
+    "requires": [
+      [
+        "Wirtschaftswunder"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Build_a_Defense_Industry",
+    "name": "Build a Defense Industry",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/44/Goal_generic_construct_mil_factory.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_mil_factory.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 71,
+    "requires": [
+      [
+        "Wirtschaftswunder"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "War_Production",
+    "name": "War Production",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/29/Focus_generic_mass_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_mass_production.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 72,
+    "requires": [
+      [
+        "Mass_Production"
+      ],
+      [
+        "Build_a_Defense_Industry"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Urbanization",
+    "name": "Urbanization",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ea/Focus_generic_full_employment.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_full_employment.png",
+    "section": "Prioritize Economic Growth Branch",
+    "position": 73,
+    "requires": [
+      [
+        "Agricultural_Reforms"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construct_the_Reichsautobahn",
+    "name": "Construct the Reichsautobahn",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/33/Focus_generic_road_investment.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_road_investment.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 74,
+    "requires": [
+      [
+        "Prioritize_Economic_Growth",
+        "The_Four-Year_Plan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Build_the_Rur_Dam",
+    "name": "Build the Rur Dam",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e7/Focus_generic_hydroelectric_energy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_hydroelectric_energy.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 75,
+    "requires": [
+      [
+        "Currency_Reforms",
+        "Construct_the_Reichsautobahn"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "KdF-Wagen_Factories",
+    "name": "KdF-Wagen Factories",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/10/Focus_GER_kdf_wagen.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_kdf_wagen.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 76,
+    "requires": [
+      [
+        "Construct_the_Reichsautobahn"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_the_Reichsautobahn_South",
+    "name": "Expand the Reichsautobahn South",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/94/Goal_generic_construct_infrastructure.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_infrastructure.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 77,
+    "requires": [
+      [
+        "KdF-Wagen_Factories"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Develop_Heraeus_Research_Facilities",
+    "name": "Develop Heraeus Research Facilities",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Focus_research.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_research.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 78,
+    "requires": [
+      [
+        "KdF-Wagen_Factories"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_the_Reichsautobahn_East",
+    "name": "Expand the Reichsautobahn East",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/94/Goal_generic_construct_infrastructure.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_infrastructure.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 79,
+    "requires": [
+      [
+        "KdF-Wagen_Factories"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Trade_Deal_with_Sweden",
+    "name": "Trade Deal with Sweden",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Focus_generic_befriend_sweden.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_befriend_sweden.png",
+    "section": "Construct the Reichsautobahn Sub-branch",
+    "position": 80,
+    "requires": [
+      [
+        "Construct_the_Reichsautobahn",
+        "Autarky_Efforts"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Four-Year_Plan",
+    "name": "The Four-Year Plan",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7c/Focus_GER_the_four_year_plan_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_the_four_year_plan_historical.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 81,
+    "requires": [],
+    "excludes": [
+      "Prioritize_Economic_Growth"
+    ]
+  },
+  {
+    "id": "Autarky_Efforts",
+    "name": "Autarky Efforts",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7f/Focus_GER_autarky_ambitions.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_autarky_ambitions.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 82,
+    "requires": [
+      [
+        "The_Four-Year_Plan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Institute_Price_Controls",
+    "name": "Institute Price Controls",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e4/Focus_generic_price_controls.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_price_controls.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 83,
+    "requires": [
+      [
+        "Autarky_Efforts"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_the_Reichswerke",
+    "name": "Establish the Reichswerke",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/31/Goal_generic_construct_civ_factory.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_civ_factory.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 84,
+    "requires": [
+      [
+        "Autarky_Efforts"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Seize_Foreign_Industries",
+    "name": "Seize Foreign Industries",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a6/Focus_DEN_heavy_regulations.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_DEN_heavy_regulations.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 85,
+    "requires": [
+      [
+        "Establish_the_Reichswerke"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Coal_Liquefaction",
+    "name": "Coal Liquefaction",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Goal_generic_oil_refinery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_oil_refinery.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 86,
+    "requires": [
+      [
+        "Autarky_Efforts"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Subsidize_Hoesch-Benzin",
+    "name": "Subsidize Hoesch-Benzin",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/78/Focus_GER_subsidize_hoesch_benzin.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_subsidize_hoesch_benzin.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 87,
+    "requires": [
+      [
+        "Coal_Liquefaction"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_Buna-Werke",
+    "name": "Establish Buna-Werke",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/25/Focus_generic_rubber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_rubber.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 88,
+    "requires": [
+      [
+        "Coal_Liquefaction"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Autarky_Achieved",
+    "name": "Autarky Achieved",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0b/Focus_GER_autarky_achieved.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_autarky_achieved.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 89,
+    "requires": [
+      [
+        "Seize_Foreign_Industries"
+      ],
+      [
+        "Subsidize_Hoesch-Benzin"
+      ],
+      [
+        "Establish_Buna-Werke"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Accelerate_the_Rearmament_Program",
+    "name": "Accelerate the Rearmament Program",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8f/Focus_generic_combined_arms.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_combined_arms.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 90,
+    "requires": [
+      [
+        "The_Four-Year_Plan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Concentrated_Armament_Program",
+    "name": "Concentrated Armament Program",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a6/Focus_generic_reorient_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_reorient_production.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 91,
+    "requires": [
+      [
+        "Accelerate_the_Rearmament_Program"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_Production_Targets",
+    "name": "Establish Production Targets",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/44/Goal_generic_construct_mil_factory.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_construct_mil_factory.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 92,
+    "requires": [
+      [
+        "Accelerate_the_Rearmament_Program"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Form_the_Zentrale_Planung",
+    "name": "Form the Zentrale Planung",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c4/Focus_generic_central_planning.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_central_planning.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 93,
+    "requires": [
+      [
+        "Concentrated_Armament_Program",
+        "Establish_Production_Targets"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armament_Rationalization",
+    "name": "Armament Rationalization",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/55/Focus_generic_military_industry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_military_industry.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 94,
+    "requires": [
+      [
+        "Form_the_Zentrale_Planung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Create_the_Rüstungsstab",
+    "name": "Create the Rüstungsstab",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/29/Focus_generic_mass_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_mass_production.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 95,
+    "requires": [
+      [
+        "Form_the_Zentrale_Planung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Totaler_Krieg",
+    "name": "Totaler Krieg",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Focus_generic_total_war.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_total_war.png",
+    "section": "The Four-Year Plan Branch",
+    "position": 96,
+    "requires": [
+      [
+        "Armament_Rationalization"
+      ],
+      [
+        "Create_the_Rüstungsstab"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Remilitarize_the_Rhineland",
+    "name": "Remilitarize the Rhineland",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c7/Focus_GER_remilitarize_the_rhineland_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_remilitarize_the_rhineland_historical.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 97,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heed_von_Neurath's_Concerns",
+    "name": "Heed von Neurath's Concerns",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Focus_GER_heed_von_neuraths_concerns.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_heed_von_neuraths_concerns.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 98,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "War_Preparations",
+    "name": "War Preparations",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/94/Goal_generic_axis_build_infantry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_axis_build_infantry.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 99,
+    "requires": [
+      [
+        "Heed_von_Neurath's_Concerns"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Prepare_for_the_Next_Blockade_ww",
+    "name": "Prepare for the Next Blockade",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/69/Goal_generic_navy_cruiser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_navy_cruiser.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 100,
+    "requires": [
+      [
+        "War_Preparations"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Befriend_Czechoslovakia",
+    "name": "Befriend Czechoslovakia",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/df/Focus_generic_befriend_czechoslovakia.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_befriend_czechoslovakia.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 101,
+    "requires": [
+      [
+        "War_Preparations"
+      ]
+    ],
+    "excludes": [
+      "Demand_Sudetenland"
+    ]
+  },
+  {
+    "id": "Integrate_Czechoslovakia",
+    "name": "Intergate Czechoslovakia",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f1/Focus_GER_integrate_czechoslovakia.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_integrate_czechoslovakia.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 102,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Integrate_Czech_Manufacturers",
+    "name": "Integrate Czech Manufacturers",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/31/Focus_PER_czech_tanks.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_PER_czech_tanks.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 103,
+    "requires": [
+      [
+        "Integrate_Czechoslovakia",
+        "Fate_of_Czechoslovakia"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Uplift_the_Rosenberg_Office",
+    "name": "Uplift the Rosenberg Office",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/78/Focus_ger_reichskommisariats_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_ger_reichskommisariats_historical.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 104,
+    "requires": [
+      [
+        "Heed_von_Neurath's_Concerns",
+        "Reorganize_the_Wehrmacht"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_SS_Recruitment",
+    "name": "Expand SS Recruitment",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Focus_generic_fascist_troops.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_fascist_troops.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 105,
+    "requires": [
+      [
+        "Uplift_the_Rosenberg_Office"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reorganize_the_Wehrmacht",
+    "name": "Reorganize the Wehrmacht",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1a/Focus_GER_reorganize_the_wehrmacht_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_reorganize_the_wehrmacht_historical.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 106,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": [
+      "Heed_von_Neurath's_Concerns"
+    ]
+  },
+  {
+    "id": "Molotov-Ribbentrop_Pact",
+    "name": "Molotov-Ribbentrop Pact",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/30/Focus_GER_molotov_ribbentrop_pact.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_molotov_ribbentrop_pact.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 107,
+    "requires": [
+      [
+        "Reorganize_the_Wehrmacht"
+      ]
+    ],
+    "excludes": [
+      "Anti-Soviet_Pact"
+    ]
+  },
+  {
+    "id": "Treaty_with_the_USSR",
+    "name": "Treaty with the USSR",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9a/Goal_generic_scientific_exchange.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_scientific_exchange.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 108,
+    "requires": [
+      [
+        "Molotov-Ribbentrop_Pact"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Alliance_with_the_USSR",
+    "name": "Alliance with the USSR",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b1/Goal_generic_dangerous_deal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_dangerous_deal.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 109,
+    "requires": [
+      [
+        "Treaty_with_the_USSR"
+      ]
+    ],
+    "excludes": [
+      "War_with_the_USSR"
+    ]
+  },
+  {
+    "id": "Puppet_Turkey",
+    "name": "Puppet Turkey",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2f/Focus_generic_attack_turkey.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_turkey.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 110,
+    "requires": [
+      [
+        "Alliance_with_the_USSR"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Influence_the_Middle_East",
+    "name": "Influence the Middle East",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4a/Focus_generic_influence_middle_east.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_influence_middle_east.png",
+    "section": "Remilitarize the Rhineland Branch",
+    "position": 111,
+    "requires": [
+      [
+        "Puppet_Turkey",
+        "Befriend_Turkey"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reorganize_Secret_Services",
+    "name": "Reorganize Secret Services",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/ba/Focus_generic_secret_service_agency.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_secret_service_agency.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 112,
+    "requires": [
+      [
+        "War_Preparations"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Subversive_Infiltrators",
+    "name": "Subversive Infiltrators",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ae/Focus_ARG_keep_it_in_the_party.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_ARG_keep_it_in_the_party.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 113,
+    "requires": [
+      [
+        "Reorganize_Secret_Services"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Führerprinzip",
+    "name": "Führerprinzip",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/Focus_GER_support_the_fuhrer_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_support_the_fuhrer_historical.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 114,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reichsleiter_Todt",
+    "name": "Reichsleiter Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c7/Focus_GER_ascension_of_todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ascension_of_todt.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 115,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Form_Organization_Todt",
+    "name": "Form Organization Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ea/Focus_GER_form_organization_todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_form_organization_todt.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 116,
+    "requires": [
+      [
+        "Reichsleiter_Todt"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Autonomous_Organization_Todt",
+    "name": "Autonomous Organization Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c8/Focus_GER_autonomous_organization_todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_autonomous_organization_todt.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 117,
+    "requires": [
+      [
+        "Form_Organization_Todt"
+      ]
+    ],
+    "excludes": [
+      "Plenipotentiary_of_Armaments",
+      "Plenipotentiary_of_the_Four_Year_Plan"
+    ]
+  },
+  {
+    "id": "Reichsleiter_Speer",
+    "name": "Reichsleiter Speer",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/96/Focus_GER_ascension_of_speer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ascension_of_speer.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 118,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Employ_Philipp_Holzmann",
+    "name": "Employ Philipp Holzmann",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/ff/Focus_GER_philipp_holzmann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_philipp_holzmann.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 119,
+    "requires": [
+      [
+        "Reichsleiter_Speer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Plenipotentiary_of_Armaments",
+    "name": "Plenipotentiary of Armaments",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5a/Focus_GER_plenipotentiary_of_armaments.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_plenipotentiary_of_armaments.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 120,
+    "requires": [
+      [
+        "Employ_Philipp_Holzmann"
+      ]
+    ],
+    "excludes": [
+      "Autonomous_Organization_Todt",
+      "Plenipotentiary_of_the_Four_Year_Plan"
+    ]
+  },
+  {
+    "id": "Wonder_Weapons",
+    "name": "Wonder Weapons",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/90/Focus_GER_wunderwaffe_inner_circle.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_wunderwaffe_inner_circle.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 121,
+    "requires": [
+      [
+        "Autonomous_Organization_Todt",
+        "Plenipotentiary_of_Armaments"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reichsleiter_Göring",
+    "name": "Reichsleiter Göring",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/49/Focus_GER_ascension_of_goring.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ascension_of_goring.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 122,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Prioritize_the_Four_Year_Plan",
+    "name": "Prioritize the Four Year Plan",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4d/Focus_GER_prioritize_the_four_year_plan.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_prioritize_the_four_year_plan.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 123,
+    "requires": [
+      [
+        "Reichsleiter_Göring"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Plenipotentiary_of_the_Four_Year_Plan",
+    "name": "Plenipotentiary of the Four Year Plan",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/06/Focus_GER_plenipotentiary_of_the_four_year_plan.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_plenipotentiary_of_the_four_year_plan.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 124,
+    "requires": [
+      [
+        "Prioritize_the_Four_Year_Plan"
+      ]
+    ],
+    "excludes": [
+      "Autonomous_Organization_Todt",
+      "Plenipotentiary_of_Armaments"
+    ]
+  },
+  {
+    "id": "Integration_of_Puppet_Economies",
+    "name": "Integration of Puppet Economies",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a1/Focus_GER_integration_of_puppet_economies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_integration_of_puppet_economies.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 125,
+    "requires": [
+      [
+        "Plenipotentiary_of_the_Four_Year_Plan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reichsleiter_Himmler",
+    "name": "Reichsleiter Himmler",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ab/Focus_GER_ascension_of_himmler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ascension_of_himmler.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 126,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_Gestapo",
+    "name": "Expand Gestapo",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6a/Focus_GER_expand_gestapo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_expand_gestapo.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 127,
+    "requires": [
+      [
+        "Reichsleiter_Himmler"
+      ]
+    ],
+    "excludes": [
+      "Expand_SS_Security_Duties"
+    ]
+  },
+  {
+    "id": "Absorb_the_Abwehr",
+    "name": "Absorb the Abwehr",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1d/Focus_GER_absorb_the_abwehr.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_absorb_the_abwehr.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 128,
+    "requires": [
+      [
+        "Expand_Gestapo"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_SS_Security_Duties",
+    "name": "Expand SS Security Duties",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Focus_GER_expand_ss_security_duties.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_expand_ss_security_duties.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 129,
+    "requires": [
+      [
+        "Reichsleiter_Himmler"
+      ]
+    ],
+    "excludes": [
+      "Expand_Gestapo"
+    ]
+  },
+  {
+    "id": "Strengthen_the_Waffen-SS",
+    "name": "Strengthen the Waffen-SS",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/16/Focus_GER_strengthen_the_waffen_ss.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_strengthen_the_waffen_ss.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 130,
+    "requires": [
+      [
+        "Expand_SS_Security_Duties"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hegemony_of_the_SS",
+    "name": "Hegemony of the SS",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7c/Focus_GER_hegemony_of_the_ss.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_hegemony_of_the_ss.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 131,
+    "requires": [
+      [
+        "Absorb_the_Abwehr",
+        "Strengthen_the_Waffen-SS"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reichsleiter_Goebbels",
+    "name": "Reichsleiter Goebbels",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/54/Focus_GER_ascension_of_goebbels.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ascension_of_goebbels.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 132,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Ministry_of_Public_Enlightenment",
+    "name": "Ministry of Public Enlightenment",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/13/Focus_GER_reich_ministry_of_public_enlightenment.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_reich_ministry_of_public_enlightenment.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 133,
+    "requires": [
+      [
+        "Reichsleiter_Goebbels"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fund_the_Film_Department",
+    "name": "Fund the Film Department",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3c/Focus_GER_fund_the_film_department.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_fund_the_film_department.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 134,
+    "requires": [
+      [
+        "Ministry_of_Public_Enlightenment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Propaganda_Master",
+    "name": "Propaganda Master",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6e/Focus_GER_propaganda_master.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_propaganda_master.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 135,
+    "requires": [
+      [
+        "Fund_the_Film_Department"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Party_Chancellor_Hess",
+    "name": "Party Chancellor Hess",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/16/Focus_GER_party_chancellor_hess.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_party_chancellor_hess.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 136,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": [
+      "Party_Chancellor_Bormann"
+    ]
+  },
+  {
+    "id": "Party_Chancellor_Bormann",
+    "name": "Party Chancellor Bormann",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Focus_GER_party_chancellor_bormann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_party_chancellor_bormann.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 137,
+    "requires": [
+      [
+        "Führerprinzip"
+      ]
+    ],
+    "excludes": [
+      "Party_Chancellor_Hess"
+    ]
+  },
+  {
+    "id": "Optimize_Reich_Service",
+    "name": "Optimize Reich Service",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ea/Focus_GER_optimize_reich_labour_service.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_optimize_reich_labour_service.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 138,
+    "requires": [
+      [
+        "Party_Chancellor_Hess",
+        "Party_Chancellor_Bormann"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rally_the_Industrialists",
+    "name": "Rally the Industrialists",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/65/Focus_GER_rally_the_industrialists.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_rally_the_industrialists.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 139,
+    "requires": [
+      [
+        "Party_Chancellor_Hess"
+      ],
+      [
+        "Optimize_Reich_Service"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Glorify_Party_Rallies",
+    "name": "Glorify Party Rallies",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8e/Focus_GER_glorify_party_rallies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_glorify_party_rallies.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 140,
+    "requires": [
+      [
+        "Optimize_Reich_Service"
+      ],
+      [
+        "Party_Chancellor_Bormann"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Total_Control_Over_Domestic_Affairs",
+    "name": "Total Control Over Domestic Affairs",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/15/Focus_GER_total_control_over_domestic_affairs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_total_control_over_domestic_affairs.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 141,
+    "requires": [
+      [
+        "Rally_the_Industrialists",
+        "Glorify_Party_Rallies"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "A_Strong_Successor",
+    "name": "A Strong Successor",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b1/Focus_GER_a_strong_successor.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_a_strong_successor.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 142,
+    "requires": [
+      [
+        "Wonder_Weapons",
+        "Integration_of_Puppet_Economies",
+        "Hegemony_of_the_SS",
+        "Propaganda_Master",
+        "Total_Control_Over_Domestic_Affairs"
+      ]
+    ],
+    "excludes": [
+      "Loyalty_to_the_Führer"
+    ]
+  },
+  {
+    "id": "Loyalty_to_the_Führer",
+    "name": "Loyalty to the Führer",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Focus_GER_loyalty_to_the_fuhrer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_loyalty_to_the_fuhrer.png",
+    "section": "Reorganize Secret Services Sub-branch",
+    "position": 143,
+    "requires": [
+      [
+        "Wonder_Weapons",
+        "Integration_of_Puppet_Economies",
+        "Hegemony_of_the_SS",
+        "Propaganda_Master",
+        "Total_Control_Over_Domestic_Affairs"
+      ]
+    ],
+    "excludes": [
+      "A_Strong_Successor"
+    ]
+  },
+  {
+    "id": "Bribe_Senior_Officers",
+    "name": "Bribe Senior Officers",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b1/Goal_generic_dangerous_deal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_dangerous_deal.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 144,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Army_Indoctrination",
+    "name": "Army Indoctrination",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a6/Focus_GER_subdue_the_wehrmacht_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_subdue_the_wehrmacht_historical.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 145,
+    "requires": [
+      [
+        "Bribe_Senior_Officers"
+      ]
+    ],
+    "excludes": [
+      "Autonomy_in_the_Kriegsschulen"
+    ]
+  },
+  {
+    "id": "Strafbataillon",
+    "name": "Strafbataillon",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/15/Focus_GER_strafbataillon.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_strafbataillon.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 146,
+    "requires": [
+      [
+        "Army_Indoctrination"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Autonomy_in_the_Kriegsschulen",
+    "name": "Autonomy in the Kriegsschulen",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/43/Focus_GER_appease_the_wehrmacht.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_appease_the_wehrmacht.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 147,
+    "requires": [
+      [
+        "Bribe_Senior_Officers"
+      ]
+    ],
+    "excludes": [
+      "Army_Indoctrination"
+    ]
+  },
+  {
+    "id": "Expand_the_Truppenschulen",
+    "name": "Expand the Truppenschulen",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e8/Focus_generic_military_mission.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_military_mission.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 148,
+    "requires": [
+      [
+        "Autonomy_in_the_Kriegsschulen"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Innovative_Warfare",
+    "name": "Innovative Warfare",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Focus_ARG_develop_the_electricity_sector.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_ARG_develop_the_electricity_sector.png",
+    "section": "Bribe Senior Officers Sub-branch",
+    "position": 149,
+    "requires": [
+      [
+        "Army_Indoctrination",
+        "Autonomy_in_the_Kriegsschulen"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anschluss",
+    "name": "Anschluss",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/db/Focus_GER_anschluss_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_anschluss_historical.png",
+    "section": "Anschluss Sub-branch",
+    "position": 150,
+    "requires": [
+      [
+        "Heed_von_Neurath's_Concerns",
+        "Reorganize_the_Wehrmacht"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Demand_Sudetenland",
+    "name": "Demand Sudetenland",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8e/Focus_GER_demand_sudetenland.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_demand_sudetenland.png",
+    "section": "Anschluss Sub-branch",
+    "position": 151,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": [
+      "Befriend_Czechoslovakia"
+    ]
+  },
+  {
+    "id": "First_Vienna_Award",
+    "name": "First Vienna Award",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/84/Goal_generic_military_deal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_military_deal.png",
+    "section": "Anschluss Sub-branch",
+    "position": 152,
+    "requires": [
+      [
+        "Demand_Sudetenland"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fate_of_Czechoslovakia",
+    "name": "Fate of Czechoslovakia",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Focus_GER_fate_of_czechoslovakia_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_fate_of_czechoslovakia_historical.png",
+    "section": "Anschluss Sub-branch",
+    "position": 153,
+    "requires": [
+      [
+        "First_Vienna_Award"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Danzig_for_Slovakia",
+    "name": "Danzig for Slovakia",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Goal_generic_intelligence_exchange.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_intelligence_exchange.png",
+    "section": "Anschluss Sub-branch",
+    "position": 154,
+    "requires": [
+      [
+        "Integrate_Czechoslovakia",
+        "Fate_of_Czechoslovakia"
+      ]
+    ],
+    "excludes": [
+      "Danzig_or_War"
+    ]
+  },
+  {
+    "id": "Befriend_Poland",
+    "name": "Befriend Poland",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c8/Focus_generic_befriend_poland.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_befriend_poland.png",
+    "section": "Anschluss Sub-branch",
+    "position": 155,
+    "requires": [
+      [
+        "Danzig_for_Slovakia"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reassert_Eastern_Claims",
+    "name": "Reassert Eastern Claims",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e8/Goal_generic_forceful_treaty.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_forceful_treaty.png",
+    "section": "Anschluss Sub-branch",
+    "position": 156,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Danzig_or_War",
+    "name": "Danzig or War",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b2/Focus_GER_danzig_or_war_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_danzig_or_war_historical.png",
+    "section": "Anschluss Sub-branch",
+    "position": 157,
+    "requires": [
+      [
+        "Reassert_Eastern_Claims"
+      ]
+    ],
+    "excludes": [
+      "Danzig_for_Slovakia"
+    ]
+  },
+  {
+    "id": "Subjugate_Romanian_Economy",
+    "name": "Subjugate Romanian Economy",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4c/Focus_GER_subjugate_romanian_economy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_subjugate_romanian_economy.png",
+    "section": "Anschluss Sub-branch",
+    "position": 158,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Influence_the_Benelux",
+    "name": "Influence the Benelux",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4c/Focus_generic_influence_benelux.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_influence_benelux.png",
+    "section": "Anschluss Sub-branch",
+    "position": 159,
+    "requires": [
+      [
+        "Danzig_for_Slovakia",
+        "Danzig_or_War"
+      ]
+    ],
+    "excludes": [
+      "Around_Maginot"
+    ]
+  },
+  {
+    "id": "Around_Maginot",
+    "name": "Around Maginot",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5a/Focus_GER_around_maginot_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_around_maginot_historical.png",
+    "section": "Anschluss Sub-branch",
+    "position": 160,
+    "requires": [
+      [
+        "Danzig_for_Slovakia",
+        "Danzig_or_War"
+      ]
+    ],
+    "excludes": [
+      "Influence_the_Benelux"
+    ]
+  },
+  {
+    "id": "Operation_Weserübung",
+    "name": "Operation Weserübung",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b5/Focus_GER_operation_wesserubung_historical.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_operation_wesserubung_historical.png",
+    "section": "Anschluss Sub-branch",
+    "position": 161,
+    "requires": [
+      [
+        "Danzig_or_War"
+      ]
+    ],
+    "excludes": [
+      "Utilize_the_Nordische_Gesellschaft"
+    ]
+  },
+  {
+    "id": "Form_the_Rome-Berlin_Axis",
+    "name": "Form the Rome-Berlin Axis",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/95/Focus_GER_befriend_italy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_befriend_italy.png",
+    "section": "Anschluss Sub-branch",
+    "position": 162,
+    "requires": [
+      [
+        "Integrate_Czechoslovakia",
+        "Fate_of_Czechoslovakia"
+      ]
+    ],
+    "excludes": [
+      "Operation_Alaric"
+    ]
+  },
+  {
+    "id": "Operation_Alaric",
+    "name": "Operation Alaric",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Focus_usa_attack_italy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_usa_attack_italy.png",
+    "section": "Anschluss Sub-branch",
+    "position": 163,
+    "requires": [
+      [
+        "Influence_the_Benelux",
+        "Around_Maginot"
+      ]
+    ],
+    "excludes": [
+      "Form_the_Rome-Berlin_Axis"
+    ]
+  },
+  {
+    "id": "Alliance_with_Spain",
+    "name": "Alliance with Spain",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/11/Focus_intervention_spain_nationalists.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_intervention_spain_nationalists.png",
+    "section": "Anschluss Sub-branch",
+    "position": 164,
+    "requires": [
+      [
+        "Form_the_Rome-Berlin_Axis",
+        "Operation_Alaric"
+      ]
+    ],
+    "excludes": [
+      "Operation_Felix"
+    ]
+  },
+  {
+    "id": "Operation_Felix",
+    "name": "Operation Felix",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/48/Focus_generic_attack_nationalist_spain_focus.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_nationalist_spain_focus.png",
+    "section": "Anschluss Sub-branch",
+    "position": 165,
+    "requires": [
+      [
+        "Form_the_Rome-Berlin_Axis",
+        "Operation_Alaric"
+      ]
+    ],
+    "excludes": [
+      "Alliance_with_Spain"
+    ]
+  },
+  {
+    "id": "Alliance_with_Portugal",
+    "name": "Alliance with Portugal",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/45/Focus_generic_befriend_portugal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_befriend_portugal.png",
+    "section": "Anschluss Sub-branch",
+    "position": 166,
+    "requires": [
+      [
+        "Alliance_with_Spain",
+        "Operation_Felix"
+      ]
+    ],
+    "excludes": [
+      "Operation_Isabella"
+    ]
+  },
+  {
+    "id": "Operation_Isabella",
+    "name": "Operation Isabella",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8a/Focus_generic_attack_portugal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_portugal.png",
+    "section": "Anschluss Sub-branch",
+    "position": 167,
+    "requires": [
+      [
+        "Alliance_with_Spain",
+        "Operation_Felix"
+      ]
+    ],
+    "excludes": [
+      "Alliance_with_Portugal"
+    ]
+  },
+  {
+    "id": "War_With_France",
+    "name": "War With France",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Focus_GER_war_with_france.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_war_with_france.png",
+    "section": "Anschluss Sub-branch",
+    "position": 168,
+    "requires": [
+      [
+        "Around_Maginot",
+        "Operation_Weserübung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Operation_Tannenbaum",
+    "name": "Operation Tannenbaum",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/04/Focus_attack_switzerland.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_attack_switzerland.png",
+    "section": "Anschluss Sub-branch",
+    "position": 169,
+    "requires": [
+      [
+        "War_With_France"
+      ]
+    ],
+    "excludes": [
+      "The_Swiss_Gold"
+    ]
+  },
+  {
+    "id": "The_Swiss_Gold",
+    "name": "The Swiss Gold",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/48/Focus_GER_the_swiss_gold.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_the_swiss_gold.png",
+    "section": "Anschluss Sub-branch",
+    "position": 170,
+    "requires": [
+      [
+        "War_With_France"
+      ]
+    ],
+    "excludes": [
+      "Operation_Tannenbaum"
+    ]
+  },
+  {
+    "id": "Reintegrate_Luxemburg_and_Alsace-Lorraine",
+    "name": "Reintegrate Luxemburg and Alsace-Lorraine",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ee/Goal_generic_position_armies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_position_armies.png",
+    "section": "Anschluss Sub-branch",
+    "position": 171,
+    "requires": [
+      [
+        "War_With_France"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Demands_to_Sweden",
+    "name": "Demands to Sweden",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2f/Focus_generic_invade_sweden.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_invade_sweden.png",
+    "section": "Anschluss Sub-branch",
+    "position": 172,
+    "requires": [
+      [
+        "Operation_Weserübung"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Expand_Claims_in_Baltic",
+    "name": "Expand Claims in Baltic",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e4/Focus_generic_attack_baltics.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_baltics.png",
+    "section": "Anschluss Sub-branch",
+    "position": 173,
+    "requires": [
+      [
+        "Reassert_Eastern_Claims"
+      ]
+    ],
+    "excludes": [
+      "Influence_the_Baltics"
+    ]
+  },
+  {
+    "id": "Influence_the_Baltics",
+    "name": "Influence the Baltics",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Focus_SOV_baltic_security.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_SOV_baltic_security.png",
+    "section": "Anschluss Sub-branch",
+    "position": 174,
+    "requires": [
+      [
+        "Reassert_Eastern_Claims"
+      ]
+    ],
+    "excludes": [
+      "Expand_Claims_in_Baltic"
+    ]
+  },
+  {
+    "id": "Utilize_the_Nordische_Gesellschaft",
+    "name": "Utilize the Nordische Gesellschaft",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Focus_generic_scandinavia_flags.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_scandinavia_flags.png",
+    "section": "Anschluss Sub-branch",
+    "position": 175,
+    "requires": [
+      [
+        "Influence_the_Baltics"
+      ]
+    ],
+    "excludes": [
+      "Operation_Weserübung"
+    ]
+  },
+  {
+    "id": "Secure_Finland",
+    "name": "Secure Finland",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7a/Focus_FIN_keepers_of_the_north.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_FIN_keepers_of_the_north.png",
+    "section": "Anschluss Sub-branch",
+    "position": 176,
+    "requires": [
+      [
+        "Operation_Weserübung",
+        "Utilize_the_Nordische_Gesellschaft"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Triumphant_Will",
+    "name": "The Triumphant Will",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5d/Goal_support_fascism.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_support_fascism.png",
+    "section": "Anschluss Sub-branch",
+    "position": 177,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Support_a_Coup_in_Liechtenstein",
+    "name": "Support a Coup in Liechtenstein",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/44/Focus_generic_liechtenstein_coa.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_liechtenstein_coa.png",
+    "section": "Anschluss Sub-branch",
+    "position": 178,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Demonstration_of_Military_Achievements",
+    "name": "Demonstration of Military Achievements",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/97/Focus_GER_demonstration_of_military_achievements.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_demonstration_of_military_achievements.png",
+    "section": "Anschluss Sub-branch",
+    "position": 179,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "German_Army,_Invincible",
+    "name": "German Army, Invincible",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fb/Focus_GER_german_army_invincible.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_german_army_invincible.png",
+    "section": "Anschluss Sub-branch",
+    "position": 180,
+    "requires": [
+      [
+        "Demonstration_of_Military_Achievements"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Supreme_Leader",
+    "name": "The Supreme Leader",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7f/Focus_GER_the_supreme_leader.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_the_supreme_leader.png",
+    "section": "Anschluss Sub-branch",
+    "position": 181,
+    "requires": [
+      [
+        "German_Army,_Invincible"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Demand_Slovenia",
+    "name": "Demand Slovenia",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5f/Focus_generic_attack_slovenia.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_slovenia.png",
+    "section": "Anschluss Sub-branch",
+    "position": 182,
+    "requires": [
+      [
+        "Anschluss"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "First_Ljubljana_Award",
+    "name": "First Ljubljana Award",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/84/Goal_generic_military_deal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_military_deal.png",
+    "section": "Anschluss Sub-branch",
+    "position": 183,
+    "requires": [
+      [
+        "Demand_Slovenia"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fate_of_Yugoslavia",
+    "name": "Fate of Yugoslavia",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/99/Focus_GER_fate_of_yugoslavia.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_fate_of_yugoslavia.png",
+    "section": "Anschluss Sub-branch",
+    "position": 184,
+    "requires": [
+      [
+        "First_Ljubljana_Award"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Second_Ljubljana_Award",
+    "name": "Second Ljubljana Award",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e8/Goal_generic_forceful_treaty.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_forceful_treaty.png",
+    "section": "Anschluss Sub-branch",
+    "position": 185,
+    "requires": [
+      [
+        "Fate_of_Yugoslavia"
+      ]
+    ],
+    "excludes": [
+      "War_With_Greece"
+    ]
+  },
+  {
+    "id": "Fate_Of_Greece",
+    "name": "Fate Of Greece",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e8/Focus_GER_fate_of_greece.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_fate_of_greece.png",
+    "section": "Anschluss Sub-branch",
+    "position": 186,
+    "requires": [
+      [
+        "Second_Ljubljana_Award"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "War_With_Greece",
+    "name": "War With Greece",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Focus_generic_attack_greece.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_attack_greece.png",
+    "section": "Anschluss Sub-branch",
+    "position": 187,
+    "requires": [
+      [
+        "Fate_of_Yugoslavia"
+      ]
+    ],
+    "excludes": [
+      "Second_Ljubljana_Award"
+    ]
+  },
+  {
+    "id": "Operation_Sea_Lion",
+    "name": "Operation Sea Lion",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/52/Focus_generic_naval_invasion.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_naval_invasion.png",
+    "section": "Anschluss Sub-branch",
+    "position": 188,
+    "requires": [
+      [
+        "War_With_France",
+        "Operation_Alaric"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Operation_Green",
+    "name": "Operation Green",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Goal_generic_occupy_states_ongoing_war.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_occupy_states_ongoing_war.png",
+    "section": "Anschluss Sub-branch",
+    "position": 189,
+    "requires": [
+      [
+        "Operation_Sea_Lion"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Crossing_the_Atlantic",
+    "name": "Crossing the Atlantic",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Goal_generic_build_navy.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_build_navy.png",
+    "section": "Anschluss Sub-branch",
+    "position": 190,
+    "requires": [
+      [
+        "Operation_Sea_Lion"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Challenge_the_Monroe_Doctrine",
+    "name": "Challenge the Monroe Doctrine",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/66/Focus_por_recover_latin_america.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_por_recover_latin_america.png",
+    "section": "Anschluss Sub-branch",
+    "position": 191,
+    "requires": [
+      [
+        "Crossing_the_Atlantic"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Shatter_American_Hegemony",
+    "name": "Shatter American Hegemony",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1f/Focus_GER_shatter_usas_hegemony.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_shatter_usas_hegemony.png",
+    "section": "Anschluss Sub-branch",
+    "position": 192,
+    "requires": [
+      [
+        "Crossing_the_Atlantic"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Establish_Protectorates_in_America",
+    "name": "Establish Protectorates in America",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/de/Focus_GER_establish_protectorates_in_america.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_establish_protectorates_in_america.png",
+    "section": "Anschluss Sub-branch",
+    "position": 193,
+    "requires": [
+      [
+        "Challenge_the_Monroe_Doctrine",
+        "Shatter_American_Hegemony"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anti-Comintern_Pact",
+    "name": "Anti-Comintern Pact",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b0/Focus_GER_anti_comintern_pact.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_anti_comintern_pact.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 194,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anti-Soviet_Pact",
+    "name": "Anti-Soviet Pact",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9a/Focus_ger_bulwark_against_bolshevism.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_ger_bulwark_against_bolshevism.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 195,
+    "requires": [
+      [
+        "Anti-Comintern_Pact"
+      ]
+    ],
+    "excludes": [
+      "Molotov-Ribbentrop_Pact"
+    ]
+  },
+  {
+    "id": "Support_Finland",
+    "name": "Support Finland",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ab/Focus_FIN_right_wing_policies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_FIN_right_wing_policies.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 196,
+    "requires": [
+      [
+        "Anti-Soviet_Pact"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "War_with_the_USSR",
+    "name": "War with the USSR",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7a/Focus_GER_war_with_the_ussr.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_war_with_the_ussr.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 197,
+    "requires": [
+      [
+        "Anti-Comintern_Pact"
+      ]
+    ],
+    "excludes": [
+      "Alliance_with_the_USSR"
+    ]
+  },
+  {
+    "id": "Befriend_Turkey",
+    "name": "Befriend Turkey",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3b/Focus_generic_befriend_turkey.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_befriend_turkey.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 198,
+    "requires": [
+      [
+        "War_with_the_USSR"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Final_Blow_to_Communism",
+    "name": "The Final Blow to Communism",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Focus_generic_spread_fascism.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_spread_fascism.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 199,
+    "requires": [
+      [
+        "War_with_the_USSR"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Befriend_China",
+    "name": "Befriend China",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b0/Focus_chi_cooperation_with_the_nationalists.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_chi_cooperation_with_the_nationalists.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 200,
+    "requires": [
+      [
+        "Anti-Comintern_Pact"
+      ]
+    ],
+    "excludes": [
+      "Befriend_Japan"
+    ]
+  },
+  {
+    "id": "Re-Establish_German_Control_over_Qingdao",
+    "name": "Re-Establish German Control over Qingdao",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Focus_GER_re_establish_german_control_over_qingdao.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_re_establish_german_control_over_qingdao.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 201,
+    "requires": [
+      [
+        "Befriend_China"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Claim_Old_Colonies_in_the_East",
+    "name": "Claim Old Colonies in the East",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/af/Goal_generic_major_war.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_major_war.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 202,
+    "requires": [
+      [
+        "Befriend_China"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Ally_Chiang_Kai-Shek",
+    "name": "Ally Chiang Kai-Shek",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/98/Focus_GER_ally_chiang_kai_shek.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_ally_chiang_kai_shek.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 203,
+    "requires": [
+      [
+        "Re-Establish_German_Control_over_Qingdao"
+      ],
+      [
+        "Claim_Old_Colonies_in_the_East"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Create_Asian_Reichskommisariats",
+    "name": "Create Asian Reichskommisariats",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/13/Focus_GER_create_asian_reichskommissariat.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_create_asian_reichskommissariat.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 204,
+    "requires": [
+      [
+        "Ally_Chiang_Kai-Shek",
+        "Negotiate_Old_Colonies_in_the_East"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "The_Proud_Eagle_and_the_Resurgent_Dragon",
+    "name": "The Proud Eagle and the Resurgent Dragon",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/00/Focus_GER_the_proud_eagle_and_the_rising_dragon.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_the_proud_eagle_and_the_rising_dragon.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 205,
+    "requires": [
+      [
+        "Ally_Chiang_Kai-Shek"
+      ],
+      [
+        "Create_Asian_Reichskommisariats"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reclaim_Former_African_Colonies",
+    "name": "Reclaim Former African Colonies",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Focus_GER_reclaim_former_african_colonies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_reclaim_former_african_colonies.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 206,
+    "requires": [
+      [
+        "Befriend_China",
+        "Befriend_Japan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mittelafrika",
+    "name": "Mittelafrika",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/90/Focus_GER_mittelafrika.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_mittelafrika.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 207,
+    "requires": [
+      [
+        "Reclaim_Former_African_Colonies"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Befriend_Japan",
+    "name": "Befriend Japan",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/00/Focus_GER_befriend_japan.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_befriend_japan.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 208,
+    "requires": [
+      [
+        "Anti-Comintern_Pact"
+      ]
+    ],
+    "excludes": [
+      "Befriend_China"
+    ]
+  },
+  {
+    "id": "Negotiate_Old_Colonies_in_the_East",
+    "name": "Negotiate Old Colonies in the East",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/84/Goal_generic_military_deal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Goal_generic_military_deal.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 209,
+    "requires": [
+      [
+        "Befriend_Japan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "South-East_Asian_Natural_Wealth",
+    "name": "South-East Asian Natural Wealth",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Focus_GER_south_east_asian_natural_wealth.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_south_east_asian_natural_wealth.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 210,
+    "requires": [
+      [
+        "Ally_Chiang_Kai-Shek",
+        "Negotiate_Old_Colonies_in_the_East"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Japanese_Naval_Cooperation",
+    "name": "Japanese Naval Cooperation",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4c/Focus_GER_japanese_naval_cooperation.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_japanese_naval_cooperation.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 211,
+    "requires": [
+      [
+        "Befriend_Japan"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Sentinels_of_the_Pacific",
+    "name": "Sentinels of the Pacific",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1a/Focus_GER_sentinels_of_the_pacific.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_GER_sentinels_of_the_pacific.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 212,
+    "requires": [
+      [
+        "Negotiate_Old_Colonies_in_the_East"
+      ],
+      [
+        "Japanese_Naval_Cooperation"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Blitzkrieg_Across_the_Pacific",
+    "name": "Blitzkrieg Across the Pacific",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Focus_generic_naval_invasion_tank.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_generic_naval_invasion_tank.png",
+    "section": "Anti-Comintern Pact Sub-branch",
+    "position": 213,
+    "requires": [
+      [
+        "South-East_Asian_Natural_Wealth"
+      ],
+      [
+        "Sentinels_of_the_Pacific"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Legion_Condor",
+    "name": "Legion Condor",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/11/Focus_intervention_spain_nationalists.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focus_intervention_spain_nationalists.png",
+    "section": "Legion Condor Sub-branch",
+    "position": 214,
+    "requires": [
+      [
+        "Remilitarize_the_Rhineland"
+      ]
+    ],
+    "excludes": []
+  }
+]

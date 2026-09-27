@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block subtitle %}<span class="sub" id="count">{{ focuses|length }} focuses</span>{% endblock %}
+
+{% block content %}
+<div class="wrap">
+  <div class="col">
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search focus…" autocomplete="off">
+      <select id="branch">
+        <option value="">All branches</option>
+        {% for section in focuses|map(attribute='section')|unique %}
+          <option value="{{ section }}">{{ section }}</option>
+        {% endfor %}
+      </select>
+      <label class="sub"><input type="checkbox" id="hide"> hide planned</label>
+      <label class="sub" title="Hide focuses whose prerequisites the plan does not meet yet">
+        <input type="checkbox" id="ready" checked> only available</label>
+    </div>
+
+    {# Rendered server-side: the catalog is 215 rows and never changes between
+       requests, so the browser filters what is already here rather than fetching. #}
+    <div class="list" id="list">
+      {% for focus in focuses %}
+        {% if loop.first or focus.section != loop.previtem.section %}
+          <div class="branch" data-section="{{ focus.section }}">{{ focus.section }}</div>
+        {% endif %}
+        {# What the focus needs before it can be taken, and what it rules out —
+           read once by app.js, which re-checks them against the plan on every
+           edit. See core.focuses.unmet(). #}
+        <div class="row" data-id="{{ focus.id }}" data-name="{{ focus.name|lower }}"
+             data-section="{{ focus.section }}" title="{{ focus.name }}"
+             data-requires='{{ focus.requires|tojson }}'
+             data-excludes='{{ focus.excludes|tojson }}'>
+          <img src="{{ focus.icon }}" alt="" loading="lazy">
+          <span class="nm">{{ focus.name }}</span>
+          <span class="add">+</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="toolbar">
+      <strong class="grow">Plan</strong>
+      <label class="sub">start <input type="date" id="start" value="{{ default_start }}"></label>
+      <label class="sub" title="What a focus costs unless its own term is set below">days
+        <input type="number" id="days" value="{{ default_days }}" min="1" step="1"></label>
+    </div>
+
+    <div class="toolbar">
+      <select id="saved">
+        <option value="">— saved plans —</option>
+        {% for plan in plans %}
+          <option value="{{ plan.id }}">{{ plan.name }} ({{ plan.focus_ids|length }})</option>
+        {% endfor %}
+      </select>
+      <input type="text" id="name" placeholder="Plan name" autocomplete="off">
+      <button id="save">Save</button>
+      <button id="delete">Delete</button>
+    </div>
+
+    <div class="plan" id="plan"></div>
+
+    <div class="foot">
+      <span id="total">0 focuses</span>
+      <span class="grow"></span>
+      <span id="status" class="status"></span>
+      {# A plan leaves and comes back as one JSON file. The picker is hidden: the
+         Import button is what opens it, so it looks like the buttons beside it. #}
+      <button id="import" title="Replace the plan with one read from a file">Import</button>
+      <input type="file" id="file" accept=".json,application/json" hidden>
+      <button id="export" title="Save the plan on screen to a file">Export</button>
+      <button id="clear" title="Empty the plan and forget the draft">Clear</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{# The plan that was being built comes down with the page: app.js draws it on
+   the first render, and writes it back here after every edit. #}
+<script src="{{ url_for('static', filename='app.js') }}"
+        data-plans-url="{{ url_for('plans.index') }}"
+        data-draft-url="{{ url_for('plans.draft') }}"
+        data-export-url="{{ url_for('plans.export_plan') }}"
+        data-import-url="{{ url_for('plans.import_plan') }}"
+        data-draft='{{ (draft or {})|tojson }}'
+        data-default-days="{{ default_days }}"
+        data-short-days="{{ short_days }}"
+        data-long-days="{{ long_days }}"></script>
+{% endblock %}

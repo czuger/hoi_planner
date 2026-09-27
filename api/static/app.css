@@ -1,0 +1,94 @@
+/* The planner's whole stylesheet. Sized for reading at a glance: the focus rows
+   and their icons are deliberately large, since picking one out of 215 is what
+   this page is for. */
+
+:root{
+  --bg:#14171c; --panel:#1b1f26; --panel-2:#222732; --line:#2e3542;
+  --text:#e6e9ef; --muted:#98a2b3; --accent:#c8a24a; --accent-dim:#6b5522;
+  --danger:#a05a5a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+     font:14px/1.45 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.grow{flex:1}
+
+header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+       padding:14px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
+header h1{margin:0;font-size:17px;letter-spacing:.4px;color:var(--accent)}
+.sub{color:var(--muted);font-size:12px}
+.db{color:var(--muted);font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+.wrap{display:grid;grid-template-columns:1fr 720px;height:calc(100vh - 53px)}
+@media (max-width:1100px){.wrap{grid-template-columns:1fr;height:auto}}
+.col{display:flex;flex-direction:column;min-height:0}
+.col + .col{border-left:1px solid var(--line)}
+
+.toolbar{display:flex;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);
+         background:var(--panel);flex-wrap:wrap;align-items:center}
+input,select,button{font:inherit;color:var(--text);background:var(--panel-2);
+      border:1px solid var(--line);border-radius:4px;padding:6px 9px}
+input:focus,select:focus{outline:1px solid var(--accent-dim)}
+input[type=search],input[type=text]{flex:1;min-width:150px}
+input[type=number]{width:68px}
+button{cursor:pointer}
+button:hover{border-color:var(--accent-dim)}
+#delete:hover{border-color:var(--danger);color:#e6b0b0}
+
+/* --- the catalog --- */
+.list{overflow:auto;padding:6px 8px;flex:1}
+.branch{margin:20px 12px 8px;font-size:22px;letter-spacing:1.8px;
+        text-transform:uppercase;color:var(--muted)}
+.row{display:flex;align-items:center;gap:20px;padding:10px 16px;border-radius:8px;
+     font-size:28px;cursor:pointer;border:1px solid transparent}
+.row:hover{background:var(--panel-2);border-color:var(--line)}
+.row.picked{opacity:.4}
+/* Its prerequisites are not in the plan yet. Hidden outright while "only
+   available" is on; dimmed and marked when it is off, still clickable — taking
+   one out of order is the plan panel's warning to make, not the catalog's. */
+.row.locked{opacity:.35}
+.row.locked .add{font-size:22px}
+.row img{width:68px;height:60px;object-fit:contain;flex:none;image-rendering:pixelated}
+.row .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .add{color:var(--muted);font-size:32px;line-height:1}
+.hidden{display:none}
+
+/* --- the plan --- */
+.plan{overflow:auto;padding:6px 8px;flex:1}
+.pitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;
+       font-size:24px;border:1px solid var(--line);background:var(--panel-2);
+       margin-bottom:10px;cursor:grab}
+.pitem.dragging{opacity:.35;cursor:grabbing}
+/* Something this focus needs comes after it, or is not in the plan at all. */
+.pitem.broken{border-color:var(--danger)}
+.pitem .warn{color:#e6b0b0;font-size:24px;flex:none;cursor:help;line-height:1}
+/* The insertion point, drawn on the row the pointer is over rather than as a
+   separate element — so it cannot disagree with where the drop actually lands. */
+.pitem.over-before{box-shadow:0 -2px 0 0 var(--accent)}
+.pitem.over-after{box-shadow:0 2px 0 0 var(--accent)}
+.pitem .grip{color:var(--muted);font-size:28px;flex:none;letter-spacing:-2px;user-select:none}
+.pitem .idx{width:40px;text-align:right;color:var(--accent);font-variant-numeric:tabular-nums}
+.pitem img{width:60px;height:52px;object-fit:contain;image-rendering:pixelated}
+.pitem .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pitem .day{color:var(--muted);font-size:22px;font-variant-numeric:tabular-nums;
+            flex:none;white-space:nowrap}
+.pitem button{padding:2px 12px;font-size:24px;background:transparent;
+              border-color:transparent;color:var(--muted)}
+.pitem button:hover{color:var(--text);border-color:var(--line)}
+/* How long this focus takes: 14, the plan's own term, or 70. One picker rather
+   than a pair of +/- buttons, so the row says what it costs without counting. */
+.pitem .len{display:flex;flex:none;border:1px solid var(--line);border-radius:5px;
+            overflow:hidden}
+.pitem .len button{padding:2px 7px;font-size:15px;border-radius:0;border:none;
+                   font-variant-numeric:tabular-nums}
+.pitem .len button + button{border-left:1px solid var(--line)}
+.pitem .len button:hover{background:var(--panel);border-color:transparent}
+.pitem .len button.on{background:var(--accent-dim);color:var(--text)}
+
+.foot{padding:10px 14px;border-top:1px solid var(--line);background:var(--panel);
+      display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.status{font-size:12px}
+.status.ok{color:var(--accent)}
+.status.bad{color:#e6b0b0}
+.empty{color:var(--muted);padding:36px 20px;text-align:center;font-size:26px}
+.err{margin:14px 18px;padding:12px 14px;border:1px solid #7a3b3b;background:#2a1c1c;
+     border-radius:5px;color:#f0d5d5}

@@ -1,0 +1,30 @@
+# The image holds versioned code only. Anything that is server-specific config,
+# a secret, or build noise stays out.
+.git
+.gitignore
+__pycache__/
+*.pyc
+.DS_Store
+
+# Secrets and server config: mounted at run time from the server's config/ dir.
+.env
+
+# The saved wiki page — 2 MB the server has no use for. Only the parsed catalog
+# (data/focuses.json) ships, and `make seed` loads it with --from-json; re-parsing
+# the page is a laptop job.
+data/foo.html
+
+# Local-only stuff.
+venv/
+.venv/
+tests/
+*.md
+deploy/
+Makefile
+.coverage
+htmlcov/
+.pytest_cache/
+*.egg-info/
+.idea/
+build/
+dist/

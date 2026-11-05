@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block subtitle %}<span class="sub" id="count">{{ rows.len() }} focus</span>{% endblock %}
+
+{% block content %}
+<div class="wrap">
+  <div class="col">
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Chercher un focus…" autocomplete="off">
+      <select id="branch">
+        <option value="">Toutes les branches</option>
+        {% for section in sections %}
+          <option value="{{ section }}">{{ section }}</option>
+        {% endfor %}
+      </select>
+      <label class="sub"><input type="checkbox" id="hide"> masquer les focus planifiés</label>
+      <label class="sub" title="Masquer les focus dont le plan ne remplit pas encore les prérequis">
+        <input type="checkbox" id="ready" checked> seulement les disponibles</label>
+    </div>
+
+    <div class="list" id="list">
+      {% for row in rows %}
+        {% if row.opens_section %}
+          <div class="branch" data-section="{{ row.focus.section }}">{{ row.focus.section }}</div>
+        {% endif %}
+        <div class="row" data-id="{{ row.focus.id }}" data-name="{{ row.search_name }}"
+             data-section="{{ row.focus.section }}" title="{{ row.focus.name }}"
+             data-requires="{{ row.requires_json }}"
+             data-excludes="{{ row.excludes_json }}">
+          <img src="{{ row.focus.icon }}" alt="" loading="lazy">
+          <span class="nm">{{ row.focus.name }}</span>
+          <span class="add">+</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="toolbar">
+      <strong class="grow">Plan</strong>
+      <label class="sub">début <input type="date" id="start" value="{{ default_start }}"></label>
+      <label class="sub" title="Ce que coûte un focus, sauf si sa durée propre est réglée ci-dessous">jours
+        <input type="number" id="days" value="{{ default_days }}" min="1" step="1"></label>
+    </div>
+
+    <div class="toolbar">
+      <select id="saved">
+        <option value="">— plans enregistrés —</option>
+        {% for plan in plans %}
+          <option value="{{ plan.id }}">{{ plan.name }} ({{ plan.focus_count }})</option>
+        {% endfor %}
+      </select>
+      <input type="text" id="name" placeholder="Nom du plan" autocomplete="off">
+      <button id="save">Enregistrer</button>
+      <button id="delete">Supprimer</button>
+    </div>
+
+    <div class="plan" id="plan"></div>
+
+    <div class="foot">
+      <span id="total">0 focus</span>
+      <span class="grow"></span>
+      <span id="status" class="status"></span>
+      <button id="import" title="Remplacer le plan par celui d'un fichier">Importer</button>
+      <input type="file" id="file" accept=".json,application/json" hidden>
+      <button id="export" title="Enregistrer le plan à l'écran dans un fichier">Exporter</button>
+      <button id="clear" title="Vider le plan et oublier le brouillon">Vider</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ prefix }}/static/common.js"></script>
+<script src="{{ prefix }}/static/app.js"
+        data-plans-url="{{ prefix }}/api/plans"
+        data-draft-url="{{ prefix }}/api/draft"
+        data-export-url="{{ prefix }}/api/plans/export"
+        data-import-url="{{ prefix }}/api/plans/import"
+        data-draft="{{ draft_json }}"
+        data-default-days="{{ default_days }}"
+        data-short-days="{{ short_days }}"
+        data-long-days="{{ long_days }}"></script>
+{% endblock %}

@@ -1,0 +1,317 @@
+[
+  {
+    "id": "Konrad_Adenauer",
+    "name": "Konrad Adenauer",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e3/Portrait_Germany_Konrad_Adenauer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Konrad_Adenauer.png",
+    "section": "Conservatism",
+    "position": 0,
+    "requires": [
+      [
+        "The_Monarchy_Compromise_WW",
+        "The_Monarchy_Compromise_B",
+        "Re-establish_Free_Elections_WW"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hans_Vogel",
+    "name": "Hans Vogel",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7d/Portrait_GER_hans_vogel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hans_vogel.png",
+    "section": "Socialism",
+    "position": 1,
+    "requires": [
+      [
+        "Re-establish_Free_Elections_WW"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_Pieck",
+    "name": "Wilhelm Pieck",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ed/Portrait_Germany_Wilhelm_Pieck.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Wilhelm_Pieck.png",
+    "section": "Stalinism",
+    "position": 2,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walther_Ulbricht",
+    "name": "Walther Ulbricht",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f8/Portrait_GER_walter_ulbricht.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_walter_ulbricht.png",
+    "section": "Stalinism",
+    "position": 3,
+    "requires": [
+      [
+        "The_People's_Victory",
+        "Defense_Treaty_with_the_Soviet"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Ernst_Thälmann",
+    "name": "Ernst Thälmann",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d3/Portrait_GER_ernst_thalmann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_ernst_thalmann.png",
+    "section": "Leninism",
+    "position": 4,
+    "requires": [
+      [
+        "The_People's_Victory",
+        "Legacy_of_the_Spartacus_League"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Heinrich_Brandler",
+    "name": "Heinrich Brandler",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1e/Portrait_GER_heinrich_brandler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_heinrich_brandler.png",
+    "section": "Leninism",
+    "position": 5,
+    "requires": [
+      [
+        "Legacy_of_the_Spartacus_League"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Otto_Grotewohl",
+    "name": "Otto Grotewohl",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2d/Portrait_GER_otto_grotewohl.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_otto_grotewohl.png",
+    "section": "Marxism",
+    "position": 6,
+    "requires": [
+      [
+        "Legacy_of_the_Spartacus_League"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Adolf_Hitler",
+    "name": "Adolf Hitler",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5b/Portrait_GER_adolf_hitler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_adolf_hitler.png",
+    "section": "Nazism",
+    "position": 7,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heinrich_Himmler",
+    "name": "Heinrich Himmler",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Portrait_GER_heinrich_himmler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_heinrich_himmler.png",
+    "section": "Nazism",
+    "position": 8,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Göring",
+    "name": "Hermann Göring",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/36/Portrait_GER_hermann_goring.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hermann_goring.png",
+    "section": "Nazism",
+    "position": 9,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fritz_Todt",
+    "name": "Fritz Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Portrait_GER_fritz_todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_fritz_todt.png",
+    "section": "Nazism",
+    "position": 10,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Albert_Speer",
+    "name": "Albert Speer",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Portrait_GER_albert_speer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_albert_speer.png",
+    "section": "Nazism",
+    "position": 11,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Joseph_Goebbels",
+    "name": "Joseph Goebbels",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8c/Portrait_GER_joseph_goebbels.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_joseph_goebbels.png",
+    "section": "Nazism",
+    "position": 12,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rudolf_Hess",
+    "name": "Rudolf Hess",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Portrait_GER_rudolf_hess.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_rudolf_hess.png",
+    "section": "Nazism",
+    "position": 13,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Martin_Bormann",
+    "name": "Martin Bormann",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/70/Portrait_GER_martin_bormann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_martin_bormann.png",
+    "section": "Nazism",
+    "position": 14,
+    "requires": [
+      [
+        "A_Strong_Successor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Eva_Braun",
+    "name": "Eva Braun",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/50/Portrait_GER_eva_braun.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_eva_braun.png",
+    "section": "Nazism",
+    "position": 15,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Otto_Strasser",
+    "name": "Otto Strasser",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/52/Portrait_GER_otto_strasser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_otto_strasser.png",
+    "section": "Nazism",
+    "position": 16,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "August_von_Mackensen",
+    "name": "August von Mackensen",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Portrait_ger_august_von_mackensen.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_august_von_mackensen.png",
+    "section": "Despotism",
+    "position": 17,
+    "requires": [
+      [
+        "Rally_the_Wehrmacht",
+        "Oppose_Hitler"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_II",
+    "name": "Wilhelm II",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/48/Portrait_ger_wilhelm_ii.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_wilhelm_ii.png",
+    "section": "Despotism",
+    "position": 18,
+    "requires": [
+      [
+        "The_Return_of_the_Kaiser",
+        "Return_of_the_Kaiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_III",
+    "name": "Wilhelm III",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/da/Portrait_ger_wilhelm_iii.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_wilhelm_iii.png",
+    "section": "Despotism",
+    "position": 19,
+    "requires": [
+      [
+        "The_Return_of_the_Kaiser",
+        "Return_of_the_Kaiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_IV",
+    "name": "Wilhelm IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Portrait_GER_wilhelm_iv.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_wilhelm_iv.png",
+    "section": "Despotism",
+    "position": 20,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Victoria",
+    "name": "Victoria",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/40/Portrait_ger_victoria_louise.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_victoria_louise.png",
+    "section": "Despotism",
+    "position": 21,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Erich_Raeder",
+    "name": "Erich Raeder",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Portrait_GER_erich_raeder.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_erich_raeder.png",
+    "section": "Despotism",
+    "position": 22,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Fourth_Supreme_Army_Command",
+    "name": "Fourth Supreme Army Command",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/95/Portrait_GER_oberste_heeresleitung.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_oberste_heeresleitung.png",
+    "section": "Despotism",
+    "position": 23,
+    "requires": [
+      [
+        "Military_Dictatorship"
+      ]
+    ],
+    "excludes": []
+  }
+]

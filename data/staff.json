@@ -1,0 +1,2081 @@
+[
+  {
+    "id": "Otto_Strasser",
+    "name": "Otto Strasser",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 0,
+    "requires": [
+      [
+        "Expatriate_the_Communists_B"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Göring__Political_Advisors",
+    "name": "Hermann Göring",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c4/Idea_goering.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_goering.png",
+    "section": "Political Advisors",
+    "position": 1,
+    "requires": [],
+    "excludes": [
+      "Reichsleiter_Göring",
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Joachim_von_Ribbentrop",
+    "name": "Joachim von Ribbentrop",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/17/J._von_Ribbentrop.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:J._von_Ribbentrop.png",
+    "section": "Political Advisors",
+    "position": 2,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Konstantin_von_Neurath",
+    "name": "Konstantin von Neurath",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/55/K._von_Neurath.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:K._von_Neurath.png",
+    "section": "Political Advisors",
+    "position": 3,
+    "requires": [
+      [
+        "Heed_von_Neurath's_Concerns"
+      ]
+    ],
+    "excludes": [
+      "Reorganize_the_Wehrmacht",
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Fritz_Todt",
+    "name": "Fritz Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4f/Fritz_Todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fritz_Todt.png",
+    "section": "Political Advisors",
+    "position": 4,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Albert_Speer",
+    "name": "Albert Speer",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f8/Albert_Speer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Albert_Speer.png",
+    "section": "Political Advisors",
+    "position": 5,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hjalmar_Schacht",
+    "name": "Hjalmar Schacht",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7b/Hjalmar_Schacht.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Hjalmar_Schacht.png",
+    "section": "Political Advisors",
+    "position": 6,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walther_Funk",
+    "name": "Walther Funk",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/34/Walther_Funk.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Walther_Funk.png",
+    "section": "Political Advisors",
+    "position": 7,
+    "requires": [],
+    "excludes": [
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Joseph_Goebbels",
+    "name": "Joseph Goebbels",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c6/Joseph_Goebbels.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Joseph_Goebbels.png",
+    "section": "Political Advisors",
+    "position": 8,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Rudolf_Hess",
+    "name": "Rudolf Hess",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a9/Rudolf_Hess.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rudolf_Hess.png",
+    "section": "Political Advisors",
+    "position": 9,
+    "requires": [],
+    "excludes": [
+      "Party_Chancellor_Hess",
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Heinrich_Himmler__Political_Advisors",
+    "name": "Heinrich Himmler",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/43/Heinrich_Himmler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heinrich_Himmler.png",
+    "section": "Political Advisors",
+    "position": 10,
+    "requires": [],
+    "excludes": [
+      "Reichsleiter_Himmler",
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Martin_Bormann",
+    "name": "Martin Bormann",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Martin_Bormann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Martin_Bormann.png",
+    "section": "Political Advisors",
+    "position": 11,
+    "requires": [],
+    "excludes": [
+      "Party_Chancellor_Bormann",
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Leni_Riefenstahl",
+    "name": "Leni Riefenstahl",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 12,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Franz_Seldte",
+    "name": "Franz Seldte",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 13,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hanns_Kerrl",
+    "name": "Hanns Kerrl",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 14,
+    "requires": [],
+    "excludes": [
+      "Hegemony_of_the_SS"
+    ]
+  },
+  {
+    "id": "Reinhard_Heydrich",
+    "name": "Reinhard Heydrich",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 15,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Reinhard_Heydrich__2",
+    "name": "Reinhard Heydrich",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 16,
+    "requires": [],
+    "excludes": [
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Wilhelm_Canaris",
+    "name": "Wilhelm Canaris",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/58/Wilhelm_Canaris.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Wilhelm_Canaris.png",
+    "section": "Political Advisors",
+    "position": 17,
+    "requires": [],
+    "excludes": [
+      "Reorganize_Secret_Services",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Hans_Oster",
+    "name": "Hans Oster",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5b/Hans_Oster.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Hans_Oster.png",
+    "section": "Political Advisors",
+    "position": 18,
+    "requires": [
+      [
+        "Oppose_Hitler"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Alfred_Hugenberg",
+    "name": "Alfred Hugenberg",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/ff/Alfred_Hugenberg.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Alfred_Hugenberg.png",
+    "section": "Political Advisors",
+    "position": 19,
+    "requires": [
+      [
+        "Revive_the_Kaiserreich_B"
+      ]
+    ],
+    "excludes": [
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Carl_Friedrich_Goerdeler",
+    "name": "Carl Friedrich Goerdeler",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Carl_Friedrich_Goerdeler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Carl_Friedrich_Goerdeler.png",
+    "section": "Political Advisors",
+    "position": 20,
+    "requires": [
+      [
+        "Revive_the_Kaiserreich_B",
+        "Strive_for_Conservative_Values"
+      ]
+    ],
+    "excludes": [
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Julius_Leber",
+    "name": "Julius Leber",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a8/Julius_Leber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Julius_Leber.png",
+    "section": "Political Advisors",
+    "position": 21,
+    "requires": [
+      [
+        "Re-establish_Free_Elections_WW"
+      ]
+    ],
+    "excludes": [
+      "Revive_the_Kaiserreich_B",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Kurt_Schumacher",
+    "name": "Kurt Schumacher",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e6/Kurt_Schumacher.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Kurt_Schumacher.png",
+    "section": "Political Advisors",
+    "position": 22,
+    "requires": [
+      [
+        "Re-establish_Free_Elections_WW"
+      ]
+    ],
+    "excludes": [
+      "Revive_the_Kaiserreich_B",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Theodor_Heuss",
+    "name": "Theodor Heuss",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/57/Theodor_Heuss.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Theodor_Heuss.png",
+    "section": "Political Advisors",
+    "position": 23,
+    "requires": [
+      [
+        "Monarchist_Sentiment"
+      ]
+    ],
+    "excludes": [
+      "Revive_the_Kaiserreich_B",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Hans_Luther",
+    "name": "Hans Luther",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 24,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ludwig_Erhard",
+    "name": "Ludwig Erhard",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 25,
+    "requires": [
+      [
+        "Prioritize_Economic_Growth"
+      ]
+    ],
+    "excludes": [
+      "Prioritize_the_Four_Year_Plan"
+    ]
+  },
+  {
+    "id": "Hermann_Erhardt__Political_Advisors",
+    "name": "Hermann Erhardt",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 26,
+    "requires": [
+      [
+        "Reestablish_the_Freikorps"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Start_The_Proletarian_Revolution",
+      "The_Monarchy_Compromise_WW"
+    ]
+  },
+  {
+    "id": "Adolf_Friedrich_von_Mecklenburg",
+    "name": "Adolf Friedrich von Mecklenburg",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 27,
+    "requires": [],
+    "excludes": [
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Wilhelm_von_Gayl",
+    "name": "Wilhelm von Gayl",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 28,
+    "requires": [
+      [
+        "Monarchist_Sentiment"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Andreas_Hermes",
+    "name": "Andreas Hermes",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 29,
+    "requires": [
+      [
+        "Monarchist_Sentiment"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Dietrich_Bonhoeffer",
+    "name": "Dietrich Bonhoeffer",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 30,
+    "requires": [],
+    "excludes": [
+      "Remilitarize_the_Rhineland"
+    ]
+  },
+  {
+    "id": "Ernst_Thälmann",
+    "name": "Ernst Thälmann",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f4/Ernst_Th%C3%A4lmann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Ernst_Th%C3%A4lmann.png",
+    "section": "Political Advisors",
+    "position": 31,
+    "requires": [],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Monarchist_Sentiment"
+    ]
+  },
+  {
+    "id": "Ernst_Thälmann__2",
+    "name": "Ernst Thälmann",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f4/Ernst_Th%C3%A4lmann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Ernst_Th%C3%A4lmann.png",
+    "section": "Political Advisors",
+    "position": 32,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walter_Ulbricht",
+    "name": "Walter Ulbricht",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 33,
+    "requires": [],
+    "excludes": [
+      "Revive_the_Kaiserreich_B"
+    ]
+  },
+  {
+    "id": "Wilhelm_Zaisser",
+    "name": "Wilhelm Zaisser",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 34,
+    "requires": [
+      [
+        "Formalize_the_Intelligence_Wing"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Monarchist_Sentiment"
+    ]
+  },
+  {
+    "id": "Otto_Ruhle",
+    "name": "Otto Ruhle",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 35,
+    "requires": [
+      [
+        "Legacy_of_the_Spartacus_League"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Monarchist_Sentiment"
+    ]
+  },
+  {
+    "id": "Hermann_Duncker",
+    "name": "Hermann Duncker",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 36,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "August_Thalheimer",
+    "name": "August Thalheimer",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 37,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Bernhard_Bastlein",
+    "name": "Bernhard Bastlein",
+    "icon": null,
+    "icon_page": null,
+    "section": "Political Advisors",
+    "position": 38,
+    "requires": [
+      [
+        "Start_The_Proletarian_Revolution"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "Monarchist_Sentiment"
+    ]
+  },
+  {
+    "id": "Werner_von_Blomberg__Theorists",
+    "name": "Werner von Blomberg",
+    "icon": null,
+    "icon_page": null,
+    "section": "Theorists",
+    "position": 39,
+    "requires": [],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Erich_von_Manstein__Theorists",
+    "name": "Erich von Manstein",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9d/Idea_manstein.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_manstein.png",
+    "section": "Theorists",
+    "position": 40,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heinz_Guderian__Theorists",
+    "name": "Heinz Guderian",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Idea_heinz_guderian.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_heinz_guderian.png",
+    "section": "Theorists",
+    "position": 41,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Alfred_Saalwächter__Theorists",
+    "name": "Alfred Saalwächter",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1d/Idea_alfred_saalwachter.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_alfred_saalwachter.png",
+    "section": "Theorists",
+    "position": 42,
+    "requires": [
+      [
+        "Wolfpack_Tactics"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "W._von_Richthofen",
+    "name": "W. von Richthofen",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ec/Idea_wolfram_von_richthofen.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_wolfram_von_richthofen.png",
+    "section": "Theorists",
+    "position": 43,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walther_Wever",
+    "name": "Walther Wever",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/32/Idea_walther_wever.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_walther_wever.png",
+    "section": "Theorists",
+    "position": 44,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ernst_Udet",
+    "name": "Ernst Udet",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/23/Idea_ernst_udet.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_ernst_udet.png",
+    "section": "Theorists",
+    "position": 45,
+    "requires": [
+      [
+        "Dive_Bombers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Otto_Ciliax",
+    "name": "Otto Ciliax",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/af/Idea_otto_ciliax.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_otto_ciliax.png",
+    "section": "Theorists",
+    "position": 46,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Werner_von_Fritsch__Chief_of_Army",
+    "name": "Werner von Fritsch",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/Idea_werner_von_fritsch.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_werner_von_fritsch.png",
+    "section": "Chief of Army",
+    "position": 47,
+    "requires": [
+      [
+        "Prussian_Artillery_Doctrine"
+      ]
+    ],
+    "excludes": [
+      "Remilitarize_the_Rhineland",
+      "The_Monarchy_Compromise_WW",
+      "Start_The_Proletarian_Revolution"
+    ]
+  },
+  {
+    "id": "Ludwig_Beck",
+    "name": "Ludwig Beck",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f0/Idea_ludwig_beck.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_ludwig_beck.png",
+    "section": "Chief of Army",
+    "position": 48,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_Keitel",
+    "name": "Wilhelm Keitel",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/91/Idea_wilhelm_keitel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_wilhelm_keitel.png",
+    "section": "Chief of Army",
+    "position": 49,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Franz_Halder",
+    "name": "Franz Halder",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8f/Idea_franz_halder.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_franz_halder.png",
+    "section": "Chief of Army",
+    "position": 50,
+    "requires": [
+      [
+        "Instill_Auftragstaktik"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "W._von_Brauchitsch",
+    "name": "W. von Brauchitsch",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0a/Idea_walther_von_brauchitsch.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_walther_von_brauchitsch.png",
+    "section": "Chief of Army",
+    "position": 51,
+    "requires": [
+      [
+        "Develop_Modern_Maneuver_Warfare"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Karl_Dönitz__Chief_of_Navy",
+    "name": "Karl Dönitz",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e0/Idea_donitz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_donitz.png",
+    "section": "Chief of Navy",
+    "position": 52,
+    "requires": [
+      [
+        "Trade_Interdiction"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Erich_Raeder__Chief_of_Navy",
+    "name": "Erich Raeder",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ad/Idea_raeder.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_raeder.png",
+    "section": "Chief of Navy",
+    "position": 53,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Rolf_Carls__Chief_of_Navy",
+    "name": "Rolf Carls",
+    "icon": null,
+    "icon_page": null,
+    "section": "Chief of Navy",
+    "position": 54,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Albert_Kesselring__Chief_of_Airforce",
+    "name": "Albert Kesselring",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e7/Idea_albert_kesselring.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_albert_kesselring.png",
+    "section": "Chief of Airforce",
+    "position": 55,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Göring__Chief_of_Airforce",
+    "name": "Hermann Göring",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c4/Idea_goering.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_goering.png",
+    "section": "Chief of Airforce",
+    "position": 56,
+    "requires": [],
+    "excludes": [
+      "Oppose_Hitler"
+    ]
+  },
+  {
+    "id": "Ritter_von_Greim",
+    "name": "Ritter von Greim",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b8/Idea_ritter_von_greim.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_ritter_von_greim.png",
+    "section": "Chief of Airforce",
+    "position": 57,
+    "requires": [
+      [
+        "Expanding_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Helmuth_Wilberg",
+    "name": "Helmuth Wilberg",
+    "icon": null,
+    "icon_page": null,
+    "section": "Chief of Airforce",
+    "position": 58,
+    "requires": [
+      [
+        "Reorganize_the_Luftwaffe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Gerd_von_Rundstedt__Military_High_Command",
+    "name": "Gerd von Rundstedt",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/35/Idea_gerd_von_rundstedt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_gerd_von_rundstedt.png",
+    "section": "Military High Command",
+    "position": 59,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Werner_von_Fritsch__Military_High_Command",
+    "name": "Werner von Fritsch",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/Idea_werner_von_fritsch.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_werner_von_fritsch.png",
+    "section": "Military High Command",
+    "position": 60,
+    "requires": [],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Erwin_Rommel__Military_High_Command",
+    "name": "Erwin Rommel",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/67/Idea_erwin_rommel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_erwin_rommel.png",
+    "section": "Military High Command",
+    "position": 61,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Kurt_Student__Military_High_Command",
+    "name": "Kurt Student",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/73/Idea_kurt_student.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_kurt_student.png",
+    "section": "Military High Command",
+    "position": 62,
+    "requires": [
+      [
+        "Fallschirmjäger"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Paul_von_Lettow-Vorbeck__Military_High_Command",
+    "name": "Paul von Lettow-Vorbeck",
+    "icon": null,
+    "icon_page": null,
+    "section": "Military High Command",
+    "position": 63,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Günther_Lütjens__Military_High_Command",
+    "name": "Günther Lütjens",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Idea_gunther_lutjens.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_gunther_lutjens.png",
+    "section": "Military High Command",
+    "position": 64,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ferdinand_Schörner",
+    "name": "Ferdinand Schörner",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Idea_ferdinand_schorner.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_ferdinand_schorner.png",
+    "section": "Military High Command",
+    "position": 65,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Erich_Bey",
+    "name": "Erich Bey",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/66/Idea_erich_bey.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_erich_bey.png",
+    "section": "Military High Command",
+    "position": 66,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Viktor_Schütze",
+    "name": "Viktor Schütze",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/41/Idea_viktor_schutze.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_viktor_schutze.png",
+    "section": "Military High Command",
+    "position": 67,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hugo_Sperrle",
+    "name": "Hugo Sperrle",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/06/Idea_hugo_sperrle.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_hugo_sperrle.png",
+    "section": "Military High Command",
+    "position": 68,
+    "requires": [
+      [
+        "Dive_Bombers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Erhard_Milch",
+    "name": "Erhard Milch",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Idea_erhard_milch.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_erhard_milch.png",
+    "section": "Military High Command",
+    "position": 69,
+    "requires": [
+      [
+        "Tactical_Bombers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Robert_Knauss",
+    "name": "Robert Knauss",
+    "icon": null,
+    "icon_page": null,
+    "section": "Military High Command",
+    "position": 70,
+    "requires": [
+      [
+        "Uralbomber_Program"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Josef_Kammhuber",
+    "name": "Josef Kammhuber",
+    "icon": null,
+    "icon_page": null,
+    "section": "Military High Command",
+    "position": 71,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Alfred_Becker",
+    "name": "Alfred Becker",
+    "icon": null,
+    "icon_page": null,
+    "section": "Military High Command",
+    "position": 72,
+    "requires": [
+      [
+        "Salvage_Captured_Equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Walter_Dornberger",
+    "name": "Walter Dornberger",
+    "icon": null,
+    "icon_page": null,
+    "section": "Military High Command",
+    "position": 73,
+    "requires": [
+      [
+        "Glorious_Mechanical_Machinations",
+        "Rocketry_Innovations",
+        "Wonder_Weapons"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "August_von_Mackensen",
+    "name": "August von Mackensen",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Portrait_ger_august_von_mackensen.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_august_von_mackensen.png",
+    "section": "Field Marshals",
+    "position": 74,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heinrich_Himmler__Field_Marshals",
+    "name": "Heinrich Himmler",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Portrait_GER_heinrich_himmler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_heinrich_himmler.png",
+    "section": "Field Marshals",
+    "position": 75,
+    "requires": [
+      [
+        "Hegemony_of_the_SS"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Vincenz_Müller",
+    "name": "Vincenz Müller",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/19/Portrait_GER_vincenz_muller.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_vincenz_muller.png",
+    "section": "Field Marshals",
+    "position": 76,
+    "requires": [
+      [
+        "Reorganize_the_Nationale_Volksarmee"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Werner_von_Blomberg__Field_Marshals",
+    "name": "Werner von Blomberg",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Portrait_GER_werner_von_blomberg.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_werner_von_blomberg.png",
+    "section": "Field Marshals",
+    "position": 77,
+    "requires": [],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Giorgi_Kvinitadze",
+    "name": "Giorgi Kvinitadze",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/85/Portrait_GEO_giorgi_kvinitadze.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GEO_giorgi_kvinitadze.png",
+    "section": "Field Marshals",
+    "position": 78,
+    "requires": [
+      [
+        "Establish_Eastern_Grand_Duchies"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Ruprecht_Von_Wittelsbach",
+    "name": "Ruprecht Von Wittelsbach",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e6/Portrait_BAY_rupprecht_of_bavaria.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_BAY_rupprecht_of_bavaria.png",
+    "section": "Field Marshals",
+    "position": 79,
+    "requires": [
+      [
+        "Fan_Prussian_Militarism_WW"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rüdiger_Von_der_Goltz",
+    "name": "Rüdiger Von der Goltz",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/56/Portrait_POL_rudiger_von_der_goltz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_POL_rudiger_von_der_goltz.png",
+    "section": "Field Marshals",
+    "position": 80,
+    "requires": [
+      [
+        "Subduing_the_Baltic_States"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Albert_Kesselring__Generals",
+    "name": "Albert Kesselring",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0c/Portrait_Germany_Albert_Kesselring.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Albert_Kesselring.png",
+    "section": "Generals",
+    "position": 81,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Alexander_von_Falkenhausen",
+    "name": "Alexander von Falkenhausen",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c7/Portrait_chi_alexander_von_falkenhausen.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_chi_alexander_von_falkenhausen.png",
+    "section": "Generals",
+    "position": 82,
+    "requires": [
+      [
+        "Befriend_Japan",
+        "Create_Asian_Reichskommisariats"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Alfred_Jodl",
+    "name": "Alfred Jodl",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Portrait_Germany_Alfred_Jodl.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Alfred_Jodl.png",
+    "section": "Generals",
+    "position": 83,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Arno_von_Lenski",
+    "name": "Arno von Lenski",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5a/Portrait_GER_arno_von_lenski.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_arno_von_lenski.png",
+    "section": "Generals",
+    "position": 84,
+    "requires": [
+      [
+        "Reorganize_the_Nationale_Volksarmee"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Andrey_Shkuro",
+    "name": "Andrey Shkuro",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/74/Portrait_SOV_andrey_shkuro.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_SOV_andrey_shkuro.png",
+    "section": "Generals",
+    "position": 85,
+    "requires": [
+      [
+        "Ally_the_Russian_White_Movement",
+        "War_with_the_USSR"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Bronislaw_Kaminski",
+    "name": "Bronislaw Kaminski",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/67/Portrait_SOV_bronislav_kaminski.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_SOV_bronislav_kaminski.png",
+    "section": "Generals",
+    "position": 86,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Erich_von_Manstein__Generals",
+    "name": "Erich von Manstein",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/10/Portrait_Germany_Erich_von_Manstein.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Erich_von_Manstein.png",
+    "section": "Generals",
+    "position": 87,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ernst-Eberhard_Hell",
+    "name": "Ernst-Eberhard Hell",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9b/Portrait_Germany_Ernst-Eberhard_Hell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Ernst-Eberhard_Hell.png",
+    "section": "Generals",
+    "position": 88,
+    "requires": [
+      [
+        "Lessons_of_the_Great_War"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Erwin_Rommel__Generals",
+    "name": "Erwin Rommel",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/36/Portrait_Germany_Erwin_Rommel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Erwin_Rommel.png",
+    "section": "Generals",
+    "position": 89,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Erwin_von_Witzleben",
+    "name": "Erwin von Witzleben",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/89/Portrait_Germany_Erwin_von_Witzleben.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Erwin_von_Witzleben.png",
+    "section": "Generals",
+    "position": 90,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ewald_von_Kleist",
+    "name": "Ewald von Kleist",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f3/Portrait_Germany_Ewald_von_Kleist.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Ewald_von_Kleist.png",
+    "section": "Generals",
+    "position": 91,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Fedor_von_Bock",
+    "name": "Fedor von Bock",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/16/Portrait_Germany_Fedor_von_Bock.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Fedor_von_Bock.png",
+    "section": "Generals",
+    "position": 92,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Felix_Steiner",
+    "name": "Felix Steiner",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bc/Portrait_ger_felix_steiner.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_felix_steiner.png",
+    "section": "Generals",
+    "position": 93,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Franz_Ritter_von_Epp",
+    "name": "Franz Ritter von Epp",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/09/Portrait_GER_franz_ritter_von_epp.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_franz_ritter_von_epp.png",
+    "section": "Generals",
+    "position": 94,
+    "requires": [
+      [
+        "Reestablish_the_Freikorps"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Friedrich_Paulus",
+    "name": "Friedrich Paulus",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/54/Portrait_Germany_Friedrich_Paulus.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Friedrich_Paulus.png",
+    "section": "Generals",
+    "position": 95,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Friedrich_Schulz",
+    "name": "Friedrich Schulz",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a2/Portrait_Germany_Friedrich_Schulz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Friedrich_Schulz.png",
+    "section": "Generals",
+    "position": 96,
+    "requires": [
+      [
+        "Lessons_of_the_Great_War"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Georg_von_Küchler",
+    "name": "Georg von Küchler",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/91/Portrait_Germany_Georg_von_Kuchler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Georg_von_Kuchler.png",
+    "section": "Generals",
+    "position": 97,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Georg-Hans_Reinhardt",
+    "name": "Georg-Hans Reinhardt",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2e/Portrait_Germany_Georg_von_Reinhardt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Georg_von_Reinhardt.png",
+    "section": "Generals",
+    "position": 98,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Gerd_von_Rundstedt__Generals",
+    "name": "Gerd von Rundstedt",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Portrait_Germany_Gerd_von_Rundstedt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Gerd_von_Rundstedt.png",
+    "section": "Generals",
+    "position": 99,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Gotthard_Heinrici",
+    "name": "Gotthard Heinrici",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/77/Portrait_Germany_Gotthard_Heinrici.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Gotthard_Heinrici.png",
+    "section": "Generals",
+    "position": 100,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Günther_von_Kluge",
+    "name": "Günther von Kluge",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/15/Portrait_Germany_Gunther_von_Kluge.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Gunther_von_Kluge.png",
+    "section": "Generals",
+    "position": 101,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hans_Kahle",
+    "name": "Hans Kahle",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7f/Portrait_GER_hans_kahle.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hans_kahle.png",
+    "section": "Generals",
+    "position": 102,
+    "requires": [
+      [
+        "Reorganize_the_Nationale_Volksarmee"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hans_Krebs",
+    "name": "Hans Krebs",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Portrait_GER_hans_krebs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hans_krebs.png",
+    "section": "Generals",
+    "position": 103,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hans_Marchwitza",
+    "name": "Hans Marchwitza",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8f/Portrait_GER_hans_marchwitza.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hans_marchwitza.png",
+    "section": "Generals",
+    "position": 104,
+    "requires": [
+      [
+        "Reorganize_the_Nationale_Volksarmee"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hans-Jürgen_von_Blumenthal",
+    "name": "Hans-Jürgen von Blumenthal",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/Portrait_GER_jurgen_von_blumenthal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_jurgen_von_blumenthal.png",
+    "section": "Generals",
+    "position": 105,
+    "requires": [
+      [
+        "Rally_the_Wehrmacht"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hasso_von_Manteuffel",
+    "name": "Hasso von Manteuffel",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Portrait_Germany_Hasso_von_Manteuffel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Hasso_von_Manteuffel.png",
+    "section": "Generals",
+    "position": 106,
+    "requires": [
+      [
+        "Panzer_Troops_School"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Heinz_Guderian__Generals",
+    "name": "Heinz Guderian",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6a/Portrait_Germany_Heinz_Guderian.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Heinz_Guderian.png",
+    "section": "Generals",
+    "position": 107,
+    "requires": [
+      [
+        "Adopt_New_Panzer_Doctrine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Erhardt__Generals",
+    "name": "Hermann Erhardt",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e7/Portrait_GER_hermann_ehrhardt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hermann_ehrhardt.png",
+    "section": "Generals",
+    "position": 108,
+    "requires": [
+      [
+        "Reestablish_the_Freikorps"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Hoth",
+    "name": "Hermann Hoth",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/43/Portrait_Germany_Herman_Hoth.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Herman_Hoth.png",
+    "section": "Generals",
+    "position": 109,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Johannes_Blaskowitz",
+    "name": "Johannes Blaskowitz",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/13/Portrait_Germany_Johannes_Blaskowitz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Johannes_Blaskowitz.png",
+    "section": "Generals",
+    "position": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Konstantin_Voskoboinik",
+    "name": "Konstantin Voskoboinik",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/45/Portrait_SOV_konstantin_voskoboinik.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_SOV_konstantin_voskoboinik.png",
+    "section": "Generals",
+    "position": 111,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Kurt_Student__Generals",
+    "name": "Kurt Student",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/36/Portrait_Germany_Kurt_Student.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Kurt_Student.png",
+    "section": "Generals",
+    "position": 112,
+    "requires": [
+      [
+        "Fallschirmjäger"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Maximilian_von_Weichs",
+    "name": "Maximilian von Weichs",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d3/Portrait_Germany_Maximilian_von_Weichs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Maximilian_von_Weichs.png",
+    "section": "Generals",
+    "position": 113,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Oswald_Lutz",
+    "name": "Oswald Lutz",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3a/Portrait_GER_oswald_lutz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_oswald_lutz.png",
+    "section": "Generals",
+    "position": 114,
+    "requires": [],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Paul_Hausser",
+    "name": "Paul Hausser",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/27/Portrait_Germany_Paul_Hausser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Paul_Hausser.png",
+    "section": "Generals",
+    "position": 115,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Paul_von_Lettow-Vorbeck__Generals",
+    "name": "Paul von Lettow-Vorbeck",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8c/Portrait_ger_von_lettow_vorbeck.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_ger_von_lettow_vorbeck.png",
+    "section": "Generals",
+    "position": 116,
+    "requires": [
+      [
+        "Monarchist_Sentiment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Pyotr_Krasnov",
+    "name": "Pyotr Krasnov",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/ba/Portrait_SOV_pyotr_krasnov.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_SOV_pyotr_krasnov.png",
+    "section": "Generals",
+    "position": 117,
+    "requires": [
+      [
+        "Ally_the_Russian_White_Movement",
+        "War_with_the_USSR"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Prince_Eitel_Friedrich",
+    "name": "Prince Eitel Friedrich",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6e/Portrait_PRE_eitel_friedrich.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_PRE_eitel_friedrich.png",
+    "section": "Generals",
+    "position": 118,
+    "requires": [
+      [
+        "Glory_to_the_Imperial_Army"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Sepp_Dietrich",
+    "name": "Sepp Dietrich",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d7/Portrait_Germany_Josef_Dietrich.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Josef_Dietrich.png",
+    "section": "Generals",
+    "position": 119,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Shalva_Maglakelidze",
+    "name": "Shalva Maglakelidze",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9f/Portrait_GEO_shalva_maglakelidze.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GEO_shalva_maglakelidze.png",
+    "section": "Generals",
+    "position": 120,
+    "requires": [
+      [
+        "Establish_Eastern_Grand_Duchies"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Walter_Krüger",
+    "name": "Walter Krüger",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d6/Portrait_Germany_Walter_Kruger.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Walter_Kruger.png",
+    "section": "Generals",
+    "position": 121,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walter_Model",
+    "name": "Walter Model",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/32/Portrait_Germany_Walter_Model.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Walter_Model.png",
+    "section": "Generals",
+    "position": 122,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Walther_Nehring",
+    "name": "Walther Nehring",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/10/Portrait_GER_walther_nehring.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_walther_nehring.png",
+    "section": "Generals",
+    "position": 123,
+    "requires": [
+      [
+        "Panzer_Troops_School"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Werner_von_Fritsch__Generals",
+    "name": "Werner von Fritsch",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Portrait_GER_werner_von_fritsch.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_werner_von_fritsch.png",
+    "section": "Generals",
+    "position": 124,
+    "requires": [],
+    "excludes": [
+      "Reorganize_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Wilhelm_List",
+    "name": "Wilhelm List",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/69/Portrait_Germany_Wilhelm_List.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Wilhelm_List.png",
+    "section": "Generals",
+    "position": 125,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_Ritter_von_Leeb",
+    "name": "Wilhelm Ritter von Leeb",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/47/Portrait_Germany_Wilhelm_Ritter_von_Leeb.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_Germany_Wilhelm_Ritter_von_Leeb.png",
+    "section": "Generals",
+    "position": 126,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Alfred_Saalwächter__Admirals",
+    "name": "Alfred Saalwächter",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c8/Portrait_GER_alfred_saalwachter.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_alfred_saalwachter.png",
+    "section": "Admirals",
+    "position": 127,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Erich_Raeder__Admirals",
+    "name": "Erich Raeder",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Portrait_GER_erich_raeder.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_erich_raeder.png",
+    "section": "Admirals",
+    "position": 128,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Günther_Lütjens__Admirals",
+    "name": "Günther Lütjens",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e7/Portrait_GER_gunther_lutjens.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_gunther_lutjens.png",
+    "section": "Admirals",
+    "position": 129,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hermann_Boehm",
+    "name": "Hermann Boehm",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0d/Portrait_GER_hermann_boehm.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_hermann_boehm.png",
+    "section": "Admirals",
+    "position": 130,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Karl_Dönitz__Admirals",
+    "name": "Karl Dönitz",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/da/Portrait_GER_karl_donitz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_karl_donitz.png",
+    "section": "Admirals",
+    "position": 131,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Rolf_Carls__Admirals",
+    "name": "Rolf Carls",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Portrait_GER_rolf_carls.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_rolf_carls.png",
+    "section": "Admirals",
+    "position": 132,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Wilhelm_Marschall",
+    "name": "Wilhelm Marschall",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1c/Portrait_GER_wilhelm_marschall.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Portrait_GER_wilhelm_marschall.png",
+    "section": "Admirals",
+    "position": 133,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "IG_Farben",
+    "name": "IG Farben",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/09/Ig_faben.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Ig_faben.png",
+    "section": "Industrial concerns",
+    "position": 134,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Krupp",
+    "name": "Krupp",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/72/Krupp.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Krupp.png",
+    "section": "Industrial concerns",
+    "position": 135,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Siemens",
+    "name": "Siemens",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a9/Siemens.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Siemens.png",
+    "section": "Industrial concerns",
+    "position": 136,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Vereinigte_Stahlwerke",
+    "name": "Vereinigte Stahlwerke",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Idea_GER_vereinigte_stahlwerke.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_vereinigte_stahlwerke.png",
+    "section": "Industrial concerns",
+    "position": 137,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Deutsche_Reichsbahn",
+    "name": "Deutsche Reichsbahn",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/ca/Idea_GER_deutsche_reichsbahn.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_deutsche_reichsbahn.png",
+    "section": "Industrial concerns",
+    "position": 138,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Philipp_Holzmann",
+    "name": "Philipp Holzmann",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8f/Idea_GER_philipp_holzmann.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_philipp_holzmann.png",
+    "section": "Industrial concerns",
+    "position": 139,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Organization_Todt",
+    "name": "Organization Todt",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Idea_GER_organization_todt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_organization_todt.png",
+    "section": "Industrial concerns",
+    "position": 140,
+    "requires": [
+      [
+        "Form_Organization_Todt"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "RWE",
+    "name": "RWE",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Generic_energy_concern.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_energy_concern.png",
+    "section": "Industrial concerns",
+    "position": 141,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Reichswerke",
+    "name": "Reichswerke",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/da/Idea_GER_reichswerke.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_reichswerke.png",
+    "section": "Industrial concerns",
+    "position": 142,
+    "requires": [
+      [
+        "Establish_the_Reichswerke"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anglo-Czechoslovak_and_Prague_Credit_Bank",
+    "name": "Anglo-Czechoslovak and Prague Credit Bank",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Idea_gre_schachtplan2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_gre_schachtplan2.png",
+    "section": "Industrial concerns",
+    "position": 143,
+    "requires": [
+      [
+        "Establish_a_Customs_Union"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Porsche",
+    "name": "Porsche",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/33/Porsche.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Porsche.png",
+    "section": "Tank designers",
+    "position": 144,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Henschel",
+    "name": "Henschel",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/41/Henschel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Henschel.png",
+    "section": "Tank designers",
+    "position": 145,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MAN",
+    "name": "MAN",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ec/GER_MAN.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:GER_MAN.png",
+    "section": "Tank designers",
+    "position": 146,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Alkett",
+    "name": "Alkett",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d4/Idea_GER_alkett.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_alkett.png",
+    "section": "Tank designers",
+    "position": 147,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Daimler_Benz",
+    "name": "Daimler Benz",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Idea_GER_daimler_benz.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_daimler_benz.png",
+    "section": "Tank designers",
+    "position": 148,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Skoda_Works-Prague",
+    "name": "Skoda Works-Prague",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7b/Idea_cze_skoda_artillery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_cze_skoda_artillery.png",
+    "section": "Tank designers",
+    "position": 149,
+    "requires": [
+      [
+        "Integrate_Czech_Manufacturers"
+      ]
+    ],
+    "excludes": [
+      "Oppose_Hitler",
+      "Rally_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Böhmische-Mährische_Maschinenfabrik_AG",
+    "name": "Böhmische-Mährische Maschinenfabrik AG",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f9/Idea_cze_ckd.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_cze_ckd.png",
+    "section": "Tank designers",
+    "position": 150,
+    "requires": [
+      [
+        "Integrate_Czech_Manufacturers"
+      ]
+    ],
+    "excludes": [
+      "Oppose_Hitler",
+      "Rally_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Germaniawerft",
+    "name": "Germaniawerft",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f4/Germaniawerft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Germaniawerft.png",
+    "section": "Ship designers",
+    "position": 151,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Blohm_&_Voss",
+    "name": "Blohm & Voss",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a6/Blohm_und_voss.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Blohm_und_voss.png",
+    "section": "Ship designers",
+    "position": 152,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "HDW",
+    "name": "HDW",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d1/Idea_GER_hdw.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_hdw.png",
+    "section": "Ship designers",
+    "position": 153,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Deschimag",
+    "name": "Deschimag",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c9/Idea_GER_deschimag.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_deschimag.png",
+    "section": "Ship designers",
+    "position": 154,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Deutsche_Werke",
+    "name": "Deutsche Werke",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4b/Idea_GER_deutsche_werke.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_deutsche_werke.png",
+    "section": "Ship designers",
+    "position": 155,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Marinewerft_Wilhelmshaven",
+    "name": "Marinewerft Wilhelmshaven",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/43/Idea_GER_kriegsmarinewerft_wilhelmshaven.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_kriegsmarinewerft_wilhelmshaven.png",
+    "section": "Ship designers",
+    "position": 156,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Messerschmitt",
+    "name": "Messerschmitt",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9c/Messerschmitt.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Messerschmitt.png",
+    "section": "Aircraft designers",
+    "position": 157,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Junkers",
+    "name": "Junkers",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0c/Junkers.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Junkers.png",
+    "section": "Aircraft designers",
+    "position": 158,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Focke_Wulf",
+    "name": "Focke Wulf",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/21/Focke_wulf.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Focke_wulf.png",
+    "section": "Aircraft designers",
+    "position": 159,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heinkel",
+    "name": "Heinkel",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3e/Heinkel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heinkel.png",
+    "section": "Aircraft designers",
+    "position": 160,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Dornier",
+    "name": "Dornier",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/14/Dornier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dornier.png",
+    "section": "Aircraft designers",
+    "position": 161,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Arado_Flugzeugwerke",
+    "name": "Arado Flugzeugwerke",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/20/Idea_GER_arado_flugzeugwerke.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_arado_flugzeugwerke.png",
+    "section": "Aircraft designers",
+    "position": 162,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Fieseler",
+    "name": "Fieseler",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9c/Idea_GER_fieseler.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_fieseler.png",
+    "section": "Aircraft designers",
+    "position": 163,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Zlín_Aircraft",
+    "name": "Zlín Aircraft",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/de/Idea_cze_zlin_aircraft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_cze_zlin_aircraft.png",
+    "section": "Aircraft designers",
+    "position": 164,
+    "requires": [
+      [
+        "Integrate_Czech_Manufacturers"
+      ]
+    ],
+    "excludes": [
+      "Oppose_Hitler",
+      "Rally_the_Wehrmacht"
+    ]
+  },
+  {
+    "id": "Rheinmetall",
+    "name": "Rheinmetall",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/60/Rheinmetall.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rheinmetall.png",
+    "section": "Materiel designers",
+    "position": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Mauser",
+    "name": "Mauser",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Mauser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mauser.png",
+    "section": "Materiel designers",
+    "position": 166,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Opel",
+    "name": "Opel",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8e/Opel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Opel.png",
+    "section": "Materiel designers",
+    "position": 167,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Carl_Walther",
+    "name": "Carl Walther",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/be/Idea_GER_carl_walther.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_carl_walther.png",
+    "section": "Materiel designers",
+    "position": 168,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Auto_Union",
+    "name": "Auto Union",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b4/Idea_GER_auto_union.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_auto_union.png",
+    "section": "Materiel designers",
+    "position": 169,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Henschel-Kassel",
+    "name": "Henschel-Kassel",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/32/Idea_GER_henschel_civilian.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_henschel_civilian.png",
+    "section": "Materiel designers",
+    "position": 170,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Focke-Achgelis",
+    "name": "Focke-Achgelis",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Idea_GER_focke_achgelis.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_GER_focke_achgelis.png",
+    "section": "Materiel designers",
+    "position": 171,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "CZ_Uherský_Brod",
+    "name": "CZ Uherský Brod",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e1/Idea_cze_ceska_zbrojovka_uhersky_brod.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Idea_cze_ceska_zbrojovka_uhersky_brod.png",
+    "section": "Materiel designers",
+    "position": 172,
+    "requires": [
+      [
+        "Integrate_Czech_Manufacturers"
+      ]
+    ],
+    "excludes": [
+      "Oppose_Hitler",
+      "Rally_the_Wehrmacht"
+    ]
+  }
+]

@@ -4,183 +4,93 @@ Guidance for Claude Code (claude.ai/code) working in this repository.
 
 ## What this is
 
-A planner for the **German national focus tree** of Hearts of Iron IV. The focus
-catalog is parsed out of a saved copy of the wiki page into a local MongoDB, and a
-one-screen Flask UI is where a plan is built: click focuses out of the catalog on
-the left, drag them into order on the right, and every focus shows the date it
-completes. Plans are saved in Mongo under a name.
+A planner for the **German national focus tree** of Hearts of Iron IV, and the research to go with it. Both catalogs are parsed out of saved copies of wiki pages into a local SQLite database. The web UI is two pages over one plan. On the focus page (`/`), click focuses out of the catalog on the left, drag them into order on the right, and every focus shows the date it completes. On the technology page (`/technologies`), attach technologies to those focuses: two aligned columns, a technology taking the date of its focus. Plans are saved in the database under a name.
 
-The catalog only offers what the plan can actually take next: the wiki's
-"Requires …" lists are parsed too, so a focus stays out of the list until its
-prerequisites are in the plan.
+The catalog only offers what the plan can actually take next: the wiki's "Requires …" lists are parsed too, so a focus stays out of the list until its prerequisites are in the plan.
 
-**No icon is ever downloaded and nothing here touches the network.**
-`data/foo.html` is the wiki page saved by hand, and a focus keeps a *link* to the
-wiki's copy of its icon — the browser is what fetches the images.
+**No icon is ever downloaded and nothing here touches the network.** `data/focuses.html` and `data/technologies/*.html` are wiki pages saved by hand, and a focus or a technology keeps a *link* to the wiki's copy of its icon: the browser is what fetches the images.
 
-## Setup and commands
+## Commands
 
-```bash
-pip install -e ".[dev]"              # runtime + test deps, all in pyproject.toml
-cp .env.example .env                 # APP_ENV + MONGO_URI
-
-python scripts/import_focuses.py              # data/focuses.html -> JSON -> Mongo
-python scripts/import_focuses.py --from-json  # seed from the committed JSON (fast)
-python scripts/import_focuses.py --json-only  # re-parse the page, touch no database
-python scripts/import_focuses.py --from-json --env prod --mongo-uri mongodb://localhost:27018
-                                              # ... into another database entirely
-python api/app.py                             # the Flask UI on :5000
-python -m pytest                              # tests + coverage (fails under 90%)
+```sh
+cargo run                                   # serve on http://127.0.0.1:5000 (DATABASE_URL, BIND_ADDR, SOCKET_PATH, ASSET_ROOT, URL_PREFIX, RUST_LOG)
+cargo run -- import-focuses                 # data/focuses.html -> data/focuses.json -> database
+cargo run -- import-focuses --from-json     # seed from the committed JSON (fast, no page needed)
+cargo run -- import-focuses --json-only     # re-parse the page, touch no database
+cargo run -- import-focuses --from-json --database-url other.db   # ... into another database
+cargo run -- import-technologies            # data/technologies/*.html -> data/technologies.json -> database
+cargo run -- import-technologies --from-json   # same flags as import-focuses
+cargo run -- parse-politics                 # data/politics.html -> politics.json + staff.json
+cargo run -- healthcheck                    # ask a running server for /health, print the answer
+cargo test                                  # unit tests + tests/ (in-memory SQLite)
+cargo test --test planner_api <name>        # one integration test
+cargo clippy --all-targets -- -D warnings
+cargo fmt
 ```
 
-Needs a local mongod (`brew install mongodb-community`, `brew services start
-mongodb-community`). `APP_ENV` (`dev`|`prod`, default `dev`) picks the database:
-`hoi4_planner_<env>`. Collections are always `focuses` and `plans`. Dependencies,
-pytest and coverage settings live in `pyproject.toml` (no `requirements.txt`). No
-linter is configured.
-
-The import script is the one thing that can be pointed at another database for a
-single run — `--env` for the suffix, `--mongo-uri` for the server — which is how
-the laptop seeds the server's catalog, through an SSH tunnel
-(`ssh -N -L 27018:localhost:27017 ced@nuc150`) rather than by exposing its mongod.
-Both flags only set what `core.config` and `core.db` read anyway, so nothing below
-them learns of a second database, and the target is printed before it is written
-to.
+No external service is needed: the database is a file, created with its folder at the first connection (`DATABASE_URL`, default `data/hoi4_planner.db`), and pending migrations are applied every time the app connects. The catalogs are not in it until they are seeded; an empty one comes up healthy and says so on the page.
 
 ## The rules of a plan
 
-A national focus costs **35 days** unless it is one of the few that take half a
-term (**14**) or two (**70**), so a plan is an *order* plus the handful of focuses
-that differ: each completes when everything before it is done plus its own term,
-and the start date itself is not counted as a day of work — from the default
-1 Jan 1936, an unmarked first focus lands on 5 Feb 1936.
+A national focus costs **35 days** unless it is one of the few that take half a term (**14**) or two (**70**), so a plan is an *order* plus the handful of focuses that differ: each completes when everything before it is done plus its own term, and the start date itself is not counted as a day of work. From the default 1 Jan 1936, an unmarked first focus lands on 5 Feb 1936.
 
-The wiki page carries no duration to parse, so the odd term is picked by hand on
-the focus's row in the plan (a `14 / 35 / 70` picker, the middle button being the
-plan's own `days_per_focus` and clearing the mark) and kept in `focus_days`,
-`{focus id: days}` holding **only** the focuses that differ. Keyed by id rather
-than by position, so dragging cannot move a term onto the wrong focus; a mark for
-a focus not in the order is dropped on save (`core.db.save_plan()`), and one that
-is not a positive whole number falls back to the default rather than raising
-(`core.focuses.days_for()`).
+The wiki page carries no duration to parse, so the odd term is picked by hand on the focus's row in the plan (a `14 / 35 / 70` picker, the middle button being the plan's own `days_per_focus` and clearing the mark) and kept in `focus_days`, `{focus id: days}` holding **only** the focuses that differ. Keyed by id rather than by position, so dragging cannot move a term onto the wrong focus; a mark for a focus not in the order is dropped on save (`PlanRecord::store`), and one that is not positive falls back to the default rather than failing (`domain::days_for`).
 
-Nothing derived is stored: `focus_ids`, `focus_days`, `start_date` and
-`days_per_focus` are the plan, and `core.focuses.schedule()` makes the dates.
+Nothing derived is stored: `focus_ids`, `focus_days`, `focus_technologies`, `start_date` and `days_per_focus` are the plan, and `domain::schedule` makes the dates.
 
-The plan being built is kept too, without being named: every edit is written to
-**the draft**, one plan document under an id no name can slug to
-(`core.db.DRAFT_PLAN_ID`, `~draft`), so closing the tab loses nothing and the
-page comes down with it already in hand. It is left out of `load_plans()` — it
-belongs to the panel, not to the dropdown — and **Clear** is what throws it away
-(`DELETE /api/draft`), leaving the saved plans alone.
+The plan being built is kept too, without being named: every edit is written to **the draft**, one row of `plans` under an id no name can slug to (`domain::DRAFT_PLAN_ID`, `~draft`), so closing the tab loses nothing and the page comes down with it already in hand. It is left out of `PlanRecord::list_saved`, as it belongs to the panel and not to the dropdown, and **Vider** is what throws it away (`DELETE /api/draft`), leaving the saved plans alone.
 
 ## What a focus depends on
 
-The page states a focus's prerequisites in the second cell of its row, in two
-forms and no others — there is no "all of the following":
+The page states a focus's prerequisites in the second cell of its row, in two forms and no others (there is no "all of the following"):
 
-- **`Requires the following:`** — every focus in the list must be taken.
-- **`Requires one of the following:`** — any one of them will do, and this form
-  can be nested inside the first ("requires A, and one of B or C").
+- **`Requires the following:`**: every focus in the list must be taken.
+- **`Requires one of the following:`**: any one of them will do, and this form can be nested inside the first ("requires A, and one of B or C").
 
-Both are stored as the same shape, `requires`: **a list of groups of focus ids,
-each group needing one of its focuses taken**. "The following" is one group per
-focus, "one of the following" is a single group of them all, and a nested list is
-just another group — which makes checking a plan one test rather than two
-(`core.focuses.unmet()`). A row's `Mutually exclusive with:` becomes `excludes`,
-made symmetric at parse time because the page does not always write both sides.
+Both are stored as the same shape, `requires`: **a list of groups of focus ids, each group needing one of its focuses taken**. "The following" is one group per focus, "one of the following" is a single group of them all, and a nested list is just another group, which makes checking a plan one test rather than two (`Focus::unmet`). A row's `Mutually exclusive with:` becomes `excludes`, made symmetric at parse time because the page does not always write both sides.
 
-Both are parsed with `html.parser` rather than a regex (`_Lists`): the lists nest,
-and no regex can tell which `</ul>` closes which. What the catalog cannot name —
-an ideology, a country, a focus from a branch this saved page does not carry — is
-dropped once the whole page is read, and a group that empties out stops being a
-requirement at all rather than stranding its focus forever.
+Both are parsed by walking the tags (`wiki::requirement_list`) rather than with a regex: the lists nest, and no regex can tell which `</ul>` closes which. What the catalog cannot name (an ideology, a country, a focus from a branch this saved page does not carry) is dropped once the whole page is read, and a group that empties out stops being a requirement at all rather than stranding its focus forever.
 
-A focus is **available** when every group is met and nothing it excludes is
-planned. That is what the catalog filters on (`only available`, on by default;
-turn it off and a gated focus is dimmed, locked, and still clickable), and what
-`schedule()` re-checks *in order* — a prerequisite has to come **earlier**, so
-dragging one below what needs it marks that row `needs`/`clashes` rather than
-quietly dating a plan nobody could play.
+A focus is **available** when every group is met and nothing it excludes is planned. That is what the catalog filters on (« seulement les disponibles », on by default; turn it off and a gated focus is dimmed, locked, and still clickable), and what `schedule` re-checks *in order*: a prerequisite has to come **earlier**, so dragging one below what needs it marks that row `needs`/`clashes` rather than quietly dating a plan nobody could play.
+
+## Technologies
+
+The research tree is country-agnostic: the pages describe what every nation shares, and nothing here filters it for Germany. `data/technologies/` holds the DLC version of each page (the `(Basic)` pages are not used), and `wiki::parse_technology_pages` reads them together, as prerequisites cross pages. A section whose notice says "Available only with the … DLC disabled" is skipped, so **every DLC is taken to be on**. The secret and special-project techs are kept: they have no year and no research time, and the catalog hides them behind a checkbox.
+
+A Prerequisites cell is `–`, links (each one a group), `One of:` and a list (one group), and links after a red `Excludes` (exclusions, made symmetric). "Can unlock this tech" and "Starts with this tech" cells are **not** prerequisites: their links go to other countries' focuses, some with the very anchor of a technology. A link is only followed within a page or to a `*_technology` page, and matched case-insensitively, as the wiki is inconsistent. What the catalog cannot name is dropped, as for focuses. Two links are dead on the saved pages: `#Engine_IV` (Centrifugal Jet) and `#Amphibious_Light_Tank_Chassis` (Amphibious Drive), so those two technologies come out with no prerequisite.
+
+**For now a technology has no research schedule of its own.** A plan keeps `focus_technologies`, `{focus id: [technology ids]}`, and a technology completes when its focus does; one focus can carry several. `base_days` is parsed and shown, but drives no date. Keyed by focus id, so dragging a focus carries its technologies along. Removing a focus removes them too (`drop()` in `app.js` says how many, and `PlanRecord::store` trims the same way), as a technology has no date without its focus.
+
+A technology is **available** on a line when every group is met by what is on that line or an earlier one, and nothing it excludes is planned anywhere. On a chip the check is stricter on order: a prerequisite has to come earlier in the walk down the plan, chip by chip, or the chip shows a `⚠`. The pages do not say what a nation starts with, so a technology **dated before the plan's start year counts as researched**: it meets any prerequisite without being planned, and is hidden under « seulement les disponibles » (it can still be planned by hand with the filter off). This approximates, as no country really starts with all of them.
+
+These rules live **only** in `static/technologies.js`: the server answers nothing about the order of technologies, so they are not part of the duplication below.
 
 ## Architecture
 
-Three roots, and the imports only ever go one way: `core/` knows nothing of Flask,
-`api/` and `scripts/` both import from it, and neither imports from the other.
+Stack: axum (HTTP), askama (server-rendered HTML in `templates/`), sqlx on SQLite. No front-end build: `static/app.css`, `static/common.js` (what the two pages share: requests, the draft timer, the two rules), `static/app.js` and `static/technologies.js`. One binary (`src/main.rs`), whose subcommands are in `src/cli/`.
 
-**`core/`** — everything the script and the web UI share:
+Layers, from the inside out:
 
-- **`core/config.py`** — files and environment variables: `load_env()`,
-  `current_env()` / `current_db_name()`, `ROOT`, `DATA_DIR`, `WIKI_PAGE`,
-  `FOCUSES_JSON`. Loads `.env` at import.
-- **`core/focuses.py`** — pure, and the only interesting logic here:
-  `parse_wiki_page()` (the saved page -> focus dicts, dependencies included, via
-  `_Lists` / `_dependencies()` / `_resolve()`), what a plan allows (`unmet()`,
-  `conflicts()`, `available()`) and the arithmetic of one (`schedule()`,
-  `days_for()`, `completion_date()`, `total_days()`, `parse_start()`). No
-  database, no Flask.
-- **`core/plan_file.py`** — pure too: the shape of an **exported plan file** and
-  nothing about where a plan is stored. `to_file()` wraps the plan's own fields in
-  an envelope (`format`, `version`) and adds a readable echo of the schedule;
-  `from_file()` checks that envelope and hands the values back, leaving what a
-  plan may *hold* to the one check a save already goes through.
-- **`core/models/`** — one mongoengine document per collection and nothing else:
-  `Focus` (keyed by the wiki anchor, and carrying `requires` / `excludes`) and
-  `Plan` (keyed by a slug of its name).
-  Each mixes in `DictDocument` (`core/models/base.py`), the boundary that keeps
-  the ORM inside these modules: `from_dict()` in, `to_dict()` out, every declared
-  field present with `None` where nothing was written, anything undeclared
-  dropped — which is what lets a parsed wiki row be handed over as it came.
-- **`core/db.py`** — **the only module that talks to MongoDB**: `connect_db()`
-  (opened on first use, not at import), `replace_focuses()` / `load_focuses()` /
-  `focus_count()`, `load_plans()` / `load_plan()` / `save_plan()` /
-  `delete_plan()`, the draft's own `save_draft()` / `load_draft()` /
-  `clear_draft()` (the same write as a save, against a fixed id), `slugify()` and
-  `now()`. `DatabaseError` lives here too: the
-  tuple every route catches (pymongo's errors *and* mongoengine's), so an
-  unreachable database always reads the same on screen.
+- **`src/domain/`**: pure, no I/O, unit-tested. `Focus` (`unmet`, `conflicts`, `available`), `Catalog` (focuses by id), `schedule` (`schedule`, `days_for`, `completion_date`, `total_days`, `parse_start`, `ScheduleRow`), `Plan` and `DRAFT_PLAN_ID`, `PlanFields` (what a plan is made of, and the one check of a posted body: a save, the draft, an export and an imported file all go through `PlanFields::from_json`), `plan_file` (the exchange format: `PlanFile`, `read_plan_file`), `slugify`, `rules` (the constants of the game), `Technology` and `TechnologyCatalog` (technologies by id).
+- **`src/wiki/`**: pure too, the saved pages to catalogs. `html_token` is a tolerant tokenizer, on which `requirement_list` (the `<ul>`/`<li>` nesting of one cell) and `html_tree` (a whole tree, as the country page's tables nest and span rows) are built. `focus_page::parse_wiki_page` reads the focus page. `leaders_page::parse_leaders` and `staff_page::parse_staff` read the *German Reich* page (`data/politics.html`) into `PoliticsEntry`, a focus's shape with `section` being the leader's ideology or the staff's table: advisors, theorists, chiefs, high command, commanders, concerns, designers, but not the organizations, which are the designers' trait trees. A leader's "Via focus" routes are one group; a Requirements cell is a boolean tree (`Condition`: "One of"/"All of", "Has (not) completed focus", "Visible when" included) brought to groups, with whatever is not a focus dropped and an alternative left with no focus lifting the whole choice. These focus ids are **not** resolved against the catalog: most routes run through branches the saved focus page does not carry. `technology_page::parse_technology_pages` reads the research pages (see Technologies).
+- **`src/db/`**: one record type per table (`FocusRecord`, `TechnologyRecord`, `PlanRecord`) with async functions taking the pool. `db::connect` runs `migrations/` (embedded with `sqlx::migrate!`). Queries use runtime `sqlx::query`/`query_as` (no compile-time macros, so no `DATABASE_URL` at build time). `requires`, `excludes`, `focus_ids`, `focus_days` and `focus_technologies` are JSON columns: they are only ever read whole, and a plan may hold ids the catalog has lost, so nothing joins the two tables. Stamps are UTC text to the microsecond, which sorts chronologically. Schema changes go in a new migration file, never by editing an applied one.
+- **`src/service/`**: one use case per file. `save_plan` (slug + name checks), `draft`, `PlanDownload` (a plan as the file a browser saves), `import_focuses`, `import_technologies`, `parse_politics`. Services do not print; the CLI says what happened.
+- **`src/web/`**: `router.rs` lists the routes. `main_handlers` serves the two pages (`PlannerPage`, `templates/planner.html`, which draws every row with its `data-requires` / `data-excludes` and hands the draft over in `data-draft`; `TechnologiesPage`, `templates/technologies.html`, which does the same and also draws the plan's focus lines, dated by `domain::schedule`, since nothing on that page can change them) and `/health`. `plan_handlers` and `plan_file_handlers` speak JSON, as the planner is one screen that never reloads. Every API failure is an `ApiError`: `{"error": "..."}` and a status, 503 when the database failed, so that it reads as a message next to the save button. The page itself still draws when the database fails, saying so.
+- **`src/cli/`**: `Command` (the command line), `run`, `serve`, `healthcheck`, `listener` (TCP, or a Unix socket when `SOCKET_PATH` is set).
 
-**`api/`** — the web UI, and nothing else imports it:
+`URL_PREFIX` is what links are built under when a proxy serves the app under a sub-path and strips it: routing does not change, only what `templates/` write.
 
-- **`api/app.py`** — configuration only: `secret_key()`, `mounted_under()` and
-  `create_app()`. `app = create_app()` at the bottom is what gunicorn serves
-  (`app:app`) and what the tests drive. No route lives here.
-- **`api/views/`** — one module per page, one blueprint each, listed in
-  `views.BLUEPRINTS`: `main` (`/`, `/health`) and `plans` (the JSON at
-  `/api/plans` for a named plan, at `/api/draft` for the one the planner writes
-  after every edit, and at `/api/plans/export` + `/api/plans/import` for the one
-  that travels as a file — the same fields every time, checked by the same
-  `plan_fields()`). Endpoints are therefore `<blueprint>.<function>` —
-  `main.index`, `plans.save`, `plans.draft`, `plans.export_plan`.
-- **`api/queries.py`** — the wording of a database failure, in one place.
-- **`api/templates/`** + **`api/static/`** — `planner.html` renders all 215 rows
-  server-side, each carrying its `data-requires` / `data-excludes`, and hands
-  the draft over in `data-draft`; `app.js` filters them to what the plan allows,
-  reorders the plan by drag, sets a focus's term, writes the draft back after
-  every edit (on a short timer, and silent unless it fails), saves, and hands a
-  plan out to a file or takes one back from it.
+### Two pages, one plan
 
-**`scripts/import_focuses.py`** — the seeder. The JSON in the middle
-(`data/focuses.json`, committed) is deliberate: parsing 2 MB of wiki markup is the
-slow and fragile half, so `--from-json` seeds a database in a moment and a
-checkout with no saved page can still fill one.
+Each page holds the whole plan and writes it back whole to the draft, so `app.js` keeps `focus_technologies` it never edits, and `technologies.js` keeps the focuses. That makes moving between them the risky moment, and `Planner.linkPages` handles both hazards: following a link waits for the last edit to be stored, and a page brought back by the back button reloads rather than overwrite the other page's work with its stale copy. **Two tabs open at once still overwrite each other**: last write wins, as two tabs of one page always did.
 
 ### The one deliberate duplication
 
-Completion dates — and the term of each focus that feeds them — are computed
-**both** in `core/focuses.py` and in `api/static/app.js`. Dragging has to re-date
-the whole list on every pointer move, and a round trip per frame would make the
-drag feel dead. The server's copy stays
-the authority for anything it answers itself — `/health`, and the dates written
-into an exported file. Change the rule in one and change it in the other.
+What a focus allows, its term and its completion date are computed **both** in `src/domain/` and in `static/app.js`. Dragging has to re-date the whole list on every pointer move, and a round trip per frame would make the drag feel dead. The server's copy stays the authority for anything it answers itself: the dates written into an exported file. Change the rule in one and change it in the other.
 
 ## A plan as a file
 
-Export and import move one plan between databases — a laptop's `dev` and the
-server's `prod`, or two people — as a single JSON file. The format is
-`core/plan_file.py`'s and the browser writes none of it: **Export** posts the
-panel and saves what comes back, **Import** posts what it read off disk and draws
-what comes back.
+Export and import move one plan between databases (a laptop's and the server's, or two people's) as a single JSON file. The format is `domain::plan_file`'s and the browser writes none of it: **Exporter** posts the panel and saves what comes back, **Importer** posts what it read off disk and draws what comes back.
 
 ```
 POST /api/plans/export        the panel, as a download
@@ -188,95 +98,112 @@ GET  /api/plans/<id>/export   a saved plan, same file, for curl
 POST /api/plans/import        a file, checked, handed back as a plan to draw
 ```
 
-The file holds the plan and nothing else — `name`, `focus_ids`, `start_date`,
-`days_per_focus`, `focus_days` — inside an envelope naming what it is, so a JSON
-file that is not one of ours is refused with a sentence instead of half-read into
-the panel. Beside them is `focuses`, a **readable echo**: each focus's name, term
-and completion date, for whoever opens the file. An import ignores it, because the
-order is the plan and `schedule()` makes those dates again. Nothing of the database
-travels: no id, no stamps, no timestamp of the export itself — exporting one plan
-twice gives the same bytes, which is what lets a plan be diffed or kept in git.
+The file holds the plan and nothing else (`name`, `focus_ids`, `start_date`, `days_per_focus`, `focus_days`, `focus_technologies`) inside an envelope naming what it is (`format`, `version`), so a JSON file that is not one of ours is refused with a sentence instead of half-read into the panel. Beside them is `focuses`, a **readable echo**: each focus's name, term, completion date and technologies, for whoever opens the file. An import ignores it, because the order is the plan and `schedule` makes those dates again. Nothing of the database travels: no id, no stamps, no timestamp of the export itself, and `focus_days` is sorted. Exporting one plan twice gives the same bytes, which is what lets a plan be diffed or kept in git. Version 2 added `focus_technologies`. Version 1 files, including those exported by the earlier Python version of this app, still import, with no technologies.
 
-**Importing stores nothing.** A plan arriving is a plan being built, so it lands
-in the panel — where it is drawn, reordered, renamed and then saved like any
-other, and where the draft picks it up on the way. Ids this catalog does not have
-come back in `unknown` and stay in the plan rather than being dropped quietly;
-the panel says how many, and `schedule()` already leaves them out of the dates.
+**Importing stores nothing.** A plan arriving is a plan being built, so it lands in the panel, where it is drawn, reordered, renamed and then saved like any other, and where the draft picks it up on the way. Ids this catalog does not have come back in `unknown` and `unknown_technologies` and stay in the plan rather than being dropped quietly; the panel says how many, and neither is drawn or dated.
+
+`POST /api/plans/export` and `/import` share their path with a plan whose name slugs to `export` or `import`, which the router handles explicitly (`GET` and `DELETE` on those paths mean the plan).
 
 ## Deploying
 
-One command from the laptop, no registry: `make deploy` builds the image, `docker
-save`s it, ships the tarball over SSH, loads it there and restarts the container,
-then waits for `/health` — and `make rollback` puts the previous version back
-without building or transferring anything (it is already loaded on the server).
+One command from the laptop, no registry and no container for the app: `make deploy` cross-compiles a static Linux binary with `cargo zigbuild`, ships it with `static/`, `data/focuses.json` and `data/technologies.json` over SSH into a new `releases/<UTC timestamp>/`, repoints `current`, restarts the systemd user unit and waits for `/health`. `make rollback` puts the previous version back without building or transferring anything.
 
-```bash
-make setup     # once: directory layout, docker check, nginx snippet
+```sh
+make setup     # once: directory layout, systemd and socket checks, nginx snippet
 make deploy    # build -> ship -> restart -> health check -> prune
-make seed      # fill the `focuses` collection from the image's JSON
+make seed      # fill both catalogs from the current release's JSON
 make rollback  # back to the previous version
 make status    # what runs there, and what /health says
-make logs      # follow the container's output
+make logs      # follow the unit's output
 ```
 
-`make seed` runs inside the deployed container, where the image's
-`data/focuses.json` already is. The other direction — `import_focuses.py --env prod
---mongo-uri …` from the laptop, over a tunnel — seeds the same collection without a
-deploy, and is what a re-parsed page goes out through when the image is not being
-rebuilt.
+`make seed` runs on the server (`$REMOTE_DIR/run import-focuses --from-json`, then `import-technologies --from-json`) and only replaces the `focuses` and `technologies` tables. A re-parsed page therefore goes out with a deploy followed by a seed: re-parsing is a laptop job, as the saved wiki pages are not shipped.
 
-`Makefile` is shortcuts only; the settings are in **`deploy/config.sh`**, every
-one of them overridable from the environment (`SSH_HOST=ced@other-box make
-deploy`). **`deploy/remote.sh`** is the server side and is uploaded before every
-run, which is what keeps deploy and rollback launching the container the same way
-— the `docker run` line exists once.
+`Makefile` is shortcuts only; the settings are in **`deploy/config.sh`**, every one of them overridable from the environment (`SSH_HOST=ced@other-box make deploy`). **`deploy/remote.sh`** is the server side and is uploaded before every run, which is what keeps deploy and rollback starting the app the same way: the unit and `app.env` are written in one place, and `$REMOTE_DIR/run <command>` runs the current binary with that same environment. The app has no secret, so nothing on the server is hand-written. The database lives in `$REMOTE_DIR/data/db/`, outside the releases, and survives every deploy; the app applies pending migrations when it starts.
 
-What the server owns and no deploy may write: **`$REMOTE_DIR/config/.env`** (the
-secret key, `APP_ENV=prod`, `URL_PREFIX`, and a `MONGO_URI` pointing at the host's
-mongod as `host.docker.internal`), mounted read-only into the container. What the
-image carries: code, and `data/focuses.json` — the saved wiki page stays on the
-laptop, so `make seed` is `--from-json` only. The catalog is not in the database
-until it is seeded; a deploy onto an empty one comes up healthy and says so.
-
-The container **publishes no port**. It joins the dockerized nginx's shared
-network and answers at `http://$CONTAINER_NAME:$APP_PORT`, which the snippet
-rendered from `deploy/nginx/*.template` proxies `/hoi4/` to — installed by
-`make setup` / `make nginx`, never by a deploy, and validated with `nginx -t`
-before the proxy restarts. The prefix lives in two places that must agree:
-`URL_PREFIX` in `deploy/config.sh` (what nginx strips) and `URL_PREFIX` in the
-server's `.env` (what `mounted_under()` builds links with).
+The app **opens no port**. It listens on a Unix socket in a host directory that the dockerized nginx (the `nginx_proxy` project, not this one) bind-mounts, and the snippet rendered from `deploy/nginx/*.template` proxies `/hoi4/` to it, stripping the prefix. It is installed by `make setup` / `make nginx`, never by a deploy, and validated with `nginx -t` before the proxy reloads. `URL_PREFIX` in `deploy/config.sh` renders the snippet and is passed to the app, so the two cannot disagree.
 
 ## Tests
 
-`pyproject.toml` sets `pythonpath = [".", "scripts", "api"]`: `core.*` imports
-from the root, `import_focuses` from `scripts/`, and `app` / `queries` / `views.*`
-from `api/` (only `core` is a package). `addopts` always runs coverage with
-`fail_under = 90`.
+Pure rules are unit-tested next to their code (`#[cfg(test)] mod tests`). `tests/` drives everything else, each file a topic: `focus_page`, `technology_page` and `politics_page` (the parsers), `plan_storage` (records and services), `planner_api` and `plan_file_api` (the JSON routes), `planner_page` (the two pages, assets, `/health`), `import_commands` (the commands reading the saved pages).
 
-**One test file per source module**, named after it: `test_core_<module>.py` for
-`core/`, `test_api_<module>.py` for `api/`, `test_<script>.py` for `scripts/`.
-Flat, with the `core_`/`api_` prefix, so two directories of tests cannot collide
-on a name. `test_core_connect.py` is split out from `test_core_db.py` because it
-is the one place `connect_db()` is *not* stubbed.
+No test touches the network, and a database is either in memory (`sqlite::memory:`) or a file in a temporary folder. `tests/common/app.rs` holds `TestApp`, the real router on an in-memory database, driven one request at a time; `TestApp::lose_database` closes the pool, which is how every route is tested on a failing database.
 
-No test touches the network or a real MongoDB. The `fake_db` fixture binds the
-models to an in-memory **mongomock** server and stubs out `core.db.connect_db()` —
-the one function that would reach for a real one — and `clean_env` clears
-`APP_ENV`/`MONGO_URI`, which `.env` would otherwise set at import. Since every
-read and write goes through `core.db`, and every one of its functions calls
-`connect_db()` first, replacing that one function is what fakes the database
-everywhere (and what `mongo_is_down` fails on purpose).
+The saved pages are never read by a test: `tests/common/wiki_markup.rs`, `technology_markup.rs` and `politics_markup.rs` build the few rows of markup each test needs. To check the parsers against the real pages, re-run `import-focuses --json-only`, `import-technologies --json-only` and `parse-politics`: `git diff data/` must be empty unless a parser was meant to change.
 
-`fake_db["focuses"].docs` is how a test seeds and reads a collection: assigning
-replaces its contents, reading gives them back as the app sees them, with Mongo's
-`_id` shown as `id`. It is a view, not the storage.
+## Development guidelines
 
-The autouse `clock` fixture makes `core.db.now()` tick a second per call: two
-saves in one test otherwise land in the same millisecond, which mongoengine
-rounds to a tie and leaves "most recently touched first" undefined. Stamps are
-**naive UTC** throughout, because that is what Mongo hands back — see `now()`.
+### Imports
 
-`data/foo.html` is never read by a test; the parser tests build the few rows of
-markup they need (`tests/helpers.py`) — `wiki_row()` for the focus itself, and
-`requirements()` wrapping `requires()` / `excludes()` for the cell that says what
-it depends on. `requires()` nests, which is how the nested-list case is tested.
+- Prefer `crate::`-rooted paths for imports across modules; treat this as the Rust equivalent of "absolute imports."
+- `super::` is acceptable within tightly nested module hierarchies (e.g. a tests submodule referencing its parent, or a submodule referencing its direct parent's types).
+- Avoid deep `super::super::` chains — restructure the module tree instead.
+- Avoid glob imports (`use foo::*;`) except for prelude modules explicitly designed for it, or in test modules (`use super::*;`).
+
+### Type Annotations
+
+- Annotate all `pub` function signatures explicitly (parameters and return type), even where inference would work.
+- Let type inference handle local variable bindings inside function bodies.
+- Prefer concrete types over generics unless genericity provides real, used value (called with more than one concrete type, or part of a public API meant to be generic).
+- Avoid `Box<dyn Any>` and other type-erasure patterns unless strictly necessary; justify with a short comment.
+- Avoid `Box<dyn Error>` for library code — prefer a concrete, well-typed error enum. `Box<dyn Error>` is acceptable at binary/application boundaries (e.g. `main`).
+
+### Docstrings
+
+- All `pub` items (functions, methods, structs, enums, traits) require a rustdoc comment (`///`), following standard rustdoc sections (`# Arguments`, `# Returns`, `# Errors`, `# Panics` as applicable).
+- Private (non-`pub`) functions get a docstring only when the logic isn't obvious from the signature and name.
+- Keep docstrings proportionate: short for simple functions, more detailed only when it adds real clarity.
+- Do not restate information already conveyed by the signature (parameter types, obvious return values).
+- Enforce at the crate level with `#![warn(missing_docs)]` (or `#![deny(missing_docs)]` for libraries).
+
+### Comments
+
+- Do not add comments to explain straightforward or self-evident code.
+- Add comments only when the logic is genuinely complex, non-obvious, or could be misread.
+- Keep comments short and synthetic — a brief note on intent or reasoning, not a narration of what the code does.
+- Avoid verbose or redundant comments; never caption the obvious.
+
+### Error Handling
+
+- Use `Result<T, E>` for recoverable errors and `Option<T>` for absence. Do not use panics as control flow.
+- Propagate errors with `?` rather than manual `match`/`if let` chains, unless the error needs to be transformed or contextualized at that point.
+- Do not use `unwrap()` or `expect()` in library or production code paths. Reserve for tests, examples, and prototypes.
+- If used outside those contexts because a failure is provably impossible, justify with a short comment (e.g. `// safe: regex is a compile-time constant`).
+- Define proper error types (plain enums, or via `thiserror`) rather than stringly-typed errors (`Err("something failed".to_string())`) or blanket `Box<dyn Error>` in library code.
+- Do not silently discard errors with `.ok()`, `let _ =`, or similar — handle, log, or propagate explicitly.
+- `panic!` (and `unreachable!`, `todo!`, `unimplemented!` left in shipped code) is reserved for genuine invariant violations (bugs), not expected failure modes.
+
+### Function Size & Decomposition
+
+- Soft limit of 50 lines per function.
+- If a function exceeds this limit, break it into smaller, well-named sub-functions, each with a single clear responsibility and its own concise docstring.
+- Prefer composition of small functions over deeply nested logic or long procedural blocks.
+- Prefer early returns / `?`-based flattening over deeply nested `match`/`if let` pyramids.
+
+### Types & Modules
+
+- One primary public type (struct, enum, or trait) per file, with its associated `impl` block(s).
+- File name (snake_case) matches the type name (e.g. `struct UserAccount` → `user_account.rs`).
+- Exceptions: small, tightly-coupled types may share the file with the primary type — e.g. an error enum returned by its methods, a config/builder struct feeding it, or a result type it produces.
+- A closely-related family of small types with no independent identity (e.g. AST node variants, a state-machine's states) may live together in one file organized around the concept they jointly express, rather than one type per file. Split it out once it grows large enough to be its own topic.
+- Traits implemented by multiple unrelated types get their own file; a trait implemented by only one type may be co-located with that type.
+
+### File & Module Organization
+
+- Avoid monolithic files. Split code by topic/responsibility into modules (`mod foo;`).
+- Group related modules into a directory-based module tree (subpackages) when a topic grows large enough.
+- Keep `mod.rs` / inline module-declaration files thin — `pub use` re-exports only, no implementation logic.
+- Keep `lib.rs` / `main.rs` as a thin entry point: module declarations, top-level wiring, and re-exports — no business logic.
+
+### General Principles
+
+- Favor readability and small, testable units over cleverness.
+- Prefer explicit over implicit in naming, typing, and structure.
+- Split files as soon as they start doing "too much" rather than waiting for a refactor pass.
+- Prefer composition over inheritance-like patterns; use traits for shared behavior, not deep hierarchies.
+- Align with idiomatic Rust and clippy/rustfmt defaults rather than fighting them; deviate only when this style guide explicitly says so.
+
+### Language
+
+- Code is English, whatever language the prompt is in. Identifiers, function names, comments, docstrings, commit messages and log lines are written in English even when the request or the discussion is in French.
+- User-facing text is French, and stays French. Error messages surfaced to users, CLI output, labels, templates — anything a reader sees is French, UTF-8, accents kept. Do not translate it, and write new user-facing text in French.

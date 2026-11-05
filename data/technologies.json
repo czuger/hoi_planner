@@ -1,0 +1,6222 @@
+[
+  {
+    "id": "Basic_Infantry_equipment",
+    "name": "Basic Infantry equipment",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/08/Infantry_equipment_0.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_equipment_0.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 0,
+    "year": 1918,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Infantry_Equipment_I",
+    "name": "Infantry Equipment I",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3c/Infantry1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry1.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 1,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Infantry_equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Infantry_Equipment_I",
+    "name": "Improved Infantry Equipment I",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Infantry_weapons.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_weapons.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 2,
+    "year": 1938,
+    "base_days": 165,
+    "requires": [
+      [
+        "Infantry_Equipment_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Infantry_Equipment_II",
+    "name": "Infantry Equipment II",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Infantry2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry2.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 3,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Infantry_Equipment_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Infantry_Equipment_II",
+    "name": "Improved Infantry Equipment II",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4f/Infantry_weapons2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_weapons2.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 4,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Infantry_Equipment_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Infantry_Equipment_III",
+    "name": "Infantry Equipment III",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cd/Infantry3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry3.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 5,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Infantry_Equipment_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Infantry_Equipment_III",
+    "name": "Improved Infantry Equipment III",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8c/Infantry_weapons3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_weapons3.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 6,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Infantry_Equipment_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Infantry_Anti-Tank_I",
+    "name": "Infantry Anti-Tank I",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f3/Infantry_at.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_at.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 7,
+    "year": 1942,
+    "base_days": 165,
+    "requires": [
+      [
+        "Infantry_Equipment_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Infantry_Anti-Tank_II",
+    "name": "Infantry Anti-Tank II",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/99/Infantry_at2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Infantry_at2.png",
+    "domain": "Infanterie",
+    "section": "Infantry weapons",
+    "position": 8,
+    "year": 1943,
+    "base_days": 165,
+    "requires": [
+      [
+        "Infantry_Anti-Tank_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Support_Weapons_I",
+    "name": "Support Weapons I",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/73/Support_weapons.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Support_weapons.png",
+    "domain": "Infanterie",
+    "section": "Support weapons",
+    "position": 9,
+    "year": 1918,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Support_Weapons_II",
+    "name": "Support Weapons II",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9c/Support_weapons2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Support_weapons2.png",
+    "domain": "Infanterie",
+    "section": "Support weapons",
+    "position": 10,
+    "year": 1938,
+    "base_days": 165,
+    "requires": [
+      [
+        "Support_Weapons_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Support_Weapons_III",
+    "name": "Support Weapons III",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f3/Support_weapons3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Support_weapons3.png",
+    "domain": "Infanterie",
+    "section": "Support weapons",
+    "position": 11,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Support_Weapons_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Support_Weapons_IV",
+    "name": "Support Weapons IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/12/Support_weapons4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Support_weapons4.png",
+    "domain": "Infanterie",
+    "section": "Support weapons",
+    "position": 12,
+    "year": 1942,
+    "base_days": 165,
+    "requires": [
+      [
+        "Support_Weapons_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Night_Vision_I",
+    "name": "Night Vision I",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Night_vision.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Night_vision.png",
+    "domain": "Infanterie",
+    "section": "Night vision",
+    "position": 13,
+    "year": 1943,
+    "base_days": 275,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Night_Vision_II",
+    "name": "Night Vision II",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9b/Night_vision2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Night_vision2.png",
+    "domain": "Infanterie",
+    "section": "Night vision",
+    "position": 14,
+    "year": 1946,
+    "base_days": 220,
+    "requires": [
+      [
+        "Night_Vision_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Early_Truck",
+    "name": "Early Truck",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3d/Motorized_equipment_0.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Motorized_equipment_0.png",
+    "domain": "Infanterie",
+    "section": "Motorized",
+    "position": 15,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Truck",
+    "name": "Truck",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/Motorized_equipment_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Motorized_equipment_1.png",
+    "domain": "Infanterie",
+    "section": "Motorized",
+    "position": 16,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Early_Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Motorized_Rocket_Artillery",
+    "name": "Motorized Rocket Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e6/Motorized_rocket_unit.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Motorized_rocket_unit.png",
+    "domain": "Infanterie",
+    "section": "Motorized",
+    "position": 17,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mechanized_Equipment_I",
+    "name": "Mechanized Equipment I",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Mechanized_equipment_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mechanized_equipment_1.png",
+    "domain": "Infanterie",
+    "section": "Mechanized",
+    "position": 18,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mechanized_Equipment_II",
+    "name": "Mechanized Equipment II",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0c/Mechanized_equipment_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mechanized_equipment_2.png",
+    "domain": "Infanterie",
+    "section": "Mechanized",
+    "position": 19,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Mechanized_Equipment_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mechanized_Equipment_III",
+    "name": "Mechanized Equipment III",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a7/Mechanized_equipment_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mechanized_equipment_3.png",
+    "domain": "Infanterie",
+    "section": "Mechanized",
+    "position": 20,
+    "year": 1944,
+    "base_days": 330,
+    "requires": [
+      [
+        "Mechanized_Equipment_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Amphibious_Tractor",
+    "name": "Basic Amphibious Tractor",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Generic_amphibious_mech_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_amphibious_mech_1.png",
+    "domain": "Infanterie",
+    "section": "Amphibious Tractors",
+    "position": 21,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Mechanized_Equipment_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Amphibious_Tractor",
+    "name": "Improved Amphibious Tractor",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Generic_amphibious_mech_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_amphibious_mech_2.png",
+    "domain": "Infanterie",
+    "section": "Amphibious Tractors",
+    "position": 22,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Amphibious_Tractor"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Interwar_Armored_Car",
+    "name": "Interwar Armored Car",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5f/Armored_car_equipment_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Armored_car_equipment_1.png",
+    "domain": "Infanterie",
+    "section": "Armored Cars",
+    "position": 23,
+    "year": 1914,
+    "base_days": 220,
+    "requires": [
+      [
+        "Early_Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Armored_Car",
+    "name": "Basic Armored Car",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9f/Armored_car_equipment_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Armored_car_equipment_2.png",
+    "domain": "Infanterie",
+    "section": "Armored Cars",
+    "position": 24,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Interwar_Armored_Car"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Armored_Car",
+    "name": "Improved Armored Car",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Armored_car_equipment_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Armored_car_equipment_3.png",
+    "domain": "Infanterie",
+    "section": "Armored Cars",
+    "position": 25,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Armored_Car"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anti-Tank_Armored_Car",
+    "name": "Anti-Tank Armored Car",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/46/Armored_car_equipment_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Armored_car_equipment_3.png",
+    "domain": "Infanterie",
+    "section": "Armored Cars",
+    "position": 26,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Armored_Car"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Marines_I",
+    "name": "Marines I",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bd/Marines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Marines.png",
+    "domain": "Infanterie",
+    "section": "Marines",
+    "position": 27,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Marines_II",
+    "name": "Marines II",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/90/Marines2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Marines2.png",
+    "domain": "Infanterie",
+    "section": "Marines",
+    "position": 28,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Marines_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Marines_III",
+    "name": "Marines III",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Marines3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Marines3.png",
+    "domain": "Infanterie",
+    "section": "Marines",
+    "position": 29,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Marines_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Infantry_I",
+    "name": "Mountain Infantry I",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a0/Mountain_infantry.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mountain_infantry.png",
+    "domain": "Infanterie",
+    "section": "Mountain Infantry",
+    "position": 30,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Infantry_II",
+    "name": "Mountain Infantry II",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a4/Mountain_infantry2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mountain_infantry2.png",
+    "domain": "Infanterie",
+    "section": "Mountain Infantry",
+    "position": 31,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Mountain_Infantry_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Infantry_III",
+    "name": "Mountain Infantry III",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/47/Mountian_infantry3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mountian_infantry3.png",
+    "domain": "Infanterie",
+    "section": "Mountain Infantry",
+    "position": 32,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Mountain_Infantry_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Paratroopers_I",
+    "name": "Paratroopers I",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e6/Paratroopers.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Paratroopers.png",
+    "domain": "Infanterie",
+    "section": "Paratroopers",
+    "position": 33,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Paratroopers_II",
+    "name": "Paratroopers II",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/39/Paratroopers2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Paratroopers2.png",
+    "domain": "Infanterie",
+    "section": "Paratroopers",
+    "position": 34,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Paratroopers_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Paratroopers_III",
+    "name": "Paratroopers III",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f8/Paratroopers3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Paratroopers3.png",
+    "domain": "Infanterie",
+    "section": "Paratroopers",
+    "position": 35,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Paratroopers_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Jungle_Warfare",
+    "name": "Jungle Warfare",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 36,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Jungle_Training",
+    "name": "Jungle Training",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 37,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Desert_Training",
+    "name": "Desert Training",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 38,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Hills_Training",
+    "name": "Hills Training",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 39,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Urban_Training",
+    "name": "Urban Training",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 40,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Mountaineer_Paratroopers",
+    "name": "Mountaineer Paratroopers",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 41,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Light_Infantry_Divisions_Doctrine",
+    "name": "Light Infantry Divisions Doctrine",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 42,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Warfare",
+    "name": "Mountain Warfare",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 43,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Defense_Training",
+    "name": "Mountain Defense Training",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 44,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Lynx_Armored_Car",
+    "name": "Lynx Armored Car",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 45,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Militias",
+    "name": "Militias",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 46,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Bicycle_Infantry",
+    "name": "Bicycle Infantry",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 47,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Camelry",
+    "name": "Camelry",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 48,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Penal_Battalions",
+    "name": "Penal Battalions",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 49,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Assault_Battalion",
+    "name": "Assault Battalion",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 50,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Grande_Rivolta_Rurale",
+    "name": "Grande Rivolta Rurale",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 51,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "ETH_improved_irregular_infantry_tech",
+    "name": "ETH improved irregular infantry tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 52,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "molotov_cocktails_tech",
+    "name": "molotov cocktails tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 53,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "winter_logistics_support_tech",
+    "name": "winter logistics support tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 54,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "long_range_patrol_support_tech",
+    "name": "long range patrol support tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 55,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "sami_pathfinders_tech",
+    "name": "sami pathfinders tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 56,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "lotta_svard_tech",
+    "name": "lotta svard tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 57,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "SWE_sami_support_tech",
+    "name": "SWE sami support tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 58,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Jungle_Pioneers",
+    "name": "Jungle Pioneers",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 59,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Brown_Water_Navy",
+    "name": "Brown Water Navy",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 60,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "sturmtruppe_battalion_tech",
+    "name": "sturmtruppe battalion tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 61,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Heavy_Armored_Car",
+    "name": "Heavy Armored Car",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 62,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Chasseurs_Ardennais",
+    "name": "Chasseurs Ardennais",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/04/No.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:No.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 63,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Elephantry",
+    "name": "Elephantry",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 64,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "uranium_tipped_bullets",
+    "name": "uranium tipped bullets",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 65,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "revolutionary_mass_assault",
+    "name": "revolutionary mass assault",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 66,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "PHI_battalion_combat_teams",
+    "name": "PHI battalion combat teams",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 67,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "JAP_lighter_tanks",
+    "name": "JAP lighter tanks",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 68,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "JAP_silver_wheels",
+    "name": "JAP silver wheels",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 69,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_CZE_establish_air_defense_zones",
+    "name": "MUN CZE establish air defense zones",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 70,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_merge_the_financial_and_state_guard_tech",
+    "name": "MUN merge the financial and state guard tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 71,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_anti_tank_development_tech",
+    "name": "MUN anti tank development tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 72,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_horska_artillery",
+    "name": "MUN horska artillery",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 73,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_recon_in_force",
+    "name": "MUN recon in force",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 74,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_improved_supply_dumps",
+    "name": "MUN improved supply dumps",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 75,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_intergrate_fortification_engineers",
+    "name": "MUN intergrate fortification engineers",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 76,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "MUN_camo_netting",
+    "name": "MUN camo netting",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 77,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "northern_territory_recon_support_tech",
+    "name": "northern territory recon support tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Infanterie",
+    "section": "Secret Techs",
+    "position": 78,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Support_Equipment",
+    "name": "Support Equipment",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/66/Support_Equipment.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Support_Equipment.png",
+    "domain": "Compagnies de soutien",
+    "section": "Support Companies",
+    "position": 79,
+    "year": 1918,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Engineer_Company_I",
+    "name": "Engineer Company I",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/07/Engineer_Company_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Engineer_Company_I.png",
+    "domain": "Compagnies de soutien",
+    "section": "Engineers",
+    "position": 80,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armored_Engineer_Company",
+    "name": "Armored Engineer Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9f/Sp_armored_engineer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_engineer.png",
+    "domain": "Compagnies de soutien",
+    "section": "Engineers",
+    "position": 81,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Engineer_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engineer_Company_II",
+    "name": "Engineer Company II",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1a/Engineer_Company_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Engineer_Company_II.png",
+    "domain": "Compagnies de soutien",
+    "section": "Engineers",
+    "position": 82,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Engineer_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engineer_Company_III",
+    "name": "Engineer Company III",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b5/Engineer_Company_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Engineer_Company_III.png",
+    "domain": "Compagnies de soutien",
+    "section": "Engineers",
+    "position": 83,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Engineer_Company_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engineer_Company_IV",
+    "name": "Engineer Company IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/12/Engineer_Company_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Engineer_Company_IV.png",
+    "domain": "Compagnies de soutien",
+    "section": "Engineers",
+    "position": 84,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Engineer_Company_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Recon_Company_I",
+    "name": "Recon Company I",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3a/Recon_Company_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Recon_Company_I.png",
+    "domain": "Compagnies de soutien",
+    "section": "Recon",
+    "position": 85,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Helicopter_Recon_Company",
+    "name": "Helicopter Recon Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c7/Sp_aircraft_artillery_observers.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_artillery_observers.png",
+    "domain": "Compagnies de soutien",
+    "section": "Recon",
+    "position": 86,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Recon_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Recon_Company_II",
+    "name": "Recon Company II",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cd/Recon_Company_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Recon_Company_II.png",
+    "domain": "Compagnies de soutien",
+    "section": "Recon",
+    "position": 87,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Recon_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Recon_Company_III",
+    "name": "Recon Company III",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Recon_Company_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Recon_Company_III.png",
+    "domain": "Compagnies de soutien",
+    "section": "Recon",
+    "position": 88,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Recon_Company_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Recon_Company_IV",
+    "name": "Recon Company IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/aa/Recon_Company_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Recon_Company_IV.png",
+    "domain": "Compagnies de soutien",
+    "section": "Recon",
+    "position": 89,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Recon_Company_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Military_Police_I",
+    "name": "Military Police I",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Military_Police_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Military_Police_I.png",
+    "domain": "Compagnies de soutien",
+    "section": "Military Police",
+    "position": 90,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Motorized_Military_Police",
+    "name": "Motorized Military Police",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1e/Sp_armored_motorized_military_police.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_motorized_military_police.png",
+    "domain": "Compagnies de soutien",
+    "section": "Military Police",
+    "position": 91,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Military_Police_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Military_Police_II",
+    "name": "Military Police II",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2f/Military_Police_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Military_Police_II.png",
+    "domain": "Compagnies de soutien",
+    "section": "Military Police",
+    "position": 92,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Military_Police_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Military_Police_III",
+    "name": "Military Police III",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Military_Police_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Military_Police_III.png",
+    "domain": "Compagnies de soutien",
+    "section": "Military Police",
+    "position": 93,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Military_Police_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Military_Police_IV",
+    "name": "Military Police IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/68/Military_Police_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Military_Police_IV.png",
+    "domain": "Compagnies de soutien",
+    "section": "Military Police",
+    "position": 94,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Military_Police_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Maintenance_Company_I",
+    "name": "Maintenance Company I",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/96/Maintenance_Company_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Maintenance_Company_I.png",
+    "domain": "Compagnies de soutien",
+    "section": "Maintenance",
+    "position": 95,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armored_Maintenance_Company",
+    "name": "Armored Maintenance Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/60/Sp_armored_maintenance.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_maintenance.png",
+    "domain": "Compagnies de soutien",
+    "section": "Maintenance",
+    "position": 96,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Maintenance_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Maintenance_Company_II",
+    "name": "Maintenance Company II",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/07/Maintenance_Company_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Maintenance_Company_II.png",
+    "domain": "Compagnies de soutien",
+    "section": "Maintenance",
+    "position": 97,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Maintenance_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Maintenance_Company_III",
+    "name": "Maintenance Company III",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/35/Maintenance_Company_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Maintenance_Company_III.png",
+    "domain": "Compagnies de soutien",
+    "section": "Maintenance",
+    "position": 98,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Maintenance_Company_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Maintenance_Company_IV",
+    "name": "Maintenance Company IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Maintenance_Company_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Maintenance_Company_IV.png",
+    "domain": "Compagnies de soutien",
+    "section": "Maintenance",
+    "position": 99,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Maintenance_Company_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Field_Hospital_I",
+    "name": "Field Hospital I",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Tech_field_hospital.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_field_hospital.png",
+    "domain": "Compagnies de soutien",
+    "section": "Field Hospital",
+    "position": 100,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ],
+      [
+        "Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Helicopter_Med-Evac_Company",
+    "name": "Helicopter Med-Evac Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/16/Sp_aircraft_med_evac.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_med_evac.png",
+    "domain": "Compagnies de soutien",
+    "section": "Field Hospital",
+    "position": 101,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Field_Hospital_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Field_Hospital_II",
+    "name": "Field Hospital II",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3b/Tech_field_hospital2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_field_hospital2.png",
+    "domain": "Compagnies de soutien",
+    "section": "Field Hospital",
+    "position": 102,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Field_Hospital_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Field_Hospital_III",
+    "name": "Field Hospital III",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cc/Tech_field_hospital3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_field_hospital3.png",
+    "domain": "Compagnies de soutien",
+    "section": "Field Hospital",
+    "position": 103,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Field_Hospital_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Field_Hospital_IV",
+    "name": "Field Hospital IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1a/Tech_field_hospital4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_field_hospital4.png",
+    "domain": "Compagnies de soutien",
+    "section": "Field Hospital",
+    "position": 104,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Field_Hospital_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Logistics_Company_I",
+    "name": "Logistics Company I",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1b/Tech_logistics_company.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_logistics_company.png",
+    "domain": "Compagnies de soutien",
+    "section": "Logistics",
+    "position": 105,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ],
+      [
+        "Truck"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Helicopter_Transport_Company",
+    "name": "Helicopter Transport Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Sp_aircraft_transport_pods.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_transport_pods.png",
+    "domain": "Compagnies de soutien",
+    "section": "Logistics",
+    "position": 106,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Logistics_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Logistics_Company_II",
+    "name": "Logistics Company II",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/23/Tech_logistics_company2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_logistics_company2.png",
+    "domain": "Compagnies de soutien",
+    "section": "Logistics",
+    "position": 107,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Logistics_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Logistics_Company_III",
+    "name": "Logistics Company III",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/ff/Tech_logistics_company3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_logistics_company3.png",
+    "domain": "Compagnies de soutien",
+    "section": "Logistics",
+    "position": 108,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Logistics_Company_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Logistics_Company_IV",
+    "name": "Logistics Company IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/45/Tech_logistics_company4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_logistics_company4.png",
+    "domain": "Compagnies de soutien",
+    "section": "Logistics",
+    "position": 109,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Logistics_Company_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Signal_Company_I",
+    "name": "Signal Company I",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7a/Tech_signal_company.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_signal_company.png",
+    "domain": "Compagnies de soutien",
+    "section": "Signal",
+    "position": 110,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Support_Equipment"
+      ],
+      [
+        "Truck"
+      ],
+      [
+        "Radio"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armored_Signal_Company",
+    "name": "Armored Signal Company",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/18/Sp_armored_signal.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_signal.png",
+    "domain": "Compagnies de soutien",
+    "section": "Signal",
+    "position": 111,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Signal_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Signal_Company_II",
+    "name": "Signal Company II",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Tech_signal_company2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_signal_company2.png",
+    "domain": "Compagnies de soutien",
+    "section": "Signal",
+    "position": 112,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Signal_Company_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Signal_Company_III",
+    "name": "Signal Company III",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/ce/Tech_signal_company3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_signal_company3.png",
+    "domain": "Compagnies de soutien",
+    "section": "Signal",
+    "position": 113,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Signal_Company_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Signal_Company_IV",
+    "name": "Signal Company IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d1/Tech_signal_company4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Tech_signal_company4.png",
+    "domain": "Compagnies de soutien",
+    "section": "Signal",
+    "position": 114,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Signal_Company_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Civilian_Train",
+    "name": "Civilian Train",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/78/Train_equipment_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Train_equipment_1.png",
+    "domain": "Compagnies de soutien",
+    "section": "Trains",
+    "position": 115,
+    "year": 1910,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Armored_Train",
+    "name": "Armored Train",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e3/Train_equipment_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Train_equipment_3.png",
+    "domain": "Compagnies de soutien",
+    "section": "Trains",
+    "position": 116,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Civilian_Train"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Railway_Gun",
+    "name": "Railway Gun",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/43/Railway_gun_equipment.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Railway_gun_equipment.png",
+    "domain": "Compagnies de soutien",
+    "section": "Trains",
+    "position": 117,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Armored_Train"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "War_Austerity_Train",
+    "name": "War Austerity Train",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Train_equipment_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Train_equipment_2.png",
+    "domain": "Compagnies de soutien",
+    "section": "Trains",
+    "position": 118,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Civilian_Train"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Camicie_Nere",
+    "name": "Camicie Nere",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Compagnies de soutien",
+    "section": "Secret Techs",
+    "position": 119,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "SWI_saint_bernard_tech",
+    "name": "SWI saint bernard tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Compagnies de soutien",
+    "section": "Secret Techs",
+    "position": 120,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "NORDIC_supportCollaboration_tech",
+    "name": "NORDIC supportCollaboration tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Compagnies de soutien",
+    "section": "Secret Techs",
+    "position": 121,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "tech_recon_focus_bonus",
+    "name": "tech recon focus bonus",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Compagnies de soutien",
+    "section": "Secret Techs",
+    "position": 122,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "AST_war_carriers_tech",
+    "name": "AST war carriers tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Compagnies de soutien",
+    "section": "Secret Techs",
+    "position": 123,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Tank_Development",
+    "name": "Inter-War Tank Development",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/09/Generic_inter_war_light_tank_chassis.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_inter_war_light_tank_chassis.png",
+    "domain": "Blindés",
+    "section": "Chassis",
+    "position": 124,
+    "year": 1918,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Light_Tank_Chassis",
+    "name": "Basic Light Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Generic_light_tank_chassis_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_light_tank_chassis_1.png",
+    "domain": "Blindés",
+    "section": "Light Chassis",
+    "position": 125,
+    "year": 1934,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Tank_Development"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Light_Tank_Chassis",
+    "name": "Improved Light Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Generic_light_tank_chassis_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_light_tank_chassis_2.png",
+    "domain": "Blindés",
+    "section": "Light Chassis",
+    "position": 126,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Light_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Light_Tank_Chassis",
+    "name": "Advanced Light Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/09/Generic_light_tank_chassis_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_light_tank_chassis_3.png",
+    "domain": "Blindés",
+    "section": "Light Chassis",
+    "position": 127,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Light_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Amphibious_Tank_Chassis",
+    "name": "Amphibious Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/eb/Generic_amphibious_tank_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_amphibious_tank_1.png",
+    "domain": "Blindés",
+    "section": "Amphibious Chassis",
+    "position": 128,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Light_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Amphibious_Drive",
+    "name": "Amphibious Drive",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cb/Nsb_amphibious_drive_tech.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_amphibious_drive_tech.png",
+    "domain": "Blindés",
+    "section": "Amphibious Chassis",
+    "position": 129,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Medium_Tank_Chassis",
+    "name": "Basic Medium Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f3/Generic_medium_tank_chassis_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_medium_tank_chassis_1.png",
+    "domain": "Blindés",
+    "section": "Medium Chassis",
+    "position": 130,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Tank_Development"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Medium_Tank_Chassis",
+    "name": "Improved Medium Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8b/Generic_medium_tank_chassis_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_medium_tank_chassis_2.png",
+    "domain": "Blindés",
+    "section": "Medium Chassis",
+    "position": 131,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Medium_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Medium_Tank_Chassis",
+    "name": "Advanced Medium Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Generic_medium_tank_chassis_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_medium_tank_chassis_3.png",
+    "domain": "Blindés",
+    "section": "Medium Chassis",
+    "position": 132,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Medium_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Tank_Chassis",
+    "name": "Modern Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a9/Generic_modern_tank_chassis.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_modern_tank_chassis.png",
+    "domain": "Blindés",
+    "section": "Medium Chassis",
+    "position": 133,
+    "year": 1945,
+    "base_days": 275,
+    "requires": [
+      [
+        "Advanced_Medium_Tank_Chassis",
+        "Advanced_Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Heavy_Tank_Chassis",
+    "name": "Basic Heavy Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4d/Generic_heavy_tank_chassis_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_heavy_tank_chassis_1.png",
+    "domain": "Blindés",
+    "section": "Heavy Chassis",
+    "position": 134,
+    "year": 1934,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Tank_Development"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Heavy_Tank_Chassis",
+    "name": "Improved Heavy Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bf/Generic_heavy_tank_chassis_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_heavy_tank_chassis_2.png",
+    "domain": "Blindés",
+    "section": "Heavy Chassis",
+    "position": 135,
+    "year": 1940,
+    "base_days": 275,
+    "requires": [
+      [
+        "Basic_Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Super-Heavy_Tank_Chassis",
+    "name": "Super-Heavy Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Generic_super_heavy_tank_chassis.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_super_heavy_tank_chassis.png",
+    "domain": "Blindés",
+    "section": "Heavy Chassis",
+    "position": 136,
+    "year": 1941,
+    "base_days": 330,
+    "requires": [
+      [
+        "Improved_Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Heavy_Tank_Chassis",
+    "name": "Advanced Heavy Tank Chassis",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b0/Generic_heavy_tank_chassis_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Generic_heavy_tank_chassis_3.png",
+    "domain": "Blindés",
+    "section": "Heavy Chassis",
+    "position": 137,
+    "year": 1943,
+    "base_days": 275,
+    "requires": [
+      [
+        "Improved_Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Armor_Protection",
+    "name": "Basic Armor Protection",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Nsb_armor_tech_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_armor_tech_1.png",
+    "domain": "Blindés",
+    "section": "Armor Upgrades",
+    "position": 138,
+    "year": 1935,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Armor_Protection",
+    "name": "Improved Armor Protection",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8f/Nsb_armor_tech_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_armor_tech_2.png",
+    "domain": "Blindés",
+    "section": "Armor Upgrades",
+    "position": 139,
+    "year": 1938,
+    "base_days": 110,
+    "requires": [
+      [
+        "Basic_Armor_Protection"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Armor_Protection",
+    "name": "Advanced Armor Protection",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/24/Nsb_armor_tech_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_armor_tech_3.png",
+    "domain": "Blindés",
+    "section": "Armor Upgrades",
+    "position": 140,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Armor_Protection"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Armor_Protection",
+    "name": "Modern Armor Protection",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d3/Nsb_armor_tech_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_armor_tech_4.png",
+    "domain": "Blindés",
+    "section": "Armor Upgrades",
+    "position": 141,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Advanced_Armor_Protection"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Engine",
+    "name": "Basic Engine",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2f/Nsb_engine_tech_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_engine_tech_1.png",
+    "domain": "Blindés",
+    "section": "Engine Upgrades",
+    "position": 142,
+    "year": 1935,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Engine",
+    "name": "Improved Engine",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d5/Nsb_engine_tech_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_engine_tech_2.png",
+    "domain": "Blindés",
+    "section": "Engine Upgrades",
+    "position": 143,
+    "year": 1938,
+    "base_days": 110,
+    "requires": [
+      [
+        "Basic_Engine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Engine",
+    "name": "Advanced Engine",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c6/Nsb_engine_tech_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_engine_tech_3.png",
+    "domain": "Blindés",
+    "section": "Engine Upgrades",
+    "position": 144,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Engine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Engine",
+    "name": "Modern Engine",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d9/Nsb_engine_tech_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nsb_engine_tech_4.png",
+    "domain": "Blindés",
+    "section": "Engine Upgrades",
+    "position": 145,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Advanced_Engine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Flamethrower",
+    "name": "Advanced Flamethrower",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f8/Sp_armored_advanced_flamethrower.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_advanced_flamethrower.png",
+    "domain": "Blindés",
+    "section": "Flamethrower Upgrades",
+    "position": 146,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Inter-War_Tank_Development"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Naval_Engine_Conversion",
+    "name": "Naval Engine Conversion",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Sp_armored_lc_naval_engine_conversion.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_lc_naval_engine_conversion.png",
+    "domain": "Blindés",
+    "section": "Land Cruiser Upgrades",
+    "position": 147,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Super-Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Transmission_Improvements",
+    "name": "Transmission Improvements",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Sp_armored_lc_transmission_improvements.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_lc_transmission_improvements.png",
+    "domain": "Blindés",
+    "section": "Land Cruiser Upgrades",
+    "position": 148,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Super-Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Specialized_Field_Manuals",
+    "name": "Specialized Field Manuals",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cf/Sp_armored_lc_specialized_field_manuals.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_lc_specialized_field_manuals.png",
+    "domain": "Blindés",
+    "section": "Land Cruiser Upgrades",
+    "position": 149,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Super-Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "High-Impact_Obliterator_Cannon",
+    "name": "High-Impact Obliterator Cannon",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/01/Sp_armored_lc_high_impact_obliterator_cannon.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_lc_high_impact_obliterator_cannon.png",
+    "domain": "Blindés",
+    "section": "Land Cruiser Upgrades",
+    "position": 150,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Super-Heavy_Tank_Chassis"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Weapon_Fire_Control",
+    "name": "Weapon Fire Control",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c0/Sp_armored_lc_weapon_fire_control.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_armored_lc_weapon_fire_control.png",
+    "domain": "Blindés",
+    "section": "Land Cruiser Upgrades",
+    "position": 151,
+    "year": 1945,
+    "base_days": 110,
+    "requires": [
+      [
+        "Naval_Engine_Conversion",
+        "Transmission_Improvements",
+        "Specialized_Field_Manuals"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "mountain_tanks",
+    "name": "mountain tanks",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Blindés",
+    "section": "Secret Techs",
+    "position": 152,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "NOR_rikstanken_tech",
+    "name": "NOR rikstanken tech",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Blindés",
+    "section": "Secret Techs",
+    "position": 153,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "jungle_tanks",
+    "name": "jungle tanks",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Blindés",
+    "section": "Secret Techs",
+    "position": 154,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "jungle_heavy_tanks",
+    "name": "jungle heavy tanks",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Blindés",
+    "section": "Secret Techs",
+    "position": 155,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Towed_Artillery",
+    "name": "Towed Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fb/Art_1_comintern.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Art_1_comintern.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 156,
+    "year": 1934,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Artillery",
+    "name": "Inter-War Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d0/Artillery1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Artillery1.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 157,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Towed_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Artillery",
+    "name": "Improved Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Art_2_comintern.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Art_2_comintern.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 158,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Inter-War_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Artillery_Upgrade_I",
+    "name": "Improved Artillery Upgrade I",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/80/Artillery2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Artillery2.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 159,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Purpose-Built_Gun_Motor_Carriages",
+    "name": "Purpose-Built Gun Motor Carriages",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/34/Sp_artillery_purpose_built_gun_motor_carriages.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_artillery_purpose_built_gun_motor_carriages.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 160,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rocket-Assisted_Projectiles",
+    "name": "Rocket-Assisted Projectiles",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/Sp_artillery_rocket_assisted_projectiles.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_artillery_rocket_assisted_projectiles.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 161,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Artillery"
+      ],
+      [
+        "Experimental_Rockets"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Artillery_Upgrade_II",
+    "name": "Improved Artillery Upgrade II",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/24/Artillery3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Artillery3.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 162,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Artillery_Upgrade_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Artillery",
+    "name": "Advanced Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7b/Art_3_comintern.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Art_3_comintern.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 163,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Artillery_Upgrade_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Artillery_Upgrade",
+    "name": "Advanced Artillery Upgrade",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Artillery5.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Artillery5.png",
+    "domain": "Artillerie",
+    "section": "Artillery",
+    "position": 164,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Advanced_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Towed_Anti-Air",
+    "name": "Towed Anti-Air",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6f/AA_1_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AA_1_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 165,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Towed_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anti-Air_Upgrade",
+    "name": "Anti-Air Upgrade",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Antiair1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antiair1.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 166,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Towed_Anti-Air"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Air",
+    "name": "Improved Anti-Air",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/AA_2_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AA_2_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 167,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "Anti-Air_Upgrade"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Air_Upgrade_I",
+    "name": "Improved Anti-Air Upgrade I",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9d/Antiair2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antiair2.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 168,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Air"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Air_Upgrade_II",
+    "name": "Improved Anti-Air Upgrade II",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6f/Antiair3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antiair3.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 169,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Air_Upgrade_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Anti-Air",
+    "name": "Advanced Anti-Air",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b8/AA_3_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AA_3_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 170,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Air_Upgrade_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Shock-Hardening_Techniques",
+    "name": "Shock-Hardening Techniques",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d6/Sp_surface_shock_hardening_techniques.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_shock_hardening_techniques.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 171,
+    "year": 1941,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Anti-Air"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Variable_Time_Fuze_Shells",
+    "name": "Variable Time Fuze Shells",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f5/Sp_surface_variable_time_fuze_shells.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_variable_time_fuze_shells.png",
+    "domain": "Artillerie",
+    "section": "Anti-air",
+    "position": 172,
+    "year": 1942,
+    "base_days": 165,
+    "requires": [
+      [
+        "Shock-Hardening_Techniques"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Towed_Anti-Tank",
+    "name": "Towed Anti-Tank",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/AT_1_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AT_1_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 173,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Towed_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Anti-Tank_Upgrade",
+    "name": "Anti-Tank Upgrade",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/95/Antitank2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antitank2.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 174,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Towed_Anti-Tank"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Tank",
+    "name": "Improved Anti-Tank",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1c/AT_2_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AT_2_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 175,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "Anti-Tank_Upgrade"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Tank_Upgrade_I",
+    "name": "Improved Anti-Tank Upgrade I",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c2/Antitank3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antitank3.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 176,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Tank"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Anti-Tank_Upgrade_II",
+    "name": "Improved Anti-Tank Upgrade II",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/45/Antitank4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Antitank4.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 177,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Tank_Upgrade_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Anti-Tank",
+    "name": "Advanced Anti-Tank",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/AT_3_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:AT_3_allies.png",
+    "domain": "Artillerie",
+    "section": "Anti-tank",
+    "position": 178,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Anti-Tank_Upgrade_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Towed_Rocket_Artillery",
+    "name": "Towed Rocket Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Rocket_Art_1_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rocket_Art_1_allies.png",
+    "domain": "Artillerie",
+    "section": "Rocket artillery",
+    "position": 179,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Artillery_Upgrade_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rocket_Artillery_Upgrade_I",
+    "name": "Rocket Artillery Upgrade I",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c0/Rocket_artillery2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rocket_artillery2.png",
+    "domain": "Artillerie",
+    "section": "Rocket artillery",
+    "position": 180,
+    "year": 1941,
+    "base_days": 110,
+    "requires": [
+      [
+        "Towed_Rocket_Artillery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rocket_Artillery_Upgrade_II",
+    "name": "Rocket Artillery Upgrade II",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cf/Rocket_artillery3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rocket_artillery3.png",
+    "domain": "Artillerie",
+    "section": "Rocket artillery",
+    "position": 181,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [
+      [
+        "Rocket_Artillery_Upgrade_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Rocket_Artillery",
+    "name": "Advanced Rocket Artillery",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/38/Rocket_Art_2_allies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rocket_Art_2_allies.png",
+    "domain": "Artillerie",
+    "section": "Rocket artillery",
+    "position": 182,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Rocket_Artillery_Upgrade_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mountain_Gun",
+    "name": "Mountain Gun",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Artillerie",
+    "section": "Secret Techs",
+    "position": 183,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Bofors_Anti_Tank",
+    "name": "Bofors Anti Tank",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Artillerie",
+    "section": "Secret Techs",
+    "position": 184,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "The_Thunder_at_our_Gates",
+    "name": "The Thunder at our Gates",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Artillerie",
+    "section": "Secret Techs",
+    "position": 185,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Electronic_mechanical_engineering",
+    "name": "Electronic mechanical engineering",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f6/Electronic_mechanical_engineering.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Electronic_mechanical_engineering.png",
+    "domain": "Ingénierie",
+    "section": "Electronic Engineering",
+    "position": 186,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Radio",
+    "name": "Radio",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/31/Radio.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Radio.png",
+    "domain": "Ingénierie",
+    "section": "Radio Technology",
+    "position": 187,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Electronic_mechanical_engineering"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Radio",
+    "name": "Improved Radio",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/31/Radio.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Radio.png",
+    "domain": "Ingénierie",
+    "section": "Radio Technology",
+    "position": 188,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Radio"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Radio",
+    "name": "Advanced Radio",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/31/Radio.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Radio.png",
+    "domain": "Ingénierie",
+    "section": "Radio Technology",
+    "position": 189,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Radio"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Cavity_Magnatron",
+    "name": "Cavity Magnatron",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ad/Decimetric_radar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Decimetric_radar.png",
+    "domain": "Ingénierie",
+    "section": "RADAR Technology",
+    "position": 190,
+    "year": 1938,
+    "base_days": 137,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Centimetric_Radar",
+    "name": "Centimetric Radar",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0b/Centimetric_radar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Centimetric_radar.png",
+    "domain": "Ingénierie",
+    "section": "RADAR Technology",
+    "position": 191,
+    "year": 1940,
+    "base_days": 137,
+    "requires": [
+      [
+        "Cavity_Magnatron"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Phased_Array",
+    "name": "Phased Array",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/65/Improved_centimetric_radar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_centimetric_radar.png",
+    "domain": "Ingénierie",
+    "section": "RADAR Technology",
+    "position": 192,
+    "year": 1941,
+    "base_days": 137,
+    "requires": [
+      [
+        "Centimetric_Radar"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Monopulse_Radar",
+    "name": "Monopulse Radar",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a4/Advanced_centimetric_radar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_centimetric_radar.png",
+    "domain": "Ingénierie",
+    "section": "RADAR Technology",
+    "position": 193,
+    "year": 1942,
+    "base_days": 137,
+    "requires": [
+      [
+        "Phased_Array"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Mechanical_Computing",
+    "name": "Mechanical Computing",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e7/Mechanical_computing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Mechanical_computing.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 194,
+    "year": 1936,
+    "base_days": 275,
+    "requires": [
+      [
+        "Electronic_mechanical_engineering"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Computing_Machine",
+    "name": "Computing Machine",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/05/Computing_machine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Computing_machine.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 195,
+    "year": 1938,
+    "base_days": 275,
+    "requires": [
+      [
+        "Mechanical_Computing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Computing_Machine",
+    "name": "Improved Computing Machine",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9d/Improved_computing_machine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_computing_machine.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 196,
+    "year": 1940,
+    "base_days": 275,
+    "requires": [
+      [
+        "Computing_Machine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Computing_Machine",
+    "name": "Advanced Computing Machine",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/07/Advanced_computing_machine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_computing_machine.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 197,
+    "year": 1942,
+    "base_days": 275,
+    "requires": [
+      [
+        "Improved_Computing_Machine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Fire_Control_System",
+    "name": "Basic Fire Control System",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7d/Basic_fire_control_system.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_fire_control_system.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 198,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Mechanical_Computing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Fire_Control_System",
+    "name": "Improved Fire Control System",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Improved_fire_control_system.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_fire_control_system.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 199,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Computing_Machine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Fire_Control_System",
+    "name": "Advanced Fire Control System",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b1/Advanced_fire_control_system.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_fire_control_system.png",
+    "domain": "Ingénierie",
+    "section": "Computing Technology",
+    "position": 200,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Computing_Machine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Fortification",
+    "name": "Basic Fortification",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3d/Basic_Fortification.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_Fortification.png",
+    "domain": "Ingénierie",
+    "section": "Fortification Engineering",
+    "position": 201,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Land_Forts",
+    "name": "Improved Land Forts",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c6/Improved_Land_Forts.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_Land_Forts.png",
+    "domain": "Ingénierie",
+    "section": "Fortification Engineering",
+    "position": 202,
+    "year": 1938,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Fortification"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Land_Forts",
+    "name": "Advanced Land Forts",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Advanced_Land_Forts.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_Land_Forts.png",
+    "domain": "Ingénierie",
+    "section": "Fortification Engineering",
+    "position": 203,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Land_Forts"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Coastal_Fortifications",
+    "name": "Improved Coastal Fortifications",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fd/Improved_Coastal_Fortifications.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_Coastal_Fortifications.png",
+    "domain": "Ingénierie",
+    "section": "Fortification Engineering",
+    "position": 204,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Fortification"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Coastal_Fortifications",
+    "name": "Advanced Coastal Fortifications",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a3/Advanced_Coastal_Fortifications.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_Coastal_Fortifications.png",
+    "domain": "Ingénierie",
+    "section": "Fortification Engineering",
+    "position": 205,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Coastal_Fortifications"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Atomic_research",
+    "name": "Atomic research",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/04/Atomic_Research.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Atomic_Research.png",
+    "domain": "Ingénierie",
+    "section": "Atomic Research",
+    "position": 206,
+    "year": 1940,
+    "base_days": 550,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Experimental_Rockets",
+    "name": "Experimental Rockets",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9b/Experimental_rockets.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Experimental_rockets.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 207,
+    "year": 1942,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Guidance",
+    "name": "Improved Guidance",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/17/Sp_rockets_improved_guidance.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_rockets_improved_guidance.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 208,
+    "year": 1943,
+    "base_days": 110,
+    "requires": [
+      [
+        "Experimental_Rockets"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dual_Chamber_Rocket_Engines",
+    "name": "Dual Chamber Rocket Engines",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Improved_rocket_engines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_rocket_engines.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 209,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Experimental_Rockets"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Dual_Chamber_Rocket_Engines",
+    "name": "Advanced Dual Chamber Rocket Engines",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bb/Advanced_rocket_engines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_rocket_engines.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 210,
+    "year": 1946,
+    "base_days": 165,
+    "requires": [
+      [
+        "Dual_Chamber_Rocket_Engines"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rocket_Propelled_Bombs",
+    "name": "Rocket Propelled Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/89/Sp_rockets_rocket_bomber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_rockets_rocket_bomber.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 211,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Experimental_Rockets"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Heavy_Rocket_Propelled_Bombs",
+    "name": "Heavy Rocket Propelled Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/40/Sp_rockets_improved_rocket_bomber.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_rockets_improved_rocket_bomber.png",
+    "domain": "Ingénierie",
+    "section": "Experimental Rockets",
+    "position": 212,
+    "year": 1945,
+    "base_days": 110,
+    "requires": [
+      [
+        "Rocket_Propelled_Bombs"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Decryption_Bonus",
+    "name": "Decryption Bonus",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Unknown.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Unknown.png",
+    "domain": "Ingénierie",
+    "section": "Secret Techs",
+    "position": 213,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Radio_Detection",
+    "name": "Radio Detection",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0a/Radio_detection.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Radio_detection.png",
+    "domain": "Ingénierie",
+    "section": "Special Project Techs",
+    "position": 214,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Nuclear_Bombs",
+    "name": "Nuclear Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/18/Nuclear_bombs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Nuclear_bombs.png",
+    "domain": "Ingénierie",
+    "section": "Special Project Techs",
+    "position": 215,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Thermonuclear_Bombs",
+    "name": "Thermonuclear Bombs",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Ingénierie",
+    "section": "Special Project Techs",
+    "position": 216,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "isotope_separation_centrifugal",
+    "name": "isotope separation centrifugal",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Ingénierie",
+    "section": "Special Project Techs",
+    "position": 217,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_machine_tools",
+    "name": "Basic machine tools",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/41/Basic_machine_tools.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_machine_tools.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 218,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_machine_tools",
+    "name": "Improved machine tools",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/13/Improved_machine_tools.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_machine_tools.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 219,
+    "year": 1937,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_machine_tools"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_machine_tools",
+    "name": "Advanced machine tools",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cd/Advanced_machine_tools.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_machine_tools.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 220,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_machine_tools"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Assembly_line_production",
+    "name": "Assembly line production",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d3/Assembly_line_production.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Assembly_line_production.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 221,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Advanced_machine_tools"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Flexible_line",
+    "name": "Flexible line",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/da/Flexible_line.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Flexible_line.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 222,
+    "year": 1943,
+    "base_days": 275,
+    "requires": [
+      [
+        "Assembly_line_production"
+      ]
+    ],
+    "excludes": [
+      "Streamlined_line"
+    ]
+  },
+  {
+    "id": "Streamlined_line",
+    "name": "Streamlined line",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/81/Streamlined_line.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Streamlined_line.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 223,
+    "year": 1943,
+    "base_days": 275,
+    "requires": [
+      [
+        "Assembly_line_production"
+      ]
+    ],
+    "excludes": [
+      "Flexible_line"
+    ]
+  },
+  {
+    "id": "Pulverized_Coal-Firing_Boilers",
+    "name": "Pulverized Coal-Firing Boilers",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/92/Pulverized_Coal-Firing_Boilers.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Pulverized_Coal-Firing_Boilers.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 224,
+    "year": 1937,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_machine_tools"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "High-Efficiency_Turbines",
+    "name": "High-Efficiency Turbines",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5c/High-Efficiency_Turbines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:High-Efficiency_Turbines.png",
+    "domain": "Industrie",
+    "section": "Production",
+    "position": 225,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Pulverized_Coal-Firing_Boilers"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Concentrated_industry_I",
+    "name": "Concentrated industry I",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Concentrated_industry_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Concentrated_industry_I.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 226,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_machine_tools"
+      ]
+    ],
+    "excludes": [
+      "Dispersed_industry_I"
+    ]
+  },
+  {
+    "id": "Concentrated_industry_II",
+    "name": "Concentrated industry II",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/be/Concentrated_industry_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Concentrated_industry_II.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 227,
+    "year": 1937,
+    "base_days": 220,
+    "requires": [
+      [
+        "Concentrated_industry_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Concentrated_industry_III",
+    "name": "Concentrated industry III",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c8/Concentrated_industry_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Concentrated_industry_III.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 228,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Concentrated_industry_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Concentrated_industry_IV",
+    "name": "Concentrated industry IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/11/Concentrated_industry_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Concentrated_industry_IV.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 229,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Concentrated_industry_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Concentrated_industry_V",
+    "name": "Concentrated industry V",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Concentrated_industry_V.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Concentrated_industry_V.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 230,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Concentrated_industry_IV"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dispersed_industry_I",
+    "name": "Dispersed industry I",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b4/Dispersed_industry_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dispersed_industry_I.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 231,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_machine_tools"
+      ]
+    ],
+    "excludes": [
+      "Concentrated_industry_I"
+    ]
+  },
+  {
+    "id": "Dispersed_industry_II",
+    "name": "Dispersed industry II",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Dispersed_industry_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dispersed_industry_II.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 232,
+    "year": 1937,
+    "base_days": 220,
+    "requires": [
+      [
+        "Dispersed_industry_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dispersed_industry_III",
+    "name": "Dispersed industry III",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/57/Dispersed_industry_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dispersed_industry_III.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 233,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Dispersed_industry_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dispersed_industry_IV",
+    "name": "Dispersed industry IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c9/Dispersed_industry_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dispersed_industry_IV.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 234,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Dispersed_industry_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Dispersed_industry_V",
+    "name": "Dispersed industry V",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/48/Dispersed_industry_V.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dispersed_industry_V.png",
+    "domain": "Industrie",
+    "section": "Industry",
+    "position": 235,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Dispersed_industry_IV"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construction_I",
+    "name": "Construction I",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/94/Construction_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Construction_I.png",
+    "domain": "Industrie",
+    "section": "Construction technologies",
+    "position": 236,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Construction_II",
+    "name": "Construction II",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/58/Construction_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Construction_II.png",
+    "domain": "Industrie",
+    "section": "Construction technologies",
+    "position": 237,
+    "year": 1937,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construction_III",
+    "name": "Construction III",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a5/Construction_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Construction_III.png",
+    "domain": "Industrie",
+    "section": "Construction technologies",
+    "position": 238,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construction_IV",
+    "name": "Construction IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9e/Construction_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Construction_IV.png",
+    "domain": "Industrie",
+    "section": "Construction technologies",
+    "position": 239,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Construction_V",
+    "name": "Construction V",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e5/Construction_V.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Construction_V.png",
+    "domain": "Industrie",
+    "section": "Construction technologies",
+    "position": 240,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_IV"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Excavation_I",
+    "name": "Excavation I",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/57/Excavation_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Excavation_I.png",
+    "domain": "Industrie",
+    "section": "Excavation technologies",
+    "position": 241,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Excavation_II",
+    "name": "Excavation II",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d6/Excavation_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Excavation_II.png",
+    "domain": "Industrie",
+    "section": "Excavation technologies",
+    "position": 242,
+    "year": 1937,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Excavation_III",
+    "name": "Excavation III",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1f/Excavation_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Excavation_III.png",
+    "domain": "Industrie",
+    "section": "Excavation technologies",
+    "position": 243,
+    "year": 1939,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Excavation_IV",
+    "name": "Excavation IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d2/Excavation_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Excavation_IV.png",
+    "domain": "Industrie",
+    "section": "Excavation technologies",
+    "position": 244,
+    "year": 1941,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_IV"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Excavation_V",
+    "name": "Excavation V",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/22/Excavation_V.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Excavation_V.png",
+    "domain": "Industrie",
+    "section": "Excavation technologies",
+    "position": 245,
+    "year": 1943,
+    "base_days": 220,
+    "requires": [
+      [
+        "Construction_V"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_storage",
+    "name": "Fuel storage",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/63/Fuel_storage.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_storage.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 246,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_refining_I",
+    "name": "Fuel refining I",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f6/Fuel_refining_I.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_refining_I.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 247,
+    "year": 1936,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_storage"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_refining_II",
+    "name": "Fuel refining II",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/05/Fuel_refining_II.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_refining_II.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 248,
+    "year": 1937,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_refining_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_refining_III",
+    "name": "Fuel refining III",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/67/Fuel_refining_III.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_refining_III.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 249,
+    "year": 1939,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_refining_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_refining_IV",
+    "name": "Fuel refining IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4c/Fuel_refining_IV.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_refining_IV.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 250,
+    "year": 1941,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_refining_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fuel_refining_V",
+    "name": "Fuel refining V",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bb/Fuel_refining_V.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fuel_refining_V.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 251,
+    "year": 1943,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_refining_IV"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Synthetic_oil_experiments",
+    "name": "Synthetic oil experiments",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fe/Synthetic_oil_experiments.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Synthetic_oil_experiments.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 252,
+    "year": 1936,
+    "base_days": 330,
+    "requires": [
+      [
+        "Fuel_storage"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Oil_processing",
+    "name": "Oil processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ac/Oil_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Oil_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 253,
+    "year": 1937,
+    "base_days": 165,
+    "requires": [
+      [
+        "Synthetic_oil_experiments"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_oil_processing",
+    "name": "Improved oil processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/59/Improved_oil_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_oil_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 254,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Oil_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_oil_processing",
+    "name": "Advanced oil processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/36/Advanced_oil_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_oil_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 255,
+    "year": 1941,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_oil_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_oil_processing",
+    "name": "Modern oil processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7a/Modern_oil_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Modern_oil_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 256,
+    "year": 1943,
+    "base_days": 165,
+    "requires": [
+      [
+        "Advanced_oil_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Rubber_processing",
+    "name": "Rubber processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/72/Rubber_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Rubber_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 257,
+    "year": 1937,
+    "base_days": 165,
+    "requires": [
+      [
+        "Synthetic_oil_experiments"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_rubber_processing",
+    "name": "Improved rubber processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/65/Improved_rubber_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_rubber_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 258,
+    "year": 1939,
+    "base_days": 165,
+    "requires": [
+      [
+        "Rubber_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_rubber_processing",
+    "name": "Advanced rubber processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/db/Advanced_rubber_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_rubber_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 259,
+    "year": 1941,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_rubber_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_rubber_processing",
+    "name": "Modern rubber processing",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/98/Modern_rubber_processing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Modern_rubber_processing.png",
+    "domain": "Industrie",
+    "section": "Synthetic resources",
+    "position": 260,
+    "year": 1943,
+    "base_days": 165,
+    "requires": [
+      [
+        "Advanced_rubber_processing"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Small_Airframe",
+    "name": "Inter-War Small Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d2/Light_plane_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Light_plane_4.png",
+    "domain": "Aviation",
+    "section": "Small Airframes",
+    "position": 261,
+    "year": 1933,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Small_Airframe",
+    "name": "Basic Small Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/64/Light_plane_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Light_plane_3.png",
+    "domain": "Aviation",
+    "section": "Small Airframes",
+    "position": 262,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Small_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Small_Airframe",
+    "name": "Improved Small Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c0/Light_plane_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Light_plane_2.png",
+    "domain": "Aviation",
+    "section": "Small Airframes",
+    "position": 263,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Small_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Small_Airframe",
+    "name": "Advanced Small Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f5/Light_plane_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Light_plane_1.png",
+    "domain": "Aviation",
+    "section": "Small Airframes",
+    "position": 264,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Small_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Small_Airframe",
+    "name": "Modern Small Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/67/Jet_plane_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Jet_plane_1.png",
+    "domain": "Aviation",
+    "section": "Small Airframes",
+    "position": 265,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Advanced_Small_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Medium_Airframe",
+    "name": "Inter-War Medium Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1a/Medium_plane_5.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Medium_plane_5.png",
+    "domain": "Aviation",
+    "section": "Medium Airframes",
+    "position": 266,
+    "year": 1933,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Medium_Airframe",
+    "name": "Basic Medium Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Medium_plane_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Medium_plane_1.png",
+    "domain": "Aviation",
+    "section": "Medium Airframes",
+    "position": 267,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Medium_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Medium_Airframe",
+    "name": "Improved Medium Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/23/Medium_plane_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Medium_plane_2.png",
+    "domain": "Aviation",
+    "section": "Medium Airframes",
+    "position": 268,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Medium_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Medium_Airframe",
+    "name": "Advanced Medium Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5b/Medium_plane_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Medium_plane_3.png",
+    "domain": "Aviation",
+    "section": "Medium Airframes",
+    "position": 269,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Medium_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Medium_Airframe",
+    "name": "Modern Medium Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ef/Medium_plane_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Medium_plane_4.png",
+    "domain": "Aviation",
+    "section": "Medium Airframes",
+    "position": 270,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Advanced_Medium_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Large_Airframe",
+    "name": "Inter-War Large Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/cf/FRA_strategic_bomber1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:FRA_strategic_bomber1.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 271,
+    "year": 1933,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Large_Airframe",
+    "name": "Basic Large Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Heavy_plane_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heavy_plane_1.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 272,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Large_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Large_Airframe",
+    "name": "Improved Large Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/37/Heavy_plane_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heavy_plane_3.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 273,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Large_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Large_Airframe",
+    "name": "Advanced Large Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Heavy_plane_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heavy_plane_4.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 274,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Large_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Large_Airframe",
+    "name": "Modern Large Airframe",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/de/Heavy_plane_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Heavy_plane_2.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 275,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Advanced_Large_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Reinforced_Mothership_Wings",
+    "name": "Reinforced Mothership Wings",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bf/Sp_aircraft_reinforced_wings.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_reinforced_wings.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 276,
+    "year": 1942,
+    "base_days": 192,
+    "requires": [
+      [
+        "Improved_Large_Airframe"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Miniature_Fighters",
+    "name": "Miniature Fighters",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bf/Sp_aircraft_miniature_fighters.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_miniature_fighters.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 277,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Reinforced_Mothership_Wings"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Aerial_Hangars",
+    "name": "Aerial Hangars",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/64/Sp_aircraft_aerial_hangars.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_aerial_hangars.png",
+    "domain": "Aviation",
+    "section": "Large Airframes",
+    "position": 278,
+    "year": 1946,
+    "base_days": 192,
+    "requires": [
+      [
+        "Miniature_Fighters"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Inter-War_Transport_Plane",
+    "name": "Inter-War Transport Plane",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e5/Transport_plane_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Transport_plane_1.png",
+    "domain": "Aviation",
+    "section": "Transport Planes",
+    "position": 279,
+    "year": 1933,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Transport_Plane",
+    "name": "Improved Transport Plane",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5a/Transport_plane_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Transport_plane_2.png",
+    "domain": "Aviation",
+    "section": "Transport Planes",
+    "position": 280,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Inter-War_Transport_Plane"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Transport_Plane",
+    "name": "Modern Transport Plane",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5e/Transport_plane_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Transport_plane_3.png",
+    "domain": "Aviation",
+    "section": "Transport Planes",
+    "position": 281,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Improved_Transport_Plane"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Bombs",
+    "name": "Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/fa/Bba_tech_early_bombs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_early_bombs.png",
+    "domain": "Aviation",
+    "section": "Bomber Weapons",
+    "position": 282,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Armor_Piercing_Bombs",
+    "name": "Armor Piercing Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f5/Bba_tech_armor_piercing_bombs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_armor_piercing_bombs.png",
+    "domain": "Aviation",
+    "section": "Bomber Weapons",
+    "position": 283,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [
+      [
+        "Bombs"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Heavy_Bombs",
+    "name": "Heavy Bombs",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b7/Bba_tech_heavy_bombs.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_heavy_bombs.png",
+    "domain": "Aviation",
+    "section": "Bomber Weapons",
+    "position": 284,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "Bombs"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Light_MG",
+    "name": "Light MG",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Bba_tech_aa_mg_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aa_mg_1.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 285,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Survivability_Studies",
+    "name": "Survivability Studies",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bd/Bba_tech_survivability_studies.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_survivability_studies.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 286,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Light_MG"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Heavy_MG",
+    "name": "Heavy MG",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3e/Bba_tech_aa_mg_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aa_mg_2.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 287,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Light_MG"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Cannons_I",
+    "name": "Cannons I",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0f/Bba_tech_aa_cannon_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aa_cannon_1.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 288,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Light_MG"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Large_Cannons",
+    "name": "Large Cannons",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/64/Bba_tech_aa_cannon_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aa_cannon_2.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 289,
+    "year": 1943,
+    "base_days": 165,
+    "requires": [
+      [
+        "Cannons_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Cannons_II",
+    "name": "Cannons II",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4e/Bba_tech_aa_cannon_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aa_cannon_3.png",
+    "domain": "Aviation",
+    "section": "Fighter Weapons",
+    "position": 290,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Cannons_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Photo_Reconnaissance",
+    "name": "Photo Reconnaissance",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b1/Bba_tech_photo_reconnaisance.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_photo_reconnaisance.png",
+    "domain": "Aviation",
+    "section": "Recon Equipment",
+    "position": 291,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Air_Launched_Torpedoes",
+    "name": "Air Launched Torpedoes",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/be/Basic_torpedo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_torpedo.png",
+    "domain": "Aviation",
+    "section": "Torpedoes",
+    "position": 292,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Air_Launched_Torpedoes",
+    "name": "Improved Air Launched Torpedoes",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/69/Electric_torpedo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Electric_torpedo.png",
+    "domain": "Aviation",
+    "section": "Torpedoes",
+    "position": 293,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "Air_Launched_Torpedoes"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Air_Launched_Torpedoes",
+    "name": "Advanced Air Launched Torpedoes",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/51/Bba_tech_air_torpedoe_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_air_torpedoe_3.png",
+    "domain": "Aviation",
+    "section": "Torpedoes",
+    "position": 294,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Air_Launched_Torpedoes"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engines_I",
+    "name": "Engines I",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/db/Bba_tech_engines_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_engines_1.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 295,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Aircraft_Construction",
+    "name": "Aircraft Construction",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e5/Bba_tech_aircraft_construction.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_aircraft_construction.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 296,
+    "year": 1933,
+    "base_days": 110,
+    "requires": [
+      [
+        "Engines_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Range_Improvements",
+    "name": "Range Improvements",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/ce/Bba_tech_range_improvements.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_range_improvements.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 297,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Engines_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engines_II",
+    "name": "Engines II",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/29/Bba_tech_engines_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_engines_2.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 298,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Engines_I"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engines_III",
+    "name": "Engines III",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/85/Bba_tech_engines_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_engines_3.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 299,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Engines_II"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Engines_IV",
+    "name": "Engines IV",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/95/Bba_tech_engines_4.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Bba_tech_engines_4.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 300,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Engines_III"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Centrifugal_Jet",
+    "name": "Centrifugal Jet",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/66/Sp_aircraft_centrifugal_jet.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_aircraft_centrifugal_jet.png",
+    "domain": "Aviation",
+    "section": "Engines",
+    "position": 301,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "suicide_charge",
+    "name": "suicide charge",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Aviation",
+    "section": "Secret Techs",
+    "position": 302,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Early_Destroyer",
+    "name": "Early Destroyer",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/26/Early_destroyer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Early_destroyer.png",
+    "domain": "Marine",
+    "section": "Destroyer Hulls",
+    "position": 303,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "1936_Destroyer",
+    "name": "1936 Destroyer",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Basic_destroyer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_destroyer.png",
+    "domain": "Marine",
+    "section": "Destroyer Hulls",
+    "position": 304,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1940_Destroyer",
+    "name": "1940 Destroyer",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/28/Improved_destroyer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_destroyer.png",
+    "domain": "Marine",
+    "section": "Destroyer Hulls",
+    "position": 305,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "1936_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1944_Destroyer",
+    "name": "1944 Destroyer",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/8b/Advanced_destroyer.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_destroyer.png",
+    "domain": "Marine",
+    "section": "Destroyer Hulls",
+    "position": 306,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "1940_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Depth_Charges",
+    "name": "Basic Depth Charges",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/be/Basic_depth_charges.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_depth_charges.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 307,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Depth_Charge_Thrower",
+    "name": "Depth Charge Thrower",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3b/Depth_charge_thrower.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Depth_charge_thrower.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 308,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Depth_Charges"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Depth_Charge_Mortar",
+    "name": "Depth Charge Mortar",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4d/Depth_charge_mortar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Depth_charge_mortar.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 309,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Depth_Charge_Thrower"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Depth_Charge_Mortar",
+    "name": "Improved Depth Charge Mortar",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/ee/Improved_depth_charge_mortar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_depth_charge_mortar.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 310,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Depth_Charge_Mortar"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Smoke_Generators",
+    "name": "Smoke Generators",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/d2/Smoke_generator.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Smoke_generator.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 311,
+    "year": 1922,
+    "base_days": 82,
+    "requires": [
+      [
+        "Early_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Passive_Sonar",
+    "name": "Passive Sonar",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dc/Passive_sonar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Passive_sonar.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 312,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Destroyer"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Active_Sonar",
+    "name": "Active Sonar",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/89/Active_sonar.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Active_sonar.png",
+    "domain": "Marine",
+    "section": "Destroyer Modules",
+    "position": 313,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Passive_Sonar"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Early_Cruiser",
+    "name": "Early Cruiser",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/62/Early_light_cruiser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Early_light_cruiser.png",
+    "domain": "Marine",
+    "section": "Cruiser Hulls",
+    "position": 314,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "1936_Cruiser",
+    "name": "1936 Cruiser",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/56/Basic_light_cruiser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_light_cruiser.png",
+    "domain": "Marine",
+    "section": "Cruiser Hulls",
+    "position": 315,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Cruiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1940_Cruiser",
+    "name": "1940 Cruiser",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/55/Improved_light_cruiser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_light_cruiser.png",
+    "domain": "Marine",
+    "section": "Cruiser Hulls",
+    "position": 316,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "1936_Cruiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1944_Cruiser",
+    "name": "1944 Cruiser",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ab/Advanced_light_cruiser.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_light_cruiser.png",
+    "domain": "Marine",
+    "section": "Cruiser Hulls",
+    "position": 317,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "1940_Cruiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Airplane_Catapult",
+    "name": "Improved Airplane Catapult",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/c9/Airplane_launcher.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Airplane_launcher.png",
+    "domain": "Marine",
+    "section": "Cruiser Modules",
+    "position": 318,
+    "year": 1936,
+    "base_days": 82,
+    "requires": [
+      [
+        "Early_Cruiser"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Cruiser_Armor_Scheme",
+    "name": "Basic Cruiser Armor Scheme",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/00/Basic_cruiser_armor_scheme.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_cruiser_armor_scheme.png",
+    "domain": "Marine",
+    "section": "Cruiser & Battleship Armor",
+    "position": 319,
+    "year": 1936,
+    "base_days": 55,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Inclined_Belt_Armor_Scheme",
+    "name": "Inclined Belt Armor Scheme",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/59/Basic_heavy_armor_scheme.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_heavy_armor_scheme.png",
+    "domain": "Marine",
+    "section": "Cruiser & Battleship Armor",
+    "position": 320,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Basic_Cruiser_Armor_Scheme"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "All-or-Nothing_Armor_Scheme",
+    "name": "All-or-Nothing Armor Scheme",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/7e/Improved_heavy_armor_scheme.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_heavy_armor_scheme.png",
+    "domain": "Marine",
+    "section": "Cruiser & Battleship Armor",
+    "position": 321,
+    "year": 1936,
+    "base_days": 137,
+    "requires": [
+      [
+        "Inclined_Belt_Armor_Scheme"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Early_Heavy_Ship",
+    "name": "Early Heavy Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/63/Early_battleship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Early_battleship.png",
+    "domain": "Marine",
+    "section": "Battleships",
+    "position": 322,
+    "year": 1922,
+    "base_days": 192,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "1936_Heavy_Ship",
+    "name": "1936 Heavy Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/9c/Basic_battleship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_battleship.png",
+    "domain": "Marine",
+    "section": "Battleships",
+    "position": 323,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Heavy_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1940_Heavy_Ship",
+    "name": "1940 Heavy Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/42/Improved_battleship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_battleship.png",
+    "domain": "Marine",
+    "section": "Battleships",
+    "position": 324,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "1936_Heavy_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1944_Heavy_Ship",
+    "name": "1944 Heavy Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/45/Advanced_battleship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_battleship.png",
+    "domain": "Marine",
+    "section": "Battleships",
+    "position": 325,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "1940_Heavy_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Deck_Conversions",
+    "name": "Deck Conversions",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e9/Early_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Early_carrier.png",
+    "domain": "Marine",
+    "section": "Carrier Hulls",
+    "position": 326,
+    "year": 1922,
+    "base_days": 192,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "1936_Carrier",
+    "name": "1936 Carrier",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Basic_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_carrier.png",
+    "domain": "Marine",
+    "section": "Carrier Hulls",
+    "position": 327,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Deck_Conversions"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1940_Carrier",
+    "name": "1940 Carrier",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5b/Improved_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_carrier.png",
+    "domain": "Marine",
+    "section": "Carrier Hulls",
+    "position": 328,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "1936_Carrier"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1944_Carrier",
+    "name": "1944 Carrier",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/a3/Advanced_carrier.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_carrier.png",
+    "domain": "Marine",
+    "section": "Carrier Hulls",
+    "position": 329,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "1940_Carrier"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Refined_Pykrete",
+    "name": "Refined Pykrete",
+    "icon": "https://hoi4.paradoxwikis.com/images/a/ab/Sp_surface_refined_pykrete.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_refined_pykrete.png",
+    "domain": "Marine",
+    "section": "Carrier Modules",
+    "position": 330,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ice_Composite_Runways",
+    "name": "Ice Composite Runways",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/53/Sp_surface_ice_composite_runways.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_ice_composite_runways.png",
+    "domain": "Marine",
+    "section": "Carrier Modules",
+    "position": 331,
+    "year": 1945,
+    "base_days": 110,
+    "requires": [
+      [
+        "Refined_Pykrete"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Early_Submarine",
+    "name": "Early Submarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3e/Early_submarine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Early_submarine.png",
+    "domain": "Marine",
+    "section": "Submarine Hulls",
+    "position": 332,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Torpedo"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1936_Submarine",
+    "name": "1936 Submarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Basic_submarine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_submarine.png",
+    "domain": "Marine",
+    "section": "Submarine Hulls",
+    "position": 333,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Early_Submarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1940_Submarine",
+    "name": "1940 Submarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/84/Improved_submarine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_submarine.png",
+    "domain": "Marine",
+    "section": "Submarine Hulls",
+    "position": 334,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "1936_Submarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "1944_Submarine",
+    "name": "1944 Submarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Advanced_submarine.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_submarine.png",
+    "domain": "Marine",
+    "section": "Submarine Hulls",
+    "position": 335,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "1940_Submarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Submarine_Snorkel",
+    "name": "Basic Submarine Snorkel",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f2/Basic_submarine_snorkel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_submarine_snorkel.png",
+    "domain": "Marine",
+    "section": "Submarine Modules",
+    "position": 336,
+    "year": 1940,
+    "base_days": 110,
+    "requires": [
+      [
+        "1940_Submarine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Submarine_Snorkel",
+    "name": "Improved Submarine Snorkel",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/b8/Improved_submarine_snorkel.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_submarine_snorkel.png",
+    "domain": "Marine",
+    "section": "Submarine Modules",
+    "position": 337,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Basic_Submarine_Snorkel"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "AIP-Diesel_Combination_Engines",
+    "name": "AIP-Diesel Combination Engines",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bc/Sp_submarine_aip_diesel_combination_engines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_submarine_aip_diesel_combination_engines.png",
+    "domain": "Marine",
+    "section": "Submarine Modules",
+    "position": 338,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "High-Speed_Walter_Engines",
+    "name": "High-Speed Walter Engines",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1c/Sp_submarine_high_speed_walter_engines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_submarine_high_speed_walter_engines.png",
+    "domain": "Marine",
+    "section": "Submarine Modules",
+    "position": 339,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "AIP-Diesel_Combination_Engines"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "panzerschiffe",
+    "name": "panzerschiffe",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Marine",
+    "section": "Secret Techs",
+    "position": 340,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Pre-Dreadnought_Ships",
+    "name": "Pre-Dreadnought Ships",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Marine",
+    "section": "Secret Techs",
+    "position": 341,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Coastal_Defense_Ships",
+    "name": "Coastal Defense Ships",
+    "icon": "",
+    "icon_page": "",
+    "domain": "Marine",
+    "section": "Secret Techs",
+    "position": 342,
+    "year": null,
+    "base_days": null,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Naval_Gunnery",
+    "name": "Naval Gunnery",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/14/Basic_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 343,
+    "year": 1922,
+    "base_days": 110,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Light_Battery",
+    "name": "Basic Light Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f1/Basic_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 344,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Naval_Gunnery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Medium_Battery",
+    "name": "Basic Medium Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e0/Basic_medium_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_medium_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 345,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Naval_Gunnery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Heavy_Battery",
+    "name": "Basic Heavy Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f6/Basic_heavy_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_heavy_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 346,
+    "year": 1936,
+    "base_days": 110,
+    "requires": [
+      [
+        "Naval_Gunnery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Light_Battery",
+    "name": "Improved Light Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/00/Improved_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 347,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Small-Caliber_Semi-Armor_Piercing_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Medium_Battery",
+    "name": "Improved Medium Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4c/Improved_medium_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_medium_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 348,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Armor-Piercing_Capped_Medium_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Heavy_Battery",
+    "name": "Improved Heavy Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/6b/Improved_heavy_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_heavy_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 349,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Armor-Piercing_Capped_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Light_Battery",
+    "name": "Advanced Light Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1c/Advanced_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 350,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Small-Caliber_Armor_Piercing_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Medium_Battery",
+    "name": "Advanced Medium Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4b/Advanced_medium_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_medium_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 351,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Medium-Caliber_Semi-Armor_Piercing_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Heavy_Battery",
+    "name": "Advanced Heavy Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Advanced_heavy_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_heavy_battery.png",
+    "domain": "Soutien naval",
+    "section": "Batteries",
+    "position": 352,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Super-Heavy_Armor_Piercing_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Small-Caliber_Semi-Armor_Piercing_Shell",
+    "name": "Small-Caliber Semi-Armor Piercing Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Basic_light_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_light_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 353,
+    "year": 1936,
+    "base_days": 55,
+    "requires": [
+      [
+        "Basic_Light_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Small-Caliber_Armor_Piercing_Shell",
+    "name": "Small-Caliber Armor Piercing Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4e/Improved_light_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_light_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 354,
+    "year": 1942,
+    "base_days": 55,
+    "requires": [
+      [
+        "Improved_Light_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armor-Piercing_Capped_Medium_Shell",
+    "name": "Armor-Piercing Capped Medium Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/5d/Basic_medium_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_medium_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 355,
+    "year": 1936,
+    "base_days": 55,
+    "requires": [
+      [
+        "Basic_Medium_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Medium-Caliber_Semi-Armor_Piercing_Shell",
+    "name": "Medium-Caliber Semi-Armor Piercing Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/87/Improved_medium_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_medium_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 356,
+    "year": 1942,
+    "base_days": 55,
+    "requires": [
+      [
+        "Improved_Medium_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Armor-Piercing_Capped_Shell",
+    "name": "Armor-Piercing Capped Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e5/Basic_heavy_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_heavy_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 357,
+    "year": 1936,
+    "base_days": 55,
+    "requires": [
+      [
+        "Basic_Heavy_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Super-Heavy_Armor_Piercing_Shell",
+    "name": "Super-Heavy Armor Piercing Shell",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4b/Improved_heavy_shell.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_heavy_shell.png",
+    "domain": "Soutien naval",
+    "section": "Shells",
+    "position": 358,
+    "year": 1942,
+    "base_days": 55,
+    "requires": [
+      [
+        "Improved_Heavy_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Dual-Purpose_Battery",
+    "name": "Basic Dual-Purpose Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/18/Dp_basic_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dp_basic_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Dual-Purpose Batteries",
+    "position": 359,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Light_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Dual-Purpose_Battery",
+    "name": "Improved Dual-Purpose Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2a/Dp_improved_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dp_improved_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Dual-Purpose Batteries",
+    "position": 360,
+    "year": 1939,
+    "base_days": 110,
+    "requires": [
+      [
+        "Basic_Dual-Purpose_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Dual-Purpose_Battery",
+    "name": "Advanced Dual-Purpose Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e0/Dp_advanced_light_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dp_advanced_light_battery.png",
+    "domain": "Soutien naval",
+    "section": "Dual-Purpose Batteries",
+    "position": 361,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Improved_Dual-Purpose_Battery"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Medium_Dual-Purpose_Battery",
+    "name": "Advanced Medium Dual-Purpose Battery",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/2b/Dp_secondary_battery.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Dp_secondary_battery.png",
+    "domain": "Soutien naval",
+    "section": "Dual-Purpose Batteries",
+    "position": 362,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Medium-Caliber_Semi-Armor_Piercing_Shell"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Basic_Torpedo",
+    "name": "Basic Torpedo",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/be/Basic_torpedo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_torpedo.png",
+    "domain": "Soutien naval",
+    "section": "Ship-Based Torpedo Launchers",
+    "position": 363,
+    "year": 1922,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Improved_Ship_Torpedo_Launcher",
+    "name": "Improved Ship Torpedo Launcher",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/03/Improved_torpedo_launcher.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_torpedo_launcher.png",
+    "domain": "Soutien naval",
+    "section": "Ship-Based Torpedo Launchers",
+    "position": 364,
+    "year": 1936,
+    "base_days": 165,
+    "requires": [
+      [
+        "Basic_Torpedo"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Ship_Torpedo_Launcher",
+    "name": "Advanced Ship Torpedo Launcher",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f6/Advanced_torpedo_launcher.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_torpedo_launcher.png",
+    "domain": "Soutien naval",
+    "section": "Ship-Based Torpedo Launchers",
+    "position": 365,
+    "year": 1940,
+    "base_days": 165,
+    "requires": [
+      [
+        "Improved_Ship_Torpedo_Launcher"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Modern_Ship_Torpedo_Launcher",
+    "name": "Modern Ship Torpedo Launcher",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/88/Modern_torpedo_launcher.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Modern_torpedo_launcher.png",
+    "domain": "Soutien naval",
+    "section": "Ship-Based Torpedo Launchers",
+    "position": 366,
+    "year": 1944,
+    "base_days": 165,
+    "requires": [
+      [
+        "Advanced_Ship_Torpedo_Launcher"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Magnetic_Detonator",
+    "name": "Magnetic Detonator",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/82/Magnetic_detonator.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Magnetic_detonator.png",
+    "domain": "Soutien naval",
+    "section": "Torpedo Warfare",
+    "position": 367,
+    "year": 1936,
+    "base_days": 275,
+    "requires": [
+      [
+        "Basic_Torpedo"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Homing_Torpedo",
+    "name": "Homing Torpedo",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/4f/Homing_torpedo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Homing_torpedo.png",
+    "domain": "Soutien naval",
+    "section": "Torpedo Warfare",
+    "position": 368,
+    "year": 1942,
+    "base_days": 275,
+    "requires": [
+      [
+        "Magnetic_Detonator"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Electric_Torpedo",
+    "name": "Electric Torpedo",
+    "icon": "https://hoi4.paradoxwikis.com/images/6/69/Electric_torpedo.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Electric_torpedo.png",
+    "domain": "Soutien naval",
+    "section": "Torpedo Warfare",
+    "position": 369,
+    "year": 1940,
+    "base_days": 275,
+    "requires": [
+      [
+        "Magnetic_Detonator"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Fire_Fighting_Drills",
+    "name": "Fire Fighting Drills",
+    "icon": "https://hoi4.paradoxwikis.com/images/9/99/Damage_control_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Damage_control_1.png",
+    "domain": "Soutien naval",
+    "section": "Damage Control",
+    "position": 370,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Separate_Fire_Mains",
+    "name": "Separate Fire Mains",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f9/Damage_control_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Damage_control_2.png",
+    "domain": "Soutien naval",
+    "section": "Damage Control",
+    "position": 371,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [
+      [
+        "Fire_Fighting_Drills"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Diesel-powered_Emergency_Pumps",
+    "name": "Diesel-powered Emergency Pumps",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e3/Damage_control_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Damage_control_3.png",
+    "domain": "Soutien naval",
+    "section": "Damage Control",
+    "position": 372,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [
+      [
+        "Separate_Fire_Mains"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Bracket_Shooting",
+    "name": "Bracket Shooting",
+    "icon": "https://hoi4.paradoxwikis.com/images/1/1b/Fire_control_methods_1.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fire_control_methods_1.png",
+    "domain": "Soutien naval",
+    "section": "Fire Control Methods",
+    "position": 373,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Ladder_Shooting",
+    "name": "Ladder Shooting",
+    "icon": "https://hoi4.paradoxwikis.com/images/f/f6/Fire_control_methods_2.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fire_control_methods_2.png",
+    "domain": "Soutien naval",
+    "section": "Fire Control Methods",
+    "position": 374,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [
+      [
+        "Bracket_Shooting"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Shell_Dyes",
+    "name": "Shell Dyes",
+    "icon": "https://hoi4.paradoxwikis.com/images/7/73/Fire_control_methods_3.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Fire_control_methods_3.png",
+    "domain": "Soutien naval",
+    "section": "Fire Control Methods",
+    "position": 375,
+    "year": 1922,
+    "base_days": 275,
+    "requires": [
+      [
+        "Ladder_Shooting"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Transport_Ship",
+    "name": "Transport Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/b/bc/Transport_Ship.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Transport_Ship.png",
+    "domain": "Soutien naval",
+    "section": "Transports",
+    "position": 376,
+    "year": 1922,
+    "base_days": 165,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Landing_Craft",
+    "name": "Landing Craft",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/34/Landing_Craft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Landing_Craft.png",
+    "domain": "Soutien naval",
+    "section": "Transports",
+    "position": 377,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Transport_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Advanced_Landing_Craft",
+    "name": "Advanced Landing Craft",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e8/Advanced_Landing_Craft.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_Landing_Craft.png",
+    "domain": "Soutien naval",
+    "section": "Transports",
+    "position": 378,
+    "year": 1944,
+    "base_days": 220,
+    "requires": [
+      [
+        "Landing_Craft"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Multi-Product_Supply_Ship",
+    "name": "Multi-Product Supply Ship",
+    "icon": "https://hoi4.paradoxwikis.com/images/2/22/Sp_surface_multi_product_supply_ships.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_multi_product_supply_ships.png",
+    "domain": "Soutien naval",
+    "section": "Transports",
+    "position": 379,
+    "year": 1938,
+    "base_days": 220,
+    "requires": [
+      [
+        "Transport_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Standardized_Tenshioned_Replenishment_Alongside_Method",
+    "name": "Standardized Tenshioned Replenishment Alongside Method",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/de/Sp_surface_standard_tensioned_replenishment_alongside_method.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Sp_surface_standard_tensioned_replenishment_alongside_method.png",
+    "domain": "Soutien naval",
+    "section": "Transports",
+    "position": 380,
+    "year": 1943,
+    "base_days": 275,
+    "requires": [
+      [
+        "Multi-Product_Supply_Ship"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Contact_Mine",
+    "name": "Contact Mine",
+    "icon": "https://hoi4.paradoxwikis.com/images/d/dd/Basic_naval_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Basic_naval_mines.png",
+    "domain": "Soutien naval",
+    "section": "Mines",
+    "position": 381,
+    "year": 1922,
+    "base_days": 220,
+    "requires": [],
+    "excludes": []
+  },
+  {
+    "id": "Magnetic_Mine",
+    "name": "Magnetic Mine",
+    "icon": "https://hoi4.paradoxwikis.com/images/3/3b/Improved_naval_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_naval_mines.png",
+    "domain": "Soutien naval",
+    "section": "Mines",
+    "position": 382,
+    "year": 1936,
+    "base_days": 220,
+    "requires": [
+      [
+        "Contact_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Degaussing",
+    "name": "Degaussing",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/02/Degaussing.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Degaussing.png",
+    "domain": "Soutien naval",
+    "section": "Mines",
+    "position": 383,
+    "year": 1938,
+    "base_days": 110,
+    "requires": [
+      [
+        "Magnetic_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Acoustic_Mine",
+    "name": "Acoustic Mine",
+    "icon": "https://hoi4.paradoxwikis.com/images/c/ca/Advanced_naval_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Advanced_naval_mines.png",
+    "domain": "Soutien naval",
+    "section": "Mines",
+    "position": 384,
+    "year": 1942,
+    "base_days": 220,
+    "requires": [
+      [
+        "Magnetic_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Pressure_Mine",
+    "name": "Pressure Mine",
+    "icon": "https://hoi4.paradoxwikis.com/images/8/83/Modern_naval_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Modern_naval_mines.png",
+    "domain": "Soutien naval",
+    "section": "Mines",
+    "position": 385,
+    "year": 1945,
+    "base_days": 220,
+    "requires": [
+      [
+        "Acoustic_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Aerial_Minelaying",
+    "name": "Aerial Minelaying",
+    "icon": "https://hoi4.paradoxwikis.com/images/e/e5/Airdrop_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Airdrop_mines.png",
+    "domain": "Soutien naval",
+    "section": "Aerial Mine Warfare",
+    "position": 386,
+    "year": 1942,
+    "base_days": 110,
+    "requires": [
+      [
+        "Acoustic_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Aerial_Minesweeping",
+    "name": "Aerial Minesweeping",
+    "icon": "https://hoi4.paradoxwikis.com/images/0/0e/Airsweep_mines.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Airsweep_mines.png",
+    "domain": "Soutien naval",
+    "section": "Aerial Mine Warfare",
+    "position": 387,
+    "year": 1944,
+    "base_days": 110,
+    "requires": [
+      [
+        "Pressure_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Minelaying_Submarine",
+    "name": "Minelaying Submarine",
+    "icon": "https://hoi4.paradoxwikis.com/images/4/40/Submarine_mine_laying.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Submarine_mine_laying.png",
+    "domain": "Soutien naval",
+    "section": "Submarine Minelaying",
+    "position": 388,
+    "year": 1922,
+    "base_days": 220,
+    "requires": [
+      [
+        "Contact_Mine"
+      ]
+    ],
+    "excludes": []
+  },
+  {
+    "id": "Torpedo-tube_Mine_Deployment",
+    "name": "Torpedo-tube Mine Deployment",
+    "icon": "https://hoi4.paradoxwikis.com/images/5/56/Improved_submarine_mine_laying.png",
+    "icon_page": "https://hoi4.paradoxwikis.com/File:Improved_submarine_mine_laying.png",
+    "domain": "Soutien naval",
+    "section": "Submarine Minelaying",
+    "position": 389,
+    "year": 1940,
+    "base_days": 220,
+    "requires": [
+      [
+        "Minelaying_Submarine"
+      ]
+    ],
+    "excludes": []
+  }
+]

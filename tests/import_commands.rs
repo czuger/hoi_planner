@@ -381,3 +381,29 @@ async fn a_page_with_no_staff_changes_nothing() {
     assert!(matches!(error, AppError::NothingParsed { .. }));
     assert!(!work.files.staff_json.exists());
 }
+
+#[tokio::test]
+async fn the_bundled_catalogs_seed_a_database_with_no_file_around() {
+    // A deployed server holds the binary and nothing else: no page, no JSON.
+    let work = workspace();
+    let source = CatalogSource::Bundled;
+
+    let focuses = import_focuses(&work.files, work.options(source))
+        .await
+        .unwrap();
+    let technologies = import_technologies(&work.files, work.options(source))
+        .await
+        .unwrap();
+    let staff = import_staff(&work.files, work.options(source))
+        .await
+        .unwrap();
+
+    for outcome in [focuses, technologies, staff] {
+        assert!(outcome.parsed > 0);
+        assert_eq!(outcome.stored, Some(outcome.parsed as i64));
+    }
+    assert_eq!(
+        fs::read_dir(work.dir.path().join("data")).unwrap().count(),
+        0
+    );
+}

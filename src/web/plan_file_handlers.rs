@@ -50,6 +50,7 @@ pub async fn export_saved(
             focus_days: plan.focus_days,
             focus_technologies: plan.focus_technologies,
             focus_staff: plan.focus_staff,
+            focus_comments: plan.focus_comments,
         };
         download(Some(plan.name), fields, &catalogs)
     };
@@ -105,6 +106,7 @@ fn imported(plan: &Value, fields: PlanFields, catalogs: &Catalogs) -> Value {
             "focus_days": fields.focus_days,
             "focus_technologies": fields.focus_technologies,
             "focus_staff": fields.focus_staff,
+            "focus_comments": fields.focus_comments,
         },
         "unknown": unknown,
         "unknown_technologies": unknown_technologies,

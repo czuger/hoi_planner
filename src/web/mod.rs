@@ -10,6 +10,7 @@ mod plan_handlers;
 mod planner_page;
 mod router;
 mod staff_row;
+mod static_asset;
 mod technology_row;
 
 pub use api_error::ApiError;

@@ -1,8 +1,7 @@
 //! Where the server listens, and the probe `healthcheck` sends there.
 //!
-//! On the server the app listens on a Unix socket: nginx runs in a container and reaches it
-//! through a host directory bind-mounted into it, so no port is opened at all. Without
-//! `SOCKET_PATH` (`cargo run`), it listens on TCP at `BIND_ADDR`.
+//! Deployed, the app listens on the Unix socket `HOI4_PLANNER_SOCKET` names, so no port is
+//! opened at all. Without it (`cargo run`), it listens on TCP at `BIND_ADDR`.
 
 use std::fs::{self, Permissions};
 use std::future::Future;

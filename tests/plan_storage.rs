@@ -367,6 +367,36 @@ fn hired(focus_ids: &[&str], hired: &[(&str, &[&str])]) -> PlanFields {
     }
 }
 
+fn commented(focus_ids: &[&str], comments: &[(&str, &[&str])]) -> PlanFields {
+    PlanFields {
+        focus_comments: by_focus(comments),
+        ..fields(focus_ids)
+    }
+}
+
+#[tokio::test]
+async fn a_plan_keeps_its_comments_by_focus_in_their_order() {
+    let pool = pool().await;
+    let plan = commented(&["A"], &[("A", &["puis l'Autriche", "garder 2 PP"])]);
+    save_plan(&pool, "Rush", &plan).await.unwrap();
+
+    let stored = PlanRecord::find(&pool, "rush").await.unwrap().unwrap();
+    assert_eq!(
+        stored.focus_comments["A"],
+        ["puis l'Autriche", "garder 2 PP"]
+    );
+}
+
+#[tokio::test]
+async fn comments_of_a_focus_not_in_the_order_are_not_stored() {
+    let pool = pool().await;
+    let plan = commented(&["A"], &[("A", &["note"]), ("Gone", &["lost"]), ("B", &[])]);
+    let stored = save_draft(&pool, "", &plan).await.unwrap();
+
+    assert_eq!(stored.focus_comments.len(), 1);
+    assert_eq!(stored.focus_comments["A"], ["note"]);
+}
+
 #[tokio::test]
 async fn a_plan_keeps_its_technologies_in_their_order() {
     let pool = pool().await;
@@ -401,6 +431,7 @@ async fn a_plan_written_before_technologies_reads_as_having_none() {
     let stored = PlanRecord::find(&pool, "old").await.unwrap().unwrap();
     assert!(stored.focus_technologies.is_empty());
     assert!(stored.focus_staff.is_empty());
+    assert!(stored.focus_comments.is_empty());
 }
 
 #[tokio::test]

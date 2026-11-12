@@ -2,49 +2,43 @@
 
 use std::path::{Path, PathBuf};
 
-const DEFAULT_DATABASE_URL: &str = "sqlite://data/hoi4_planner.db";
+/// The variable naming the folder of everything the app keeps (`cargo deploy`'s `<PREFIX>_DATA_DIR`).
+pub const DATA_DIR_VAR: &str = "HOI4_PLANNER_DATA_DIR";
+/// The variable naming the Unix socket to listen on (`cargo deploy`'s `<PREFIX>_SOCKET`).
+pub const SOCKET_VAR: &str = "HOI4_PLANNER_SOCKET";
+
+const DEFAULT_DATA_DIR: &str = "data";
 const DEFAULT_BIND_ADDR: &str = "127.0.0.1:5000";
+const DATABASE_FILE: &str = "hoi4_planner.db";
 
 /// Server settings.
 #[derive(Debug, Clone)]
 pub struct AppConfig {
-    /// SQLite URL or bare path (`DATABASE_URL`), the file is created if missing.
+    /// The SQLite file, in the data folder (`HOI4_PLANNER_DATA_DIR`); created if missing.
     pub database_url: String,
     /// TCP address to listen on when no socket is set (`BIND_ADDR`).
     pub bind_addr: String,
-    /// Unix socket to listen on instead of TCP (`SOCKET_PATH`).
+    /// Unix socket to listen on instead of TCP (`HOI4_PLANNER_SOCKET`).
     pub socket_path: Option<PathBuf>,
-    /// Directory holding `static/` and `data/` (`ASSET_ROOT`).
-    pub asset_root: PathBuf,
-    /// Sub-path a reverse proxy serves the app under (`URL_PREFIX`), normalized.
-    pub url_prefix: String,
 }
 
 impl AppConfig {
     /// Reads the settings from environment variables, falling back to local defaults.
     pub fn from_env() -> AppConfig {
-        let var =
-            |name: &str, default: &str| std::env::var(name).unwrap_or_else(|_| default.to_string());
+        let set = |name: &str| std::env::var_os(name).filter(|value| !value.is_empty());
+        let data_dir =
+            set(DATA_DIR_VAR).map_or_else(|| PathBuf::from(DEFAULT_DATA_DIR), PathBuf::from);
         AppConfig {
-            database_url: var("DATABASE_URL", DEFAULT_DATABASE_URL),
-            bind_addr: var("BIND_ADDR", DEFAULT_BIND_ADDR),
-            socket_path: std::env::var_os("SOCKET_PATH")
-                .filter(|path| !path.is_empty())
-                .map(PathBuf::from),
-            asset_root: PathBuf::from(var("ASSET_ROOT", ".")),
-            url_prefix: normalize_prefix(&var("URL_PREFIX", "")),
+            database_url: database_path(&data_dir),
+            bind_addr: std::env::var("BIND_ADDR").unwrap_or_else(|_| DEFAULT_BIND_ADDR.to_string()),
+            socket_path: set(SOCKET_VAR).map(PathBuf::from),
         }
     }
 }
 
-/// `hoi4`, `/hoi4` and `/hoi4/` all mean `/hoi4`; nothing at all means the site root.
-pub fn normalize_prefix(prefix: &str) -> String {
-    let trimmed = prefix.trim().trim_matches('/');
-    if trimmed.is_empty() {
-        String::new()
-    } else {
-        format!("/{trimmed}")
-    }
+/// The database file of a data folder, as the bare path SQLite accepts for a URL.
+pub fn database_path(data_dir: &Path) -> String {
+    data_dir.join(DATABASE_FILE).display().to_string()
 }
 
 /// What a database is called on screen: its file name, whatever the URL around it.
@@ -129,16 +123,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn the_prefix_is_normalized() {
-        for prefix in ["hoi4", "/hoi4", "/hoi4/", " /hoi4/ "] {
-            assert_eq!(normalize_prefix(prefix), "/hoi4");
-        }
-    }
-
-    #[test]
-    fn no_prefix_is_the_site_root() {
-        assert_eq!(normalize_prefix(""), "");
-        assert_eq!(normalize_prefix("/"), "");
+    fn the_database_lives_in_the_data_folder() {
+        assert_eq!(
+            database_path(Path::new("/srv/app/data")),
+            "/srv/app/data/hoi4_planner.db"
+        );
+        assert_eq!(database_path(Path::new("data")), "data/hoi4_planner.db");
     }
 
     #[test]

@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Planificateur HOI4{% endblock %}</title>
-  <link rel="stylesheet" href="{{ prefix }}/static/app.css">
+  <link rel="stylesheet" href="static/app.css">
 </head>
 <body>
   <header>
     <h1>{% block heading %}Planificateur des focus nationaux allemands{% endblock %}</h1>
     {% block subtitle %}{% endblock %}
     <span class="grow"></span>
-    <span class="db" title="DATABASE_URL choisit la base">{{ database_name }}</span>
+    <span class="db" title="HOI4_PLANNER_DATA_DIR choisit le dossier de la base">{{ database_name }}</span>
   </header>
 
   {% for message in errors %}<div class="err">{{ message }}</div>{% endfor %}

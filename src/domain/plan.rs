@@ -30,6 +30,8 @@ pub struct Plan {
     /// `{focus id: [staff ids]}`: each member takes the date of its focus and fills the post of
     /// its table.
     pub focus_staff: BTreeMap<String, Vec<String>>,
+    /// `{focus id: [text]}`: free comments written on the focus's line, in their order.
+    pub focus_comments: BTreeMap<String, Vec<String>>,
     /// When the plan was first stored.
     pub created_at: String,
     /// When it was last stored, which is what the plan list is ordered by.

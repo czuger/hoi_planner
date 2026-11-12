@@ -397,3 +397,40 @@ async fn technologies_that_are_not_lists_of_ids_are_refused() {
         );
     }
 }
+
+#[tokio::test]
+async fn comments_are_saved_with_the_plan_and_kept_in_the_draft() {
+    let app = TestApp::with_catalog().await;
+    let body = json!({
+        "name": "Rush",
+        "focus_ids": ["Rhineland"],
+        "focus_comments": {"Rhineland": ["garder 2 PP"]},
+    });
+
+    let saved = app.post("/api/plans", body.clone()).await;
+    assert_eq!(
+        saved.json()["plan"]["focus_comments"],
+        json!({"Rhineland": ["garder 2 PP"]})
+    );
+    let draft = app.put("/api/draft", body).await;
+    assert_eq!(
+        draft.json()["plan"]["focus_comments"],
+        json!({"Rhineland": ["garder 2 PP"]})
+    );
+}
+
+#[tokio::test]
+async fn comments_that_are_not_lists_of_texts_are_refused() {
+    let app = TestApp::with_catalog().await;
+    for comments in [json!(["note"]), json!({"A": "note"}), json!({"A": [7]})] {
+        let body = json!({"name": "Rush", "focus_comments": comments});
+        let answer = app.post("/api/plans", body).await;
+        assert_eq!(answer.status, StatusCode::BAD_REQUEST);
+        assert!(
+            answer.json()["error"]
+                .as_str()
+                .unwrap()
+                .contains("focus_comments")
+        );
+    }
+}

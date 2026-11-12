@@ -14,7 +14,7 @@ serde_json = "1.0.151"
 sqlx = { version = "0.9.0", default-features = false, features = ["sqlite", "runtime-tokio", "migrate", "macros"] }
 thiserror = "2.0.21"
 tokio = { version = "1.53.2", features = ["macros", "rt-multi-thread", "net", "signal", "io-util", "time"] }
-tower-http = { version = "0.7.1", features = ["fs", "set-header"] }
+tower-http = { version = "0.7.1", features = ["set-header"] }
 tracing = "0.1.44"
 tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
 unicode-normalization = "0.1.25"
@@ -22,3 +22,41 @@ unicode-normalization = "0.1.25"
 [dev-dependencies]
 tempfile = "3.27.0"
 tower = { version = "0.5.3", features = ["util"] }
+
+# How `cargo deploy` builds and starts this app. Server-specific values (host,
+# URL, paths, container) come from the DEPLOY_* environment variables only — see
+# the cargo-deploy README. Every key is optional; the commented values are the defaults.
+[package.metadata.deploy]
+
+# Sub-path nginx serves the app under.
+url-prefix = "/hoi4"
+
+# The socket path is passed to the app as <PREFIX>_SOCKET, its persistent data
+# directory ($REMOTE_DIR/data, shared by all releases) as <PREFIX>_DATA_DIR.
+# env-prefix = "HOI4_PLANNER"
+
+# Arguments after the binary in ExecStart.
+# args = ["serve"]
+
+# `cargo deploy setup` creates a random secret_key.txt in the data directory if
+# there is none (--new-secret-key replaces it).
+# secret-key = false
+
+# Extra service environment; NO_COLOR=1 is always set.
+# env = { RUST_LOG = "info" }
+
+# proxy-read-timeout = "60s"
+
+# Probed after each restart: must answer quickly, without network access.
+health-path = "/health"
+
+# Outgoing connections (API, remote database, SMTP...): off by default, the app
+# then only has its Unix socket.
+# network = false
+
+# Extra [Service] directives, after the built-in sandbox, e.g. to relax it.
+# unit-extra = ["MemoryDenyWriteExecute=no", "MemoryMax=512M"]
+
+build-target = "x86_64-unknown-linux-musl"
+
+# keep-releases = 3

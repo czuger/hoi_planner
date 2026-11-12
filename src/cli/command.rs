@@ -1,7 +1,7 @@
 use crate::error::AppError;
 use crate::service::CatalogSource;
 
-const USAGE: &str = "Usage : hoi4_planner [serve | healthcheck | parse-politics | import-focuses [--from-json] [--json-only] [--database-url URL] | import-technologies [--from-json] [--json-only] [--database-url URL] | import-staff [--from-json] [--json-only] [--database-url URL]]";
+const USAGE: &str = "Usage : hoi4_planner [serve | healthcheck | seed [--database-url URL] | parse-politics | import-focuses [--from-json] [--json-only] [--database-url URL] | import-technologies [--from-json] [--json-only] [--database-url URL] | import-staff [--from-json] [--json-only] [--database-url URL]]";
 
 /// What one run of the binary is asked to do.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -10,6 +10,11 @@ pub enum Command {
     Serve,
     /// Asks a running server for `/health`.
     Healthcheck,
+    /// Fills the three catalogs from the JSON compiled into the binary.
+    Seed {
+        /// The database to fill, instead of the data folder's.
+        database_url: Option<String>,
+    },
     /// Reads `data/politics.html` into its two JSON files.
     ParsePolitics,
     /// Fills the catalog.
@@ -18,7 +23,7 @@ pub enum Command {
         source: CatalogSource,
         /// Stop at the JSON, touching no database.
         json_only: bool,
-        /// The database to fill, instead of `DATABASE_URL`'s.
+        /// The database to fill, instead of the data folder's.
         database_url: Option<String>,
     },
     /// Fills the technology catalog.
@@ -27,7 +32,7 @@ pub enum Command {
         source: CatalogSource,
         /// Stop at the JSON, touching no database.
         json_only: bool,
-        /// The database to fill, instead of `DATABASE_URL`'s.
+        /// The database to fill, instead of the data folder's.
         database_url: Option<String>,
     },
     /// Fills the staff catalog.
@@ -36,7 +41,7 @@ pub enum Command {
         source: CatalogSource,
         /// Stop at the JSON, touching no database.
         json_only: bool,
-        /// The database to fill, instead of `DATABASE_URL`'s.
+        /// The database to fill, instead of the data folder's.
         database_url: Option<String>,
     },
 }
@@ -56,6 +61,9 @@ impl Command {
             "serve" if rest.is_empty() => Ok(Command::Serve),
             "healthcheck" if rest.is_empty() => Ok(Command::Healthcheck),
             "parse-politics" if rest.is_empty() => Ok(Command::ParsePolitics),
+            "seed" => Ok(Command::Seed {
+                database_url: parse_database_url(rest)?,
+            }),
             "import-focuses" => {
                 let (source, json_only, database_url) = parse_import(rest)?;
                 Ok(Command::ImportFocuses {
@@ -100,6 +108,15 @@ fn parse_import(args: Vec<String>) -> Result<(CatalogSource, bool, Option<String
         }
     }
     Ok((source, json_only, database_url))
+}
+
+/// The one flag `seed` takes.
+fn parse_database_url(args: Vec<String>) -> Result<Option<String>, AppError> {
+    match args.as_slice() {
+        [] => Ok(None),
+        [flag, url] if flag == "--database-url" => Ok(Some(url.clone())),
+        _ => Err(usage()),
+    }
 }
 
 fn usage() -> AppError {
@@ -185,6 +202,20 @@ mod tests {
     }
 
     #[test]
+    fn seed_takes_a_database_or_none() {
+        assert_eq!(
+            parse(&["seed"]).unwrap(),
+            Command::Seed { database_url: None }
+        );
+        assert_eq!(
+            parse(&["seed", "--database-url", "x.db"]).unwrap(),
+            Command::Seed {
+                database_url: Some("x.db".to_string()),
+            }
+        );
+    }
+
+    #[test]
     fn what_makes_no_sense_gets_the_usage() {
         for args in [
             &["nonsense"][..],
@@ -193,6 +224,8 @@ mod tests {
             &["import-focuses", "--database-url"],
             &["import-technologies", "--env"],
             &["import-staff", "--env"],
+            &["seed", "--from-json"],
+            &["seed", "--database-url"],
         ] {
             assert!(matches!(parse(args), Err(AppError::Usage(_))));
         }

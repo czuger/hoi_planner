@@ -26,7 +26,7 @@ impl ApiError {
     /// The sentence shown when the database did not answer.
     pub fn database_message(database_name: &str) -> String {
         format!(
-            "Impossible d'accéder à la base de données ({database_name}). Le fichier est-il accessible, et DATABASE_URL est-il correct ?"
+            "Impossible d'accéder à la base de données ({database_name}). Le fichier est-il accessible, et HOI4_PLANNER_DATA_DIR est-il correct ?"
         )
     }
 }

@@ -4,6 +4,7 @@ use crate::config::DataFiles;
 use crate::db::{self, TechnologyRecord};
 use crate::domain::Technology;
 use crate::error::AppError;
+use crate::service::bundled_catalog::BUNDLED_TECHNOLOGIES;
 use crate::service::catalog_import::{CatalogSource, ImportOptions, ImportOutcome};
 use crate::service::data_file::{read_file, write_json};
 use crate::wiki::{TechnologyPageSource, parse_technology_pages};
@@ -47,6 +48,7 @@ fn read_technologies(
     source: CatalogSource,
 ) -> Result<Vec<Technology>, AppError> {
     match source {
+        CatalogSource::Bundled => BUNDLED_TECHNOLOGIES.entries(),
         CatalogSource::Json => {
             let text = read_file(&files.technologies_json)?;
             serde_json::from_str(&text).map_err(|source| AppError::InvalidCatalogFile {

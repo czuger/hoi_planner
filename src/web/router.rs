@@ -1,23 +1,18 @@
-use std::path::Path as FilePath;
-
 use axum::Router;
 use axum::http::HeaderValue;
 use axum::http::header::CACHE_CONTROL;
 use axum::routing::{delete, get, post};
-use tower_http::services::ServeDir;
 use tower_http::set_header::SetResponseHeaderLayer;
 
 use crate::web::app_state::AppState;
+use crate::web::static_asset::serve_static;
 use crate::web::{main_handlers, plan_file_handlers, plan_handlers};
 
 /// Builds every route of the application.
 ///
 /// A plan named "Export" or "Import" slugs to the same path as the two routes for files, so
 /// those paths also answer for a plan of that id, under the methods the files do not use.
-///
-/// # Arguments
-/// * `asset_root` - directory holding the `static/` folder.
-pub fn build_router(state: AppState, asset_root: &FilePath) -> Router {
+pub fn build_router(state: AppState) -> Router {
     Router::new()
         .route("/", get(main_handlers::index))
         .route("/technologies", get(main_handlers::to_planner))
@@ -51,7 +46,7 @@ pub fn build_router(state: AppState, asset_root: &FilePath) -> Router {
             "/api/draft",
             delete(plan_handlers::discard_draft).put(plan_handlers::write_draft),
         )
-        .nest_service("/static", ServeDir::new(asset_root.join("static")))
+        .route("/static/{name}", get(serve_static))
         // Assets keep stable URLs, so browsers must revalidate them (a 304 when unchanged) to see edits.
         .layer(SetResponseHeaderLayer::if_not_present(
             CACHE_CONTROL,

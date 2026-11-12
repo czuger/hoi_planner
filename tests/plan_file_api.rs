@@ -66,7 +66,7 @@ async fn the_file_is_indented_keeps_its_accents_and_ends_with_a_new_line() {
     let answer = export(&app, json!({"name": "Plan à Zürich"})).await;
 
     assert!(answer.body.starts_with(
-        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 3,\n  \"name\": \"Plan à Zürich\","
+        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 4,\n  \"name\": \"Plan à Zürich\","
     ));
     assert!(answer.body.ends_with("}\n"));
 }
@@ -168,6 +168,10 @@ async fn a_plan_survives_the_round_trip() {
                 vec!["Construction_I".to_string()],
             )]),
             focus_staff: BTreeMap::from([("Rhineland".to_string(), vec!["Krupp".to_string()])]),
+            focus_comments: BTreeMap::from([(
+                "Anschluss".to_string(),
+                vec!["avant la Tchécoslovaquie".to_string()],
+            )]),
         },
     )
     .await;
@@ -184,7 +188,29 @@ async fn a_plan_survives_the_round_trip() {
             "focus_days": {"Anschluss": 70},
             "focus_technologies": {"Anschluss": ["Construction_I"]},
             "focus_staff": {"Rhineland": ["Krupp"]},
+            "focus_comments": {"Anschluss": ["avant la Tchécoslovaquie"]},
         })
+    );
+}
+
+#[tokio::test]
+async fn the_file_carries_the_comments_on_their_lines() {
+    let app = TestApp::with_catalog().await;
+    let panel = json!({
+        "name": "Rush",
+        "focus_ids": ["Rhineland"],
+        "focus_comments": {"Rhineland": ["garder 2 PP", "puis l'Autriche"]},
+    });
+    let file = app.post("/api/plans/export", panel).await.json();
+
+    assert_eq!(file["version"], 4);
+    assert_eq!(
+        file["focus_comments"],
+        json!({"Rhineland": ["garder 2 PP", "puis l'Autriche"]})
+    );
+    assert_eq!(
+        file["focuses"][0]["comments"],
+        json!(["garder 2 PP", "puis l'Autriche"])
     );
 }
 

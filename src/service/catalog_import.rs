@@ -5,6 +5,8 @@ pub enum CatalogSource {
     WikiPage,
     /// Read the committed JSON: a moment, and no saved page needed.
     Json,
+    /// Read the JSON compiled into the binary, which is all a server has.
+    Bundled,
 }
 
 /// What one run of an import does.

@@ -13,9 +13,11 @@ use crate::web::app_state::AppState;
 use crate::web::planner_page::{PlannerData, PlannerPage};
 
 const CATALOG_EMPTY: &str =
-    "Aucun focus enregistré. Remplissez le catalogue avec : hoi4_planner import-focuses";
-const TECHNOLOGIES_EMPTY: &str = "Aucune technologie enregistrée. Remplissez le catalogue avec : hoi4_planner import-technologies";
-const STAFF_EMPTY: &str = "Aucun membre de l'état-major enregistré. Remplissez le catalogue avec : hoi4_planner import-staff";
+    "Aucun focus enregistré. Remplissez les catalogues avec : hoi4_planner seed";
+const TECHNOLOGIES_EMPTY: &str =
+    "Aucune technologie enregistrée. Remplissez les catalogues avec : hoi4_planner seed";
+const STAFF_EMPTY: &str =
+    "Aucun membre de l'état-major enregistré. Remplissez les catalogues avec : hoi4_planner seed";
 
 /// The one page: the three catalogs, the saved plans, and the plan that was being built.
 ///
@@ -38,8 +40,10 @@ pub async fn index(State(state): State<AppState>) -> Result<Response, AppError> 
 }
 
 /// Where the technology and staff pages used to be: they are tabs of the one page now.
-pub async fn to_planner(State(state): State<AppState>) -> Redirect {
-    Redirect::permanent(&format!("{}/", state.url_prefix))
+///
+/// Relative, as the app does not know the sub-path a proxy serves it under.
+pub async fn to_planner() -> Redirect {
+    Redirect::permanent("./")
 }
 
 async fn load_page(state: &AppState) -> Result<PlannerData, AppError> {

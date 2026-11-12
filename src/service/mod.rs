@@ -1,5 +1,6 @@
 //! Use cases: what a route or a command asks of the catalog and the plans.
 
+mod bundled_catalog;
 mod catalog_import;
 mod data_file;
 mod draft;

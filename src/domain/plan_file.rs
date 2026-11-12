@@ -11,10 +11,10 @@ pub const FILE_FORMAT: &str = "hoi4-planner-plan";
 
 /// What a future change to these fields would raise, so that an older planner refuses a file
 /// it would misread.
-pub const VERSION: u64 = 3;
+pub const VERSION: u64 = 4;
 
 /// The plan fields of a file; the rest of it is the envelope and the readable echo.
-const PLAN_KEYS: [&str; 7] = [
+const PLAN_KEYS: [&str; 8] = [
     "name",
     "focus_ids",
     "start_date",
@@ -22,6 +22,7 @@ const PLAN_KEYS: [&str; 7] = [
     "focus_days",
     "focus_technologies",
     "focus_staff",
+    "focus_comments",
 ];
 
 /// Why a JSON document is not a plan file.
@@ -62,6 +63,9 @@ pub struct EchoRow {
     /// The staff hired with it, from the same date.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub staff: Vec<EchoStaff>,
+    /// The comments written on its line.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub comments: Vec<String>,
 }
 
 /// One technology as the file spells it out next to its focus.
@@ -109,7 +113,10 @@ pub struct PlanFile {
     pub focus_technologies: BTreeMap<String, Vec<String>>,
     /// `{focus id: [staff ids]}`.
     pub focus_staff: BTreeMap<String, Vec<String>>,
-    /// The readable echo: each focus's name, term, completion date, technologies and staff.
+    /// `{focus id: [text]}`.
+    pub focus_comments: BTreeMap<String, Vec<String>>,
+    /// The readable echo: each focus's name, term, completion date, technologies, staff and
+    /// comments.
     pub focuses: Vec<EchoRow>,
 }
 
@@ -137,6 +144,11 @@ impl PlanFile {
                     technologies,
                 ),
                 staff: echo_staff(fields.focus_staff.get(&row.focus.id), staff),
+                comments: fields
+                    .focus_comments
+                    .get(&row.focus.id)
+                    .cloned()
+                    .unwrap_or_default(),
                 position: row.plan_position,
                 id: row.focus.id,
                 name: row.focus.name,
@@ -154,6 +166,7 @@ impl PlanFile {
             focus_days: fields.focus_days,
             focus_technologies: fields.focus_technologies,
             focus_staff: fields.focus_staff,
+            focus_comments: fields.focus_comments,
             focuses,
         }
     }
@@ -283,6 +296,7 @@ mod tests {
             focus_days: BTreeMap::from([("Anschluss".to_string(), 70)]),
             focus_technologies: BTreeMap::new(),
             focus_staff: BTreeMap::new(),
+            focus_comments: BTreeMap::new(),
         }
     }
 
@@ -374,6 +388,7 @@ mod tests {
                 "focus_days": {"Anschluss": 70},
                 "focus_technologies": {},
                 "focus_staff": {},
+                "focus_comments": {},
             })
         );
     }
@@ -414,6 +429,40 @@ mod tests {
             file["focus_staff"],
             json!({"Rhineland": ["Gone", "Heinz_Guderian__Theorists"]})
         );
+    }
+
+    #[test]
+    fn the_echo_carries_each_focuss_comments() {
+        let mut plan = fields(&["Rhineland", "Anschluss"]);
+        plan.focus_comments = BTreeMap::from([(
+            "Anschluss".to_string(),
+            vec![
+                "garder 2 PP".to_string(),
+                "puis la Tchécoslovaquie".to_string(),
+            ],
+        )]);
+        let file = serde_json::to_value(file_of(None, plan, &catalog())).unwrap();
+
+        assert!(file["focuses"][0].get("comments").is_none());
+        assert_eq!(
+            file["focuses"][1]["comments"],
+            json!(["garder 2 PP", "puis la Tchécoslovaquie"])
+        );
+        assert_eq!(
+            file["focus_comments"],
+            json!({"Anschluss": ["garder 2 PP", "puis la Tchécoslovaquie"]})
+        );
+    }
+
+    #[test]
+    fn a_file_from_before_comments_is_still_read() {
+        let read = read_plan_file(&json!({
+            "format": FILE_FORMAT, "version": 3, "focus_ids": ["Rhineland"],
+            "focus_staff": {"Rhineland": ["Krupp"]},
+        }))
+        .unwrap();
+        assert_eq!(read["focus_staff"], json!({"Rhineland": ["Krupp"]}));
+        assert!(read.get("focus_comments").is_none());
     }
 
     #[test]

@@ -2,8 +2,9 @@
 
 mod common;
 
-use axum::http::StatusCode;
-use axum::http::header::{CACHE_CONTROL, LOCATION};
+use axum::body::Body;
+use axum::http::header::{CACHE_CONTROL, CONTENT_TYPE, ETAG, IF_NONE_MATCH, LOCATION};
+use axum::http::{Request, StatusCode};
 use common::app::{DATABASE_NAME, TestApp};
 use common::{catalog, technologies};
 use hoi4_planner::db::{FocusRecord, TechnologyRecord};
@@ -91,20 +92,19 @@ async fn the_page_draws_with_no_draft_to_pick_up() {
 #[tokio::test]
 async fn the_page_carries_the_urls_a_plan_travels_through() {
     let body = TestApp::with_catalog().await.get("/").await.body;
-    assert!(body.contains("data-export-url=\"/api/plans/export\""));
-    assert!(body.contains("data-import-url=\"/api/plans/import\""));
+    assert!(body.contains("data-export-url=\"api/plans/export\""));
+    assert!(body.contains("data-import-url=\"api/plans/import\""));
 }
 
 #[tokio::test]
-async fn every_link_is_built_under_the_prefix() {
-    let app = TestApp::under("/hoi4").await;
-    let body = app.get("/").await.body;
-    assert!(body.contains("href=\"/hoi4/static/app.css\""));
-    assert!(body.contains("src=\"/hoi4/static/app.js\""));
-    assert!(body.contains("data-plans-url=\"/hoi4/api/plans\""));
-    assert!(body.contains("data-draft-url=\"/hoi4/api/draft\""));
-    // The proxy strips the prefix, so routing itself does not change.
-    assert_eq!(app.get("/health").await.status, StatusCode::OK);
+async fn every_link_is_relative() {
+    // A proxy serves the app under a sub-path it strips: only relative links stay under it.
+    let body = TestApp::new().await.get("/").await.body;
+    assert!(body.contains("href=\"static/app.css\""));
+    assert!(body.contains("src=\"static/app.js\""));
+    assert!(body.contains("data-plans-url=\"api/plans\""));
+    assert!(body.contains("data-draft-url=\"api/draft\""));
+    assert!(!body.contains("=\"/"));
 }
 
 #[tokio::test]
@@ -128,7 +128,7 @@ async fn the_draft_is_not_offered_among_the_saved_plans() {
 #[tokio::test]
 async fn an_empty_catalog_says_how_to_seed_it() {
     let body = TestApp::new().await.get("/").await.body;
-    assert!(body.contains("import-focuses"));
+    assert!(body.contains("hoi4_planner seed"));
 }
 
 #[tokio::test]
@@ -156,11 +156,31 @@ async fn the_page_speaks_french() {
 #[tokio::test]
 async fn assets_are_served_and_revalidated() {
     let app = TestApp::new().await;
-    for path in ["/static/app.js", "/static/app.css"] {
+    for (path, content_type) in [
+        ("/static/app.js", "text/javascript; charset=utf-8"),
+        ("/static/app.css", "text/css; charset=utf-8"),
+    ] {
         let answer = app.get(path).await;
         assert_eq!(answer.status, StatusCode::OK);
         assert_eq!(answer.headers[CACHE_CONTROL], "no-cache");
+        assert_eq!(answer.headers[CONTENT_TYPE], content_type);
+
+        let etag = answer.headers[ETAG].clone();
+        let request = Request::get(path)
+            .header(IF_NONE_MATCH, etag)
+            .body(Body::empty())
+            .unwrap();
+        assert_eq!(app.send(request).await.status, StatusCode::NOT_MODIFIED);
     }
+}
+
+#[tokio::test]
+async fn an_asset_that_is_not_compiled_in_is_not_found() {
+    let app = TestApp::new().await;
+    assert_eq!(
+        app.get("/static/nope.js").await.status,
+        StatusCode::NOT_FOUND
+    );
 }
 
 #[tokio::test]
@@ -192,22 +212,28 @@ async fn health_reports_the_technologies_too() {
 }
 
 #[tokio::test]
-async fn the_old_pages_lead_to_the_one_page_under_the_prefix() {
-    let app = TestApp::under("/hoi4").await;
+async fn the_old_pages_lead_to_the_one_page_relatively() {
+    let app = TestApp::new().await;
     for path in ["/technologies", "/staff"] {
         let answer = app.get(path).await;
         assert_eq!(answer.status, StatusCode::PERMANENT_REDIRECT);
-        assert_eq!(answer.headers[LOCATION], "/hoi4/");
+        assert_eq!(answer.headers[LOCATION], "./");
     }
 }
 
 #[tokio::test]
-async fn the_page_loads_the_scripts_of_every_tab_under_the_prefix() {
-    let body = TestApp::under("/hoi4").await.get("/").await.body;
-    for script in ["common.js", "technologies.js", "staff.js", "app.js"] {
-        assert!(body.contains(&format!("src=\"/hoi4/static/{script}\"")));
+async fn the_page_loads_the_scripts_of_every_tab() {
+    let body = TestApp::new().await.get("/").await.body;
+    for script in [
+        "common.js",
+        "technologies.js",
+        "staff.js",
+        "comments.js",
+        "app.js",
+    ] {
+        assert!(body.contains(&format!("src=\"static/{script}\"")));
     }
-    assert!(!body.contains("href=\"/hoi4/technologies\""));
+    assert!(!body.contains("href=\"technologies\""));
 }
 
 #[tokio::test]
@@ -262,16 +288,33 @@ async fn the_page_carries_the_attached_technologies_and_staff_in_the_draft() {
 }
 
 #[tokio::test]
+async fn the_page_carries_the_comments_in_the_draft_escaped() {
+    let app = TestApp::with_catalog().await;
+    let mut plan = fields(&["Rhineland"], "1937-06-01");
+    plan.focus_comments =
+        BTreeMap::from([("Rhineland".to_string(), vec!["<b>\"vite\"</b>".to_string()])]);
+    save_draft(&app.pool, "Rush", &plan).await.unwrap();
+
+    let body = app.get("/").await.body;
+    assert!(body.contains("&#34;focus_comments&#34;:{&#34;Rhineland&#34;:[&#34;&#60;b&#62;\\&#34;vite\\&#34;&#60;/b&#62;&#34;]}"));
+    assert!(!body.contains("<b>"));
+}
+
+#[tokio::test]
+async fn the_plan_has_a_column_for_comments() {
+    let body = TestApp::new().await.get("/").await.body;
+    assert!(body.contains("<span>Commentaires</span>"));
+}
+
+#[tokio::test]
 async fn each_empty_catalog_says_how_to_fill_it() {
     let body = TestApp::new().await.get("/").await.body;
     assert_eq!(body.matches("class=\"err\"").count(), 3);
-    for command in ["import-focuses", "import-technologies", "import-staff"] {
-        assert!(body.contains(&format!("hoi4_planner {command}")));
-    }
+    assert_eq!(body.matches("hoi4_planner seed").count(), 3);
 
     let body = TestApp::with_technologies().await.get("/").await.body;
     assert_eq!(body.matches("class=\"err\"").count(), 1);
-    assert!(body.contains("hoi4_planner import-staff"));
+    assert!(body.contains("Aucun membre de l&#39;état-major enregistré"));
 }
 
 #[tokio::test]
@@ -291,6 +334,7 @@ async fn the_tab_scripts_are_served() {
         "/static/common.js",
         "/static/technologies.js",
         "/static/staff.js",
+        "/static/comments.js",
     ] {
         assert_eq!(app.get(path).await.status, StatusCode::OK);
     }

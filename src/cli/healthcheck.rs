@@ -10,11 +10,10 @@ use crate::error::AppError;
 
 const TIMEOUT: Duration = Duration::from_secs(3);
 
-/// Asks the server on `SOCKET_PATH`, or `BIND_ADDR` without one, for `/health`, and prints
-/// what it says: the deploy reads how many focuses are in the catalog from it.
+/// Asks the server on `HOI4_PLANNER_SOCKET`, or `BIND_ADDR` without one, for `/health`, and
+/// prints what it says: the database and how many entries each catalog holds.
 ///
-/// Answered through the socket nginx uses, and `URL_PREFIX` only affects generated links, so
-/// this probe does not depend on the proxy.
+/// Answered through the socket nginx uses, so this probe does not depend on the proxy.
 pub async fn healthcheck(config: &AppConfig) -> Result<(), AppError> {
     let answer = tokio::time::timeout(TIMEOUT, probe(config))
         .await

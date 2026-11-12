@@ -4,6 +4,7 @@ use crate::config::DataFiles;
 use crate::db::{self, StaffRecord};
 use crate::domain::StaffMember;
 use crate::error::AppError;
+use crate::service::bundled_catalog::BUNDLED_STAFF;
 use crate::service::catalog_import::{CatalogSource, ImportOptions, ImportOutcome};
 use crate::service::data_file::{read_file, write_json};
 use crate::wiki::{PoliticsEntry, parse_staff};
@@ -42,6 +43,7 @@ async fn store(pool: &SqlitePool, members: &[StaffMember]) -> Result<i64, AppErr
 
 fn read_staff(files: &DataFiles, source: CatalogSource) -> Result<Vec<StaffMember>, AppError> {
     match source {
+        CatalogSource::Bundled => BUNDLED_STAFF.entries(),
         CatalogSource::Json => {
             let text = read_file(&files.staff_json)?;
             serde_json::from_str(&text).map_err(|source| AppError::InvalidCatalogFile {

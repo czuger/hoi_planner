@@ -2,9 +2,9 @@
  *
  * The catalogs are already in the page, so nothing here fetches them: filtering hides rows, and
  * clicking one moves its id in or out of the plan. Only the plan travels, as JSON. The plan is
- * one line per focus, and the technologies and the staff attached to it fill the line's other
- * two columns: those are drawn by `technologies.js` and `staff.js`, which edit their own map of
- * `state` and are handed the rest through `ctx`.
+ * one line per focus, and the technologies, the staff and the comments attached to it fill the
+ * line's other three columns: those are drawn by `technologies.js`, `staff.js` and `comments.js`,
+ * which edit their own maps of `state` and are handed the rest through `ctx`.
  *
  * What a focus allows, its term and its completion date are computed here as well as in
  * `src/domain/`. That is on purpose: dragging has to re-date the whole list on every pointer
@@ -38,7 +38,9 @@
     plan: [],           // focus ids, in order
     terms: {},          // focus id -> days, only for the focuses that differ
     technologies: {},   // focus id -> technology ids
-    staff: {}           // focus id -> staff ids
+    staff: {},          // focus id -> staff ids
+    comments: {},       // focus id -> comment ids, which only this page knows
+    commentText: {}     // comment id -> text
   };
   var catalog = {};     // focus id -> {name, icon}, read off the rendered rows
   var dates = {};       // focus id -> when it completes, as the lines write it
@@ -182,7 +184,8 @@
         '<span class="day">' + dates[id] + "</span>" +
         '<button data-act="rm" title="Retirer">✕</button></div>' +
         '<div class="attached techs"></div>' +
-        '<div class="attached staff"></div></div>';
+        '<div class="attached staff"></div>' +
+        '<div class="attached comments"></div></div>';
     }).join("");
 
     return { days: elapsed, end: addDays(start, elapsed), broken: broken };
@@ -214,11 +217,13 @@
     var focuses = renderLines();
     var techs = techPane.render();
     var hired = staffPane.render();
+    var notes = commentPane.render();
     var broken = focuses.broken + techs.broken + hired.broken;
     $("#total").textContent = state.plan.length + " focus" +
       (state.plan.length ? " · " + focuses.days + " jours · fin le " + fmt(focuses.end) : "") +
       " · " + plural(techs.count, "technologie", "technologies") +
       " · " + plural(hired.count, "recruté", "recrutés") +
+      (notes.count ? " · " + plural(notes.count, "commentaire", "commentaires") : "") +
       (broken ? " · " + broken + " dans le désordre" : "");
   }
 
@@ -232,6 +237,7 @@
     state.terms = stored.focus_days || {};
     state.technologies = stored.focus_technologies || {};
     state.staff = stored.focus_staff || {};
+    commentPane.load(stored.focus_comments || {});
     selected = state.plan.length ? state.plan[state.plan.length - 1] : null;
     $("#name").value = stored.name || "";
     $("#start").value = stored.start_date || $("#start").value;
@@ -247,7 +253,8 @@
       days_per_focus: daysPerFocus(),
       focus_days: state.terms,
       focus_technologies: state.technologies,
-      focus_staff: state.staff
+      focus_staff: state.staff,
+      focus_comments: commentPane.stored()
     };
   }
 
@@ -266,6 +273,7 @@
   };
   var techPane = Planner.technologyPane(ctx);
   var staffPane = Planner.staffPane(ctx);
+  var commentPane = Planner.commentPane(ctx);
 
   /* --- the catalog and the plan panel ------------------------------------ */
 
@@ -285,27 +293,35 @@
 
   /* A focus taken out of the plan takes its term with it: leaving the mark
      behind would silently re-apply it if the focus were added again. Its
-     technologies and its staff go too, as they have no date without it, and that
+     technologies, its staff and its comments go too, as they have no date (or no
+     line) without it, and that
      is said out loud as removing a focus from the catalog takes them unseen. */
   function drop(i) {
     var id = state.plan[i];
     var lost = [];
     var techs = (state.technologies[id] || []).length;
     var members = (state.staff[id] || []).length;
+    var notes = (state.comments[id] || []).length;
     if (techs) lost.push(techs + " technologie(s)");
     if (members) lost.push(members + " membre(s) de l'état-major");
+    if (notes) lost.push(notes + " commentaire(s)");
     delete state.terms[id];
     delete state.technologies[id];
     delete state.staff[id];
+    delete state.comments[id];
     state.plan.splice(i, 1);
     // The selection moves up a line, or to the last one when the first goes.
     if (selected === id) selected = state.plan[Math.max(0, i - 1)] || null;
-    if (lost.length) say(lost.join(" et ") + " retiré(s) avec ce focus.", true);
+    if (lost.length) {
+      var said = lost.length > 1 ? lost.slice(0, -1).join(", ") + " et " + lost[lost.length - 1] : lost[0];
+      say(said + " retiré(s) avec ce focus.", true);
+    }
   }
 
   linesEl.addEventListener("click", function (e) {
-    // The chips' own buttons belong to their pane.
-    if (e.target.closest(".chip")) return;
+    // The chips and the comment cell's buttons and editor belong to their pane;
+    // selecting the line would redraw it from under an open editor.
+    if (e.target.closest(".chip, .comments button, .note-editor")) return;
     var line = e.target.closest(".line");
     if (!line) return;
     var id = line.dataset.focus;
@@ -345,6 +361,8 @@
     state.terms = {};
     state.technologies = {};
     state.staff = {};
+    state.comments = {};
+    state.commentText = {};
     selected = null;
     currentId = null;
     $("#saved").value = "";
@@ -358,7 +376,7 @@
 
   /* --- dragging ---------------------------------------------------------- */
 
-  /* A line is dragged by its focus cell; the chips of the other two cells have
+  /* A line is dragged by its focus cell; the chips of the other three cells have
      their own drag (`Planner.dragChips`), each kept to its column. */
   var dragId = null, dropId = null, dropAfter = false;
 

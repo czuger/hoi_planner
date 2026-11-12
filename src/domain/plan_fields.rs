@@ -45,6 +45,12 @@ pub enum PlanFieldsError {
     /// A value of `focus_staff` is not a list of ids.
     #[error("focus_staff doit contenir des listes d'identifiants de l'état-major.")]
     StaffNotLists,
+    /// `focus_comments` is not an object.
+    #[error("focus_comments doit être un objet.")]
+    CommentsNotAnObject,
+    /// A value of `focus_comments` is not a list of texts.
+    #[error("focus_comments doit contenir des listes de textes.")]
+    CommentsNotLists,
 }
 
 /// What a plan is made of, whichever way it arrives: a save, the draft, an export, a file.
@@ -62,6 +68,8 @@ pub struct PlanFields {
     pub focus_technologies: BTreeMap<String, Vec<String>>,
     /// `{focus id: [staff ids]}`, in the order they sit next to the focus.
     pub focus_staff: BTreeMap<String, Vec<String>>,
+    /// `{focus id: [text]}`, free comments in the order they sit next to the focus.
+    pub focus_comments: BTreeMap<String, Vec<String>>,
 }
 
 impl PlanFields {
@@ -88,6 +96,11 @@ impl PlanFields {
                 PlanFieldsError::StaffNotAnObject,
                 PlanFieldsError::StaffNotLists,
             )?,
+            focus_comments: attached_lists(
+                payload.get("focus_comments"),
+                PlanFieldsError::CommentsNotAnObject,
+                PlanFieldsError::CommentsNotLists,
+            )?,
         })
     }
 
@@ -100,6 +113,7 @@ impl PlanFields {
             focus_days: BTreeMap::new(),
             focus_technologies: BTreeMap::new(),
             focus_staff: BTreeMap::new(),
+            focus_comments: BTreeMap::new(),
         }
     }
 }
@@ -186,7 +200,7 @@ fn focus_days(value: Option<&Value>) -> Result<BTreeMap<String, i64>, PlanFields
     Ok(focus_days)
 }
 
-/// `{focus id: [ids]}`, what a focus carries: its technologies, or its staff.
+/// `{focus id: [text]}`, what a focus carries: its technologies, its staff, or its comments.
 fn attached_lists(
     value: Option<&Value>,
     not_an_object: PlanFieldsError,
@@ -380,6 +394,32 @@ mod tests {
         assert_eq!(
             read(json!({"focus_staff": {"A": ["Krupp", 7]}})),
             Err(PlanFieldsError::StaffNotLists)
+        );
+    }
+
+    #[test]
+    fn comments_are_read_by_focus_in_their_order() {
+        let fields =
+            read(json!({"focus_comments": {"A": ["garder 2 PP", "puis l'Autriche"]}})).unwrap();
+        assert_eq!(
+            fields.focus_comments["A"],
+            ["garder 2 PP", "puis l'Autriche"]
+        );
+    }
+
+    #[test]
+    fn focus_comments_must_be_an_object_of_lists_of_texts() {
+        assert_eq!(
+            read(json!({"focus_comments": ["note"]})),
+            Err(PlanFieldsError::CommentsNotAnObject)
+        );
+        assert_eq!(
+            read(json!({"focus_comments": {"A": "note"}})),
+            Err(PlanFieldsError::CommentsNotLists)
+        );
+        assert_eq!(
+            read(json!({"focus_comments": {"A": ["note", 7]}})),
+            Err(PlanFieldsError::CommentsNotLists)
         );
     }
 

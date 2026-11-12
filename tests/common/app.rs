@@ -1,7 +1,5 @@
 //! The app on an in-memory database, driven one request at a time.
 
-use std::path::Path;
-
 use axum::Router;
 use axum::body::{Body, to_bytes};
 use axum::http::header::CONTENT_TYPE;
@@ -33,17 +31,12 @@ impl Answer {
 
 impl TestApp {
     pub async fn new() -> TestApp {
-        TestApp::under("").await
-    }
-
-    pub async fn under(url_prefix: &str) -> TestApp {
         let pool = db::connect("sqlite::memory:").await.unwrap();
         let state = AppState {
             pool: pool.clone(),
-            url_prefix: url_prefix.to_string(),
             database_name: DATABASE_NAME.to_string(),
         };
-        let router = build_router(state, Path::new(env!("CARGO_MANIFEST_DIR")));
+        let router = build_router(state);
         TestApp { pool, router }
     }
 

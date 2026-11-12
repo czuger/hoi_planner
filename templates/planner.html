@@ -130,7 +130,7 @@
       <button id="delete">Supprimer</button>
     </div>
 
-    <div class="heads"><span>Focus</span><span>Technologies</span><span>État-major</span></div>
+    <div class="heads"><span>Focus</span><span>Technologies</span><span>État-major</span><span>Commentaires</span></div>
     <div class="plan" id="lines"></div>
 
     <div class="foot">
@@ -147,14 +147,15 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ prefix }}/static/common.js"></script>
-<script src="{{ prefix }}/static/technologies.js"></script>
-<script src="{{ prefix }}/static/staff.js"></script>
-<script src="{{ prefix }}/static/app.js"
-        data-plans-url="{{ prefix }}/api/plans"
-        data-draft-url="{{ prefix }}/api/draft"
-        data-export-url="{{ prefix }}/api/plans/export"
-        data-import-url="{{ prefix }}/api/plans/import"
+<script src="static/common.js"></script>
+<script src="static/technologies.js"></script>
+<script src="static/staff.js"></script>
+<script src="static/comments.js"></script>
+<script src="static/app.js"
+        data-plans-url="api/plans"
+        data-draft-url="api/draft"
+        data-export-url="api/plans/export"
+        data-import-url="api/plans/import"
         data-draft="{{ draft_json }}"
         data-default-days="{{ default_days }}"
         data-short-days="{{ short_days }}"

@@ -1,4 +1,5 @@
 use std::io::IsTerminal;
+use std::path::Path;
 use std::process::ExitCode;
 
 use tracing_subscriber::EnvFilter;
@@ -15,7 +16,7 @@ use crate::service::{
 /// Runs what the command line asks, and turns a failure into a message and an exit code.
 pub async fn run(args: impl IntoIterator<Item = String>) -> ExitCode {
     tracing_subscriber::fmt()
-        .with_ansi(std::io::stdout().is_terminal())
+        .with_ansi(colors_wanted())
         .with_env_filter(
             EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")),
         )
@@ -29,13 +30,24 @@ pub async fn run(args: impl IntoIterator<Item = String>) -> ExitCode {
     }
 }
 
+/// Colors only on a terminal, and never when `NO_COLOR` is set (the service's journal).
+fn colors_wanted() -> bool {
+    let no_color = std::env::var_os("NO_COLOR").is_some_and(|value| !value.is_empty());
+    std::io::stdout().is_terminal() && !no_color
+}
+
 async fn dispatch(args: impl IntoIterator<Item = String>) -> Result<(), AppError> {
     let command = Command::parse(args)?;
     let config = AppConfig::from_env();
-    let files = DataFiles::under(&config.asset_root);
+    // The saved pages and their JSON are a laptop job, read from the checkout.
+    let files = DataFiles::under(Path::new("."));
     match command {
         Command::Serve => serve(&config).await,
         Command::Healthcheck => healthcheck(&config).await,
+        Command::Seed { database_url } => {
+            let url = database_url.unwrap_or(config.database_url);
+            run_seed(&files, &url).await
+        }
         Command::ParsePolitics => run_parse_politics(&files),
         Command::ImportFocuses {
             source,
@@ -62,6 +74,14 @@ async fn dispatch(args: impl IntoIterator<Item = String>) -> Result<(), AppError
             run_import_staff(&files, source, (!json_only).then_some(url.as_str())).await
         }
     }
+}
+
+/// The three imports from the binary's own JSON: all a deployed server can seed from.
+async fn run_seed(files: &DataFiles, database_url: &str) -> Result<(), AppError> {
+    let source = CatalogSource::Bundled;
+    run_import(files, source, Some(database_url)).await?;
+    run_import_technologies(files, source, Some(database_url)).await?;
+    run_import_staff(files, source, Some(database_url)).await
 }
 
 fn run_parse_politics(files: &DataFiles) -> Result<(), AppError> {

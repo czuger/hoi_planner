@@ -4,7 +4,7 @@ Guidance for Claude Code (claude.ai/code) working in this repository.
 
 ## What this is
 
-A planner for the **German national focus tree** of Hearts of Iron IV, and the research to go with it. Both catalogs are parsed out of saved copies of wiki pages into a local SQLite database. The web UI is one screen (`/`). On the left, the catalog in three tabs: **Focus**, **Technologies**, **État-major**, each with its own search and filters. On the right, the plan: one line per focus, in three aligned columns. The first is the focus itself, dragged into order and showing the date it completes. The second holds the technologies attached to it, each taking the date of its focus. The third holds the staff and designers of the *German Reich* page hired with it, each taking its date and filling the post of its table (Heinz Guderian → Theorists, Krupp → Industrial concerns). Clicking a focus in the catalog adds it and selects its line; clicking a technology or a member attaches it to the selected line, and clicking a line selects it. `/technologies` and `/staff`, the pages this used to be split over, redirect to `/`. Plans are saved in the database under a name.
+A planner for the **German national focus tree** of Hearts of Iron IV, and the research to go with it. Both catalogs are parsed out of saved copies of wiki pages into a local SQLite database. The web UI is one screen (`/`). On the left, the catalog in three tabs: **Focus**, **Technologies**, **État-major**, each with its own search and filters. On the right, the plan: one line per focus, in four aligned columns. The first is the focus itself, dragged into order and showing the date it completes. The second holds the technologies attached to it, each taking the date of its focus. The third holds the staff and designers of the *German Reich* page hired with it, each taking its date and filling the post of its table (Heinz Guderian → Theorists, Krupp → Industrial concerns). The fourth holds free comments, written on the line itself. Clicking a focus in the catalog adds it and selects its line; clicking a technology or a member attaches it to the selected line, and clicking a line selects it. `/technologies` and `/staff`, the pages this used to be split over, redirect to `/`. Plans are saved in the database under a name.
 
 The catalog only offers what the plan can actually take next: the wiki's "Requires …" lists are parsed too, so a focus stays out of the list until its prerequisites are in the plan.
 
@@ -15,7 +15,8 @@ The catalog only offers what the plan can actually take next: the wiki's "Requir
 ## Commands
 
 ```sh
-cargo run                                   # serve on http://127.0.0.1:5000 (DATABASE_URL, BIND_ADDR, SOCKET_PATH, ASSET_ROOT, URL_PREFIX, RUST_LOG)
+cargo run                                   # serve on http://127.0.0.1:5000 (HOI4_PLANNER_DATA_DIR, BIND_ADDR, HOI4_PLANNER_SOCKET, RUST_LOG, NO_COLOR)
+cargo run -- seed                           # fill the three catalogs from the JSON compiled into the binary
 cargo run -- import-focuses                 # data/focuses.html -> data/focuses.json -> database
 cargo run -- import-focuses --from-json     # seed from the committed JSON (fast, no page needed)
 cargo run -- import-focuses --json-only     # re-parse the page, touch no database
@@ -25,6 +26,7 @@ cargo run -- import-technologies --from-json   # same flags as import-focuses
 cargo run -- import-staff                   # data/politics.html -> data/staff.json -> database
 cargo run -- import-staff --from-json       # same flags as import-focuses
 cargo run -- parse-politics                 # data/politics.html -> politics.json + staff.json
+cargo run -- seed --database-url other.db   # ... into another database
 cargo run -- healthcheck                    # ask a running server for /health, print the answer
 cargo test                                  # unit tests + tests/ (in-memory SQLite)
 cargo test --test planner_api <name>        # one integration test
@@ -32,7 +34,7 @@ cargo clippy --all-targets -- -D warnings
 cargo fmt
 ```
 
-No external service is needed: the database is a file, created with its folder at the first connection (`DATABASE_URL`, default `data/hoi4_planner.db`), and pending migrations are applied every time the app connects. The catalogs are not in it until they are seeded; an empty one comes up healthy and says so on the page.
+No external service is needed: the database is a file, `hoi4_planner.db` in the data folder (`HOI4_PLANNER_DATA_DIR`, default `data`), created with its folder at the first connection, and pending migrations are applied every time the app connects. The catalogs are not in it until they are seeded; an empty one comes up healthy and says so on the page.
 
 ## The rules of a plan
 
@@ -40,7 +42,7 @@ A national focus costs **35 days** unless it is one of the few that take half a 
 
 The wiki page carries no duration to parse, so the odd term is picked by hand on the focus's row in the plan (a `14 / 35 / 70` picker, the middle button being the plan's own `days_per_focus` and clearing the mark) and kept in `focus_days`, `{focus id: days}` holding **only** the focuses that differ. Keyed by id rather than by position, so dragging cannot move a term onto the wrong focus; a mark for a focus not in the order is dropped on save (`PlanRecord::store`), and one that is not positive falls back to the default rather than failing (`domain::days_for`).
 
-Nothing derived is stored: `focus_ids`, `focus_days`, `focus_technologies`, `focus_staff`, `start_date` and `days_per_focus` are the plan, and `domain::schedule` makes the dates.
+Nothing derived is stored: `focus_ids`, `focus_days`, `focus_technologies`, `focus_staff`, `focus_comments`, `start_date` and `days_per_focus` are the plan, and `domain::schedule` makes the dates.
 
 The plan being built is kept too, without being named: every edit is written to **the draft**, one row of `plans` under an id no name can slug to (`domain::DRAFT_PLAN_ID`, `~draft`), so closing the tab loses nothing and the page comes down with it already in hand. It is left out of `PlanRecord::list_saved`, as it belongs to the panel and not to the dropdown, and **Vider** is what throws it away (`DELETE /api/draft`), leaving the saved plans alone.
 
@@ -77,20 +79,24 @@ The staff catalog is the *Staff and designers* section of `data/politics.html`, 
 
 A member's requirements are focus ids, **not resolved against the catalog**: about half run through branches the saved focus page does not carry, and those are named from their id. On a line, a member is hirable when every group is met by a focus on that line or an earlier one, and nothing it excludes is planned; otherwise its chip warns (`⚠`), and its catalog row is locked against the selected line, but it can still be hired. The row also says from which line's date the plan allows it (« dès le … », the latest group's earliest focus). « seulement les disponibles » is off by default for that reason. Like the technology rules, these live **only** in `static/staff.js`.
 
+## Comments
+
+Free text, with no catalog and no rule: a plan keeps `focus_comments`, `{focus id: [text]}`, drawn as chips in the fourth column of the focus's line. The cell's « + » writes one, a double click rewrites it (Enter keeps it, Shift+Enter is a new line, Escape gives up, leaving the box keeps it), and emptying it removes it. Comments drag within and between lines like the other chips, and go with their focus when it is removed (`drop()` in `app.js`, `PlanRecord::store`). On the page each comment gets an id of its own (`state.comments` holds ids, `state.commentText` their texts), as two comments can say the same thing and `detach`/`dragChips` move chips by id; those ids are never stored. All of it lives in `static/comments.js`.
+
 ## Architecture
 
-Stack: axum (HTTP), askama (server-rendered HTML in `templates/`), sqlx on SQLite. No front-end build: `static/app.css`, `static/common.js` (what the scripts share: requests, the draft timer, the two rules, and the chips attached to focus lines: `detach`, `dragChips`, each kept to its column), `static/app.js` (the plan's state, the focus tab, the lines and their focus column, the tabs, saving and files), and `static/technologies.js` and `static/staff.js` (`Planner.technologyPane` / `Planner.staffPane`: one tab and one column each, called once by `app.js` with a `ctx` giving them the shared state, the selected line, the dates and the focus names). One binary (`src/main.rs`), whose subcommands are in `src/cli/`.
+Stack: axum (HTTP), askama (server-rendered HTML in `templates/`), sqlx on SQLite. No front-end build: `static/app.css`, `static/common.js` (what the scripts share: requests, the draft timer, the two rules, and the chips attached to focus lines: `detach`, `dragChips`, each kept to its column), `static/app.js` (the plan's state, the focus tab, the lines and their focus column, the tabs, saving and files), `static/technologies.js` and `static/staff.js` (`Planner.technologyPane` / `Planner.staffPane`: one tab and one column each, called once by `app.js` with a `ctx` giving them the shared state, the selected line, the dates and the focus names), and `static/comments.js` (`Planner.commentPane`: a column and no tab, with `load`/`stored` turning the plan's texts into the page's ids and back). One binary (`src/main.rs`), whose subcommands are in `src/cli/`.
 
 Layers, from the inside out:
 
 - **`src/domain/`**: pure, no I/O, unit-tested. `Focus` (`unmet`, `conflicts`, `available`), `Catalog` (focuses by id), `schedule` (`schedule`, `days_for`, `completion_date`, `total_days`, `parse_start`, `ScheduleRow`), `Plan` and `DRAFT_PLAN_ID`, `PlanFields` (what a plan is made of, and the one check of a posted body: a save, the draft, an export and an imported file all go through `PlanFields::from_json`), `plan_file` (the exchange format: `PlanFile`, `read_plan_file`), `slugify`, `rules` (the constants of the game), `Technology` and `TechnologyCatalog` (technologies by id), `StaffMember` and `StaffCatalog` (staff by id).
 - **`src/wiki/`**: pure too, the saved pages to catalogs. `html_token` is a tolerant tokenizer, on which `requirement_list` (the `<ul>`/`<li>` nesting of one cell) and `html_tree` (a whole tree, as the country page's tables nest and span rows) are built. `focus_page::parse_wiki_page` reads the focus page. `leaders_page::parse_leaders` and `staff_page::parse_staff` read the *German Reich* page (`data/politics.html`) into `PoliticsEntry`, a focus's shape with `section` being the leader's ideology or the staff's table: advisors, theorists, chiefs, high command, commanders, concerns, designers, but not the organizations, which are the designers' trait trees. A leader's "Via focus" routes are one group; a Requirements cell is a boolean tree (`Condition`: "One of"/"All of", "Has (not) completed focus", "Visible when" included) brought to groups, with whatever is not a focus dropped and an alternative left with no focus lifting the whole choice. These focus ids are **not** resolved against the catalog: most routes run through branches the saved focus page does not carry. `technology_page::parse_technology_pages` reads the research pages (see Technologies).
-- **`src/db/`**: one record type per table (`FocusRecord`, `TechnologyRecord`, `StaffRecord`, `PlanRecord`) with async functions taking the pool. `db::connect` runs `migrations/` (embedded with `sqlx::migrate!`). Queries use runtime `sqlx::query`/`query_as` (no compile-time macros, so no `DATABASE_URL` at build time). `requires`, `excludes`, `focus_ids`, `focus_days`, `focus_technologies` and `focus_staff` are JSON columns: they are only ever read whole, and a plan may hold ids the catalog has lost, so nothing joins the two tables. Stamps are UTC text to the microsecond, which sorts chronologically. Schema changes go in a new migration file, never by editing an applied one.
-- **`src/service/`**: one use case per file. `save_plan` (slug + name checks), `draft`, `PlanDownload` (a plan as the file a browser saves), `import_focuses`, `import_technologies`, `import_staff`, `parse_politics`. Services do not print; the CLI says what happened.
-- **`src/web/`**: `router.rs` lists the routes. `main_handlers` serves the page (`PlannerPage` built from `PlannerData`, `templates/planner.html`, which draws the three catalogs' rows (`FocusRow`, `TechnologyRow`, `StaffRow`) with their `data-requires` / `data-excludes` and hands the draft over in `data-draft`; the lines are drawn and dated in the browser), the redirects of `/technologies` and `/staff`, and `/health`. `plan_handlers` and `plan_file_handlers` speak JSON, as the planner is one screen that never reloads. Every API failure is an `ApiError`: `{"error": "..."}` and a status, 503 when the database failed, so that it reads as a message next to the save button. The page itself still draws when the database fails, saying so, and says how to fill each catalog still empty.
-- **`src/cli/`**: `Command` (the command line), `run`, `serve`, `healthcheck`, `listener` (TCP, or a Unix socket when `SOCKET_PATH` is set).
+- **`src/db/`**: one record type per table (`FocusRecord`, `TechnologyRecord`, `StaffRecord`, `PlanRecord`) with async functions taking the pool. `db::connect` runs `migrations/` (embedded with `sqlx::migrate!`). Queries use runtime `sqlx::query`/`query_as` (no compile-time macros, so no database at build time). `requires`, `excludes`, `focus_ids`, `focus_days`, `focus_technologies`, `focus_staff` and `focus_comments` are JSON columns: they are only ever read whole, and a plan may hold ids the catalog has lost, so nothing joins the two tables. Stamps are UTC text to the microsecond, which sorts chronologically. Schema changes go in a new migration file, never by editing an applied one.
+- **`src/service/`**: one use case per file. `save_plan` (slug + name checks), `draft`, `PlanDownload` (a plan as the file a browser saves), `import_focuses`, `import_technologies`, `import_staff` (each from the saved pages, the JSON of `data/`, or the JSON compiled into the binary: `BundledCatalog`, which `seed` uses), `parse_politics`. Services do not print; the CLI says what happened.
+- **`src/web/`**: `router.rs` lists the routes. `main_handlers` serves the page (`PlannerPage` built from `PlannerData`, `templates/planner.html`, which draws the three catalogs' rows (`FocusRow`, `TechnologyRow`, `StaffRow`) with their `data-requires` / `data-excludes` and hands the draft over in `data-draft`; the lines are drawn and dated in the browser), the redirects of `/technologies` and `/staff`, and `/health`. `static_asset` serves `static/`, compiled into the binary (`include_str!`) with an `ETag` hashed at compile time; a file added to `static/` must be listed there, which a unit test checks. `plan_handlers` and `plan_file_handlers` speak JSON, as the planner is one screen that never reloads. Every API failure is an `ApiError`: `{"error": "..."}` and a status, 503 when the database failed, so that it reads as a message next to the save button. The page itself still draws when the database fails, saying so, and says how to fill each catalog still empty.
+- **`src/cli/`**: `Command` (the command line), `run`, `serve`, `healthcheck`, `listener` (TCP, or a Unix socket when `HOI4_PLANNER_SOCKET` is set: a stale one removed first, `0666`, removed at SIGTERM or Ctrl-C).
 
-`URL_PREFIX` is what links are built under when a proxy serves the app under a sub-path and strips it: routing does not change, only what `templates/` write.
+**Every link is relative** (`static/app.js`, `api/plans`, the redirects' `./`): a proxy may serve the app under a sub-path it strips, and the app does not know which.
 
 ### One page, one plan
 
@@ -110,7 +116,7 @@ GET  /api/plans/<id>/export   a saved plan, same file, for curl
 POST /api/plans/import        a file, checked, handed back as a plan to draw
 ```
 
-The file holds the plan and nothing else (`name`, `focus_ids`, `start_date`, `days_per_focus`, `focus_days`, `focus_technologies`, `focus_staff`) inside an envelope naming what it is (`format`, `version`), so a JSON file that is not one of ours is refused with a sentence instead of half-read into the panel. Beside them is `focuses`, a **readable echo**: each focus's name, term, completion date, technologies, and staff with their posts, for whoever opens the file. An import ignores it, because the order is the plan and `schedule` makes those dates again. Nothing of the database travels: no id, no stamps, no timestamp of the export itself, and `focus_days` is sorted. Exporting one plan twice gives the same bytes, which is what lets a plan be diffed or kept in git. Version 2 added `focus_technologies`, version 3 `focus_staff`. Older files still import, version 1 (including those exported by the earlier Python version of this app) with no technologies and no staff, version 2 with no staff.
+The file holds the plan and nothing else (`name`, `focus_ids`, `start_date`, `days_per_focus`, `focus_days`, `focus_technologies`, `focus_staff`, `focus_comments`) inside an envelope naming what it is (`format`, `version`), so a JSON file that is not one of ours is refused with a sentence instead of half-read into the panel. Beside them is `focuses`, a **readable echo**: each focus's name, term, completion date, technologies, staff with their posts, and comments, for whoever opens the file. An import ignores it, because the order is the plan and `schedule` makes those dates again. Nothing of the database travels: no id, no stamps, no timestamp of the export itself, and `focus_days` is sorted. Exporting one plan twice gives the same bytes, which is what lets a plan be diffed or kept in git. Version 2 added `focus_technologies`, version 3 `focus_staff`, version 4 `focus_comments`. Older files still import, version 1 (including those exported by the earlier Python version of this app) with no technologies, staff or comments, version 2 with no staff or comments, version 3 with no comments.
 
 **Importing stores nothing.** A plan arriving is a plan being built, so it lands in the panel, where it is drawn, reordered, renamed and then saved like any other, and where the draft picks it up on the way. Ids this catalog does not have come back in `unknown`, `unknown_technologies` and `unknown_staff` and stay in the plan rather than being dropped quietly; the panel says how many, and neither is drawn or dated.
 
@@ -118,22 +124,18 @@ The file holds the plan and nothing else (`name`, `focus_ids`, `start_date`, `da
 
 ## Deploying
 
-One command from the laptop, no registry and no container for the app: `make deploy` cross-compiles a static Linux binary with `cargo zigbuild`, ships it with `static/`, `data/focuses.json`, `data/technologies.json` and `data/staff.json` over SSH into a new `releases/<UTC timestamp>/`, repoints `current`, restarts the systemd user unit and waits for `/health`. `make rollback` puts the previous version back without building or transferring anything.
+With `cargo deploy`, described in `[package.metadata.deploy]` of `Cargo.toml`. Nothing about the server lives in this repository: its values come from the `DEPLOY_*` environment variables.
 
 ```sh
-make setup     # once: directory layout, systemd and socket checks, nginx snippet
-make deploy    # build -> ship -> restart -> health check -> prune
-make seed      # fill the three catalogs from the current release's JSON
-make rollback  # back to the previous version
-make status    # what runs there, and what /health says
-make logs      # follow the unit's output
+cargo deploy setup          # once: prepare the server
+cargo deploy                # build, ship, restart, health check (/health)
+cargo deploy run -- seed    # fill the three catalogs from the deployed binary
+cargo deploy rollback       # back to the previous version
+cargo deploy status         # what runs, and what /health says
+cargo deploy logs           # follow the service's journal
 ```
 
-`make seed` runs on the server (`$REMOTE_DIR/run import-focuses --from-json`, then `import-technologies` and `import-staff`, both `--from-json`) and only replaces the `focuses`, `technologies` and `staff` tables. A re-parsed page therefore goes out with a deploy followed by a seed: re-parsing is a laptop job, as the saved wiki pages are not shipped.
-
-`Makefile` is shortcuts only; the settings are in **`deploy/config.sh`**, every one of them overridable from the environment (`SSH_HOST=ced@other-box make deploy`). **`deploy/remote.sh`** is the server side and is uploaded before every run, which is what keeps deploy and rollback starting the app the same way: the unit and `app.env` are written in one place, and `$REMOTE_DIR/run <command>` runs the current binary with that same environment. The app has no secret, so nothing on the server is hand-written. The database lives in `$REMOTE_DIR/data/db/`, outside the releases, and survives every deploy; the app applies pending migrations when it starts.
-
-The app **opens no port**. It listens on a Unix socket in a host directory that the dockerized nginx (the `nginx_proxy` project, not this one) bind-mounts, and the snippet rendered from `deploy/nginx/*.template` proxies `/hoi4/` to it, stripping the prefix. It is installed by `make setup` / `make nginx`, never by a deploy, and validated with `nginx -t` before the proxy reloads. `URL_PREFIX` in `deploy/config.sh` renders the snippet and is passed to the app, so the two cannot disagree.
+A release is the binary and nothing else, which is why `static/` and the catalogs' JSON are compiled in. The app gets its socket in `HOI4_PLANNER_SOCKET` and its data folder in `HOI4_PLANNER_DATA_DIR` (kept across releases, migrations applied at start), and runs sandboxed with no network: it opens no outgoing connection. `seed` only replaces the `focuses`, `technologies` and `staff` tables, so a re-parsed page goes out with a deploy followed by a seed: re-parsing is a laptop job, as the saved wiki pages are not shipped.
 
 ## Tests
 

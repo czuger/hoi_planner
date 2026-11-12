@@ -76,8 +76,6 @@ pub struct PlannerPage {
     pub draft_json: String,
     /// What went wrong, if anything: one sentence each.
     pub errors: Vec<String>,
-    /// What every link is built under.
-    pub prefix: String,
     /// What the database is called on screen.
     pub database_name: String,
     /// The date the start field shows at first.
@@ -114,7 +112,6 @@ impl PlannerPage {
             plans: data.plans.into_iter().map(saved_option).collect(),
             draft_json,
             errors,
-            prefix: state.url_prefix.clone(),
             database_name: state.database_name.clone(),
             default_start: DEFAULT_START_TEXT,
             default_days: DEFAULT_DAYS_PER_FOCUS,

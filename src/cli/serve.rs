@@ -9,9 +9,8 @@ pub async fn serve(config: &AppConfig) -> Result<(), AppError> {
     let pool = db::connect(&config.database_url).await?;
     let state = AppState {
         pool,
-        url_prefix: config.url_prefix.clone(),
         database_name: database_label(&config.database_url),
     };
-    let router = build_router(state, &config.asset_root);
+    let router = build_router(state);
     listen(router, config).await
 }

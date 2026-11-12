@@ -8,7 +8,8 @@ use serde_json::{Value, json};
 
 use crate::db::{FocusRecord, StaffRecord, TechnologyRecord};
 use crate::domain::{
-    Catalog, PlanFields, StaffCatalog, TechnologyCatalog, posted_name, read_plan_file,
+    Catalog, Plan, PlanFields, PlanFile, StaffCatalog, TechnologyCatalog, plan_text, posted_name,
+    read_plan_file,
 };
 use crate::error::AppError;
 use crate::service::PlanDownload;
@@ -43,18 +44,52 @@ pub async fn export_saved(
     let plan = found_plan(&state, &plan_id).await?;
     let answer = async {
         let catalogs = load_catalogs(&state).await?;
-        let fields = PlanFields {
-            focus_ids: plan.focus_ids,
-            start_date: Some(plan.start_date),
-            days_per_focus: plan.days_per_focus,
-            focus_days: plan.focus_days,
-            focus_technologies: plan.focus_technologies,
-            focus_staff: plan.focus_staff,
-            focus_comments: plan.focus_comments,
-        };
-        download(Some(plan.name), fields, &catalogs)
+        let (name, fields) = saved_fields(plan);
+        download(Some(name), fields, &catalogs)
     };
     answer.await.map_err(|error| ApiError::new(&state, error))
+}
+
+/// The plan on screen as plain text, to be copied and pasted: the Text button.
+pub async fn export_panel_text(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    body: Bytes,
+) -> Result<Response, ApiError> {
+    let payload = posted_object(&headers, &body);
+    let answer = async {
+        let fields = PlanFields::from_json(&payload)?;
+        let catalogs = load_catalogs(&state).await?;
+        Ok::<Response, AppError>(text(posted_name(&payload), fields, &catalogs))
+    };
+    answer.await.map_err(|error| ApiError::new(&state, error))
+}
+
+/// A saved plan as plain text, by id.
+pub async fn export_saved_text(
+    State(state): State<AppState>,
+    Path(plan_id): Path<String>,
+) -> Result<Response, ApiError> {
+    let plan = found_plan(&state, &plan_id).await?;
+    let catalogs = load_catalogs(&state)
+        .await
+        .map_err(|error| ApiError::new(&state, error))?;
+    let (name, fields) = saved_fields(plan);
+    Ok(text(Some(name), fields, &catalogs))
+}
+
+/// A stored plan's name, and the fields a file is written from.
+fn saved_fields(plan: Plan) -> (String, PlanFields) {
+    let fields = PlanFields {
+        focus_ids: plan.focus_ids,
+        start_date: Some(plan.start_date),
+        days_per_focus: plan.days_per_focus,
+        focus_days: plan.focus_days,
+        focus_technologies: plan.focus_technologies,
+        focus_staff: plan.focus_staff,
+        focus_comments: plan.focus_comments,
+    };
+    (plan.name, fields)
 }
 
 /// A file's contents, checked and handed back for the panel to draw.
@@ -150,4 +185,20 @@ fn download(
         file.body,
     )
         .into_response())
+}
+
+/// The plan as text, shown rather than downloaded: nothing to save, only to copy.
+fn text(name: Option<String>, fields: PlanFields, catalogs: &Catalogs) -> Response {
+    let file = PlanFile::new(
+        name,
+        fields,
+        &catalogs.focuses,
+        &catalogs.technologies,
+        &catalogs.staff,
+    );
+    (
+        [(CONTENT_TYPE, "text/plain; charset=utf-8")],
+        plan_text(&file),
+    )
+        .into_response()
 }

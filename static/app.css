@@ -111,6 +111,17 @@ button:hover{border-color:var(--accent-dim)}
 .status{font-size:12px}
 .status.ok{color:var(--accent)}
 .status.bad{color:#e6b0b0}
+/* --- the plan as text, to copy --- */
+#text-dialog{width:min(860px,calc(100vw - 32px));max-width:none;padding:0;color:var(--text);
+             background:var(--panel);border:1px solid var(--line);border-radius:8px}
+#text-dialog::backdrop{background:rgba(0,0,0,.55)}
+#text-dialog form{display:flex;flex-direction:column;gap:10px;padding:14px}
+#text-dialog strong{color:var(--accent)}
+#plan-text{width:100%;height:min(60vh,560px);resize:vertical;color:var(--text);
+           background:var(--panel-2);border:1px solid var(--line);border-radius:4px;padding:10px;
+           font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre}
+#text-dialog .actions{display:flex;gap:8px;align-items:center}
+
 .empty{color:var(--muted);padding:36px 20px;text-align:center;font-size:26px}
 .empty a{color:var(--accent)}
 

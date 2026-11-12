@@ -94,6 +94,8 @@ async fn the_page_carries_the_urls_a_plan_travels_through() {
     let body = TestApp::with_catalog().await.get("/").await.body;
     assert!(body.contains("data-export-url=\"api/plans/export\""));
     assert!(body.contains("data-import-url=\"api/plans/import\""));
+    assert!(body.contains("data-text-url=\"api/plans/export/text\""));
+    assert!(body.contains("id=\"text-dialog\""));
 }
 
 #[tokio::test]

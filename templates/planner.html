@@ -140,10 +140,24 @@
       <button id="import" title="Remplacer le plan par celui d'un fichier">Importer</button>
       <input type="file" id="file" accept=".json,application/json" hidden>
       <button id="export" title="Enregistrer le plan à l'écran dans un fichier">Exporter</button>
+      <button id="text" title="Afficher le plan en texte, à copier-coller">Texte</button>
       <button id="clear" title="Vider le plan et oublier le brouillon">Vider</button>
     </div>
   </div>
 </div>
+
+<dialog id="text-dialog">
+  <form method="dialog">
+    <strong>Plan en texte</strong>
+    <textarea id="plan-text" readonly spellcheck="false"></textarea>
+    <div class="actions">
+      <span id="text-status" class="status"></span>
+      <span class="grow"></span>
+      <button type="button" id="copy-text">Copier</button>
+      <button value="close">Fermer</button>
+    </div>
+  </form>
+</dialog>
 {% endblock %}
 
 {% block scripts %}
@@ -156,6 +170,7 @@
         data-draft-url="api/draft"
         data-export-url="api/plans/export"
         data-import-url="api/plans/import"
+        data-text-url="api/plans/export/text"
         data-draft="{{ draft_json }}"
         data-default-days="{{ default_days }}"
         data-short-days="{{ short_days }}"

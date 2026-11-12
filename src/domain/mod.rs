@@ -5,6 +5,7 @@ mod focus;
 mod plan;
 mod plan_fields;
 mod plan_file;
+mod plan_text;
 pub mod rules;
 mod schedule;
 mod slug;
@@ -21,6 +22,7 @@ pub use plan_file::{
     EchoRow, EchoStaff, EchoTechnology, FILE_FORMAT, PlanFile, PlanFileError, VERSION,
     read_plan_file,
 };
+pub use plan_text::plan_text;
 pub use schedule::{ScheduleRow, completion_date, days_for, parse_start, schedule, total_days};
 pub use slug::slugify;
 pub use staff_catalog::StaffCatalog;

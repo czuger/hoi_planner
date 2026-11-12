@@ -25,6 +25,7 @@
   var DRAFT_URL = script.dataset.draftUrl;
   var EXPORT_URL = script.dataset.exportUrl;
   var IMPORT_URL = script.dataset.importUrl;
+  var TEXT_URL = script.dataset.textUrl;
   var DEFAULT_DAYS = parseInt(script.dataset.defaultDays, 10) || 35;
   var SHORT_DAYS = parseInt(script.dataset.shortDays, 10) || 14;
   var LONG_DAYS = parseInt(script.dataset.longDays, 10) || 70;
@@ -557,6 +558,56 @@
         say(filename + " exporté.", true);
       });
     }).catch(function (error) { say(error.message, false); });
+  });
+
+  /* The plan as text, written by the server like the file's dates, shown in a
+     box to be copied rather than saved. */
+  $("#text").addEventListener("click", function () {
+    if (!state.plan.length) { say("Rien à exporter pour l'instant.", false); return; }
+
+    fetch(TEXT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(panel())
+    }).then(function (response) {
+      if (!response.ok) {
+        return response.json().catch(function () { return {}; }).then(function (body) {
+          throw new Error(body.error || "L'export en texte a échoué.");
+        });
+      }
+      return response.text().then(function (text) {
+        var box = $("#plan-text");
+        box.value = text;
+        $("#text-status").textContent = "";
+        $("#text-dialog").showModal();
+        box.focus();
+        box.select();
+        box.scrollTop = 0;
+      });
+    }).catch(function (error) { say(error.message, false); });
+  });
+
+  /* The clipboard API wants a secure context, which a proxy serving plain http
+     is not: the older command still copies a selection there. */
+  $("#copy-text").addEventListener("click", function () {
+    var box = $("#plan-text");
+    var status = $("#text-status");
+    function done(ok) {
+      status.textContent = ok ? "Copié." : "Copie refusée par le navigateur : sélectionnez le texte et copiez-le.";
+      status.className = "status " + (ok ? "ok" : "bad");
+    }
+    function fallback() {
+      box.focus();
+      box.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (error) { ok = false; }
+      done(ok);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(box.value).then(function () { done(true); }, fallback);
+    } else {
+      fallback();
+    }
   });
 
   $("#import").addEventListener("click", function () {

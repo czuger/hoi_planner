@@ -259,6 +259,9 @@ async fn every_route_reports_a_failing_database() {
         app.post("/api/plans/export", json!({"focus_ids": []}))
             .await,
         app.get("/api/plans/any/export").await,
+        app.post("/api/plans/export/text", json!({"focus_ids": []}))
+            .await,
+        app.get("/api/plans/any/export/text").await,
         app.post("/api/plans/import", file).await,
     ];
     for answer in answers {

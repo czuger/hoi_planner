@@ -3,7 +3,7 @@
 mod common;
 
 use axum::http::StatusCode;
-use axum::http::header::CONTENT_DISPOSITION;
+use axum::http::header::{CONTENT_DISPOSITION, CONTENT_TYPE};
 use common::app::{Answer, TestApp};
 use hoi4_planner::db::PlanRecord;
 use hoi4_planner::domain::{FILE_FORMAT, PlanFields, VERSION};
@@ -151,6 +151,64 @@ async fn exporting_a_plan_that_is_not_there() {
     let app = TestApp::new().await;
     let answer = app.get("/api/plans/nope/export").await;
     assert_eq!(answer.status, StatusCode::NOT_FOUND);
+}
+
+#[tokio::test]
+async fn the_panel_reads_as_text_to_copy() {
+    let app = TestApp::with_technologies().await;
+    let mut panel = json!({
+        "name": "Barbarossa rush",
+        "focus_ids": ["Rhineland", "Anschluss"],
+        "focus_days": {"Anschluss": 70},
+        "focus_technologies": {"Rhineland": ["Construction_I"]},
+        "focus_comments": {"Anschluss": ["puis la Tchécoslovaquie"]},
+    });
+    panel["start_date"] = json!("1936-01-01");
+    let answer = app.post("/api/plans/export/text", panel).await;
+
+    assert_eq!(answer.status, StatusCode::OK);
+    assert_eq!(answer.headers[CONTENT_TYPE], "text/plain; charset=utf-8");
+    assert!(answer.headers.get(CONTENT_DISPOSITION).is_none());
+    assert_eq!(
+        answer.body,
+        "Barbarossa rush — début 1 janv. 1936\n\n\
+         1. 5 févr. 1936 — Remilitarize the Rhineland\n   \
+         Technologies : Construction I\n\
+         2. 15 avr. 1936 — Anschluss (70 j)\n   \
+         Commentaires : puis la Tchécoslovaquie\n"
+    );
+}
+
+#[tokio::test]
+async fn the_text_is_checked_the_way_a_save_is() {
+    let app = TestApp::new().await;
+    let answer = app
+        .post("/api/plans/export/text", json!({"days_per_focus": 0}))
+        .await;
+    assert_eq!(answer.status, StatusCode::BAD_REQUEST);
+    assert!(answer.json()["error"].is_string());
+}
+
+#[tokio::test]
+async fn a_saved_plan_reads_as_text_by_id() {
+    let app = TestApp::with_catalog().await;
+    save(
+        &app,
+        PlanFields {
+            focus_ids: vec!["Rhineland".to_string()],
+            start_date: Some("1937-06-01".to_string()),
+            ..PlanFields::empty()
+        },
+    )
+    .await;
+
+    let answer = app.get("/api/plans/barbarossa-rush/export/text").await;
+    assert_eq!(
+        answer.body,
+        "Barbarossa rush — début 1 juin 1937\n\n1. 6 juil. 1937 — Remilitarize the Rhineland\n"
+    );
+    let missing = app.get("/api/plans/nope/export/text").await;
+    assert_eq!(missing.status, StatusCode::NOT_FOUND);
 }
 
 #[tokio::test]

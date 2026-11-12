@@ -29,6 +29,10 @@ pub fn build_router(state: AppState) -> Router {
                 .delete(plan_handlers::destroy_export),
         )
         .route(
+            "/api/plans/export/text",
+            post(plan_file_handlers::export_panel_text),
+        )
+        .route(
             "/api/plans/import",
             post(plan_file_handlers::import_file)
                 .get(plan_handlers::show_import)
@@ -41,6 +45,10 @@ pub fn build_router(state: AppState) -> Router {
         .route(
             "/api/plans/{plan_id}/export",
             get(plan_file_handlers::export_saved),
+        )
+        .route(
+            "/api/plans/{plan_id}/export/text",
+            get(plan_file_handlers::export_saved_text),
         )
         .route(
             "/api/draft",

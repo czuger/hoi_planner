@@ -101,6 +101,7 @@ async fn every_link_is_relative() {
     // A proxy serves the app under a sub-path it strips: only relative links stay under it.
     let body = TestApp::new().await.get("/").await.body;
     assert!(body.contains("href=\"static/app.css\""));
+    assert!(body.contains("href=\"static/favicon.svg\""));
     assert!(body.contains("src=\"static/app.js\""));
     assert!(body.contains("data-plans-url=\"api/plans\""));
     assert!(body.contains("data-draft-url=\"api/draft\""));
@@ -159,6 +160,7 @@ async fn assets_are_served_and_revalidated() {
     for (path, content_type) in [
         ("/static/app.js", "text/javascript; charset=utf-8"),
         ("/static/app.css", "text/css; charset=utf-8"),
+        ("/static/favicon.svg", "image/svg+xml"),
     ] {
         let answer = app.get(path).await;
         assert_eq!(answer.status, StatusCode::OK);

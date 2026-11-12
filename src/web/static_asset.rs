@@ -1,4 +1,4 @@
-//! The page's stylesheet and scripts, compiled into the binary: a release is that one file.
+//! The page's stylesheet, scripts and icon, compiled into the binary: a release is that one file.
 
 use axum::extract::Path;
 use axum::http::header::{CONTENT_TYPE, ETAG, IF_NONE_MATCH};
@@ -7,6 +7,7 @@ use axum::response::{IntoResponse, Response};
 
 const CSS: &str = "text/css; charset=utf-8";
 const JAVASCRIPT: &str = "text/javascript; charset=utf-8";
+const SVG: &str = "image/svg+xml";
 
 /// One file of `static/`, as served under `/static/`.
 #[derive(Debug)]
@@ -33,13 +34,14 @@ macro_rules! asset {
     }};
 }
 
-const ASSETS: [StaticAsset; 6] = [
+const ASSETS: [StaticAsset; 7] = [
     asset!("app.css", CSS),
     asset!("common.js", JAVASCRIPT),
     asset!("technologies.js", JAVASCRIPT),
     asset!("staff.js", JAVASCRIPT),
     asset!("comments.js", JAVASCRIPT),
     asset!("app.js", JAVASCRIPT),
+    asset!("favicon.svg", SVG),
 ];
 
 /// FNV-1a, computed at compile time: an `ETag` only has to change when the file does.

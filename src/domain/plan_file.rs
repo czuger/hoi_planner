@@ -4,23 +4,24 @@ use serde::Serialize;
 use serde_json::{Map, Value};
 use thiserror::Error;
 
-use crate::domain::{Catalog, PlanFields, TechnologyCatalog, parse_start, schedule};
+use crate::domain::{Catalog, PlanFields, StaffCatalog, TechnologyCatalog, parse_start, schedule};
 
 /// The format name an exported file declares, the only thing telling it from any other JSON.
 pub const FILE_FORMAT: &str = "hoi4-planner-plan";
 
 /// What a future change to these fields would raise, so that an older planner refuses a file
 /// it would misread.
-pub const VERSION: u64 = 2;
+pub const VERSION: u64 = 3;
 
 /// The plan fields of a file; the rest of it is the envelope and the readable echo.
-const PLAN_KEYS: [&str; 6] = [
+const PLAN_KEYS: [&str; 7] = [
     "name",
     "focus_ids",
     "start_date",
     "days_per_focus",
     "focus_days",
     "focus_technologies",
+    "focus_staff",
 ];
 
 /// Why a JSON document is not a plan file.
@@ -58,6 +59,9 @@ pub struct EchoRow {
     /// The technologies attached to it, which complete on the same date.
     #[serde(skip_serializing_if = "Vec::is_empty")]
     pub technologies: Vec<EchoTechnology>,
+    /// The staff hired with it, from the same date.
+    #[serde(skip_serializing_if = "Vec::is_empty")]
+    pub staff: Vec<EchoStaff>,
 }
 
 /// One technology as the file spells it out next to its focus.
@@ -67,6 +71,17 @@ pub struct EchoTechnology {
     pub id: String,
     /// Its name.
     pub name: String,
+}
+
+/// One member of staff as the file spells it out next to its focus: who, and in which post.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+pub struct EchoStaff {
+    /// The staff id.
+    pub id: String,
+    /// The name.
+    pub name: String,
+    /// The table it comes from, which is the post it fills.
+    pub post: String,
 }
 
 /// A plan as an exported file: the plan's own fields in an envelope, plus a readable echo.
@@ -92,17 +107,20 @@ pub struct PlanFile {
     pub focus_days: BTreeMap<String, i64>,
     /// `{focus id: [technology ids]}`.
     pub focus_technologies: BTreeMap<String, Vec<String>>,
-    /// The readable echo: each focus's name, term, completion date and technologies.
+    /// `{focus id: [staff ids]}`.
+    pub focus_staff: BTreeMap<String, Vec<String>>,
+    /// The readable echo: each focus's name, term, completion date, technologies and staff.
     pub focuses: Vec<EchoRow>,
 }
 
 impl PlanFile {
-    /// One plan as the file an export writes; the two catalogs only feed the echo.
+    /// One plan as the file an export writes; the catalogs only feed the echo.
     pub fn new(
         name: Option<String>,
         fields: PlanFields,
         catalog: &Catalog,
         technologies: &TechnologyCatalog,
+        staff: &StaffCatalog,
     ) -> PlanFile {
         let rows = schedule(
             &fields.focus_ids,
@@ -118,6 +136,7 @@ impl PlanFile {
                     fields.focus_technologies.get(&row.focus.id),
                     technologies,
                 ),
+                staff: echo_staff(fields.focus_staff.get(&row.focus.id), staff),
                 position: row.plan_position,
                 id: row.focus.id,
                 name: row.focus.name,
@@ -134,6 +153,7 @@ impl PlanFile {
             days_per_focus: fields.days_per_focus,
             focus_days: fields.focus_days,
             focus_technologies: fields.focus_technologies,
+            focus_staff: fields.focus_staff,
             focuses,
         }
     }
@@ -151,6 +171,20 @@ fn echo_technologies(
         .map(|technology| EchoTechnology {
             id: technology.id.clone(),
             name: technology.name.clone(),
+        })
+        .collect()
+}
+
+/// A focus's staff by name and post, leaving out the ids the catalog has lost.
+fn echo_staff(attached: Option<&Vec<String>>, staff: &StaffCatalog) -> Vec<EchoStaff> {
+    attached
+        .into_iter()
+        .flatten()
+        .filter_map(|id| staff.get(id))
+        .map(|member| EchoStaff {
+            id: member.id.clone(),
+            name: member.name.clone(),
+            post: member.section.clone(),
         })
         .collect()
 }
@@ -189,7 +223,7 @@ mod tests {
     use serde_json::json;
 
     use super::*;
-    use crate::domain::{Focus, Technology};
+    use crate::domain::{Focus, StaffMember, Technology};
 
     fn catalog() -> Catalog {
         let focus = |id: &str, name: &str| Focus {
@@ -224,8 +258,21 @@ mod tests {
         }])
     }
 
+    fn staff_catalog() -> StaffCatalog {
+        StaffCatalog::new(vec![StaffMember {
+            id: "Heinz_Guderian__Theorists".to_string(),
+            name: "Heinz Guderian".to_string(),
+            icon: String::new(),
+            icon_page: String::new(),
+            section: "Theorists".to_string(),
+            position: 0,
+            requires: Vec::new(),
+            excludes: Vec::new(),
+        }])
+    }
+
     fn file_of(name: Option<String>, plan: PlanFields, catalog: &Catalog) -> PlanFile {
-        PlanFile::new(name, plan, catalog, &technology_catalog())
+        PlanFile::new(name, plan, catalog, &technology_catalog(), &staff_catalog())
     }
 
     fn fields(focus_ids: &[&str]) -> PlanFields {
@@ -235,6 +282,7 @@ mod tests {
             days_per_focus: 35,
             focus_days: BTreeMap::from([("Anschluss".to_string(), 70)]),
             focus_technologies: BTreeMap::new(),
+            focus_staff: BTreeMap::new(),
         }
     }
 
@@ -325,6 +373,7 @@ mod tests {
                 "days_per_focus": 35,
                 "focus_days": {"Anschluss": 70},
                 "focus_technologies": {},
+                "focus_staff": {},
             })
         );
     }
@@ -346,6 +395,39 @@ mod tests {
             file["focus_technologies"],
             json!({"Rhineland": ["Construction_I", "Gone"]})
         );
+    }
+
+    #[test]
+    fn the_echo_names_the_staff_and_their_posts_and_leaves_out_lost_ones() {
+        let mut plan = fields(&["Rhineland"]);
+        plan.focus_staff = BTreeMap::from([(
+            "Rhineland".to_string(),
+            vec!["Gone".to_string(), "Heinz_Guderian__Theorists".to_string()],
+        )]);
+        let file = serde_json::to_value(file_of(None, plan, &catalog())).unwrap();
+
+        assert_eq!(
+            file["focuses"][0]["staff"],
+            json!([{"id": "Heinz_Guderian__Theorists", "name": "Heinz Guderian", "post": "Theorists"}])
+        );
+        assert_eq!(
+            file["focus_staff"],
+            json!({"Rhineland": ["Gone", "Heinz_Guderian__Theorists"]})
+        );
+    }
+
+    #[test]
+    fn a_file_from_before_staff_is_still_read() {
+        let read = read_plan_file(&json!({
+            "format": FILE_FORMAT, "version": 2, "focus_ids": ["Rhineland"],
+            "focus_technologies": {"Rhineland": ["Construction_I"]},
+        }))
+        .unwrap();
+        assert_eq!(
+            read["focus_technologies"],
+            json!({"Rhineland": ["Construction_I"]})
+        );
+        assert!(read.get("focus_staff").is_none());
     }
 
     #[test]

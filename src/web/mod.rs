@@ -9,10 +9,12 @@ mod plan_file_handlers;
 mod plan_handlers;
 mod planner_page;
 mod router;
-mod technologies_page;
+mod staff_row;
+mod technology_row;
 
 pub use api_error::ApiError;
 pub use app_state::AppState;
-pub use planner_page::{FocusRow, PlannerPage, SavedPlanOption};
+pub use planner_page::{FocusRow, PlannerData, PlannerPage, SavedPlanOption};
 pub use router::build_router;
-pub use technologies_page::{PlanLine, TechnologiesPage, TechnologyRow};
+pub use staff_row::StaffRow;
+pub use technology_row::TechnologyRow;

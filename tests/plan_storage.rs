@@ -4,8 +4,8 @@ mod common;
 
 use std::collections::BTreeMap;
 
-use common::{FOCUS_ID, catalog, focus, technologies};
-use hoi4_planner::db::{self, FocusRecord, PlanRecord, TechnologyRecord};
+use common::{FOCUS_ID, catalog, focus, staff, technologies};
+use hoi4_planner::db::{self, FocusRecord, PlanRecord, StaffRecord, TechnologyRecord};
 use hoi4_planner::domain::{DRAFT_PLAN_ID, PlanFields};
 use hoi4_planner::error::AppError;
 use hoi4_planner::service::{clear_draft, load_draft, save_draft, save_plan};
@@ -343,15 +343,26 @@ async fn a_database_file_keeps_what_it_holds_and_gets_its_folder_made() {
     reopened.close().await;
 }
 
+fn by_focus(attached: &[(&str, &[&str])]) -> BTreeMap<String, Vec<String>> {
+    attached
+        .iter()
+        .map(|(focus_id, ids)| {
+            let ids = ids.iter().map(ToString::to_string).collect();
+            (focus_id.to_string(), ids)
+        })
+        .collect()
+}
+
 fn attached(focus_ids: &[&str], attached: &[(&str, &[&str])]) -> PlanFields {
     PlanFields {
-        focus_technologies: attached
-            .iter()
-            .map(|(focus_id, technologies)| {
-                let technologies = technologies.iter().map(ToString::to_string).collect();
-                (focus_id.to_string(), technologies)
-            })
-            .collect(),
+        focus_technologies: by_focus(attached),
+        ..fields(focus_ids)
+    }
+}
+
+fn hired(focus_ids: &[&str], hired: &[(&str, &[&str])]) -> PlanFields {
+    PlanFields {
+        focus_staff: by_focus(hired),
         ..fields(focus_ids)
     }
 }
@@ -389,6 +400,7 @@ async fn a_plan_written_before_technologies_reads_as_having_none() {
 
     let stored = PlanRecord::find(&pool, "old").await.unwrap().unwrap();
     assert!(stored.focus_technologies.is_empty());
+    assert!(stored.focus_staff.is_empty());
 }
 
 #[tokio::test]
@@ -416,4 +428,50 @@ async fn replacing_the_technologies_loses_what_the_pages_no_longer_have() {
         .await
         .unwrap();
     assert_eq!(TechnologyRecord::count(&pool).await.unwrap(), 1);
+}
+
+#[tokio::test]
+async fn a_plan_keeps_its_staff_by_focus_in_their_order() {
+    let pool = pool().await;
+    let plan = hired(&["A"], &[("A", &["Krupp", "Heinz_Guderian__Theorists"])]);
+    save_plan(&pool, "Rush", &plan).await.unwrap();
+
+    let stored = PlanRecord::find(&pool, "rush").await.unwrap().unwrap();
+    assert_eq!(
+        stored.focus_staff["A"],
+        ["Krupp", "Heinz_Guderian__Theorists"]
+    );
+}
+
+#[tokio::test]
+async fn staff_of_a_focus_not_in_the_order_are_not_stored() {
+    let pool = pool().await;
+    let plan = hired(
+        &["A"],
+        &[("A", &["Krupp"]), ("Gone", &["Franz_Halder"]), ("B", &[])],
+    );
+    let stored = save_draft(&pool, "", &plan).await.unwrap();
+
+    assert_eq!(stored.focus_staff.len(), 1);
+    assert_eq!(stored.focus_staff["A"], ["Krupp"]);
+}
+
+#[tokio::test]
+async fn replacing_the_staff_stores_them_in_order_and_says_how_many() {
+    let pool = pool().await;
+    assert_eq!(StaffRecord::replace_all(&pool, &staff()).await.unwrap(), 3);
+
+    let mut expected = staff();
+    expected.sort_by_key(|member| member.position);
+    assert_eq!(StaffRecord::list(&pool).await.unwrap(), expected);
+}
+
+#[tokio::test]
+async fn replacing_the_staff_loses_what_the_page_no_longer_has() {
+    let pool = pool().await;
+    StaffRecord::replace_all(&pool, &staff()).await.unwrap();
+    StaffRecord::replace_all(&pool, &staff()[..1])
+        .await
+        .unwrap();
+    assert_eq!(StaffRecord::count(&pool).await.unwrap(), 1);
 }

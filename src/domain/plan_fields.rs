@@ -39,6 +39,12 @@ pub enum PlanFieldsError {
     /// A value of `focus_technologies` is not a list of ids.
     #[error("focus_technologies doit contenir des listes d'identifiants de technologie.")]
     TechnologiesNotLists,
+    /// `focus_staff` is not an object.
+    #[error("focus_staff doit être un objet.")]
+    StaffNotAnObject,
+    /// A value of `focus_staff` is not a list of ids.
+    #[error("focus_staff doit contenir des listes d'identifiants de l'état-major.")]
+    StaffNotLists,
 }
 
 /// What a plan is made of, whichever way it arrives: a save, the draft, an export, a file.
@@ -54,6 +60,8 @@ pub struct PlanFields {
     pub focus_days: BTreeMap<String, i64>,
     /// `{focus id: [technology ids]}`, in the order they sit next to the focus.
     pub focus_technologies: BTreeMap<String, Vec<String>>,
+    /// `{focus id: [staff ids]}`, in the order they sit next to the focus.
+    pub focus_staff: BTreeMap<String, Vec<String>>,
 }
 
 impl PlanFields {
@@ -70,7 +78,16 @@ impl PlanFields {
             start_date: start_date(payload.get("start_date"))?,
             days_per_focus: days_per_focus(payload.get("days_per_focus"))?,
             focus_days: focus_days(payload.get("focus_days"))?,
-            focus_technologies: focus_technologies(payload.get("focus_technologies"))?,
+            focus_technologies: attached_lists(
+                payload.get("focus_technologies"),
+                PlanFieldsError::TechnologiesNotAnObject,
+                PlanFieldsError::TechnologiesNotLists,
+            )?,
+            focus_staff: attached_lists(
+                payload.get("focus_staff"),
+                PlanFieldsError::StaffNotAnObject,
+                PlanFieldsError::StaffNotLists,
+            )?,
         })
     }
 
@@ -82,6 +99,7 @@ impl PlanFields {
             days_per_focus: DEFAULT_DAYS_PER_FOCUS,
             focus_days: BTreeMap::new(),
             focus_technologies: BTreeMap::new(),
+            focus_staff: BTreeMap::new(),
         }
     }
 }
@@ -115,12 +133,16 @@ fn focus_ids(value: Option<&Value>) -> Result<Vec<String>, PlanFieldsError> {
     let Some(Value::Array(items)) = value else {
         return Err(PlanFieldsError::FocusIdsNotAList);
     };
+    ids(items, PlanFieldsError::FocusIdsNotIds)
+}
+
+fn ids(items: &[Value], not_ids: PlanFieldsError) -> Result<Vec<String>, PlanFieldsError> {
     items
         .iter()
         .map(|item| {
             item.as_str()
                 .map(str::to_string)
-                .ok_or(PlanFieldsError::FocusIdsNotIds)
+                .ok_or_else(|| not_ids.clone())
         })
         .collect()
 }
@@ -164,31 +186,25 @@ fn focus_days(value: Option<&Value>) -> Result<BTreeMap<String, i64>, PlanFields
     Ok(focus_days)
 }
 
-fn focus_technologies(
+/// `{focus id: [ids]}`, what a focus carries: its technologies, or its staff.
+fn attached_lists(
     value: Option<&Value>,
+    not_an_object: PlanFieldsError,
+    not_lists: PlanFieldsError,
 ) -> Result<BTreeMap<String, Vec<String>>, PlanFieldsError> {
     if is_blank(value) {
         return Ok(BTreeMap::new());
     }
     let Some(Value::Object(attached)) = value else {
-        return Err(PlanFieldsError::TechnologiesNotAnObject);
+        return Err(not_an_object);
     };
     attached
         .iter()
-        .map(|(focus_id, technologies)| Ok((focus_id.clone(), technology_ids(technologies)?)))
-        .collect()
-}
-
-fn technology_ids(value: &Value) -> Result<Vec<String>, PlanFieldsError> {
-    let Value::Array(items) = value else {
-        return Err(PlanFieldsError::TechnologiesNotLists);
-    };
-    items
-        .iter()
-        .map(|item| {
-            item.as_str()
-                .map(str::to_string)
-                .ok_or(PlanFieldsError::TechnologiesNotLists)
+        .map(|(focus_id, list)| {
+            let Value::Array(items) = list else {
+                return Err(not_lists.clone());
+            };
+            Ok((focus_id.clone(), ids(items, not_lists.clone())?))
         })
         .collect()
 }
@@ -338,6 +354,32 @@ mod tests {
         assert_eq!(
             read(json!({"focus_technologies": {"A": [7]}})),
             Err(PlanFieldsError::TechnologiesNotLists)
+        );
+    }
+
+    #[test]
+    fn staff_are_read_by_focus_in_their_order() {
+        let fields =
+            read(json!({"focus_staff": {"A": ["Krupp", "Heinz_Guderian__Theorists"]}})).unwrap();
+        assert_eq!(
+            fields.focus_staff["A"],
+            ["Krupp", "Heinz_Guderian__Theorists"]
+        );
+    }
+
+    #[test]
+    fn focus_staff_must_be_an_object_of_lists_of_ids() {
+        assert_eq!(
+            read(json!({"focus_staff": ["Krupp"]})),
+            Err(PlanFieldsError::StaffNotAnObject)
+        );
+        assert_eq!(
+            read(json!({"focus_staff": {"A": "Krupp"}})),
+            Err(PlanFieldsError::StaffNotLists)
+        );
+        assert_eq!(
+            read(json!({"focus_staff": {"A": ["Krupp", 7]}})),
+            Err(PlanFieldsError::StaffNotLists)
         );
     }
 

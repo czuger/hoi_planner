@@ -1,7 +1,10 @@
-/* The planner's browser half.
+/* The planner's browser half: the focus tab of the catalog, and the plan.
  *
- * The catalog is already in the page, so nothing here fetches it: filtering hides rows, and
- * clicking one moves its id in or out of `plan`. Only the plan travels, as JSON.
+ * The catalogs are already in the page, so nothing here fetches them: filtering hides rows, and
+ * clicking one moves its id in or out of the plan. Only the plan travels, as JSON. The plan is
+ * one line per focus, and the technologies and the staff attached to it fill the line's other
+ * two columns: those are drawn by `technologies.js` and `staff.js`, which edit their own map of
+ * `state` and are handed the rest through `ctx`.
  *
  * What a focus allows, its term and its completion date are computed here as well as in
  * `src/domain/`. That is on purpose: dragging has to re-date the whole list on every pointer
@@ -12,9 +15,6 @@
  * Every edit is written back to the draft (/api/draft) on a short timer, and the page comes
  * down with it already in hand. A plan also leaves as a file and comes back from one, and
  * neither is written here: the format is the server's (`src/domain/plan_file.rs`).
- *
- * The technologies belong to the other page (`technologies.js`), but this page writes the plan
- * back whole, so it keeps them and carries them along.
  */
 
 (function () {
@@ -34,13 +34,20 @@
   var taken = Planner.taken, unmet = Planner.unmet, clashes = Planner.clashes;
 
   var $ = function (sel) { return document.querySelector(sel); };
-  var plan = [];        // focus ids, in order — the whole state of the panel
-  var terms = {};       // focus id -> days, only for the focuses that differ
-  var technologies = {}; // focus id -> technology ids: the other page's, kept and carried along
+  var state = {
+    plan: [],           // focus ids, in order
+    terms: {},          // focus id -> days, only for the focuses that differ
+    technologies: {},   // focus id -> technology ids
+    staff: {}           // focus id -> staff ids
+  };
   var catalog = {};     // focus id -> {name, icon}, read off the rendered rows
+  var dates = {};       // focus id -> when it completes, as the lines write it
+  var selected = null;  // the line the technology and staff tabs attach to
   var currentId = null; // the saved plan being edited, if any
+  var listEl = $("#focus-list");
+  var linesEl = $("#lines");
 
-  document.querySelectorAll(".row").forEach(function (row) {
+  listEl.querySelectorAll(".row").forEach(function (row) {
     catalog[row.dataset.id] = {
       name: row.querySelector(".nm").textContent,
       icon: row.querySelector("img").getAttribute("src"),
@@ -92,22 +99,22 @@
   /* What one focus costs: its own term if it has been marked, the plan's
      otherwise. `terms` never holds the default, so unmarking is a delete. */
   function termOf(id) {
-    return terms[id] || daysPerFocus();
+    return state.terms[id] || daysPerFocus();
   }
 
   /* --- drawing ----------------------------------------------------------- */
 
   function renderList() {
-    var q = $("#q").value.trim().toLowerCase();
-    var branch = $("#branch").value;
-    var hide = $("#hide").checked;
-    var onlyReady = $("#ready").checked;
-    var planned = taken(plan);
+    var q = $("#focus-q").value.trim().toLowerCase();
+    var branch = $("#focus-branch").value;
+    var hide = $("#focus-hide").checked;
+    var onlyReady = $("#focus-ready").checked;
+    var planned = taken(state.plan);
     var shown = 0;
 
-    document.querySelectorAll(".row").forEach(function (row) {
+    listEl.querySelectorAll(".row").forEach(function (row) {
       var id = row.dataset.id;
-      var picked = plan.indexOf(id) !== -1;
+      var picked = !!planned[id];
       // A focus already in the plan stays listed even if something it needs was
       // taken back out: it is the plan panel's warning to answer, not a reason
       // to make the row disappear from under the pointer.
@@ -125,56 +132,60 @@
     });
 
     // A branch heading with nothing left under it is noise.
-    document.querySelectorAll(".branch").forEach(function (head) {
-      var any = document.querySelector(
+    listEl.querySelectorAll(".branch").forEach(function (head) {
+      var any = listEl.querySelector(
         '.row[data-section="' + CSS.escape(head.dataset.section) + '"]:not(.hidden)');
       head.classList.toggle("hidden", !any);
     });
 
-    $("#count").textContent = shown + " sur " + Object.keys(catalog).length + " focus";
+    $("#focus-count").textContent = shown + "/" + Object.keys(catalog).length;
   }
 
-  function renderPlan() {
+  /* One line per focus: the focus itself, then two cells the panes fill. Also
+     dates every focus, for the panes and the total. */
+  function renderLines() {
     var days = daysPerFocus();
     var start = startDate();
+    dates = {};
 
-    if (!plan.length) {
-      $("#plan").innerHTML = '<div class="empty">Cliquez sur un focus à gauche pour l\'ajouter.</div>';
-      $("#total").textContent = "0 focus";
-      return;
+    if (!state.plan.length) {
+      linesEl.innerHTML = '<div class="empty">Cliquez sur un focus à gauche pour l\'ajouter.</div>';
+      return { days: 0, end: start, broken: 0 };
     }
 
-    // Running total rather than `(i + 1) * days`: the terms differ now, so a
-    // focus completes when everything before it is done plus its own.
+    // Running total rather than `(i + 1) * days`: the terms differ, so a focus
+    // completes when everything before it is done plus its own.
     var elapsed = 0;
-    // What has been taken by the time this row comes up. A prerequisite has to
+    // What has been taken by the time this line comes up. A prerequisite has to
     // be *earlier* in the plan, so dragging one below what needs it breaks the
-    // order — which is what the warning on the row says.
+    // order — which is what the warning on the line says.
     var before = Object.create(null);
     var broken = 0;
 
-    $("#plan").innerHTML = plan.map(function (id, i) {
+    linesEl.innerHTML = state.plan.map(function (id, i) {
       var focus = catalog[id];
       if (!focus) return "";
       elapsed += termOf(id);
+      dates[id] = fmt(addDays(start, elapsed));
       var reason = why(focus, before);
       before[id] = true;
       if (reason) broken++;
-      return '<div class="pitem' + (reason ? " broken" : "") +
-        '" draggable="true" data-id="' + esc(id) + '">' +
+      return '<div class="line' + (reason ? " broken" : "") + (id === selected ? " selected" : "") +
+        '" data-focus="' + esc(id) + '">' +
+        '<div class="lfocus" draggable="true">' +
         '<span class="grip">⣿</span>' +
         '<span class="idx">' + (i + 1) + "</span>" +
         '<img src="' + esc(focus.icon) + '" alt="" loading="lazy">' +
         '<span class="nm" title="' + esc(focus.name) + '">' + esc(focus.name) + "</span>" +
         (reason ? '<span class="warn" title="' + esc(reason) + '">⚠</span>' : "") +
         term(id, days) +
-        '<span class="day">' + fmt(addDays(start, elapsed)) + "</span>" +
-        '<button data-act="rm" title="Retirer">✕</button></div>';
+        '<span class="day">' + dates[id] + "</span>" +
+        '<button data-act="rm" title="Retirer">✕</button></div>' +
+        '<div class="attached techs"></div>' +
+        '<div class="attached staff"></div></div>';
     }).join("");
 
-    $("#total").textContent = plan.length + " focus · " + elapsed +
-      " jours · fin le " + fmt(addDays(start, elapsed)) +
-      (broken ? " · " + broken + " dans le désordre" : "");
+    return { days: elapsed, end: addDays(start, elapsed), broken: broken };
   }
 
   /* The three lengths a focus can take, as one picker showing which is in force.
@@ -196,7 +207,20 @@
     }).join("") + "</span>";
   }
 
-  function render() { renderList(); renderPlan(); }
+  function plural(n, one, many) { return n + " " + (n > 1 ? many : one); }
+
+  function render() {
+    renderList();
+    var focuses = renderLines();
+    var techs = techPane.render();
+    var hired = staffPane.render();
+    var broken = focuses.broken + techs.broken + hired.broken;
+    $("#total").textContent = state.plan.length + " focus" +
+      (state.plan.length ? " · " + focuses.days + " jours · fin le " + fmt(focuses.end) : "") +
+      " · " + plural(techs.count, "technologie", "technologies") +
+      " · " + plural(hired.count, "recruté", "recrutés") +
+      (broken ? " · " + broken + " dans le désordre" : "");
+  }
 
   /* --- keeping the plan --------------------------------------------------- */
 
@@ -204,9 +228,11 @@
      picked out of the dropdown. A field the plan does not carry is left as it is
      rather than blanked, so a draft written before `start` existed still opens. */
   function apply(stored) {
-    plan = stored.focus_ids || [];
-    terms = stored.focus_days || {};
-    technologies = stored.focus_technologies || {};
+    state.plan = stored.focus_ids || [];
+    state.terms = stored.focus_days || {};
+    state.technologies = stored.focus_technologies || {};
+    state.staff = stored.focus_staff || {};
+    selected = state.plan.length ? state.plan[state.plan.length - 1] : null;
     $("#name").value = stored.name || "";
     $("#start").value = stored.start_date || $("#start").value;
     $("#days").value = stored.days_per_focus || DEFAULT_DAYS;
@@ -216,11 +242,12 @@
   function panel() {
     return {
       name: $("#name").value.trim(),
-      focus_ids: plan,
+      focus_ids: state.plan,
       start_date: $("#start").value,
       days_per_focus: daysPerFocus(),
-      focus_days: terms,
-      focus_technologies: technologies
+      focus_days: state.terms,
+      focus_technologies: state.technologies,
+      focus_staff: state.staff
     };
   }
 
@@ -228,59 +255,97 @@
   var later = drafts.later;
   function edited() { render(); later(); }
 
+  var ctx = {
+    state: state,
+    say: say,
+    edited: edited,
+    selectedFocus: function () { return selected; },
+    dateOf: function (id) { return dates[id] || null; },
+    focusName: function (id) { return catalog[id] ? catalog[id].name : null; },
+    startYear: function () { return startDate().getFullYear(); }
+  };
+  var techPane = Planner.technologyPane(ctx);
+  var staffPane = Planner.staffPane(ctx);
+
   /* --- the catalog and the plan panel ------------------------------------ */
 
-  $("#list").addEventListener("click", function (e) {
+  listEl.addEventListener("click", function (e) {
     var row = e.target.closest(".row");
     if (!row) return;
-    var i = plan.indexOf(row.dataset.id);
-    if (i === -1) plan.push(row.dataset.id); else drop(i);
+    var i = state.plan.indexOf(row.dataset.id);
+    if (i === -1) {
+      state.plan.push(row.dataset.id);
+      // A focus just added is the one its technologies and staff are picked for.
+      selected = row.dataset.id;
+    } else {
+      drop(i);
+    }
     edited();
   });
 
   /* A focus taken out of the plan takes its term with it: leaving the mark
      behind would silently re-apply it if the focus were added again. Its
-     technologies go too, as they have no date without it, and that is said out
-     loud because they are out of sight on this page. */
+     technologies and its staff go too, as they have no date without it, and that
+     is said out loud as removing a focus from the catalog takes them unseen. */
   function drop(i) {
-    var lost = (technologies[plan[i]] || []).length;
-    delete terms[plan[i]];
-    delete technologies[plan[i]];
-    plan.splice(i, 1);
-    if (lost) say(lost + " technologie(s) retirée(s) avec ce focus.", true);
+    var id = state.plan[i];
+    var lost = [];
+    var techs = (state.technologies[id] || []).length;
+    var members = (state.staff[id] || []).length;
+    if (techs) lost.push(techs + " technologie(s)");
+    if (members) lost.push(members + " membre(s) de l'état-major");
+    delete state.terms[id];
+    delete state.technologies[id];
+    delete state.staff[id];
+    state.plan.splice(i, 1);
+    // The selection moves up a line, or to the last one when the first goes.
+    if (selected === id) selected = state.plan[Math.max(0, i - 1)] || null;
+    if (lost.length) say(lost.join(" et ") + " retiré(s) avec ce focus.", true);
   }
 
-  $("#plan").addEventListener("click", function (e) {
-    var btn = e.target.closest("button");
-    if (!btn) return;
-    var id = btn.closest(".pitem").dataset.id;
+  linesEl.addEventListener("click", function (e) {
+    // The chips' own buttons belong to their pane.
+    if (e.target.closest(".chip")) return;
+    var line = e.target.closest(".line");
+    if (!line) return;
+    var id = line.dataset.focus;
+    var btn = e.target.closest(".lfocus button");
 
+    if (!btn) {
+      selected = id;
+      render();
+      return;
+    }
     if (btn.dataset.act === "rm") {
-      drop(plan.indexOf(id));
+      drop(state.plan.indexOf(id));
     } else if (btn.dataset.act === "len") {
       var days = parseInt(btn.dataset.days, 10);
-      if (days) terms[id] = days; else delete terms[id];
+      if (days) state.terms[id] = days; else delete state.terms[id];
     } else {
       return;
     }
     edited();
   });
 
-  ["#q", "#branch", "#hide", "#ready"].forEach(function (sel) {
-    $(sel).addEventListener(sel === "#q" ? "input" : "change", renderList);
+  ["#focus-q", "#focus-branch", "#focus-hide", "#focus-ready"].forEach(function (sel) {
+    $(sel).addEventListener(sel === "#focus-q" ? "input" : "change", renderList);
   });
-  $("#start").addEventListener("change", function () { renderPlan(); later(); });
-  $("#days").addEventListener("input", function () { renderPlan(); later(); });
+  // The dates move, and with them what is researched at the start and when a
+  // member can be hired: everything is drawn again.
+  $("#start").addEventListener("change", edited);
+  $("#days").addEventListener("input", edited);
   // The name is part of the draft too, so a plan half-named survives a reload.
   $("#name").addEventListener("input", later);
 
   /* Start over: the panel, and the draft behind it. Nothing saved under a name
      is touched — those are the dropdown's, and Delete is what removes them. */
   $("#clear").addEventListener("click", function () {
-    if (plan.length && !window.confirm("Vider le plan ? Les plans enregistrés ne sont pas touchés.")) return;
-    plan = [];
-    terms = {};
-    technologies = {};
+    if (state.plan.length && !window.confirm("Vider le plan ? Les plans enregistrés ne sont pas touchés.")) return;
+    state.plan = [];
+    state.terms = {};
+    state.technologies = {};
+    state.staff = {};
+    selected = null;
     currentId = null;
     $("#saved").value = "";
     $("#name").value = "";
@@ -293,42 +358,45 @@
 
   /* --- dragging ---------------------------------------------------------- */
 
-  var planEl = $("#plan");
+  /* A line is dragged by its focus cell; the chips of the other two cells have
+     their own drag (`Planner.dragChips`), each kept to its column. */
   var dragId = null, dropId = null, dropAfter = false;
 
   function clearMarks() {
-    planEl.querySelectorAll(".over-before,.over-after").forEach(function (n) {
+    linesEl.querySelectorAll(".over-before,.over-after").forEach(function (n) {
       n.classList.remove("over-before", "over-after");
     });
   }
 
-  planEl.addEventListener("dragstart", function (e) {
-    var item = e.target.closest(".pitem");
-    if (!item) return;
-    dragId = item.dataset.id;
-    item.classList.add("dragging");
+  linesEl.addEventListener("dragstart", function (e) {
+    var cell = e.target.closest(".lfocus");
+    if (!cell) return;
+    var line = cell.closest(".line");
+    dragId = line.dataset.focus;
+    line.classList.add("dragging");
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/plain", dragId);
   });
 
-  planEl.addEventListener("dragover", function (e) {
+  linesEl.addEventListener("dragover", function (e) {
     if (dragId === null) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
     clearMarks();
-    var item = e.target.closest(".pitem");
-    if (!item || item.dataset.id === dragId) { dropId = null; return; }
-    // Which half of the row the pointer is in decides whether the focus lands
+    var line = e.target.closest(".line");
+    if (!line || line.dataset.focus === dragId) { dropId = null; return; }
+    // Which half of the line the pointer is in decides whether the focus lands
     // above or below it.
-    var box = item.getBoundingClientRect();
+    var box = line.getBoundingClientRect();
     dropAfter = (e.clientY - box.top) > box.height / 2;
-    dropId = item.dataset.id;
-    item.classList.add(dropAfter ? "over-after" : "over-before");
+    dropId = line.dataset.focus;
+    line.classList.add(dropAfter ? "over-after" : "over-before");
   });
 
-  planEl.addEventListener("drop", function (e) {
+  linesEl.addEventListener("drop", function (e) {
     if (dragId === null) return;
     e.preventDefault();
+    var plan = state.plan;
     if (dropId !== null && dropId !== dragId) {
       var moved = plan.splice(plan.indexOf(dragId), 1)[0];
       // Read the target's index after the removal, so it is the index the focus
@@ -339,13 +407,38 @@
     edited();
   });
 
-  planEl.addEventListener("dragend", function () {
+  linesEl.addEventListener("dragend", function () {
     dragId = dropId = null;
     clearMarks();
-    planEl.querySelectorAll(".dragging").forEach(function (n) {
+    linesEl.querySelectorAll(".line.dragging").forEach(function (n) {
       n.classList.remove("dragging");
     });
   });
+
+  /* --- the tabs ---------------------------------------------------------- */
+
+  var TAB_KEY = "hoi4-planner-tab";
+
+  function showTab(name) {
+    document.querySelectorAll(".tab").forEach(function (tab) {
+      tab.classList.toggle("on", tab.dataset.pane === name);
+    });
+    document.querySelectorAll(".pane").forEach(function (pane) {
+      pane.classList.toggle("hidden", pane.id !== name + "-pane");
+    });
+  }
+
+  document.querySelectorAll(".tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      showTab(tab.dataset.pane);
+      try { localStorage.setItem(TAB_KEY, tab.dataset.pane); } catch (error) { /* only a convenience */ }
+    });
+  });
+
+  try {
+    var remembered = localStorage.getItem(TAB_KEY);
+    if (remembered && document.getElementById(remembered + "-pane")) showTab(remembered);
+  } catch (error) { /* the focus tab, then */ }
 
   /* --- saved plans ------------------------------------------------------- */
 
@@ -428,7 +521,7 @@
   }
 
   $("#export").addEventListener("click", function () {
-    if (!plan.length) { say("Rien à exporter pour l'instant.", false); return; }
+    if (!state.plan.length) { say("Rien à exporter pour l'instant.", false); return; }
 
     fetch(EXPORT_URL, {
       method: "POST",
@@ -449,7 +542,7 @@
   });
 
   $("#import").addEventListener("click", function () {
-    if (plan.length && !window.confirm("Remplacer le plan à l'écran par un fichier ?")) return;
+    if (state.plan.length && !window.confirm("Remplacer le plan à l'écran par un fichier ?")) return;
     $("#file").click();
   });
 
@@ -483,18 +576,20 @@
       edited();
       var unknown = body.unknown || [];
       var unknownTechnologies = body.unknown_technologies || [];
+      var unknownStaff = body.unknown_staff || [];
       if (unknown.length) {
         say("Importé — " + unknown.length + " focus absent(s) de ce catalogue : " + names(unknown), false);
       } else if (unknownTechnologies.length) {
         say("Importé — " + unknownTechnologies.length + " technologie(s) absente(s) de ce catalogue : " +
             unknownTechnologies.join(", "), false);
+      } else if (unknownStaff.length) {
+        say("Importé — " + unknownStaff.length + " membre(s) de l'état-major absent(s) de ce catalogue : " +
+            unknownStaff.join(", "), false);
       } else {
-        say(plan.length + " focus importés. Enregistrez le plan pour le garder.", true);
+        say(state.plan.length + " focus importés. Enregistrez le plan pour le garder.", true);
       }
     }).catch(function (error) { say(error.message, false); });
   });
-
-  Planner.linkPages(drafts);
 
   // Whatever was being built last time, before anything is drawn.
   apply(JSON.parse(script.dataset.draft || "{}") || {});

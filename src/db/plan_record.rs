@@ -17,6 +17,7 @@ struct PlanRow {
     days_per_focus: i64,
     focus_days: String,
     focus_technologies: String,
+    focus_staff: String,
     created_at: String,
     updated_at: String,
 }
@@ -43,7 +44,7 @@ impl PlanRecord {
     /// Fails when the database does or a stored value cannot be read.
     pub async fn list_saved(pool: &SqlitePool) -> Result<Vec<Plan>, AppError> {
         let rows: Vec<PlanRow> = sqlx::query_as(
-            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, created_at, updated_at
+            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, created_at, updated_at
              FROM plans WHERE id <> ? ORDER BY updated_at DESC, id ASC",
         )
             .bind(DRAFT_PLAN_ID)
@@ -58,7 +59,7 @@ impl PlanRecord {
     /// Fails when the database does or a stored value cannot be read.
     pub async fn find(pool: &SqlitePool, plan_id: &str) -> Result<Option<Plan>, AppError> {
         let row: Option<PlanRow> = sqlx::query_as(
-            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, created_at, updated_at
+            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, created_at, updated_at
              FROM plans WHERE id = ?",
         )
             .bind(plan_id)
@@ -72,8 +73,8 @@ impl PlanRecord {
     /// `created_at` is kept from an existing row, as an overwrite is the same plan revised.
     /// `focus_days` is trimmed to the order being stored: a focus dragged out of the plan
     /// takes its term with it, rather than leaving a mark nothing on the page can see or clear.
-    /// `focus_technologies` is trimmed the same way, as a technology has no date without its
-    /// focus.
+    /// `focus_technologies` and `focus_staff` are trimmed the same way, as a technology or a
+    /// member has no date without its focus.
     ///
     /// # Errors
     /// Fails when the database does or a stored value cannot be read.
@@ -85,18 +86,13 @@ impl PlanRecord {
             .filter(|(focus_id, _)| fields.focus_ids.contains(focus_id))
             .map(|(focus_id, days)| (focus_id, *days))
             .collect();
-        let attached: BTreeMap<&String, &Vec<String>> = fields
-            .focus_technologies
-            .iter()
-            .filter(|(focus_id, technologies)| {
-                !technologies.is_empty() && fields.focus_ids.contains(focus_id)
-            })
-            .collect();
+        let technologies = attached_to_order(&fields.focus_technologies, &fields.focus_ids);
+        let staff = attached_to_order(&fields.focus_staff, &fields.focus_ids);
         let stamp = now();
         let row: PlanRow = sqlx::query_as(
             "INSERT INTO plans
-                 (id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, created_at, updated_at)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 (id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, created_at, updated_at)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
              ON CONFLICT (id) DO UPDATE SET
                  name = excluded.name,
                  focus_ids = excluded.focus_ids,
@@ -104,8 +100,9 @@ impl PlanRecord {
                  days_per_focus = excluded.days_per_focus,
                  focus_days = excluded.focus_days,
                  focus_technologies = excluded.focus_technologies,
+                 focus_staff = excluded.focus_staff,
                  updated_at = excluded.updated_at
-             RETURNING id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, created_at, updated_at",
+             RETURNING id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, created_at, updated_at",
         )
             .bind(plan.id)
             .bind(plan.name)
@@ -113,7 +110,8 @@ impl PlanRecord {
             .bind(fields.start_date.as_deref().unwrap_or(DEFAULT_START_TEXT))
             .bind(fields.days_per_focus)
             .bind(serde_json::to_string(&marks)?)
-            .bind(serde_json::to_string(&attached)?)
+            .bind(serde_json::to_string(&technologies)?)
+            .bind(serde_json::to_string(&staff)?)
             .bind(&stamp)
             .bind(&stamp)
             .fetch_one(pool)
@@ -134,6 +132,18 @@ impl PlanRecord {
     }
 }
 
+/// What the focuses of `focus_ids` carry, leaving out the focuses no longer planned and the
+/// empty lists.
+fn attached_to_order<'a>(
+    attached: &'a BTreeMap<String, Vec<String>>,
+    focus_ids: &[String],
+) -> BTreeMap<&'a String, &'a Vec<String>> {
+    attached
+        .iter()
+        .filter(|(focus_id, ids)| !ids.is_empty() && focus_ids.contains(focus_id))
+        .collect()
+}
+
 /// UTC to the microsecond, as text that sorts chronologically.
 fn now() -> String {
     Utc::now().format("%Y-%m-%dT%H:%M:%S%.6fZ").to_string()
@@ -144,6 +154,7 @@ fn into_plan(row: PlanRow) -> Result<Plan, AppError> {
         focus_ids: read_json("plans.focus_ids", &row.focus_ids)?,
         focus_days: read_json("plans.focus_days", &row.focus_days)?,
         focus_technologies: read_json("plans.focus_technologies", &row.focus_technologies)?,
+        focus_staff: read_json("plans.focus_staff", &row.focus_staff)?,
         id: row.id,
         name: row.name,
         start_date: row.start_date,

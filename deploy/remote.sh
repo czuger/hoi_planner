@@ -183,7 +183,7 @@ wait_for_health() {
 # rather than letting a healthy-looking deploy serve a blank page.
 warn_if_empty_catalog() {
   case "$(read_health || true)" in
-    *'"focuses":0'*|*'"technologies":0'*)
+    *'"focuses":0'*|*'"technologies":0'*|*'"staff":0'*)
       echo "warning: a catalog is empty — seed it with: make seed" >&2 ;;
   esac
 }
@@ -239,12 +239,13 @@ cmd_rollback() {
 }
 
 # Fill the catalogs from the JSON in the current release. The saved wiki pages are not
-# shipped, so this is --from-json only. It replaces the `focuses` and `technologies`
-# tables wholesale and leaves the `plans` table alone.
+# shipped, so this is --from-json only. It replaces the `focuses`, `technologies` and
+# `staff` tables wholesale and leaves the `plans` table alone.
 cmd_seed() {
   [ -x "$RUN_SCRIPT" ] || die "$RUN_SCRIPT is missing — deploy first"
   "$RUN_SCRIPT" import-focuses --from-json
   "$RUN_SCRIPT" import-technologies --from-json
+  "$RUN_SCRIPT" import-staff --from-json
   echo "    $(read_health || echo 'the app does not answer')"
 }
 

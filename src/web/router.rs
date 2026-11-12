@@ -20,7 +20,8 @@ use crate::web::{main_handlers, plan_file_handlers, plan_handlers};
 pub fn build_router(state: AppState, asset_root: &FilePath) -> Router {
     Router::new()
         .route("/", get(main_handlers::index))
-        .route("/technologies", get(main_handlers::technologies))
+        .route("/technologies", get(main_handlers::to_planner))
+        .route("/staff", get(main_handlers::to_planner))
         .route("/health", get(main_handlers::health))
         .route(
             "/api/plans",

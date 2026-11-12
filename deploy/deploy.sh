@@ -41,7 +41,7 @@ upload_remote_script
 ssh "$SSH_HOST" "mkdir -p '$REMOTE_DIR/releases/$VERSION/data'"
 scp -C "$BINARY" "$SSH_HOST:$REMOTE_DIR/releases/$VERSION/$APP_NAME"
 scp -Cqr "$REPO_ROOT/static" "$SSH_HOST:$REMOTE_DIR/releases/$VERSION/static"
-scp -Cq "$REPO_ROOT/data/focuses.json" "$REPO_ROOT/data/technologies.json" \
+scp -Cq "$REPO_ROOT/data/focuses.json" "$REPO_ROOT/data/technologies.json" "$REPO_ROOT/data/staff.json" \
   "$SSH_HOST:$REMOTE_DIR/releases/$VERSION/data/"
 
 # 3. Record the version swap, restart, wait for /health. Any failure here stops the

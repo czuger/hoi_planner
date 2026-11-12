@@ -1,7 +1,7 @@
 use crate::error::AppError;
 use crate::service::CatalogSource;
 
-const USAGE: &str = "Usage : hoi4_planner [serve | healthcheck | parse-politics | import-focuses [--from-json] [--json-only] [--database-url URL] | import-technologies [--from-json] [--json-only] [--database-url URL]]";
+const USAGE: &str = "Usage : hoi4_planner [serve | healthcheck | parse-politics | import-focuses [--from-json] [--json-only] [--database-url URL] | import-technologies [--from-json] [--json-only] [--database-url URL] | import-staff [--from-json] [--json-only] [--database-url URL]]";
 
 /// What one run of the binary is asked to do.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -23,6 +23,15 @@ pub enum Command {
     },
     /// Fills the technology catalog.
     ImportTechnologies {
+        /// Where the catalog comes from.
+        source: CatalogSource,
+        /// Stop at the JSON, touching no database.
+        json_only: bool,
+        /// The database to fill, instead of `DATABASE_URL`'s.
+        database_url: Option<String>,
+    },
+    /// Fills the staff catalog.
+    ImportStaff {
         /// Where the catalog comes from.
         source: CatalogSource,
         /// Stop at the JSON, touching no database.
@@ -63,12 +72,20 @@ impl Command {
                     database_url,
                 })
             }
+            "import-staff" => {
+                let (source, json_only, database_url) = parse_import(rest)?;
+                Ok(Command::ImportStaff {
+                    source,
+                    json_only,
+                    database_url,
+                })
+            }
             _ => Err(usage()),
         }
     }
 }
 
-/// The flags both imports take: the source, whether to stop at the JSON, the database.
+/// The flags every import takes: the source, whether to stop at the JSON, the database.
 fn parse_import(args: Vec<String>) -> Result<(CatalogSource, bool, Option<String>), AppError> {
     let mut source = CatalogSource::WikiPage;
     let mut json_only = false;
@@ -156,6 +173,18 @@ mod tests {
     }
 
     #[test]
+    fn the_staff_import_takes_the_same_flags() {
+        assert_eq!(
+            parse(&["import-staff", "--from-json", "--database-url", "x.db"]).unwrap(),
+            Command::ImportStaff {
+                source: CatalogSource::Json,
+                json_only: false,
+                database_url: Some("x.db".to_string()),
+            }
+        );
+    }
+
+    #[test]
     fn what_makes_no_sense_gets_the_usage() {
         for args in [
             &["nonsense"][..],
@@ -163,6 +192,7 @@ mod tests {
             &["import-focuses", "--env"],
             &["import-focuses", "--database-url"],
             &["import-technologies", "--env"],
+            &["import-staff", "--env"],
         ] {
             assert!(matches!(parse(args), Err(AppError::Usage(_))));
         }

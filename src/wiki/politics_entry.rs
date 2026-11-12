@@ -4,6 +4,7 @@ use std::sync::LazyLock;
 use regex::Regex;
 use serde::Serialize;
 
+use crate::domain::StaffMember;
 use crate::domain::rules::WIKI_BASE;
 use crate::wiki::html_tree::{HtmlTree, NodeId};
 
@@ -55,6 +56,20 @@ impl PoliticsEntry {
             position,
             requires: Vec::new(),
             excludes: Vec::new(),
+        }
+    }
+
+    /// A row of a staff table as the catalog keeps it, a missing picture as empty links.
+    pub fn into_staff_member(self) -> StaffMember {
+        StaffMember {
+            id: self.id,
+            name: self.name,
+            icon: self.icon.unwrap_or_default(),
+            icon_page: self.icon_page.unwrap_or_default(),
+            section: self.section,
+            position: self.position,
+            requires: self.requires,
+            excludes: self.excludes,
         }
     }
 }

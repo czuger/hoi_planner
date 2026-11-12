@@ -1,9 +1,9 @@
-//! The two pages, their assets, and the health check.
+//! The page, its assets, the old pages leading to it, and the health check.
 
 mod common;
 
 use axum::http::StatusCode;
-use axum::http::header::CACHE_CONTROL;
+use axum::http::header::{CACHE_CONTROL, LOCATION};
 use common::app::{DATABASE_NAME, TestApp};
 use common::{catalog, technologies};
 use hoi4_planner::db::{FocusRecord, TechnologyRecord};
@@ -192,24 +192,35 @@ async fn health_reports_the_technologies_too() {
 }
 
 #[tokio::test]
-async fn both_pages_link_to_each_other_under_the_prefix() {
+async fn the_old_pages_lead_to_the_one_page_under_the_prefix() {
     let app = TestApp::under("/hoi4").await;
-    for path in ["/", "/technologies"] {
-        let body = app.get(path).await.body;
-        assert!(body.contains("href=\"/hoi4/technologies\""));
-        assert!(body.contains("href=\"/hoi4/\""));
-        assert!(body.contains("/hoi4/static/common.js"));
+    for path in ["/technologies", "/staff"] {
+        let answer = app.get(path).await;
+        assert_eq!(answer.status, StatusCode::PERMANENT_REDIRECT);
+        assert_eq!(answer.headers[LOCATION], "/hoi4/");
     }
-    assert!(
-        app.get("/technologies")
-            .await
-            .body
-            .contains("/hoi4/static/technologies.js")
-    );
 }
 
 #[tokio::test]
-async fn the_technology_page_lists_the_catalog_by_domain_with_what_each_needs() {
+async fn the_page_loads_the_scripts_of_every_tab_under_the_prefix() {
+    let body = TestApp::under("/hoi4").await.get("/").await.body;
+    for script in ["common.js", "technologies.js", "staff.js", "app.js"] {
+        assert!(body.contains(&format!("src=\"/hoi4/static/{script}\"")));
+    }
+    assert!(!body.contains("href=\"/hoi4/technologies\""));
+}
+
+#[tokio::test]
+async fn the_page_draws_one_tab_per_catalog() {
+    let body = TestApp::new().await.get("/").await.body;
+    for pane in ["focus", "tech", "staff"] {
+        assert!(body.contains(&format!("data-pane=\"{pane}\"")));
+        assert!(body.contains(&format!("id=\"{pane}-list\"")));
+    }
+}
+
+#[tokio::test]
+async fn the_page_lists_the_research_catalog_by_domain_with_what_each_needs() {
     let app = TestApp::new().await;
     let mut listed = technologies();
     listed[1].requires = vec![vec!["Construction_I".to_string()]];
@@ -217,7 +228,7 @@ async fn the_technology_page_lists_the_catalog_by_domain_with_what_each_needs() 
         .await
         .unwrap();
 
-    let body = app.get("/technologies").await.body;
+    let body = app.get("/").await.body;
     assert!(body.contains("Construction II"));
     assert_eq!(body.matches("class=\"domain\"").count(), 1);
     assert!(body.contains("data-requires=\"[[&#34;Construction_I&#34;]]\""));
@@ -227,81 +238,86 @@ async fn the_technology_page_lists_the_catalog_by_domain_with_what_each_needs() 
 
 #[tokio::test]
 async fn a_secret_tech_is_drawn_without_a_year() {
-    let body = TestApp::with_technologies()
-        .await
-        .get("/technologies")
-        .await
-        .body;
+    let body = TestApp::with_technologies().await.get("/").await.body;
     assert!(body.contains("Jungle Training"));
     assert!(body.contains("data-year=\"\""));
 }
 
 #[tokio::test]
-async fn with_no_focus_planned_the_technology_page_says_where_to_start() {
-    let body = TestApp::with_technologies()
-        .await
-        .get("/technologies")
-        .await
-        .body;
-    assert!(
-        body.contains("Planifiez d&#39;abord des focus")
-            || body.contains("Planifiez d'abord des focus")
-    );
-    assert!(!body.contains("class=\"line\""));
-}
-
-#[tokio::test]
-async fn the_technology_page_dates_the_plans_focuses_as_the_focus_page_writes_them() {
-    let app = TestApp::with_technologies().await;
-    let mut plan = fields(&["Rhineland", "Anschluss"], "1936-01-01");
-    plan.focus_days = BTreeMap::from([("Anschluss".to_string(), 70)]);
-    save_draft(&app.pool, "Rush", &plan).await.unwrap();
-
-    let body = app.get("/technologies").await.body;
-    assert_eq!(body.matches("class=\"line\"").count(), 2);
-    assert!(body.contains("data-focus=\"Rhineland\""));
-    assert!(body.contains("5 févr. 1936"));
-    assert!(body.contains("15 avr. 1936"));
-    assert!(body.contains("value=\"Rush\""));
-    assert!(body.contains("data-start-year=\"1936\""));
-}
-
-#[tokio::test]
-async fn the_technology_page_carries_the_attached_technologies_in_the_draft() {
+async fn the_page_carries_the_attached_technologies_and_staff_in_the_draft() {
     let app = TestApp::with_technologies().await;
     let mut plan = fields(&["Rhineland"], "1937-06-01");
     plan.focus_technologies =
         BTreeMap::from([("Rhineland".to_string(), vec!["Construction_I".to_string()])]);
-    save_draft(&app.pool, "", &plan).await.unwrap();
+    plan.focus_staff = BTreeMap::from([("Rhineland".to_string(), vec!["Krupp".to_string()])]);
+    save_draft(&app.pool, "Rush", &plan).await.unwrap();
 
-    let body = app.get("/technologies").await.body;
-    assert!(body.contains("focus_technologies"));
-    assert!(body.contains("data-start-year=\"1937\""));
+    let body = app.get("/").await.body;
+    assert!(
+        body.contains(
+            "&#34;focus_technologies&#34;:{&#34;Rhineland&#34;:[&#34;Construction_I&#34;]}"
+        )
+    );
+    assert!(body.contains("&#34;focus_staff&#34;:{&#34;Rhineland&#34;:[&#34;Krupp&#34;]}"));
 }
 
 #[tokio::test]
-async fn an_empty_technology_catalog_says_how_to_fill_it() {
-    let body = TestApp::with_catalog()
-        .await
-        .get("/technologies")
-        .await
-        .body;
-    assert!(body.contains("hoi4_planner import-technologies"));
+async fn each_empty_catalog_says_how_to_fill_it() {
+    let body = TestApp::new().await.get("/").await.body;
+    assert_eq!(body.matches("class=\"err\"").count(), 3);
+    for command in ["import-focuses", "import-technologies", "import-staff"] {
+        assert!(body.contains(&format!("hoi4_planner {command}")));
+    }
+
+    let body = TestApp::with_technologies().await.get("/").await.body;
+    assert_eq!(body.matches("class=\"err\"").count(), 1);
+    assert!(body.contains("hoi4_planner import-staff"));
 }
 
 #[tokio::test]
-async fn the_technology_page_still_draws_when_the_database_fails() {
-    let app = TestApp::with_technologies().await;
+async fn the_page_draws_with_every_catalog_when_the_database_fails() {
+    let app = TestApp::with_staff().await;
     app.lose_database().await;
-    let answer = app.get("/technologies").await;
+    let answer = app.get("/").await;
     assert_eq!(answer.status, StatusCode::OK);
-    assert!(answer.body.contains("class=\"err\""));
+    assert_eq!(answer.body.matches("class=\"err\"").count(), 1);
+    assert!(answer.body.contains("id=\"staff-list\""));
 }
 
 #[tokio::test]
-async fn the_technology_page_scripts_are_served() {
+async fn the_tab_scripts_are_served() {
     let app = TestApp::new().await;
-    for path in ["/static/common.js", "/static/technologies.js"] {
+    for path in [
+        "/static/common.js",
+        "/static/technologies.js",
+        "/static/staff.js",
+    ] {
         assert_eq!(app.get(path).await.status, StatusCode::OK);
     }
+}
+
+#[tokio::test]
+async fn health_reports_the_staff_too() {
+    let body = TestApp::with_staff().await.get("/health").await.json();
+    assert_eq!(body["staff"], 3);
+}
+
+#[tokio::test]
+async fn the_page_lists_the_staff_under_their_posts_with_what_each_needs() {
+    let body = TestApp::with_staff().await.get("/").await.body;
+    assert!(body.contains("Heinz Guderian"));
+    assert_eq!(body.matches("class=\"post\"").count(), 3);
+    assert_eq!(
+        body.matches("<option value=\"Industrial concerns\">")
+            .count(),
+        1
+    );
+    assert!(body.contains("data-post=\"Industrial concerns\""));
+    assert!(body.contains("data-requires=\"[[&#34;Rhineland&#34;]]\""));
+}
+
+#[tokio::test]
+async fn a_member_with_no_portrait_is_drawn_without_one() {
+    let body = TestApp::with_staff().await.get("/").await.body;
+    assert!(body.contains("<span class=\"noicon\"></span>"));
 }

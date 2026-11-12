@@ -17,16 +17,24 @@ header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
 header h1{margin:0;font-size:17px;letter-spacing:.4px;color:var(--accent)}
 .sub{color:var(--muted);font-size:12px}
 .db{color:var(--muted);font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.pages{display:flex;gap:4px;margin-left:12px}
-.pages a{color:var(--muted);text-decoration:none;padding:2px 10px;border-radius:4px;
-         border:1px solid transparent}
-.pages a:hover{border-color:var(--line);color:var(--text)}
-.pages a.on{color:var(--text);background:var(--accent-dim)}
 
-.wrap{display:grid;grid-template-columns:1fr 720px;height:calc(100vh - 53px)}
-@media (max-width:1100px){.wrap{grid-template-columns:1fr;height:auto}}
+.wrap{display:grid;grid-template-columns:minmax(380px,1fr) minmax(0,2fr);height:calc(100vh - 53px)}
+@media (max-width:1100px){.wrap{grid-template-columns:1fr;height:auto}
+  .col .list,.col .plan{max-height:80vh}}
 .col{display:flex;flex-direction:column;min-height:0}
 .col + .col{border-left:1px solid var(--line)}
+
+/* --- the tabs of the catalog: focuses, technologies, staff --- */
+.tabs{display:flex;gap:4px;padding:8px 14px 0;background:var(--panel);
+      border-bottom:1px solid var(--line)}
+.tab{border-radius:5px 5px 0 0;border-bottom:none;color:var(--muted);background:transparent;
+     padding:7px 14px}
+.tab:hover{color:var(--text)}
+.tab.on{color:var(--text);background:var(--accent-dim);border-color:var(--accent-dim)}
+.tab .count{font-size:11px;color:var(--muted);margin-left:4px;font-variant-numeric:tabular-nums}
+.tab.on .count{color:var(--text)}
+.pane{display:flex;flex-direction:column;min-height:0;flex:1}
+.pane.hidden{display:none}
 
 .toolbar{display:flex;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);
          background:var(--panel);flex-wrap:wrap;align-items:center}
@@ -41,10 +49,10 @@ button:hover{border-color:var(--accent-dim)}
 
 /* --- the catalog --- */
 .list{overflow:auto;padding:6px 8px;flex:1}
-.branch{margin:20px 12px 8px;font-size:22px;letter-spacing:1.8px;
+.branch{margin:18px 12px 6px;font-size:18px;letter-spacing:1.6px;
         text-transform:uppercase;color:var(--muted)}
-.row{display:flex;align-items:center;gap:20px;padding:10px 16px;border-radius:8px;
-     font-size:28px;cursor:pointer;border:1px solid transparent}
+.row{display:flex;align-items:center;gap:16px;padding:8px 14px;border-radius:8px;
+     font-size:22px;cursor:pointer;border:1px solid transparent}
 .row:hover{background:var(--panel-2);border-color:var(--line)}
 .row.picked{opacity:.4}
 /* Its prerequisites are not in the plan yet. Hidden outright while "only
@@ -52,42 +60,51 @@ button:hover{border-color:var(--accent-dim)}
    one out of order is the plan panel's warning to make, not the catalog's. */
 .row.locked{opacity:.35}
 .row.locked .add{font-size:22px}
-.row img{width:68px;height:60px;object-fit:contain;flex:none;image-rendering:pixelated}
+.row img{width:60px;height:52px;object-fit:contain;flex:none;image-rendering:pixelated}
 .row .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row .add{color:var(--muted);font-size:32px;line-height:1}
+.row .add{color:var(--muted);font-size:26px;line-height:1}
 .hidden{display:none}
 
-/* --- the plan --- */
+/* --- the plan: one line per focus, then its technologies, then its staff --- */
 .plan{overflow:auto;padding:6px 8px;flex:1}
-.pitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;
-       font-size:24px;border:1px solid var(--line);background:var(--panel-2);
-       margin-bottom:10px;cursor:grab}
-.pitem.dragging{opacity:.35;cursor:grabbing}
+.heads{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr);gap:10px;
+       padding:8px 20px;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;
+       color:var(--muted);border-bottom:1px solid var(--line)}
+.line{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr);gap:10px;
+      margin-bottom:8px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;
+      background:var(--panel-2);cursor:pointer}
+.line:hover{border-color:var(--accent-dim)}
+/* The line the technology and staff tabs attach to. */
+.line.selected{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
 /* Something this focus needs comes after it, or is not in the plan at all. */
-.pitem.broken{border-color:var(--danger)}
-.pitem .warn{color:#e6b0b0;font-size:24px;flex:none;cursor:help;line-height:1}
-/* The insertion point, drawn on the row the pointer is over rather than as a
+.line.broken{border-color:var(--danger)}
+.line.dragging{opacity:.35}
+/* The insertion point, drawn on the line the pointer is over rather than as a
    separate element — so it cannot disagree with where the drop actually lands. */
-.pitem.over-before{box-shadow:0 -2px 0 0 var(--accent)}
-.pitem.over-after{box-shadow:0 2px 0 0 var(--accent)}
-.pitem .grip{color:var(--muted);font-size:28px;flex:none;letter-spacing:-2px;user-select:none}
-.pitem .idx{width:40px;text-align:right;color:var(--accent);font-variant-numeric:tabular-nums}
-.pitem img{width:60px;height:52px;object-fit:contain;image-rendering:pixelated}
-.pitem .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pitem .day{color:var(--muted);font-size:22px;font-variant-numeric:tabular-nums;
-            flex:none;white-space:nowrap}
-.pitem button{padding:2px 12px;font-size:24px;background:transparent;
-              border-color:transparent;color:var(--muted)}
-.pitem button:hover{color:var(--text);border-color:var(--line)}
+.line.over-before{box-shadow:0 -2px 0 0 var(--accent)}
+.line.over-after{box-shadow:0 2px 0 0 var(--accent)}
+.lfocus{display:flex;align-items:center;gap:8px;font-size:17px;min-width:0;align-self:start;
+        cursor:grab}
+.lfocus .grip{color:var(--muted);font-size:20px;flex:none;letter-spacing:-2px;user-select:none}
+.lfocus .idx{width:28px;text-align:right;color:var(--accent);flex:none;
+             font-variant-numeric:tabular-nums}
+.lfocus img{width:48px;height:42px;object-fit:contain;flex:none;image-rendering:pixelated}
+/* Two lines before an ellipsis: focus names are long, and this is the column they are read in. */
+.lfocus .nm{flex:1;min-width:0;overflow:hidden;line-height:1.2;display:-webkit-box;
+            -webkit-line-clamp:2;-webkit-box-orient:vertical}
+.lfocus .warn{color:#e6b0b0;flex:none;cursor:help;line-height:1}
+.lfocus .day{color:var(--muted);font-size:14px;flex:none;white-space:nowrap;
+             font-variant-numeric:tabular-nums}
+.lfocus > button{padding:0 8px;background:transparent;border-color:transparent;color:var(--muted)}
+.lfocus > button:hover{color:var(--text);border-color:var(--line)}
 /* How long this focus takes: 14, the plan's own term, or 70. One picker rather
-   than a pair of +/- buttons, so the row says what it costs without counting. */
-.pitem .len{display:flex;flex:none;border:1px solid var(--line);border-radius:5px;
-            overflow:hidden}
-.pitem .len button{padding:2px 7px;font-size:15px;border-radius:0;border:none;
-                   font-variant-numeric:tabular-nums}
-.pitem .len button + button{border-left:1px solid var(--line)}
-.pitem .len button:hover{background:var(--panel);border-color:transparent}
-.pitem .len button.on{background:var(--accent-dim);color:var(--text)}
+   than a pair of +/- buttons, so the line says what it costs without counting. */
+.lfocus .len{display:flex;flex:none;border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.lfocus .len button{padding:1px 6px;font-size:12px;border-radius:0;border:none;
+                    background:transparent;color:var(--muted);font-variant-numeric:tabular-nums}
+.lfocus .len button + button{border-left:1px solid var(--line)}
+.lfocus .len button:hover{background:var(--panel);color:var(--text)}
+.lfocus .len button.on{background:var(--accent-dim);color:var(--text)}
 
 .foot{padding:10px 14px;border-top:1px solid var(--line);background:var(--panel);
       display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted)}
@@ -97,34 +114,19 @@ button:hover{border-color:var(--accent-dim)}
 .empty{color:var(--muted);padding:36px 20px;text-align:center;font-size:26px}
 .empty a{color:var(--accent)}
 
-/* --- the technology page: the catalog, then one line per focus with its technologies --- */
-.techwrap{grid-template-columns:minmax(380px,1fr) minmax(0,2fr)}
-@media (max-width:1100px){.techwrap{grid-template-columns:1fr}}
-.domain{margin:24px 12px 4px;font-size:26px;color:var(--accent);letter-spacing:.6px}
-.techwrap .branch{margin:12px 12px 4px;font-size:15px}
-.techwrap .row{font-size:20px;gap:12px;padding:6px 10px}
-.techwrap .row img,.noicon{width:48px;height:42px;object-fit:contain;flex:none}
-.techwrap .row .add{font-size:24px}
-.facts{color:var(--muted);font-size:14px;flex:none;white-space:nowrap;
+/* --- the technology and staff tabs: smaller rows, as there are hundreds --- */
+.domain{margin:24px 12px 4px;font-size:24px;color:var(--accent);letter-spacing:.6px}
+.section,.post{margin:12px 12px 4px;font-size:15px;letter-spacing:1.6px;
+               text-transform:uppercase;color:var(--muted)}
+.compact .row{font-size:18px;gap:12px;padding:5px 10px}
+.compact .row img,.noicon{width:44px;height:38px;object-fit:contain;flex:none}
+.compact .row .add{font-size:22px}
+.facts{color:var(--muted);font-size:13px;flex:none;white-space:nowrap;
        font-variant-numeric:tabular-nums}
-.heads{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 20px;font-size:12px;
-       letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);
-       border-bottom:1px solid var(--line)}
-.line{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;padding:8px 12px;
-      border:1px solid var(--line);border-radius:8px;background:var(--panel-2);cursor:pointer}
-.line:hover{border-color:var(--accent-dim)}
-.line.selected{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
-.line.over{background:var(--panel);border-color:var(--accent)}
-.lfocus{display:flex;align-items:center;gap:10px;font-size:18px;min-width:0;align-self:start}
-.lfocus .idx{width:30px;text-align:right;color:var(--accent);flex:none;
-             font-variant-numeric:tabular-nums}
-.lfocus img{width:48px;height:42px;object-fit:contain;flex:none;image-rendering:pixelated}
-.lfocus .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lfocus .day{color:var(--muted);font-size:15px;flex:none;white-space:nowrap;
-             font-variant-numeric:tabular-nums}
-.techs{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:42px;justify-content:center}
-.hint{color:var(--muted);font-size:14px}
-.chip{display:flex;align-items:center;gap:8px;padding:2px 6px;border-radius:5px;font-size:16px;
+.attached{display:flex;flex-direction:column;gap:4px;min-width:0;min-height:42px;
+          justify-content:center;border-radius:5px}
+.attached.over{background:var(--panel);outline:1px dashed var(--accent)}
+.chip{display:flex;align-items:center;gap:8px;padding:2px 6px;border-radius:5px;font-size:15px;
       border:1px solid var(--line);background:var(--panel);cursor:grab}
 .chip.dragging{opacity:.35;cursor:grabbing}
 .chip.broken{border-color:var(--danger)}

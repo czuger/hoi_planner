@@ -6,8 +6,10 @@ use axum::http::header::{CONTENT_DISPOSITION, CONTENT_TYPE};
 use axum::response::{IntoResponse, Response};
 use serde_json::{Value, json};
 
-use crate::db::{FocusRecord, TechnologyRecord};
-use crate::domain::{Catalog, PlanFields, TechnologyCatalog, posted_name, read_plan_file};
+use crate::db::{FocusRecord, StaffRecord, TechnologyRecord};
+use crate::domain::{
+    Catalog, PlanFields, StaffCatalog, TechnologyCatalog, posted_name, read_plan_file,
+};
 use crate::error::AppError;
 use crate::service::PlanDownload;
 use crate::web::api_error::ApiError;
@@ -47,6 +49,7 @@ pub async fn export_saved(
             days_per_focus: plan.days_per_focus,
             focus_days: plan.focus_days,
             focus_technologies: plan.focus_technologies,
+            focus_staff: plan.focus_staff,
         };
         download(Some(plan.name), fields, &catalogs)
     };
@@ -58,7 +61,7 @@ pub async fn export_saved(
 /// It stores nothing: an import is a plan arriving, not a plan kept. `unknown` is the ids this
 /// catalog does not have, handed back with the rest rather than dropped, so that a plan from a
 /// fuller catalog says what is missing instead of quietly coming up short.
-/// `unknown_technologies` does the same for the technology catalog.
+/// `unknown_technologies` and `unknown_staff` do the same for the other two catalogs.
 pub async fn import_file(
     State(state): State<AppState>,
     headers: HeaderMap,
@@ -75,17 +78,23 @@ pub async fn import_file(
     Ok(Json(imported).into_response())
 }
 
-fn imported(plan: &Value, fields: PlanFields, (catalog, technologies): &Catalogs) -> Value {
+fn imported(plan: &Value, fields: PlanFields, catalogs: &Catalogs) -> Value {
     let unknown: Vec<&String> = fields
         .focus_ids
         .iter()
-        .filter(|focus_id| !catalog.contains(focus_id))
+        .filter(|focus_id| !catalogs.focuses.contains(focus_id))
         .collect();
     let unknown_technologies: Vec<&String> = fields
         .focus_technologies
         .values()
         .flatten()
-        .filter(|technology_id| !technologies.contains(technology_id))
+        .filter(|technology_id| !catalogs.technologies.contains(technology_id))
+        .collect();
+    let unknown_staff: Vec<&String> = fields
+        .focus_staff
+        .values()
+        .flatten()
+        .filter(|staff_id| !catalogs.staff.contains(staff_id))
         .collect();
     json!({
         "plan": {
@@ -95,28 +104,41 @@ fn imported(plan: &Value, fields: PlanFields, (catalog, technologies): &Catalogs
             "days_per_focus": fields.days_per_focus,
             "focus_days": fields.focus_days,
             "focus_technologies": fields.focus_technologies,
+            "focus_staff": fields.focus_staff,
         },
         "unknown": unknown,
         "unknown_technologies": unknown_technologies,
+        "unknown_staff": unknown_staff,
     })
 }
 
 /// What names the ids of a plan.
-type Catalogs = (Catalog, TechnologyCatalog);
+struct Catalogs {
+    focuses: Catalog,
+    technologies: TechnologyCatalog,
+    staff: StaffCatalog,
+}
 
 async fn load_catalogs(state: &AppState) -> Result<Catalogs, AppError> {
-    Ok((
-        Catalog::new(FocusRecord::list(&state.pool).await?),
-        TechnologyCatalog::new(TechnologyRecord::list(&state.pool).await?),
-    ))
+    Ok(Catalogs {
+        focuses: Catalog::new(FocusRecord::list(&state.pool).await?),
+        technologies: TechnologyCatalog::new(TechnologyRecord::list(&state.pool).await?),
+        staff: StaffCatalog::new(StaffRecord::list(&state.pool).await?),
+    })
 }
 
 fn download(
     name: Option<String>,
     fields: PlanFields,
-    (catalog, technologies): &Catalogs,
+    catalogs: &Catalogs,
 ) -> Result<Response, AppError> {
-    let file = PlanDownload::new(name, fields, catalog, technologies)?;
+    let file = PlanDownload::new(
+        name,
+        fields,
+        &catalogs.focuses,
+        &catalogs.technologies,
+        &catalogs.staff,
+    )?;
     let disposition = format!("attachment; filename=\"{}\"", file.filename);
     Ok((
         [

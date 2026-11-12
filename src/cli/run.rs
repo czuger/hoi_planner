@@ -9,7 +9,7 @@ use crate::cli::serve::serve;
 use crate::config::{AppConfig, DataFiles, database_label};
 use crate::error::AppError;
 use crate::service::{
-    CatalogSource, ImportOptions, import_focuses, import_technologies, parse_politics,
+    CatalogSource, ImportOptions, import_focuses, import_staff, import_technologies, parse_politics,
 };
 
 /// Runs what the command line asks, and turns a failure into a message and an exit code.
@@ -52,6 +52,14 @@ async fn dispatch(args: impl IntoIterator<Item = String>) -> Result<(), AppError
         } => {
             let url = database_url.unwrap_or(config.database_url);
             run_import_technologies(&files, source, (!json_only).then_some(url.as_str())).await
+        }
+        Command::ImportStaff {
+            source,
+            json_only,
+            database_url,
+        } => {
+            let url = database_url.unwrap_or(config.database_url);
+            run_import_staff(&files, source, (!json_only).then_some(url.as_str())).await
         }
     }
 }
@@ -120,6 +128,35 @@ async fn run_import_technologies(
     if let (Some(stored), Some(url)) = (outcome.stored, database_url) {
         println!(
             "{stored} technologies enregistrées dans {}",
+            database_label(url)
+        );
+    }
+    Ok(())
+}
+
+async fn run_import_staff(
+    files: &DataFiles,
+    source: CatalogSource,
+    database_url: Option<&str>,
+) -> Result<(), AppError> {
+    if let Some(url) = database_url {
+        println!("remplissage de {}", database_label(url));
+    }
+    let outcome = import_staff(
+        files,
+        ImportOptions {
+            source,
+            database_url,
+        },
+    )
+    .await?;
+    println!("{} membres de l'état-major lus", outcome.parsed);
+    if source == CatalogSource::WikiPage {
+        println!("{} écrit", files.staff_json.display());
+    }
+    if let (Some(stored), Some(url)) = (outcome.stored, database_url) {
+        println!(
+            "{stored} membres de l'état-major enregistrés dans {}",
             database_label(url)
         );
     }

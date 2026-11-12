@@ -10,15 +10,11 @@
   <header>
     <h1>{% block heading %}Planificateur des focus nationaux allemands{% endblock %}</h1>
     {% block subtitle %}{% endblock %}
-    <nav class="pages">
-      <a href="{{ prefix }}/"{% if active == "focuses" %} class="on"{% endif %}>Focus</a>
-      <a href="{{ prefix }}/technologies"{% if active == "technologies" %} class="on"{% endif %}>Technologies</a>
-    </nav>
     <span class="grow"></span>
     <span class="db" title="DATABASE_URL choisit la base">{{ database_name }}</span>
   </header>
 
-  {% if let Some(message) = error %}<div class="err">{{ message }}</div>{% endif %}
+  {% for message in errors %}<div class="err">{{ message }}</div>{% endfor %}
 
   {% block content %}{% endblock %}
   {% block scripts %}{% endblock %}

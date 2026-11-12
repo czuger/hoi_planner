@@ -1,9 +1,11 @@
 use askama::Template;
 
 use crate::domain::rules::{DEFAULT_DAYS_PER_FOCUS, DEFAULT_START_TEXT, LONG_DAYS, SHORT_DAYS};
-use crate::domain::{Focus, Plan};
+use crate::domain::{Focus, Plan, StaffMember, Technology};
 use crate::error::AppError;
 use crate::web::app_state::AppState;
+use crate::web::staff_row::{StaffRow, staff_rows, unique_posts};
+use crate::web::technology_row::{TechnologyRow, technology_rows, unique_domains};
 
 /// One row of the catalog, as the template draws it.
 #[derive(Debug, Clone)]
@@ -31,27 +33,51 @@ pub struct SavedPlanOption {
     pub focus_count: usize,
 }
 
-/// The focus page: the catalog on the left, the plan being built on the right.
+/// What the page is drawn from: the three catalogs, the saved plans, and the draft.
 ///
-/// The catalog is rendered here (215 rows that never change between requests, which the
-/// browser filters); the plan is edited in the browser and posted as JSON.
+/// Empty, it is the page drawn when the database could not be read.
+#[derive(Debug, Clone, Default)]
+pub struct PlannerData {
+    /// The focus catalog.
+    pub focuses: Vec<Focus>,
+    /// The research catalog.
+    pub technologies: Vec<Technology>,
+    /// The staff catalog.
+    pub staff: Vec<StaffMember>,
+    /// The saved plans.
+    pub plans: Vec<Plan>,
+    /// The plan being built, if any.
+    pub draft: Option<Plan>,
+}
+
+/// The one page: the three catalogs on the left, in tabs, and on the right the plan being
+/// built, one line per focus with its technologies and its staff.
+///
+/// The catalogs are rendered here (rows that never change between requests, which the browser
+/// filters); the plan is edited in the browser and posted as JSON.
 #[derive(Template)]
 #[template(path = "planner.html")]
 pub struct PlannerPage {
-    /// The catalog.
+    /// The focus catalog.
     pub rows: Vec<FocusRow>,
     /// The branches, in page order.
     pub sections: Vec<String>,
+    /// The research catalog.
+    pub tech_rows: Vec<TechnologyRow>,
+    /// The research areas, in page order.
+    pub domains: Vec<String>,
+    /// The staff catalog.
+    pub staff_rows: Vec<StaffRow>,
+    /// The posts, in page order.
+    pub posts: Vec<String>,
     /// The saved plans.
     pub plans: Vec<SavedPlanOption>,
     /// The plan being built as JSON, `{}` when there is none.
     pub draft_json: String,
-    /// What went wrong, if anything.
-    pub error: Option<String>,
+    /// What went wrong, if anything: one sentence each.
+    pub errors: Vec<String>,
     /// What every link is built under.
     pub prefix: String,
-    /// Which page the navigation marks as current.
-    pub active: &'static str,
     /// What the database is called on screen.
     pub database_name: String,
     /// The date the start field shows at first.
@@ -71,23 +97,24 @@ impl PlannerPage {
     /// Fails if a value cannot be written as JSON.
     pub fn new(
         state: &AppState,
-        focuses: Vec<Focus>,
-        plans: Vec<Plan>,
-        draft: Option<Plan>,
-        error: Option<String>,
+        data: PlannerData,
+        errors: Vec<String>,
     ) -> Result<PlannerPage, AppError> {
-        let draft_json = match &draft {
+        let draft_json = match &data.draft {
             Some(plan) => serde_json::to_string(plan)?,
             None => "{}".to_string(),
         };
         Ok(PlannerPage {
-            sections: unique_sections(&focuses),
-            rows: focus_rows(focuses)?,
-            plans: plans.into_iter().map(saved_option).collect(),
+            sections: unique_sections(&data.focuses),
+            rows: focus_rows(data.focuses)?,
+            domains: unique_domains(&data.technologies),
+            tech_rows: technology_rows(data.technologies)?,
+            posts: unique_posts(&data.staff),
+            staff_rows: staff_rows(data.staff)?,
+            plans: data.plans.into_iter().map(saved_option).collect(),
             draft_json,
-            error,
+            errors,
             prefix: state.url_prefix.clone(),
-            active: "focuses",
             database_name: state.database_name.clone(),
             default_start: DEFAULT_START_TEXT,
             default_days: DEFAULT_DAYS_PER_FOCUS,

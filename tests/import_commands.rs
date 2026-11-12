@@ -1,4 +1,4 @@
-//! The two commands reading the saved pages: page -> JSON -> database.
+//! The commands reading the saved pages: page -> JSON -> database.
 
 mod common;
 
@@ -10,10 +10,10 @@ use common::politics_markup::{
 use common::technology_markup::{heading, link_to, row, wikitable};
 use common::wiki_markup::{plain_row, wiki_heading};
 use hoi4_planner::config::DataFiles;
-use hoi4_planner::db::{self, FocusRecord, TechnologyRecord};
+use hoi4_planner::db::{self, FocusRecord, StaffRecord, TechnologyRecord};
 use hoi4_planner::error::AppError;
 use hoi4_planner::service::{
-    CatalogSource, ImportOptions, import_focuses, import_technologies, parse_politics,
+    CatalogSource, ImportOptions, import_focuses, import_staff, import_technologies, parse_politics,
 };
 use serde_json::Value;
 use tempfile::TempDir;
@@ -324,4 +324,60 @@ async fn an_unreadable_technology_json_is_an_error() {
         .await
         .unwrap_err();
     assert!(matches!(error, AppError::InvalidCatalogFile { .. }));
+}
+
+async fn stored_staff(workspace: &Workspace) -> Vec<String> {
+    let pool = db::connect(&workspace.database_url).await.unwrap();
+    let staff = StaffRecord::list(&pool).await.unwrap();
+    pool.close().await;
+    staff.into_iter().map(|member| member.id).collect()
+}
+
+#[tokio::test]
+async fn the_staff_import_goes_from_the_page_to_the_json_to_the_database() {
+    let work = workspace();
+    fs::write(&work.files.politics_page, staff_page()).unwrap();
+
+    let outcome = import_staff(&work.files, work.options(CatalogSource::WikiPage))
+        .await
+        .unwrap();
+
+    assert_eq!((outcome.parsed, outcome.stored), (1, Some(1)));
+    assert_eq!(stored_staff(&work).await, ["Franz_Halder"]);
+    // The same file parse-politics writes, so that either leaves `git diff data/` empty.
+    assert_eq!(read_json(&work.files.staff_json)[0]["section"], "Generals");
+}
+
+#[tokio::test]
+async fn the_staff_import_can_seed_from_the_json_alone() {
+    let work = workspace();
+    fs::write(&work.files.politics_page, staff_page()).unwrap();
+    let json_only = ImportOptions {
+        source: CatalogSource::WikiPage,
+        database_url: None,
+    };
+    import_staff(&work.files, json_only).await.unwrap();
+    fs::remove_file(&work.files.politics_page).unwrap();
+
+    let outcome = import_staff(&work.files, work.options(CatalogSource::Json))
+        .await
+        .unwrap();
+    assert_eq!(outcome.stored, Some(1));
+    assert_eq!(stored_staff(&work).await, ["Franz_Halder"]);
+}
+
+#[tokio::test]
+async fn a_page_with_no_staff_changes_nothing() {
+    let work = workspace();
+    fs::write(
+        &work.files.politics_page,
+        country_leaders(&[default_leader()]),
+    )
+    .unwrap();
+
+    let error = import_staff(&work.files, work.options(CatalogSource::WikiPage))
+        .await
+        .unwrap_err();
+    assert!(matches!(error, AppError::NothingParsed { .. }));
+    assert!(!work.files.staff_json.exists());
 }

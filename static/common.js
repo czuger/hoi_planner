@@ -1,5 +1,6 @@
-/* What both pages of the planner share: talking to the server, keeping the draft, and the two
- * rules a focus and a technology have in common. Loaded before the page's own script. */
+/* What the scripts of the planner share: talking to the server, keeping the draft, the two rules
+ * a focus, a technology and a member of staff have in common, and the chips attached to focus
+ * lines. Loaded first. */
 
 window.Planner = (function () {
   "use strict";
@@ -99,25 +100,81 @@ window.Planner = (function () {
     };
   }
 
-  /* Each page holds the whole plan and writes it back whole, which makes moving
-     between them the risky moment. Following a link waits for the last edit to be
-     stored, or the next page would come down without it. And a page brought back
-     by the back button holds the plan as it was: its next edit would overwrite
-     what the other page did since, so it asks for a fresh copy instead. */
-  function linkPages(drafts) {
-    document.querySelectorAll("nav.pages a, .empty a").forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-        e.preventDefault();
-        drafts.flush().then(function () {
-          window.location.href = link.href;
-        }).catch(function () { /* the status line already says why it stayed */ });
-      });
+  /* Takes an id off whichever focus carries it in `attached`, {focus id: [ids]},
+     dropping a focus left with nothing. */
+  function detach(attached, id) {
+    Object.keys(attached).forEach(function (focusId) {
+      attached[focusId] = attached[focusId].filter(function (other) { return other !== id; });
+      if (!attached[focusId].length) delete attached[focusId];
     });
-    window.addEventListener("pageshow", function (e) {
-      var entries = performance.getEntriesByType("navigation");
-      var cameBack = entries.length > 0 && entries[0].type === "back_forward";
-      if (e.persisted || cameBack) window.location.reload();
+  }
+
+  /* Lets the chips in the `cell` column of `linesEl` be dragged within a line and
+     from one line to another, never into another column, moving their ids in the
+     map `attachedMap()` returns (edited in place); `done` follows every drop. Each
+     `.line` carries its focus id, each `.chip` its own id. A getter, as the panel
+     swaps the maps for new ones when a plan is loaded. */
+  function dragChips(linesEl, cell, attachedMap, done) {
+    var dragId = null;
+    var drop = null; // {focusId, beforeId}: where the chip lands, null beforeId being the end
+
+    function clearMarks() {
+      linesEl.querySelectorAll(".over,.over-before,.over-after").forEach(function (n) {
+        n.classList.remove("over", "over-before", "over-after");
+      });
+    }
+
+    linesEl.addEventListener("dragstart", function (e) {
+      var chip = e.target.closest(cell + " .chip");
+      if (!chip) return;
+      dragId = chip.dataset.id;
+      chip.classList.add("dragging");
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", dragId);
+    });
+
+    linesEl.addEventListener("dragover", function (e) {
+      if (dragId === null) return;
+      var line = e.target.closest(".line");
+      if (!line) { drop = null; clearMarks(); return; }
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+      clearMarks();
+      drop = { focusId: line.dataset.focus, beforeId: null };
+      var target = line.querySelector(cell);
+      var chip = e.target.closest(cell + " .chip");
+      if (!chip || chip.dataset.id === dragId) { target.classList.add("over"); return; }
+      // Which half of the chip the pointer is in decides which side it lands on.
+      var box = chip.getBoundingClientRect();
+      var after = (e.clientY - box.top) > box.height / 2;
+      chip.classList.add(after ? "over-after" : "over-before");
+      var next = after ? chip.nextElementSibling : chip;
+      if (next && next.dataset.id === dragId) next = next.nextElementSibling;
+      drop.beforeId = next ? next.dataset.id : null;
+    });
+
+    linesEl.addEventListener("drop", function (e) {
+      if (dragId === null) return;
+      e.preventDefault();
+      if (drop) {
+        var attached = attachedMap();
+        detach(attached, dragId);
+        var list = (attached[drop.focusId] || []).slice();
+        // Read after the removal, so it is the index the chip is inserted next to.
+        var at = drop.beforeId === null ? list.length : list.indexOf(drop.beforeId);
+        list.splice(at === -1 ? list.length : at, 0, dragId);
+        attached[drop.focusId] = list;
+      }
+      dragId = drop = null;
+      done();
+    });
+
+    linesEl.addEventListener("dragend", function () {
+      dragId = drop = null;
+      clearMarks();
+      linesEl.querySelectorAll(".dragging").forEach(function (n) {
+        n.classList.remove("dragging");
+      });
     });
   }
 
@@ -129,6 +186,7 @@ window.Planner = (function () {
     unmet: unmet,
     clashes: clashes,
     draftWriter: draftWriter,
-    linkPages: linkPages
+    detach: detach,
+    dragChips: dragChips
   };
 })();

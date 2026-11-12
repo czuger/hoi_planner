@@ -66,7 +66,7 @@ async fn the_file_is_indented_keeps_its_accents_and_ends_with_a_new_line() {
     let answer = export(&app, json!({"name": "Plan à Zürich"})).await;
 
     assert!(answer.body.starts_with(
-        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 2,\n  \"name\": \"Plan à Zürich\","
+        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 3,\n  \"name\": \"Plan à Zürich\","
     ));
     assert!(answer.body.ends_with("}\n"));
 }
@@ -167,6 +167,7 @@ async fn a_plan_survives_the_round_trip() {
                 "Anschluss".to_string(),
                 vec!["Construction_I".to_string()],
             )]),
+            focus_staff: BTreeMap::from([("Rhineland".to_string(), vec!["Krupp".to_string()])]),
         },
     )
     .await;
@@ -182,6 +183,7 @@ async fn a_plan_survives_the_round_trip() {
             "days_per_focus": 20,
             "focus_days": {"Anschluss": 70},
             "focus_technologies": {"Anschluss": ["Construction_I"]},
+            "focus_staff": {"Rhineland": ["Krupp"]},
         })
     );
 }
@@ -332,4 +334,41 @@ async fn a_file_from_before_technologies_imports_with_none() {
     assert_eq!(answer.status, StatusCode::OK);
     assert_eq!(answer.json()["plan"]["focus_technologies"], json!({}));
     assert_eq!(answer.json()["unknown_technologies"], json!([]));
+}
+
+#[tokio::test]
+async fn the_file_carries_the_staff_and_names_their_posts() {
+    let app = TestApp::with_staff().await;
+    let file = export(
+        &app,
+        json!({
+            "focus_ids": ["Rhineland"],
+            "focus_staff": {"Rhineland": ["Gone", "Heinz_Guderian__Theorists"]},
+        }),
+    )
+    .await
+    .json();
+
+    assert_eq!(
+        file["focus_staff"],
+        json!({"Rhineland": ["Gone", "Heinz_Guderian__Theorists"]})
+    );
+    assert_eq!(
+        file["focuses"][0]["staff"],
+        json!([{"id": "Heinz_Guderian__Theorists", "name": "Heinz Guderian", "post": "Theorists"}])
+    );
+}
+
+#[tokio::test]
+async fn importing_says_which_staff_this_catalog_has_lost() {
+    let app = TestApp::with_staff().await;
+    let mut file = a_file();
+    file["focus_staff"] = json!({"Rhineland": ["Krupp", "Gone"]});
+
+    let body = app.post("/api/plans/import", file).await.json();
+    assert_eq!(body["unknown_staff"], json!(["Gone"]));
+    assert_eq!(
+        body["plan"]["focus_staff"],
+        json!({"Rhineland": ["Krupp", "Gone"]})
+    );
 }

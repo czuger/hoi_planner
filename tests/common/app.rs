@@ -6,7 +6,7 @@ use axum::Router;
 use axum::body::{Body, to_bytes};
 use axum::http::header::CONTENT_TYPE;
 use axum::http::{HeaderMap, Method, Request, StatusCode};
-use hoi4_planner::db::{self, FocusRecord, TechnologyRecord};
+use hoi4_planner::db::{self, FocusRecord, StaffRecord, TechnologyRecord};
 use hoi4_planner::web::{AppState, build_router};
 use serde_json::Value;
 use sqlx::SqlitePool;
@@ -59,6 +59,15 @@ impl TestApp {
     pub async fn with_technologies() -> TestApp {
         let app = TestApp::with_catalog().await;
         TechnologyRecord::replace_all(&app.pool, &super::technologies())
+            .await
+            .unwrap();
+        app
+    }
+
+    /// The focus catalog and the staff catalog, both filled.
+    pub async fn with_staff() -> TestApp {
+        let app = TestApp::with_catalog().await;
+        StaffRecord::replace_all(&app.pool, &super::staff())
             .await
             .unwrap();
         app

@@ -1,4 +1,4 @@
-use crate::domain::{Catalog, PlanFields, PlanFile, TechnologyCatalog, slugify};
+use crate::domain::{Catalog, PlanFields, PlanFile, StaffCatalog, TechnologyCatalog, slugify};
 use crate::error::AppError;
 
 /// Two extensions on purpose: the file is JSON and opens as JSON, the middle one says whose.
@@ -23,11 +23,12 @@ impl PlanDownload {
         fields: PlanFields,
         catalog: &Catalog,
         technologies: &TechnologyCatalog,
+        staff: &StaffCatalog,
     ) -> Result<PlanDownload, AppError> {
         let slug = slugify(name.as_deref().unwrap_or(""));
         let stem = if slug.is_empty() { "plan" } else { &slug };
         let filename = format!("{stem}{FILE_SUFFIX}");
-        let file = PlanFile::new(name, fields, catalog, technologies);
+        let file = PlanFile::new(name, fields, catalog, technologies, staff);
         Ok(PlanDownload {
             body: serde_json::to_string_pretty(&file)? + "\n",
             filename,

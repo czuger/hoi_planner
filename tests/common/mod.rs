@@ -6,7 +6,7 @@ pub mod politics_markup;
 pub mod technology_markup;
 pub mod wiki_markup;
 
-use hoi4_planner::domain::{Focus, Technology};
+use hoi4_planner::domain::{Focus, StaffMember, Technology};
 
 pub const FOCUS_ID: &str = "Fortify_the_Vaterland";
 pub const WIKI: &str = "https://hoi4.paradoxwikis.com";
@@ -62,5 +62,38 @@ pub fn technologies() -> Vec<Technology> {
         technology("Construction_I", "Construction I", Some(1936), 0),
         technology("Construction_II", "Construction II", Some(1937), 1),
         technology("Jungle_Training", "Jungle Training", None, 2),
+    ]
+}
+
+/// One staff catalog row, shaped as the import hands it over.
+pub fn staff_member(id: &str, name: &str, section: &str, position: i64) -> StaffMember {
+    StaffMember {
+        id: id.to_string(),
+        name: name.to_string(),
+        icon: format!("{WIKI}/images/d/dd/{id}.png"),
+        icon_page: format!("{WIKI}/File:{id}.png"),
+        section: section.to_string(),
+        position,
+        requires: Vec::new(),
+        excludes: Vec::new(),
+    }
+}
+
+/// A theorist who needs a focus, a concern who needs nothing, and a general with no portrait.
+pub fn staff() -> Vec<StaffMember> {
+    let mut guderian = staff_member(
+        "Heinz_Guderian__Theorists",
+        "Heinz Guderian",
+        "Theorists",
+        0,
+    );
+    guderian.requires = vec![vec!["Rhineland".to_string()]];
+    let mut halder = staff_member("Franz_Halder", "Franz Halder", "Generals", 2);
+    halder.icon = String::new();
+    halder.icon_page = String::new();
+    vec![
+        guderian,
+        staff_member("Krupp", "Krupp", "Industrial concerns", 1),
+        halder,
     ]
 }

@@ -1,4 +1,4 @@
-//! Runtime settings read from the environment.
+//! Runtime settings: fixed, except the socket and data folder `cargo deploy` hands over.
 
 use std::path::{Path, PathBuf};
 
@@ -14,23 +14,23 @@ const DATABASE_FILE: &str = "hoi4_planner.db";
 /// Server settings.
 #[derive(Debug, Clone)]
 pub struct AppConfig {
-    /// The SQLite file, in the data folder (`HOI4_PLANNER_DATA_DIR`); created if missing.
+    /// The SQLite file, in `data/` or the data folder `cargo deploy` hands over; created if missing.
     pub database_url: String,
-    /// TCP address to listen on when no socket is set (`BIND_ADDR`).
+    /// TCP address to listen on when no socket is set.
     pub bind_addr: String,
-    /// Unix socket to listen on instead of TCP (`HOI4_PLANNER_SOCKET`).
+    /// Unix socket to listen on instead of TCP, handed over by `cargo deploy`.
     pub socket_path: Option<PathBuf>,
 }
 
 impl AppConfig {
-    /// Reads the settings from environment variables, falling back to local defaults.
+    /// The local defaults, with the socket and data folder `cargo deploy` sets, if any.
     pub fn from_env() -> AppConfig {
         let set = |name: &str| std::env::var_os(name).filter(|value| !value.is_empty());
         let data_dir =
             set(DATA_DIR_VAR).map_or_else(|| PathBuf::from(DEFAULT_DATA_DIR), PathBuf::from);
         AppConfig {
             database_url: database_path(&data_dir),
-            bind_addr: std::env::var("BIND_ADDR").unwrap_or_else(|_| DEFAULT_BIND_ADDR.to_string()),
+            bind_addr: DEFAULT_BIND_ADDR.to_string(),
             socket_path: set(SOCKET_VAR).map(PathBuf::from),
         }
     }

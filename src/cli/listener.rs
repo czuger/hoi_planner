@@ -1,7 +1,7 @@
 //! Where the server listens, and the probe `healthcheck` sends there.
 //!
-//! Deployed, the app listens on the Unix socket `HOI4_PLANNER_SOCKET` names, so no port is
-//! opened at all. Without it (`cargo run`), it listens on TCP at `BIND_ADDR`.
+//! Deployed, the app listens on the Unix socket `cargo deploy` names in `HOI4_PLANNER_SOCKET`,
+//! so no port is opened at all. Without it (`cargo run`), it listens on TCP at 127.0.0.1:5000.
 
 use std::fs::{self, Permissions};
 use std::future::Future;

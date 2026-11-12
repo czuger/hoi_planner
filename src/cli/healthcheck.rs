@@ -10,7 +10,7 @@ use crate::error::AppError;
 
 const TIMEOUT: Duration = Duration::from_secs(3);
 
-/// Asks the server on `HOI4_PLANNER_SOCKET`, or `BIND_ADDR` without one, for `/health`, and
+/// Asks the server on the socket `cargo deploy` hands over, or 127.0.0.1:5000 without one, for `/health`, and
 /// prints what it says: the database and how many entries each catalog holds.
 ///
 /// Answered through the socket nginx uses, so this probe does not depend on the proxy.

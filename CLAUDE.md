@@ -15,7 +15,7 @@ The catalog only offers what the plan can actually take next: the wiki's "Requir
 ## Commands
 
 ```sh
-cargo run                                   # serve on http://127.0.0.1:5000 (HOI4_PLANNER_DATA_DIR, BIND_ADDR, HOI4_PLANNER_SOCKET, RUST_LOG, NO_COLOR)
+cargo run                                   # serve on http://127.0.0.1:5000, logs at info
 cargo run -- seed                           # fill the three catalogs from the JSON compiled into the binary
 cargo run -- import-focuses                 # data/focuses.html -> data/focuses.json -> database
 cargo run -- import-focuses --from-json     # seed from the committed JSON (fast, no page needed)
@@ -34,7 +34,7 @@ cargo clippy --all-targets -- -D warnings
 cargo fmt
 ```
 
-No external service is needed: the database is a file, `hoi4_planner.db` in the data folder (`HOI4_PLANNER_DATA_DIR`, default `data`), created with its folder at the first connection, and pending migrations are applied every time the app connects. The catalogs are not in it until they are seeded; an empty one comes up healthy and says so on the page.
+No external service is needed: the database is a file, `data/hoi4_planner.db`, created with its folder at the first connection, and pending migrations are applied every time the app connects. The catalogs are not in it until they are seeded; an empty one comes up healthy and says so on the page. Nothing is configured from the environment: the address, the log level and the data folder are fixed, except the socket and data folder `cargo deploy` hands over (`HOI4_PLANNER_SOCKET`, `HOI4_PLANNER_DATA_DIR`), the only variables the app reads.
 
 ## The rules of a plan
 
@@ -94,7 +94,7 @@ Layers, from the inside out:
 - **`src/db/`**: one record type per table (`FocusRecord`, `TechnologyRecord`, `StaffRecord`, `PlanRecord`) with async functions taking the pool. `db::connect` runs `migrations/` (embedded with `sqlx::migrate!`). Queries use runtime `sqlx::query`/`query_as` (no compile-time macros, so no database at build time). `requires`, `excludes`, `focus_ids`, `focus_days`, `focus_technologies`, `focus_staff` and `focus_comments` are JSON columns: they are only ever read whole, and a plan may hold ids the catalog has lost, so nothing joins the two tables. Stamps are UTC text to the microsecond, which sorts chronologically. Schema changes go in a new migration file, never by editing an applied one.
 - **`src/service/`**: one use case per file. `save_plan` (slug + name checks), `draft`, `PlanDownload` (a plan as the file a browser saves), `import_focuses`, `import_technologies`, `import_staff` (each from the saved pages, the JSON of `data/`, or the JSON compiled into the binary: `BundledCatalog`, which `seed` uses), `parse_politics`. Services do not print; the CLI says what happened.
 - **`src/web/`**: `router.rs` lists the routes. `main_handlers` serves the page (`PlannerPage` built from `PlannerData`, `templates/planner.html`, which draws the three catalogs' rows (`FocusRow`, `TechnologyRow`, `StaffRow`) with their `data-requires` / `data-excludes` and hands the draft over in `data-draft`; the lines are drawn and dated in the browser), the redirects of `/technologies` and `/staff`, and `/health`. `static_asset` serves `static/`, compiled into the binary (`include_str!`) with an `ETag` hashed at compile time; a file added to `static/` must be listed there, which a unit test checks. `plan_handlers` and `plan_file_handlers` speak JSON, as the planner is one screen that never reloads. Every API failure is an `ApiError`: `{"error": "..."}` and a status, 503 when the database failed, so that it reads as a message next to the save button. The page itself still draws when the database fails, saying so, and says how to fill each catalog still empty.
-- **`src/cli/`**: `Command` (the command line), `run`, `serve`, `healthcheck`, `listener` (TCP, or a Unix socket when `HOI4_PLANNER_SOCKET` is set: a stale one removed first, `0666`, removed at SIGTERM or Ctrl-C).
+- **`src/cli/`**: `Command` (the command line), `run`, `serve`, `healthcheck`, `listener` (TCP, or a Unix socket when `cargo deploy` sets `HOI4_PLANNER_SOCKET`: a stale one removed first, `0666`, removed at SIGTERM or Ctrl-C).
 
 **Every link is relative** (`static/app.js`, `api/plans`, the redirects' `./`): a proxy may serve the app under a sub-path it strips, and the app does not know which.
 

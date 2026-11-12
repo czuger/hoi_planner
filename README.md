@@ -11,15 +11,7 @@ cargo run
 
 Then open <http://127.0.0.1:5000>.
 
-Settings (environment variables):
-
-| Variable | Default | Meaning |
-|---|---|---|
-| `HOI4_PLANNER_DATA_DIR` | `data` | Folder of the SQLite database (`hoi4_planner.db`), created if missing |
-| `BIND_ADDR` | `127.0.0.1:5000` | TCP address the server listens on |
-| `HOI4_PLANNER_SOCKET` | | Unix socket to listen on instead of TCP |
-| `RUST_LOG` | `info` | Log filter |
-| `NO_COLOR` | | Plain logs, even on a terminal |
+There is nothing to configure: the server listens on 127.0.0.1:5000, the database is `data/hoi4_planner.db` (created with its folder if missing), and logs are at info level. Deployed, `cargo deploy` hands the app its socket and data folder instead.
 
 The stylesheet, the scripts and the catalogs' JSON are compiled into the binary, which is all a deployed copy needs. Every link is relative, so the app can be served under any sub-path.
 

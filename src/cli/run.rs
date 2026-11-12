@@ -2,8 +2,6 @@ use std::io::IsTerminal;
 use std::path::Path;
 use std::process::ExitCode;
 
-use tracing_subscriber::EnvFilter;
-
 use crate::cli::Command;
 use crate::cli::healthcheck::healthcheck;
 use crate::cli::serve::serve;
@@ -17,9 +15,7 @@ use crate::service::{
 pub async fn run(args: impl IntoIterator<Item = String>) -> ExitCode {
     tracing_subscriber::fmt()
         .with_ansi(colors_wanted())
-        .with_env_filter(
-            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")),
-        )
+        .with_max_level(tracing::Level::INFO)
         .init();
     match dispatch(args).await {
         Ok(()) => ExitCode::SUCCESS,
@@ -30,10 +26,9 @@ pub async fn run(args: impl IntoIterator<Item = String>) -> ExitCode {
     }
 }
 
-/// Colors only on a terminal, and never when `NO_COLOR` is set (the service's journal).
+/// Colors only on a terminal, so the service's journal stays plain.
 fn colors_wanted() -> bool {
-    let no_color = std::env::var_os("NO_COLOR").is_some_and(|value| !value.is_empty());
-    std::io::stdout().is_terminal() && !no_color
+    std::io::stdout().is_terminal()
 }
 
 async fn dispatch(args: impl IntoIterator<Item = String>) -> Result<(), AppError> {

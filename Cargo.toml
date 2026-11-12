@@ -16,7 +16,7 @@ thiserror = "2.0.21"
 tokio = { version = "1.53.2", features = ["macros", "rt-multi-thread", "net", "signal", "io-util", "time"] }
 tower-http = { version = "0.7.1", features = ["set-header"] }
 tracing = "0.1.44"
-tracing-subscriber = { version = "0.3.23", features = ["env-filter"] }
+tracing-subscriber = "0.3.23"
 unicode-normalization = "0.1.25"
 
 [dev-dependencies]
@@ -42,7 +42,8 @@ url-prefix = "/hoi4"
 # there is none (--new-secret-key replaces it).
 # secret-key = false
 
-# Extra service environment; NO_COLOR=1 is always set.
+# Extra service environment; NO_COLOR=1 is always set. The app reads neither
+# NO_COLOR nor RUST_LOG: it always logs at info, in color only on a terminal.
 # env = { RUST_LOG = "info" }
 
 # proxy-read-timeout = "60s"

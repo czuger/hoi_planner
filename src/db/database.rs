@@ -43,3 +43,12 @@ fn create_parent_folder(database_file: &Path) -> Result<(), AppError> {
         _ => Ok(()),
     }
 }
+
+/// Asks the database a trivial question, to know whether it answers.
+///
+/// # Errors
+/// Fails when the database cannot be read.
+pub async fn ping(pool: &SqlitePool) -> Result<(), AppError> {
+    sqlx::query("SELECT 1").execute(pool).await?;
+    Ok(())
+}

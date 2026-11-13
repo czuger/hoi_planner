@@ -14,9 +14,8 @@ pub struct PoliticsCounts {
 
 /// Reads the country leaders and the staff out of the saved German Reich page.
 ///
-/// JSON only: no database is touched. Nothing reads the leaders yet, and the staff are what
-/// `import-staff --from-json` seeds from. Both are checked before either is written, so a
-/// page that lost one of its tables changes nothing.
+/// Nothing reads the leaders yet, and the staff are the catalog the binary compiles in. Both
+/// are checked before either is written, so a page that lost one of its tables changes nothing.
 ///
 /// # Errors
 /// Fails when the page is missing, holds nothing to read, or a file cannot be written.

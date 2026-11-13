@@ -4,7 +4,10 @@ use axum::Router;
 use axum::body::{Body, to_bytes};
 use axum::http::header::CONTENT_TYPE;
 use axum::http::{HeaderMap, Method, Request, StatusCode};
-use hoi4_planner::db::{self, FocusRecord, StaffRecord, TechnologyRecord};
+use std::sync::Arc;
+
+use hoi4_planner::db;
+use hoi4_planner::domain::{Catalog, Catalogs, StaffCatalog, TechnologyCatalog};
 use hoi4_planner::web::{AppState, build_router};
 use serde_json::Value;
 use sqlx::SqlitePool;
@@ -30,40 +33,50 @@ impl Answer {
 }
 
 impl TestApp {
+    /// No catalog at all.
     pub async fn new() -> TestApp {
+        TestApp::serving(Catalogs::default()).await
+    }
+
+    /// The app serving these catalogs.
+    pub async fn serving(catalogs: Catalogs) -> TestApp {
         let pool = db::connect("sqlite::memory:").await.unwrap();
         let state = AppState {
             pool: pool.clone(),
             database_name: DATABASE_NAME.to_string(),
+            catalogs: Arc::new(catalogs),
         };
         let router = build_router(state);
         TestApp { pool, router }
     }
 
+    /// The focus catalog.
     pub async fn with_catalog() -> TestApp {
-        let app = TestApp::new().await;
-        FocusRecord::replace_all(&app.pool, &super::catalog())
-            .await
-            .unwrap();
-        app
+        TestApp::serving(Catalogs {
+            focuses: Catalog::new(super::catalog()),
+            ..Catalogs::default()
+        })
+        .await
     }
 
-    /// The focus catalog and the research catalog, both filled.
+    /// The focus catalog and the research catalog.
     pub async fn with_technologies() -> TestApp {
-        let app = TestApp::with_catalog().await;
-        TechnologyRecord::replace_all(&app.pool, &super::technologies())
-            .await
-            .unwrap();
-        app
+        TestApp::serving(Catalogs {
+            focuses: Catalog::new(super::catalog()),
+            technologies: TechnologyCatalog::new(super::technologies()),
+            ..Catalogs::default()
+        })
+        .await
     }
 
-    /// The focus catalog and the staff catalog, both filled.
+    /// The focus catalog and the staff catalog.
     pub async fn with_staff() -> TestApp {
-        let app = TestApp::with_catalog().await;
-        StaffRecord::replace_all(&app.pool, &super::staff())
-            .await
-            .unwrap();
-        app
+        TestApp::serving(Catalogs {
+            focuses: Catalog::new(super::catalog()),
+            staff: StaffCatalog::new(super::staff()),
+            ..Catalogs::default()
+        })
+        .await
     }
 
     /// Every call fails from now on, the way a database that cannot be read does.

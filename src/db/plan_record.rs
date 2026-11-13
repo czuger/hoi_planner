@@ -1,9 +1,9 @@
 use std::collections::BTreeMap;
 
 use chrono::Utc;
+use serde::de::DeserializeOwned;
 use sqlx::{FromRow, SqlitePool};
 
-use crate::db::focus_record::read_json;
 use crate::domain::rules::DEFAULT_START_TEXT;
 use crate::domain::{DRAFT_PLAN_ID, Plan, PlanFields};
 use crate::error::AppError;
@@ -167,4 +167,9 @@ fn into_plan(row: PlanRow) -> Result<Plan, AppError> {
         created_at: row.created_at,
         updated_at: row.updated_at,
     })
+}
+
+/// Reads a JSON column back.
+fn read_json<T: DeserializeOwned>(column: &'static str, text: &str) -> Result<T, AppError> {
+    serde_json::from_str(text).map_err(|source| AppError::CorruptData { column, source })
 }

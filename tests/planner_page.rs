@@ -7,8 +7,7 @@ use axum::http::header::{CACHE_CONTROL, CONTENT_TYPE, ETAG, IF_NONE_MATCH, LOCAT
 use axum::http::{Request, StatusCode};
 use common::app::{DATABASE_NAME, TestApp};
 use common::{catalog, technologies};
-use hoi4_planner::db::{FocusRecord, TechnologyRecord};
-use hoi4_planner::domain::PlanFields;
+use hoi4_planner::domain::{Catalog, Catalogs, PlanFields, TechnologyCatalog};
 use hoi4_planner::service::{save_draft, save_plan};
 use std::collections::BTreeMap;
 
@@ -43,10 +42,13 @@ async fn the_page_links_icons_rather_than_serving_them() {
 
 #[tokio::test]
 async fn the_page_carries_what_a_focus_depends_on() {
-    let app = TestApp::new().await;
     let mut focuses = catalog();
     focuses[1].requires = vec![vec!["Anschluss".to_string()]];
-    FocusRecord::replace_all(&app.pool, &focuses).await.unwrap();
+    let app = TestApp::serving(Catalogs {
+        focuses: Catalog::new(focuses),
+        ..Catalogs::default()
+    })
+    .await;
 
     let body = app.get("/").await.body;
     assert!(body.contains("data-requires=\"[[&#34;Anschluss&#34;]]\""));
@@ -126,12 +128,6 @@ async fn the_draft_is_not_offered_among_the_saved_plans() {
             .body
             .contains("<option value=\"~draft\">")
     );
-}
-
-#[tokio::test]
-async fn an_empty_catalog_says_how_to_seed_it() {
-    let body = TestApp::new().await.get("/").await.body;
-    assert!(body.contains("hoi4_planner seed"));
 }
 
 #[tokio::test]
@@ -251,12 +247,13 @@ async fn the_page_draws_one_tab_per_catalog() {
 
 #[tokio::test]
 async fn the_page_lists_the_research_catalog_by_domain_with_what_each_needs() {
-    let app = TestApp::new().await;
     let mut listed = technologies();
     listed[1].requires = vec![vec!["Construction_I".to_string()]];
-    TechnologyRecord::replace_all(&app.pool, &listed)
-        .await
-        .unwrap();
+    let app = TestApp::serving(Catalogs {
+        technologies: TechnologyCatalog::new(listed),
+        ..Catalogs::default()
+    })
+    .await;
 
     let body = app.get("/").await.body;
     assert!(body.contains("Construction II"));
@@ -311,14 +308,9 @@ async fn the_plan_has_a_column_for_comments() {
 }
 
 #[tokio::test]
-async fn each_empty_catalog_says_how_to_fill_it() {
-    let body = TestApp::new().await.get("/").await.body;
-    assert_eq!(body.matches("class=\"err\"").count(), 3);
-    assert_eq!(body.matches("hoi4_planner seed").count(), 3);
-
-    let body = TestApp::with_technologies().await.get("/").await.body;
-    assert_eq!(body.matches("class=\"err\"").count(), 1);
-    assert!(body.contains("Aucun membre de l&#39;état-major enregistré"));
+async fn the_page_has_nothing_to_complain_about_when_the_database_answers() {
+    let body = TestApp::with_staff().await.get("/").await.body;
+    assert_eq!(body.matches("class=\"err\"").count(), 0);
 }
 
 #[tokio::test]
@@ -329,6 +321,9 @@ async fn the_page_draws_with_every_catalog_when_the_database_fails() {
     assert_eq!(answer.status, StatusCode::OK);
     assert_eq!(answer.body.matches("class=\"err\"").count(), 1);
     assert!(answer.body.contains("id=\"staff-list\""));
+    // The catalogs are the binary's, not the database's.
+    assert!(answer.body.contains("Fortify the Vaterland"));
+    assert!(answer.body.contains("Franz Halder"));
 }
 
 #[tokio::test]

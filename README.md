@@ -5,15 +5,14 @@ A planner for the German national focus tree of Hearts of Iron IV: pick focuses 
 ## Run
 
 ```sh
-cargo run -- seed      # once, to fill the three catalogs (focuses, technologies, staff)
 cargo run
 ```
 
 Then open <http://127.0.0.1:5000>.
 
-There is nothing to configure: the server listens on 127.0.0.1:5000, the database is `data/hoi4_planner.db` (created with its folder if missing), and logs are at info level. Deployed, `cargo deploy` hands the app its socket and data folder instead.
+There is nothing to configure and nothing to seed: the server listens on 127.0.0.1:5000, the database is `data/hoi4_planner.db` (created with its folder if missing) and holds only the plans, and logs are at info level. Deployed, `cargo deploy` hands the app its socket and data folder instead.
 
-The stylesheet, the scripts and the catalogs' JSON are compiled into the binary, which is all a deployed copy needs. Every link is relative, so the app can be served under any sub-path.
+The stylesheet, the scripts and the three catalogs (focuses, technologies, staff) are compiled into the binary, which is all a deployed copy needs: a re-parsed page goes out with the next build. Every link is relative, so the app can be served under any sub-path.
 
 ## Deploy
 
@@ -22,7 +21,6 @@ With `cargo deploy`, configured in `[package.metadata.deploy]` of `Cargo.toml`; 
 ```sh
 cargo deploy setup          # once: prepare the server
 cargo deploy                # build, ship, restart, health check
-cargo deploy run -- seed    # fill the catalogs from the deployed binary
 cargo deploy rollback       # back to the previous version
 cargo deploy status         # what runs, and what /health says
 cargo deploy logs           # follow the service's journal

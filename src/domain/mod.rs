@@ -1,6 +1,7 @@
 //! The catalogs and the arithmetic of a plan: pure, no I/O.
 
 mod catalog;
+mod catalogs;
 mod focus;
 mod plan;
 mod plan_fields;
@@ -15,6 +16,7 @@ mod technology;
 mod technology_catalog;
 
 pub use catalog::Catalog;
+pub use catalogs::Catalogs;
 pub use focus::Focus;
 pub use plan::{DRAFT_PLAN_ID, Plan};
 pub use plan_fields::{PlanFields, PlanFieldsError, posted_name};

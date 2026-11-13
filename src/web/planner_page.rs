@@ -1,7 +1,7 @@
 use askama::Template;
 
 use crate::domain::rules::{DEFAULT_DAYS_PER_FOCUS, DEFAULT_START_TEXT, LONG_DAYS, SHORT_DAYS};
-use crate::domain::{Focus, Plan, StaffMember, Technology};
+use crate::domain::{Focus, Plan};
 use crate::error::AppError;
 use crate::web::app_state::AppState;
 use crate::web::staff_row::{StaffRow, staff_rows, unique_posts};
@@ -33,17 +33,11 @@ pub struct SavedPlanOption {
     pub focus_count: usize,
 }
 
-/// What the page is drawn from: the three catalogs, the saved plans, and the draft.
+/// What the page is drawn from besides the catalogs: the saved plans and the draft.
 ///
 /// Empty, it is the page drawn when the database could not be read.
 #[derive(Debug, Clone, Default)]
 pub struct PlannerData {
-    /// The focus catalog.
-    pub focuses: Vec<Focus>,
-    /// The research catalog.
-    pub technologies: Vec<Technology>,
-    /// The staff catalog.
-    pub staff: Vec<StaffMember>,
     /// The saved plans.
     pub plans: Vec<Plan>,
     /// The plan being built, if any.
@@ -89,7 +83,7 @@ pub struct PlannerPage {
 }
 
 impl PlannerPage {
-    /// Prepares the page from what was read.
+    /// Prepares the page from the state's catalogs and what was read from the database.
     ///
     /// # Errors
     /// Fails if a value cannot be written as JSON.
@@ -102,13 +96,17 @@ impl PlannerPage {
             Some(plan) => serde_json::to_string(plan)?,
             None => "{}".to_string(),
         };
+        let catalogs = &state.catalogs;
+        let focuses = catalogs.focuses.entries();
+        let technologies = catalogs.technologies.entries();
+        let staff = catalogs.staff.entries();
         Ok(PlannerPage {
-            sections: unique_sections(&data.focuses),
-            rows: focus_rows(data.focuses)?,
-            domains: unique_domains(&data.technologies),
-            tech_rows: technology_rows(data.technologies)?,
-            posts: unique_posts(&data.staff),
-            staff_rows: staff_rows(data.staff)?,
+            sections: unique_sections(focuses),
+            rows: focus_rows(focuses.to_vec())?,
+            domains: unique_domains(technologies),
+            tech_rows: technology_rows(technologies.to_vec())?,
+            posts: unique_posts(staff),
+            staff_rows: staff_rows(staff.to_vec())?,
             plans: data.plans.into_iter().map(saved_option).collect(),
             draft_json,
             errors,

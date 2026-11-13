@@ -82,7 +82,7 @@ const TECHNOLOGY_PAGES: [(&str, &str); 9] = [
 pub struct DataFiles {
     /// The German national focus tree page, saved by hand.
     pub wiki_page: PathBuf,
-    /// The catalog parsed out of it, committed, which is what a database is seeded from.
+    /// The catalog parsed out of it, committed, which the binary compiles in.
     pub focuses_json: PathBuf,
     /// The German Reich country page, saved by hand.
     pub politics_page: PathBuf,
@@ -92,7 +92,7 @@ pub struct DataFiles {
     pub staff_json: PathBuf,
     /// The research pages, saved by hand.
     pub technology_pages: Vec<TechnologyPageFile>,
-    /// The research tree parsed out of them, committed, which a database is seeded from.
+    /// The research tree parsed out of them, committed, which the binary compiles in.
     pub technologies_json: PathBuf,
 }
 

@@ -1,4 +1,4 @@
-//! The command line: serving the app, seeding the catalog, reading the saved pages.
+//! The command line: serving the app, and reading the saved pages into the catalogs.
 
 mod command;
 mod healthcheck;

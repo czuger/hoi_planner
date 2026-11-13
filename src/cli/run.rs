@@ -5,11 +5,9 @@ use std::process::ExitCode;
 use crate::cli::Command;
 use crate::cli::healthcheck::healthcheck;
 use crate::cli::serve::serve;
-use crate::config::{AppConfig, DataFiles, database_label};
+use crate::config::{AppConfig, DataFiles};
 use crate::error::AppError;
-use crate::service::{
-    CatalogSource, ImportOptions, import_focuses, import_staff, import_technologies, parse_politics,
-};
+use crate::service::{parse_focuses, parse_politics, parse_technologies};
 
 /// Runs what the command line asks, and turns a failure into a message and an exit code.
 pub async fn run(args: impl IntoIterator<Item = String>) -> ExitCode {
@@ -39,44 +37,21 @@ async fn dispatch(args: impl IntoIterator<Item = String>) -> Result<(), AppError
     match command {
         Command::Serve => serve(&config).await,
         Command::Healthcheck => healthcheck(&config).await,
-        Command::Seed { database_url } => {
-            let url = database_url.unwrap_or(config.database_url);
-            run_seed(&files, &url).await
+        Command::ParseFocuses => {
+            let count = parse_focuses(&files)?;
+            println!("{count} focus -> {}", files.focuses_json.display());
+            Ok(())
+        }
+        Command::ParseTechnologies => {
+            let count = parse_technologies(&files)?;
+            println!(
+                "{count} technologies -> {}",
+                files.technologies_json.display()
+            );
+            Ok(())
         }
         Command::ParsePolitics => run_parse_politics(&files),
-        Command::ImportFocuses {
-            source,
-            json_only,
-            database_url,
-        } => {
-            let url = database_url.unwrap_or(config.database_url);
-            run_import(&files, source, (!json_only).then_some(url.as_str())).await
-        }
-        Command::ImportTechnologies {
-            source,
-            json_only,
-            database_url,
-        } => {
-            let url = database_url.unwrap_or(config.database_url);
-            run_import_technologies(&files, source, (!json_only).then_some(url.as_str())).await
-        }
-        Command::ImportStaff {
-            source,
-            json_only,
-            database_url,
-        } => {
-            let url = database_url.unwrap_or(config.database_url);
-            run_import_staff(&files, source, (!json_only).then_some(url.as_str())).await
-        }
     }
-}
-
-/// The three imports from the binary's own JSON: all a deployed server can seed from.
-async fn run_seed(files: &DataFiles, database_url: &str) -> Result<(), AppError> {
-    let source = CatalogSource::Bundled;
-    run_import(files, source, Some(database_url)).await?;
-    run_import_technologies(files, source, Some(database_url)).await?;
-    run_import_staff(files, source, Some(database_url)).await
 }
 
 fn run_parse_politics(files: &DataFiles) -> Result<(), AppError> {
@@ -91,89 +66,5 @@ fn run_parse_politics(files: &DataFiles) -> Result<(), AppError> {
         counts.staff,
         files.staff_json.display()
     );
-    Ok(())
-}
-
-async fn run_import(
-    files: &DataFiles,
-    source: CatalogSource,
-    database_url: Option<&str>,
-) -> Result<(), AppError> {
-    if let Some(url) = database_url {
-        println!("remplissage de {}", database_label(url));
-    }
-    let outcome = import_focuses(
-        files,
-        ImportOptions {
-            source,
-            database_url,
-        },
-    )
-    .await?;
-    println!("{} focus lus", outcome.parsed);
-    if source == CatalogSource::WikiPage {
-        println!("{} écrit", files.focuses_json.display());
-    }
-    if let (Some(stored), Some(url)) = (outcome.stored, database_url) {
-        println!("{stored} focus enregistrés dans {}", database_label(url));
-    }
-    Ok(())
-}
-
-async fn run_import_technologies(
-    files: &DataFiles,
-    source: CatalogSource,
-    database_url: Option<&str>,
-) -> Result<(), AppError> {
-    if let Some(url) = database_url {
-        println!("remplissage de {}", database_label(url));
-    }
-    let outcome = import_technologies(
-        files,
-        ImportOptions {
-            source,
-            database_url,
-        },
-    )
-    .await?;
-    println!("{} technologies lues", outcome.parsed);
-    if source == CatalogSource::WikiPage {
-        println!("{} écrit", files.technologies_json.display());
-    }
-    if let (Some(stored), Some(url)) = (outcome.stored, database_url) {
-        println!(
-            "{stored} technologies enregistrées dans {}",
-            database_label(url)
-        );
-    }
-    Ok(())
-}
-
-async fn run_import_staff(
-    files: &DataFiles,
-    source: CatalogSource,
-    database_url: Option<&str>,
-) -> Result<(), AppError> {
-    if let Some(url) = database_url {
-        println!("remplissage de {}", database_label(url));
-    }
-    let outcome = import_staff(
-        files,
-        ImportOptions {
-            source,
-            database_url,
-        },
-    )
-    .await?;
-    println!("{} membres de l'état-major lus", outcome.parsed);
-    if source == CatalogSource::WikiPage {
-        println!("{} écrit", files.staff_json.display());
-    }
-    if let (Some(stored), Some(url)) = (outcome.stored, database_url) {
-        println!(
-            "{stored} membres de l'état-major enregistrés dans {}",
-            database_label(url)
-        );
-    }
     Ok(())
 }

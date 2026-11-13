@@ -248,7 +248,6 @@ async fn every_route_reports_a_failing_database() {
     let app = TestApp::new().await;
     app.lose_database().await;
 
-    let file = json!({"format": "hoi4-planner-plan", "version": 1});
     let answers = [
         app.get("/api/plans").await,
         app.get("/api/plans/any").await,
@@ -256,13 +255,8 @@ async fn every_route_reports_a_failing_database() {
         app.delete("/api/plans/any").await,
         put_draft(&app, json!({})).await,
         app.delete("/api/draft").await,
-        app.post("/api/plans/export", json!({"focus_ids": []}))
-            .await,
         app.get("/api/plans/any/export").await,
-        app.post("/api/plans/export/text", json!({"focus_ids": []}))
-            .await,
         app.get("/api/plans/any/export/text").await,
-        app.post("/api/plans/import", file).await,
     ];
     for answer in answers {
         assert_eq!(answer.status, StatusCode::SERVICE_UNAVAILABLE);
@@ -272,6 +266,27 @@ async fn every_route_reports_a_failing_database() {
                 .unwrap()
                 .contains("base de données")
         );
+    }
+}
+
+#[tokio::test]
+async fn what_the_panel_posts_is_exported_and_imported_without_the_database() {
+    let app = TestApp::with_catalog().await;
+    app.lose_database().await;
+
+    let file = json!({"format": "hoi4-planner-plan", "version": 1});
+    let answers = [
+        app.post("/api/plans/export", json!({"focus_ids": ["Rhineland"]}))
+            .await,
+        app.post(
+            "/api/plans/export/text",
+            json!({"focus_ids": ["Rhineland"]}),
+        )
+        .await,
+        app.post("/api/plans/import", file).await,
+    ];
+    for answer in answers {
+        assert_eq!(answer.status, StatusCode::OK);
     }
 }
 

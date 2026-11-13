@@ -1,11 +1,8 @@
-//! Every read and write of the catalog and the plans, against an in-memory SQLite.
-
-mod common;
+//! Every read and write of the plans, against an in-memory SQLite.
 
 use std::collections::BTreeMap;
 
-use common::{FOCUS_ID, catalog, focus, staff, technologies};
-use hoi4_planner::db::{self, FocusRecord, PlanRecord, StaffRecord, TechnologyRecord};
+use hoi4_planner::db::{self, PlanRecord};
 use hoi4_planner::domain::{DRAFT_PLAN_ID, PlanFields};
 use hoi4_planner::error::AppError;
 use hoi4_planner::service::{clear_draft, load_draft, save_draft, save_plan};
@@ -40,64 +37,6 @@ async fn saved_ids(pool: &SqlitePool) -> Vec<String> {
         .into_iter()
         .map(|plan| plan.id)
         .collect()
-}
-
-#[tokio::test]
-async fn replacing_the_catalog_stores_it_and_says_how_many() {
-    let pool = pool().await;
-    assert_eq!(
-        FocusRecord::replace_all(&pool, &catalog()).await.unwrap(),
-        3
-    );
-    assert_eq!(FocusRecord::count(&pool).await.unwrap(), 3);
-}
-
-#[tokio::test]
-async fn a_re_import_loses_what_the_page_no_longer_has() {
-    let pool = pool().await;
-    FocusRecord::replace_all(&pool, &catalog()).await.unwrap();
-    let only = [focus("Anschluss", "Anschluss", "S", 0)];
-    FocusRecord::replace_all(&pool, &only).await.unwrap();
-
-    assert_eq!(FocusRecord::list(&pool).await.unwrap()[0].id, "Anschluss");
-    assert_eq!(FocusRecord::count(&pool).await.unwrap(), 1);
-}
-
-#[tokio::test]
-async fn re_importing_nothing_empties_the_catalog() {
-    let pool = pool().await;
-    FocusRecord::replace_all(&pool, &catalog()).await.unwrap();
-    assert_eq!(FocusRecord::replace_all(&pool, &[]).await.unwrap(), 0);
-    assert!(FocusRecord::list(&pool).await.unwrap().is_empty());
-}
-
-#[tokio::test]
-async fn focuses_come_back_in_page_order() {
-    let pool = pool().await;
-    let mut reversed = catalog();
-    reversed.reverse();
-    FocusRecord::replace_all(&pool, &reversed).await.unwrap();
-
-    let stored = FocusRecord::list(&pool).await.unwrap();
-    let positions: Vec<i64> = stored.iter().map(|focus| focus.position).collect();
-    assert_eq!(positions, [0, 1, 2]);
-    assert_eq!(stored[0].id, FOCUS_ID);
-}
-
-#[tokio::test]
-async fn a_focus_comes_back_as_it_went_in() {
-    let pool = pool().await;
-    let mut gamma = focus("Gamma", "Gamma", "S", 0);
-    gamma.requires = vec![
-        vec!["Alpha".to_string()],
-        vec!["Beta".to_string(), "Delta".to_string()],
-    ];
-    gamma.excludes = vec!["Epsilon".to_string()];
-    FocusRecord::replace_all(&pool, std::slice::from_ref(&gamma))
-        .await
-        .unwrap();
-
-    assert_eq!(FocusRecord::list(&pool).await.unwrap(), [gamma]);
 }
 
 #[tokio::test]
@@ -435,33 +374,6 @@ async fn a_plan_written_before_technologies_reads_as_having_none() {
 }
 
 #[tokio::test]
-async fn replacing_the_technologies_stores_them_in_order_and_says_how_many() {
-    let pool = pool().await;
-    assert_eq!(
-        TechnologyRecord::replace_all(&pool, &technologies())
-            .await
-            .unwrap(),
-        3
-    );
-
-    let stored = TechnologyRecord::list(&pool).await.unwrap();
-    assert_eq!(stored, technologies());
-    assert_eq!(TechnologyRecord::count(&pool).await.unwrap(), 3);
-}
-
-#[tokio::test]
-async fn replacing_the_technologies_loses_what_the_pages_no_longer_have() {
-    let pool = pool().await;
-    TechnologyRecord::replace_all(&pool, &technologies())
-        .await
-        .unwrap();
-    TechnologyRecord::replace_all(&pool, &technologies()[..1])
-        .await
-        .unwrap();
-    assert_eq!(TechnologyRecord::count(&pool).await.unwrap(), 1);
-}
-
-#[tokio::test]
 async fn a_plan_keeps_its_staff_by_focus_in_their_order() {
     let pool = pool().await;
     let plan = hired(&["A"], &[("A", &["Krupp", "Heinz_Guderian__Theorists"])]);
@@ -485,24 +397,4 @@ async fn staff_of_a_focus_not_in_the_order_are_not_stored() {
 
     assert_eq!(stored.focus_staff.len(), 1);
     assert_eq!(stored.focus_staff["A"], ["Krupp"]);
-}
-
-#[tokio::test]
-async fn replacing_the_staff_stores_them_in_order_and_says_how_many() {
-    let pool = pool().await;
-    assert_eq!(StaffRecord::replace_all(&pool, &staff()).await.unwrap(), 3);
-
-    let mut expected = staff();
-    expected.sort_by_key(|member| member.position);
-    assert_eq!(StaffRecord::list(&pool).await.unwrap(), expected);
-}
-
-#[tokio::test]
-async fn replacing_the_staff_loses_what_the_page_no_longer_has() {
-    let pool = pool().await;
-    StaffRecord::replace_all(&pool, &staff()).await.unwrap();
-    StaffRecord::replace_all(&pool, &staff()[..1])
-        .await
-        .unwrap();
-    assert_eq!(StaffRecord::count(&pool).await.unwrap(), 1);
 }

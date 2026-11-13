@@ -6,11 +6,7 @@ use axum::http::header::{CONTENT_DISPOSITION, CONTENT_TYPE};
 use axum::response::{IntoResponse, Response};
 use serde_json::{Value, json};
 
-use crate::db::{FocusRecord, StaffRecord, TechnologyRecord};
-use crate::domain::{
-    Catalog, Plan, PlanFields, PlanFile, StaffCatalog, TechnologyCatalog, plan_text, posted_name,
-    read_plan_file,
-};
+use crate::domain::{Catalogs, Plan, PlanFields, PlanFile, plan_text, posted_name, read_plan_file};
 use crate::error::AppError;
 use crate::service::PlanDownload;
 use crate::web::api_error::ApiError;
@@ -28,12 +24,10 @@ pub async fn export_panel(
     body: Bytes,
 ) -> Result<Response, ApiError> {
     let payload = posted_object(&headers, &body);
-    let answer = async {
-        let fields = PlanFields::from_json(&payload)?;
-        let catalogs = load_catalogs(&state).await?;
-        download(posted_name(&payload), fields, &catalogs)
-    };
-    answer.await.map_err(|error| ApiError::new(&state, error))
+    PlanFields::from_json(&payload)
+        .map_err(AppError::from)
+        .and_then(|fields| download(posted_name(&payload), fields, &state.catalogs))
+        .map_err(|error| ApiError::new(&state, error))
 }
 
 /// A saved plan as a file, by id: the same file, without a browser.
@@ -42,12 +36,8 @@ pub async fn export_saved(
     Path(plan_id): Path<String>,
 ) -> Result<Response, ApiError> {
     let plan = found_plan(&state, &plan_id).await?;
-    let answer = async {
-        let catalogs = load_catalogs(&state).await?;
-        let (name, fields) = saved_fields(plan);
-        download(Some(name), fields, &catalogs)
-    };
-    answer.await.map_err(|error| ApiError::new(&state, error))
+    let (name, fields) = saved_fields(plan);
+    download(Some(name), fields, &state.catalogs).map_err(|error| ApiError::new(&state, error))
 }
 
 /// The plan on screen as plain text, to be copied and pasted: the Text button.
@@ -57,12 +47,9 @@ pub async fn export_panel_text(
     body: Bytes,
 ) -> Result<Response, ApiError> {
     let payload = posted_object(&headers, &body);
-    let answer = async {
-        let fields = PlanFields::from_json(&payload)?;
-        let catalogs = load_catalogs(&state).await?;
-        Ok::<Response, AppError>(text(posted_name(&payload), fields, &catalogs))
-    };
-    answer.await.map_err(|error| ApiError::new(&state, error))
+    let fields = PlanFields::from_json(&payload)
+        .map_err(|error| ApiError::new(&state, AppError::from(error)))?;
+    Ok(text(posted_name(&payload), fields, &state.catalogs))
 }
 
 /// A saved plan as plain text, by id.
@@ -71,11 +58,8 @@ pub async fn export_saved_text(
     Path(plan_id): Path<String>,
 ) -> Result<Response, ApiError> {
     let plan = found_plan(&state, &plan_id).await?;
-    let catalogs = load_catalogs(&state)
-        .await
-        .map_err(|error| ApiError::new(&state, error))?;
     let (name, fields) = saved_fields(plan);
-    Ok(text(Some(name), fields, &catalogs))
+    Ok(text(Some(name), fields, &state.catalogs))
 }
 
 /// A stored plan's name, and the fields a file is written from.
@@ -104,14 +88,15 @@ pub async fn import_file(
     body: Bytes,
 ) -> Result<Response, ApiError> {
     let data = posted_json(&headers, &body);
-    let answer = async {
-        let plan = read_plan_file(&data)?;
-        let fields = PlanFields::from_json(&plan)?;
-        let catalogs = load_catalogs(&state).await?;
-        Ok::<Value, AppError>(imported(&plan, fields, &catalogs))
-    };
-    let imported = answer.await.map_err(|error| ApiError::new(&state, error))?;
-    Ok(Json(imported).into_response())
+    let answer =
+        read_import(&data, &state.catalogs).map_err(|error| ApiError::new(&state, error))?;
+    Ok(Json(answer).into_response())
+}
+
+fn read_import(data: &Value, catalogs: &Catalogs) -> Result<Value, AppError> {
+    let plan = read_plan_file(data)?;
+    let fields = PlanFields::from_json(&plan)?;
+    Ok(imported(&plan, fields, catalogs))
 }
 
 fn imported(plan: &Value, fields: PlanFields, catalogs: &Catalogs) -> Value {
@@ -146,21 +131,6 @@ fn imported(plan: &Value, fields: PlanFields, catalogs: &Catalogs) -> Value {
         "unknown": unknown,
         "unknown_technologies": unknown_technologies,
         "unknown_staff": unknown_staff,
-    })
-}
-
-/// What names the ids of a plan.
-struct Catalogs {
-    focuses: Catalog,
-    technologies: TechnologyCatalog,
-    staff: StaffCatalog,
-}
-
-async fn load_catalogs(state: &AppState) -> Result<Catalogs, AppError> {
-    Ok(Catalogs {
-        focuses: Catalog::new(FocusRecord::list(&state.pool).await?),
-        technologies: TechnologyCatalog::new(TechnologyRecord::list(&state.pool).await?),
-        staff: StaffCatalog::new(StaffRecord::list(&state.pool).await?),
     })
 }
 

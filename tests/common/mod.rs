@@ -96,5 +96,6 @@ pub fn staff() -> Vec<StaffMember> {
         guderian,
         staff_member("Krupp", "Krupp", "Industrial concerns", 1),
         halder,
+        staff_member("Porsche", "Porsche", "Tank designers", 3),
     ]
 }

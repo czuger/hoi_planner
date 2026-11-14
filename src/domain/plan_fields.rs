@@ -51,6 +51,14 @@ pub enum PlanFieldsError {
     /// A value of `focus_comments` is not a list of texts.
     #[error("focus_comments doit contenir des listes de textes.")]
     CommentsNotLists,
+    /// `technology_designers` is not an object.
+    #[error("technology_designers doit être un objet.")]
+    DesignersNotAnObject,
+    /// A value of `technology_designers` is not an id.
+    #[error(
+        "technology_designers doit associer des technologies à des identifiants de concepteur."
+    )]
+    DesignersNotIds,
 }
 
 /// What a plan is made of, whichever way it arrives: a save, the draft, an export, a file.
@@ -70,6 +78,8 @@ pub struct PlanFields {
     pub focus_staff: BTreeMap<String, Vec<String>>,
     /// `{focus id: [text]}`, free comments in the order they sit next to the focus.
     pub focus_comments: BTreeMap<String, Vec<String>>,
+    /// `{technology id: staff id}`: the designer each tagged technology is meant for.
+    pub technology_designers: BTreeMap<String, String>,
 }
 
 impl PlanFields {
@@ -101,6 +111,7 @@ impl PlanFields {
                 PlanFieldsError::CommentsNotAnObject,
                 PlanFieldsError::CommentsNotLists,
             )?,
+            technology_designers: technology_designers(payload.get("technology_designers"))?,
         })
     }
 
@@ -114,6 +125,7 @@ impl PlanFields {
             focus_technologies: BTreeMap::new(),
             focus_staff: BTreeMap::new(),
             focus_comments: BTreeMap::new(),
+            technology_designers: BTreeMap::new(),
         }
     }
 }
@@ -219,6 +231,23 @@ fn attached_lists(
                 return Err(not_lists.clone());
             };
             Ok((focus_id.clone(), ids(items, not_lists.clone())?))
+        })
+        .collect()
+}
+
+fn technology_designers(
+    value: Option<&Value>,
+) -> Result<BTreeMap<String, String>, PlanFieldsError> {
+    if is_blank(value) {
+        return Ok(BTreeMap::new());
+    }
+    let Some(Value::Object(tags)) = value else {
+        return Err(PlanFieldsError::DesignersNotAnObject);
+    };
+    tags.iter()
+        .map(|(technology_id, designer)| {
+            let designer = designer.as_str().ok_or(PlanFieldsError::DesignersNotIds)?;
+            Ok((technology_id.clone(), designer.to_string()))
         })
         .collect()
 }
@@ -420,6 +449,24 @@ mod tests {
         assert_eq!(
             read(json!({"focus_comments": {"A": ["note", 7]}})),
             Err(PlanFieldsError::CommentsNotLists)
+        );
+    }
+
+    #[test]
+    fn technology_designers_are_read() {
+        let fields = read(json!({"technology_designers": {"Heavy_Tank_I": "Porsche"}})).unwrap();
+        assert_eq!(fields.technology_designers["Heavy_Tank_I"], "Porsche");
+    }
+
+    #[test]
+    fn technology_designers_must_be_an_object_of_ids() {
+        assert_eq!(
+            read(json!({"technology_designers": ["Porsche"]})),
+            Err(PlanFieldsError::DesignersNotAnObject)
+        );
+        assert_eq!(
+            read(json!({"technology_designers": {"Heavy_Tank_I": ["Porsche"]}})),
+            Err(PlanFieldsError::DesignersNotIds)
         );
     }
 

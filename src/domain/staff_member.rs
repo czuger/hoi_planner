@@ -31,6 +31,15 @@ pub struct StaffMember {
     pub excludes: Vec<String>,
 }
 
+impl StaffMember {
+    /// Whether the member is a designer, a military industrial organization: not staff a line
+    /// hires, but what a technology of the plan can be tagged with. Its table says so (`Tank
+    /// designers`, `Ship designers`…).
+    pub fn is_designer(&self) -> bool {
+        self.section.to_lowercase().ends_with(" designers")
+    }
+}
+
 /// `staff.json` writes a missing picture as `null`.
 fn empty_when_null<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
@@ -54,5 +63,30 @@ mod tests {
         assert_eq!(member.icon, "");
         assert_eq!(member.icon_page, "");
         assert_eq!(member.requires, [["Expatriate_the_Communists_B"]]);
+    }
+
+    #[test]
+    fn only_the_designers_tables_hold_designers() {
+        let member = |section: &str| StaffMember {
+            id: "X".to_string(),
+            name: "X".to_string(),
+            icon: String::new(),
+            icon_page: String::new(),
+            section: section.to_string(),
+            position: 0,
+            requires: Vec::new(),
+            excludes: Vec::new(),
+        };
+        for section in [
+            "Tank designers",
+            "Aircraft designers",
+            "Materiel designers",
+            "Ship designers",
+        ] {
+            assert!(member(section).is_designer(), "{section}");
+        }
+        for section in ["Industrial concerns", "Generals", "Theorists"] {
+            assert!(!member(section).is_designer(), "{section}");
+        }
     }
 }

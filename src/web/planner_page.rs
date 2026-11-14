@@ -1,7 +1,7 @@
 use askama::Template;
 
 use crate::domain::rules::{DEFAULT_DAYS_PER_FOCUS, DEFAULT_START_TEXT, LONG_DAYS, SHORT_DAYS};
-use crate::domain::{Focus, Plan};
+use crate::domain::{Focus, Plan, StaffMember};
 use crate::error::AppError;
 use crate::web::app_state::AppState;
 use crate::web::staff_row::{StaffRow, staff_rows, unique_posts};
@@ -60,10 +60,12 @@ pub struct PlannerPage {
     pub tech_rows: Vec<TechnologyRow>,
     /// The research areas, in page order.
     pub domains: Vec<String>,
-    /// The staff catalog.
+    /// The staff catalog, designers left out.
     pub staff_rows: Vec<StaffRow>,
-    /// The posts, in page order.
+    /// The staff's posts, in page order.
     pub posts: Vec<String>,
+    /// The designers, which a technology is tagged with rather than a line hiring them.
+    pub designer_rows: Vec<StaffRow>,
     /// The saved plans.
     pub plans: Vec<SavedPlanOption>,
     /// The plan being built as JSON, `{}` when there is none.
@@ -99,14 +101,20 @@ impl PlannerPage {
         let catalogs = &state.catalogs;
         let focuses = catalogs.focuses.entries();
         let technologies = catalogs.technologies.entries();
-        let staff = catalogs.staff.entries();
+        let (designers, staff): (Vec<StaffMember>, Vec<StaffMember>) = catalogs
+            .staff
+            .entries()
+            .iter()
+            .cloned()
+            .partition(StaffMember::is_designer);
         Ok(PlannerPage {
             sections: unique_sections(focuses),
             rows: focus_rows(focuses.to_vec())?,
             domains: unique_domains(technologies),
             tech_rows: technology_rows(technologies.to_vec())?,
-            posts: unique_posts(staff),
-            staff_rows: staff_rows(staff.to_vec())?,
+            posts: unique_posts(&staff),
+            staff_rows: staff_rows(staff)?,
+            designer_rows: staff_rows(designers)?,
             plans: data.plans.into_iter().map(saved_option).collect(),
             draft_json,
             errors,

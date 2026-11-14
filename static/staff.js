@@ -1,9 +1,9 @@
-/* The staff and designers: their tab of the catalog, and their column of the plan.
+/* The staff: their tab of the catalog, and their column of the plan.
  *
  * `app.js` owns the plan and calls `Planner.staffPane(ctx)` once. What is edited here is
  * `ctx.state.staff`, {focus id: [staff ids]}: a member is hired with a focus, takes its date,
  * and fills the post of the table it is listed in. A member's requirements are focuses, and
- * these rules live only here.
+ * these rules live only here. The designers are not staff: `technologies.js` has them.
  */
 
 window.Planner.staffPane = function (ctx) {

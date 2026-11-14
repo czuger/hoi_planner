@@ -438,6 +438,45 @@ async fn comments_are_saved_with_the_plan_and_kept_in_the_draft() {
 }
 
 #[tokio::test]
+async fn designers_are_saved_with_the_plan_and_kept_in_the_draft() {
+    let app = TestApp::with_catalog().await;
+    let body = json!({
+        "name": "Rush",
+        "focus_ids": ["Rhineland"],
+        "focus_technologies": {"Rhineland": ["Construction_I"]},
+        "focus_staff": {"Rhineland": ["Porsche"]},
+        "technology_designers": {"Construction_I": "Porsche"},
+    });
+
+    let saved = app.post("/api/plans", body.clone()).await;
+    assert_eq!(
+        saved.json()["plan"]["technology_designers"],
+        json!({"Construction_I": "Porsche"})
+    );
+    let draft = app.put("/api/draft", body).await;
+    assert_eq!(
+        draft.json()["plan"]["technology_designers"],
+        json!({"Construction_I": "Porsche"})
+    );
+}
+
+#[tokio::test]
+async fn designers_that_are_not_ids_are_refused() {
+    let app = TestApp::with_catalog().await;
+    for tags in [json!(["Porsche"]), json!({"Construction_I": ["Porsche"]})] {
+        let body = json!({"name": "Rush", "technology_designers": tags});
+        let answer = app.post("/api/plans", body).await;
+        assert_eq!(answer.status, StatusCode::BAD_REQUEST);
+        assert!(
+            answer.json()["error"]
+                .as_str()
+                .unwrap()
+                .contains("technology_designers")
+        );
+    }
+}
+
+#[tokio::test]
 async fn comments_that_are_not_lists_of_texts_are_refused() {
     let app = TestApp::with_catalog().await;
     for comments in [json!(["note"]), json!({"A": "note"}), json!({"A": [7]})] {

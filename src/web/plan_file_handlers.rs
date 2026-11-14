@@ -72,6 +72,7 @@ fn saved_fields(plan: Plan) -> (String, PlanFields) {
         focus_technologies: plan.focus_technologies,
         focus_staff: plan.focus_staff,
         focus_comments: plan.focus_comments,
+        technology_designers: plan.technology_designers,
     };
     (plan.name, fields)
 }
@@ -127,6 +128,7 @@ fn imported(plan: &Value, fields: PlanFields, catalogs: &Catalogs) -> Value {
             "focus_technologies": fields.focus_technologies,
             "focus_staff": fields.focus_staff,
             "focus_comments": fields.focus_comments,
+            "technology_designers": fields.technology_designers,
         },
         "unknown": unknown,
         "unknown_technologies": unknown_technologies,

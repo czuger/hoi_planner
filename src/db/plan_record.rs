@@ -26,6 +26,8 @@ struct PlanDocument {
     focus_technologies: Vec<(String, Vec<String>)>,
     focus_staff: Vec<(String, Vec<String>)>,
     focus_comments: Vec<(String, Vec<String>)>,
+    #[serde(default)]
+    technology_designers: Vec<(String, String)>,
     created_at: String,
     updated_at: String,
 }
@@ -94,12 +96,16 @@ impl PlanRecord {
     /// takes its term with it, rather than leaving a mark nothing on the page can see or clear.
     /// `focus_technologies`, `focus_staff` and `focus_comments` are trimmed the same way, as a
     /// technology or a member has no date without its focus, and a comment no line to sit on.
+    /// A technology keeps its designer only while it is still in the plan.
     ///
     /// # Errors
     /// Fails when the database does.
     pub async fn store(store: &Store, plan: NewPlan<'_>) -> Result<Plan, AppError> {
         let fields = plan.fields;
         let stamp = now();
+        let focus_technologies = attached_to_order(&fields.focus_technologies, &fields.focus_ids);
+        let technology_designers =
+            designers_in_plan(&fields.technology_designers, &focus_technologies);
         let document = PlanDocument {
             id: plan.id.to_string(),
             name: plan.name.to_string(),
@@ -115,9 +121,10 @@ impl PlanRecord {
                 .filter(|(focus_id, _)| fields.focus_ids.contains(focus_id))
                 .map(|(focus_id, days)| (focus_id.clone(), *days))
                 .collect(),
-            focus_technologies: attached_to_order(&fields.focus_technologies, &fields.focus_ids),
+            focus_technologies,
             focus_staff: attached_to_order(&fields.focus_staff, &fields.focus_ids),
             focus_comments: attached_to_order(&fields.focus_comments, &fields.focus_ids),
+            technology_designers,
             created_at: stamp.clone(),
             updated_at: stamp,
         };
@@ -170,6 +177,17 @@ fn attached_to_order(
         .collect()
 }
 
+/// The tags whose technology is attached to a focus of the plan.
+fn designers_in_plan(
+    tags: &BTreeMap<String, String>,
+    technologies: &[(String, Vec<String>)],
+) -> Vec<(String, String)> {
+    tags.iter()
+        .filter(|(technology, _)| technologies.iter().any(|(_, ids)| ids.contains(technology)))
+        .map(|(technology, designer)| (technology.clone(), designer.clone()))
+        .collect()
+}
+
 /// UTC to the microsecond, as text that sorts chronologically.
 fn now() -> String {
     Utc::now().format("%Y-%m-%dT%H:%M:%S%.6fZ").to_string()
@@ -186,6 +204,7 @@ fn into_plan(document: PlanDocument) -> Plan {
         focus_technologies: document.focus_technologies.into_iter().collect(),
         focus_staff: document.focus_staff.into_iter().collect(),
         focus_comments: document.focus_comments.into_iter().collect(),
+        technology_designers: document.technology_designers.into_iter().collect(),
         created_at: document.created_at,
         updated_at: document.updated_at,
     }

@@ -40,6 +40,7 @@
     terms: {},          // focus id -> days, only for the focuses that differ
     technologies: {},   // focus id -> technology ids
     staff: {},          // focus id -> staff ids
+    designers: {},      // technology id -> the staff id of the designer it is meant for
     comments: {},       // focus id -> comment ids, which only this page knows
     commentText: {}     // comment id -> text
   };
@@ -230,6 +231,14 @@
 
   /* --- keeping the plan --------------------------------------------------- */
 
+  /* A plan from before designers left the staff may hire some on its lines. */
+  function withoutDesigners(staff) {
+    Object.keys(staff).forEach(function (focusId) {
+      staff[focusId] = staff[focusId].filter(function (id) { return !techPane.isDesigner(id); });
+    });
+    return staff;
+  }
+
   /* The panel, out of a stored plan: the draft on load, a saved plan when one is
      picked out of the dropdown. A field the plan does not carry is left as it is
      rather than blanked, so a draft written before `start` existed still opens. */
@@ -237,7 +246,8 @@
     state.plan = stored.focus_ids || [];
     state.terms = stored.focus_days || {};
     state.technologies = stored.focus_technologies || {};
-    state.staff = stored.focus_staff || {};
+    state.staff = withoutDesigners(stored.focus_staff || {});
+    state.designers = stored.technology_designers || {};
     commentPane.load(stored.focus_comments || {});
     selected = state.plan.length ? state.plan[state.plan.length - 1] : null;
     $("#name").value = stored.name || "";
@@ -255,7 +265,8 @@
       focus_days: state.terms,
       focus_technologies: state.technologies,
       focus_staff: state.staff,
-      focus_comments: commentPane.stored()
+      focus_comments: commentPane.stored(),
+      technology_designers: state.designers
     };
   }
 
@@ -362,6 +373,7 @@
     state.terms = {};
     state.technologies = {};
     state.staff = {};
+    state.designers = {};
     state.comments = {};
     state.commentText = {};
     selected = null;

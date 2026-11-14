@@ -76,6 +76,16 @@
           </div>
         {% endfor %}
       </div>
+
+      <div id="designer-list" hidden>
+        {% for row in designer_rows %}
+          <div class="row" data-id="{{ row.member.id }}" data-post="{{ row.member.section }}"
+               data-requires="{{ row.requires_json }}"
+               data-excludes="{{ row.excludes_json }}">
+            <span class="nm">{{ row.member.name }}</span>
+          </div>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="pane compact hidden" id="staff-pane">

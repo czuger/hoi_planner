@@ -396,6 +396,53 @@ async fn staff_of_a_focus_not_in_the_order_are_not_stored() {
     assert_eq!(stored.focus_staff["A"], ["Krupp"]);
 }
 
+fn tagged(tags: &[(&str, &str)]) -> PlanFields {
+    PlanFields {
+        focus_technologies: by_focus(&[("A", &["T1", "T2"]), ("Gone", &["T3"])]),
+        technology_designers: tags
+            .iter()
+            .map(|(technology, designer)| (technology.to_string(), designer.to_string()))
+            .collect(),
+        ..fields(&["A", "B"])
+    }
+}
+
+#[tokio::test]
+async fn a_plan_keeps_the_designer_of_each_technology() {
+    let store = store();
+    save_plan(
+        &store,
+        "Rush",
+        &tagged(&[("T1", "Porsche"), ("T2", "Porsche")]),
+    )
+    .await
+    .unwrap();
+
+    let stored = PlanRecord::find(&store, "rush").await.unwrap().unwrap();
+    assert_eq!(stored.technology_designers.len(), 2);
+    assert_eq!(stored.technology_designers["T1"], "Porsche");
+}
+
+#[tokio::test]
+async fn a_tag_goes_with_its_technology_and_needs_no_designer_hired() {
+    let store = store();
+    let plan = tagged(&[
+        ("T1", "Porsche"),
+        ("T2", "Henschel"),
+        ("T3", "Porsche"),
+        ("Nowhere", "Porsche"),
+    ]);
+    let stored = save_draft(&store, "", &plan).await.unwrap();
+
+    assert_eq!(
+        stored.technology_designers,
+        BTreeMap::from([
+            ("T1".to_string(), "Porsche".to_string()),
+            ("T2".to_string(), "Henschel".to_string()),
+        ])
+    );
+}
+
 #[tokio::test]
 async fn ids_holding_dots_and_dollars_are_stored_as_they_are() {
     let store = store();

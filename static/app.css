@@ -149,6 +149,18 @@ button:hover{border-color:var(--accent-dim)}
 .chip button{padding:0 8px;background:transparent;border-color:transparent;color:var(--muted)}
 .chip button:hover{color:var(--text);border-color:var(--line)}
 
+/* --- a technology's designer: a small button until there is one, then a line of its own,
+       the column being too narrow to share --- */
+.techs .chip{flex-wrap:wrap;row-gap:0}
+.chip .mio{flex:none;padding:0 4px;font-size:13px;display:none}
+.chip:hover .mio,.chip .mio.on{display:block}
+.chip .mio.on,.chip .mio-editor{order:1;flex:1 0 100%;min-width:0;margin-left:40px;
+                                 text-align:left;overflow:hidden;text-overflow:ellipsis;
+                                 white-space:nowrap}
+.chip .mio.on{color:var(--text)}
+.chip .mio-editor{max-width:calc(100% - 40px);font:inherit;font-size:13px;color:var(--text);
+                  background:var(--panel);border:1px solid var(--accent-dim);border-radius:5px}
+
 /* --- comments: free text, read rather than glanced at, so it wraps --- */
 .chip.note .nm{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.3;display:-webkit-box;
                -webkit-line-clamp:4;-webkit-box-orient:vertical;text-overflow:clip}

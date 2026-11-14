@@ -66,7 +66,7 @@ async fn the_file_is_indented_keeps_its_accents_and_ends_with_a_new_line() {
     let answer = export(&app, json!({"name": "Plan à Zürich"})).await;
 
     assert!(answer.body.starts_with(
-        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 4,\n  \"name\": \"Plan à Zürich\","
+        "{\n  \"format\": \"hoi4-planner-plan\",\n  \"version\": 5,\n  \"name\": \"Plan à Zürich\","
     ));
     assert!(answer.body.ends_with("}\n"));
 }
@@ -230,6 +230,7 @@ async fn a_plan_survives_the_round_trip() {
                 "Anschluss".to_string(),
                 vec!["avant la Tchécoslovaquie".to_string()],
             )]),
+            technology_designers: BTreeMap::new(),
         },
     )
     .await;
@@ -247,6 +248,7 @@ async fn a_plan_survives_the_round_trip() {
             "focus_technologies": {"Anschluss": ["Construction_I"]},
             "focus_staff": {"Rhineland": ["Krupp"]},
             "focus_comments": {"Anschluss": ["avant la Tchécoslovaquie"]},
+            "technology_designers": {},
         })
     );
 }
@@ -261,7 +263,7 @@ async fn the_file_carries_the_comments_on_their_lines() {
     });
     let file = app.post("/api/plans/export", panel).await.json();
 
-    assert_eq!(file["version"], 4);
+    assert_eq!(file["version"], 5);
     assert_eq!(
         file["focus_comments"],
         json!({"Rhineland": ["garder 2 PP", "puis l'Autriche"]})
@@ -440,6 +442,28 @@ async fn the_file_carries_the_staff_and_names_their_posts() {
     assert_eq!(
         file["focuses"][0]["staff"],
         json!([{"id": "Heinz_Guderian__Theorists", "name": "Heinz Guderian", "post": "Theorists"}])
+    );
+}
+
+#[tokio::test]
+async fn the_file_carries_each_technologys_designer() {
+    let app = TestApp::with_staff().await;
+    let panel = json!({
+        "focus_ids": ["Rhineland"],
+        "focus_technologies": {"Rhineland": ["Construction_I"]},
+        "focus_staff": {"Rhineland": ["Porsche"]},
+        "technology_designers": {"Construction_I": "Porsche"},
+    });
+    let file = export(&app, panel).await.json();
+    assert_eq!(
+        file["technology_designers"],
+        json!({"Construction_I": "Porsche"})
+    );
+
+    let answer = app.post("/api/plans/import", file).await.json();
+    assert_eq!(
+        answer["plan"]["technology_designers"],
+        json!({"Construction_I": "Porsche"})
     );
 }
 

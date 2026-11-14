@@ -3,3 +3,4 @@
 *.polodb/
 .env
 .idea/
+/data/

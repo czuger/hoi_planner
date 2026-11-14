@@ -342,7 +342,7 @@ async fn the_tab_scripts_are_served() {
 #[tokio::test]
 async fn health_reports_the_staff_too() {
     let body = TestApp::with_staff().await.get("/health").await.json();
-    assert_eq!(body["staff"], 3);
+    assert_eq!(body["staff"], 4);
 }
 
 #[tokio::test]
@@ -357,6 +357,18 @@ async fn the_page_lists_the_staff_under_their_posts_with_what_each_needs() {
     );
     assert!(body.contains("data-post=\"Industrial concerns\""));
     assert!(body.contains("data-requires=\"[[&#34;Rhineland&#34;]]\""));
+}
+
+#[tokio::test]
+async fn the_designers_are_left_out_of_the_staff_and_handed_to_the_technologies() {
+    let body = TestApp::with_staff().await.get("/").await.body;
+    let (before_staff, staff) = body.split_once("id=\"staff-pane\"").unwrap();
+    let designers = before_staff.split_once("id=\"designer-list\"").unwrap().1;
+
+    assert!(designers.contains("data-id=\"Porsche\" data-post=\"Tank designers\""));
+    assert!(!designers.contains("Krupp"));
+    assert!(!staff.contains("Tank designers"));
+    assert!(body.contains("id=\"staff-count\">3<"));
 }
 
 #[tokio::test]

@@ -40,7 +40,14 @@ fn focus_block(row: &EchoRow, days_per_focus: i64) -> String {
     }
     block.push('\n');
 
-    let technologies: Vec<&str> = row.technologies.iter().map(|t| t.name.as_str()).collect();
+    let technologies: Vec<String> = row
+        .technologies
+        .iter()
+        .map(|technology| match &technology.designer {
+            Some(designer) => format!("{} ({designer})", technology.name),
+            None => technology.name.clone(),
+        })
+        .collect();
     let staff: Vec<String> = row
         .staff
         .iter()
@@ -126,16 +133,20 @@ mod tests {
     }
 
     fn staff() -> StaffCatalog {
-        StaffCatalog::new(vec![StaffMember {
-            id: "Heinz_Guderian__Theorists".to_string(),
-            name: "Heinz Guderian".to_string(),
+        let member = |id: &str, name: &str, section: &str| StaffMember {
+            id: id.to_string(),
+            name: name.to_string(),
             icon: String::new(),
             icon_page: String::new(),
-            section: "Theorists".to_string(),
+            section: section.to_string(),
             position: 0,
             requires: Vec::new(),
             excludes: Vec::new(),
-        }])
+        };
+        StaffCatalog::new(vec![
+            member("Heinz_Guderian__Theorists", "Heinz Guderian", "Theorists"),
+            member("Porsche", "Porsche", "Tank designers"),
+        ])
     }
 
     fn fields(focus_ids: &[&str]) -> PlanFields {
@@ -147,6 +158,7 @@ mod tests {
             focus_technologies: BTreeMap::new(),
             focus_staff: BTreeMap::new(),
             focus_comments: BTreeMap::new(),
+            technology_designers: BTreeMap::new(),
         }
     }
 
@@ -227,6 +239,16 @@ mod tests {
         assert!(
             text.contains("\n10. 16 déc. 1936 — Focus 10\n    Technologies : Construction I\n")
         );
+    }
+
+    #[test]
+    fn a_technology_names_its_designer() {
+        let mut plan = fields(&["Rhineland"]);
+        attach(&mut plan, "Rhineland", &[]);
+        plan.technology_designers
+            .insert("Construction_I".to_string(), "Porsche".to_string());
+        let text = text_of(None, plan, &catalog());
+        assert!(text.contains("   Technologies : Construction I (Porsche)\n"));
     }
 
     #[test]

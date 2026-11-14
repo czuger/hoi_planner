@@ -32,6 +32,9 @@ pub struct Plan {
     pub focus_staff: BTreeMap<String, Vec<String>>,
     /// `{focus id: [text]}`: free comments written on the focus's line, in their order.
     pub focus_comments: BTreeMap<String, Vec<String>>,
+    /// `{technology id: staff id}`: the designer a planned technology is meant for, a note of
+    /// intent that changes no date.
+    pub technology_designers: BTreeMap<String, String>,
     /// When the plan was first stored.
     pub created_at: String,
     /// When it was last stored, which is what the plan list is ordered by.

@@ -5,7 +5,7 @@ use axum::http::StatusCode;
 use axum::response::{Html, IntoResponse, Redirect, Response};
 use serde_json::json;
 
-use crate::db::{self, PlanRecord};
+use crate::db::PlanRecord;
 use crate::error::AppError;
 use crate::service::load_draft;
 use crate::web::api_error::ApiError;
@@ -38,15 +38,15 @@ pub async fn to_planner() -> Redirect {
 
 async fn load_page(state: &AppState) -> Result<PlannerData, AppError> {
     Ok(PlannerData {
-        plans: PlanRecord::list_saved(&state.pool).await?,
-        draft: load_draft(&state.pool).await?,
+        plans: PlanRecord::list_saved(&state.store).await?,
+        draft: load_draft(&state.store).await?,
     })
 }
 
 /// Is the app up, and can it read the database? For the deploy check.
 pub async fn health(State(state): State<AppState>) -> Response {
     let catalogs = &state.catalogs;
-    match db::ping(&state.pool).await {
+    match state.store.ping().await {
         Ok(()) => Json(json!({
             "status": "ok",
             "database": state.database_name,

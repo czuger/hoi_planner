@@ -58,7 +58,7 @@ async fn the_page_carries_what_a_focus_depends_on() {
 async fn the_page_offers_the_saved_plans() {
     let app = TestApp::with_catalog().await;
     save_plan(
-        &app.pool,
+        &app.store,
         "Barbarossa rush",
         &fields(&["Anschluss"], "1936-01-01"),
     )
@@ -72,7 +72,7 @@ async fn the_page_offers_the_saved_plans() {
 async fn the_page_carries_the_plan_that_was_being_built() {
     let app = TestApp::with_catalog().await;
     save_draft(
-        &app.pool,
+        &app.store,
         "Half named",
         &fields(&["Anschluss"], "1937-01-01"),
     )
@@ -116,7 +116,7 @@ async fn every_link_is_relative() {
 async fn the_draft_is_not_offered_among_the_saved_plans() {
     let app = TestApp::with_catalog().await;
     save_draft(
-        &app.pool,
+        &app.store,
         "Half named",
         &fields(&["Anschluss"], "1936-01-01"),
     )
@@ -277,7 +277,7 @@ async fn the_page_carries_the_attached_technologies_and_staff_in_the_draft() {
     plan.focus_technologies =
         BTreeMap::from([("Rhineland".to_string(), vec!["Construction_I".to_string()])]);
     plan.focus_staff = BTreeMap::from([("Rhineland".to_string(), vec!["Krupp".to_string()])]);
-    save_draft(&app.pool, "Rush", &plan).await.unwrap();
+    save_draft(&app.store, "Rush", &plan).await.unwrap();
 
     let body = app.get("/").await.body;
     assert!(
@@ -294,7 +294,7 @@ async fn the_page_carries_the_comments_in_the_draft_escaped() {
     let mut plan = fields(&["Rhineland"], "1937-06-01");
     plan.focus_comments =
         BTreeMap::from([("Rhineland".to_string(), vec!["<b>\"vite\"</b>".to_string()])]);
-    save_draft(&app.pool, "Rush", &plan).await.unwrap();
+    save_draft(&app.store, "Rush", &plan).await.unwrap();
 
     let body = app.get("/").await.body;
     assert!(body.contains("&#34;focus_comments&#34;:{&#34;Rhineland&#34;:[&#34;&#60;b&#62;\\&#34;vite\\&#34;&#60;/b&#62;&#34;]}"));

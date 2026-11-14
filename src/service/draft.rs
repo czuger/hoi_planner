@@ -1,6 +1,4 @@
-use sqlx::SqlitePool;
-
-use crate::db::{NewPlan, PlanRecord};
+use crate::db::{NewPlan, PlanRecord, Store};
 use crate::domain::{DRAFT_PLAN_ID, Plan, PlanFields};
 use crate::error::AppError;
 
@@ -11,13 +9,9 @@ use crate::error::AppError;
 ///
 /// # Errors
 /// Fails when the database does.
-pub async fn save_draft(
-    pool: &SqlitePool,
-    name: &str,
-    fields: &PlanFields,
-) -> Result<Plan, AppError> {
+pub async fn save_draft(store: &Store, name: &str, fields: &PlanFields) -> Result<Plan, AppError> {
     PlanRecord::store(
-        pool,
+        store,
         NewPlan {
             id: DRAFT_PLAN_ID,
             name: name.trim(),
@@ -31,14 +25,14 @@ pub async fn save_draft(
 ///
 /// # Errors
 /// Fails when the database does.
-pub async fn load_draft(pool: &SqlitePool) -> Result<Option<Plan>, AppError> {
-    PlanRecord::find(pool, DRAFT_PLAN_ID).await
+pub async fn load_draft(store: &Store) -> Result<Option<Plan>, AppError> {
+    PlanRecord::find(store, DRAFT_PLAN_ID).await
 }
 
 /// Throws the draft away, and says whether there was one: the Clear button.
 ///
 /// # Errors
 /// Fails when the database does.
-pub async fn clear_draft(pool: &SqlitePool) -> Result<bool, AppError> {
-    PlanRecord::delete(pool, DRAFT_PLAN_ID).await
+pub async fn clear_draft(store: &Store) -> Result<bool, AppError> {
+    PlanRecord::delete(store, DRAFT_PLAN_ID).await
 }

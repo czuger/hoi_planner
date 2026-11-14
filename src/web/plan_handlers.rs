@@ -15,7 +15,7 @@ use crate::web::json_body::posted_object;
 
 /// Every saved plan, most recently touched first.
 pub async fn list(State(state): State<AppState>) -> Result<Response, ApiError> {
-    let plans = PlanRecord::list_saved(&state.pool)
+    let plans = PlanRecord::list_saved(&state.store)
         .await
         .map_err(|error| ApiError::new(&state, error))?;
     Ok(Json(json!({ "plans": plans })).into_response())
@@ -46,7 +46,7 @@ async fn show_plan(state: &AppState, plan_id: &str) -> Result<Response, ApiError
 
 /// A stored plan, or the error saying there is none.
 pub(crate) async fn found_plan(state: &AppState, plan_id: &str) -> Result<Plan, ApiError> {
-    PlanRecord::find(&state.pool, plan_id)
+    PlanRecord::find(&state.store, plan_id)
         .await
         .and_then(|plan| plan.ok_or(AppError::PlanNotFound))
         .map_err(|error| ApiError::new(state, error))
@@ -67,7 +67,7 @@ pub async fn save(
             return Err(AppError::PlanNameMissing);
         }
         let fields = PlanFields::from_json(&payload)?;
-        save_plan(&state.pool, &name, &fields).await
+        save_plan(&state.store, &name, &fields).await
     };
     let plan = saved.await.map_err(|error| ApiError::new(&state, error))?;
     Ok((StatusCode::CREATED, Json(json!({ "plan": plan }))).into_response())
@@ -92,7 +92,7 @@ pub async fn destroy_import(State(state): State<AppState>) -> Result<Response, A
 }
 
 async fn destroy_plan(state: &AppState, plan_id: &str) -> Result<Response, ApiError> {
-    let found = PlanRecord::delete(&state.pool, plan_id)
+    let found = PlanRecord::delete(&state.store, plan_id)
         .await
         .map_err(|error| ApiError::new(state, error))?;
     if !found {
@@ -114,7 +114,7 @@ pub async fn write_draft(
     let written = async {
         let fields = PlanFields::from_json(&payload)?;
         let name = posted_name(&payload).unwrap_or_default();
-        save_draft(&state.pool, &name, &fields).await
+        save_draft(&state.store, &name, &fields).await
     };
     let plan = written
         .await
@@ -126,7 +126,7 @@ pub async fn write_draft(
 ///
 /// Clearing a panel that was never saved is not an error, so this answers the same either way.
 pub async fn discard_draft(State(state): State<AppState>) -> Result<Response, ApiError> {
-    let cleared = clear_draft(&state.pool)
+    let cleared = clear_draft(&state.store)
         .await
         .map_err(|error| ApiError::new(&state, error))?;
     Ok(Json(json!({ "cleared": cleared })).into_response())

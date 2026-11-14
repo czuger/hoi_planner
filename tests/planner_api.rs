@@ -40,7 +40,7 @@ fn fields(focus_ids: &[&str], start_date: &str) -> PlanFields {
 }
 
 async fn saved(app: &TestApp) -> Vec<hoi4_planner::domain::Plan> {
-    PlanRecord::list_saved(&app.pool).await.unwrap()
+    PlanRecord::list_saved(&app.store).await.unwrap()
 }
 
 #[tokio::test]
@@ -162,10 +162,10 @@ async fn focus_days_must_be_an_object_of_positive_whole_numbers() {
 #[tokio::test]
 async fn listing_gives_every_plan() {
     let app = TestApp::new().await;
-    save_plan(&app.pool, "First", &fields(&[], "1936-01-01"))
+    save_plan(&app.store, "First", &fields(&[], "1936-01-01"))
         .await
         .unwrap();
-    save_plan(&app.pool, "Second", &fields(&[], "1936-01-01"))
+    save_plan(&app.store, "Second", &fields(&[], "1936-01-01"))
         .await
         .unwrap();
 
@@ -183,7 +183,7 @@ async fn listing_gives_every_plan() {
 async fn one_plan_can_be_fetched_back() {
     let app = TestApp::new().await;
     save_plan(
-        &app.pool,
+        &app.store,
         "Barbarossa rush",
         &fields(&["Anschluss"], "1937-05-02"),
     )
@@ -207,7 +207,7 @@ async fn fetching_a_plan_that_is_not_there() {
 #[tokio::test]
 async fn deleting_a_plan() {
     let app = TestApp::new().await;
-    save_plan(&app.pool, "Doomed", &fields(&[], "1936-01-01"))
+    save_plan(&app.store, "Doomed", &fields(&[], "1936-01-01"))
         .await
         .unwrap();
 
@@ -230,7 +230,7 @@ async fn deleting_a_plan_that_is_not_there() {
 async fn a_plan_called_like_a_file_route_is_still_a_plan() {
     let app = TestApp::new().await;
     for (name, id) in [("Export", "export"), ("Import", "import")] {
-        save_plan(&app.pool, name, &fields(&["Anschluss"], "1936-01-01"))
+        save_plan(&app.store, name, &fields(&["Anschluss"], "1936-01-01"))
             .await
             .unwrap();
         let path = format!("/api/plans/{id}");
@@ -296,7 +296,7 @@ async fn the_draft_is_kept_without_a_name() {
     let answer = put_draft(&app, json!({"focus_ids": ["Anschluss", "Rhineland"]})).await;
 
     assert_eq!(answer.status, StatusCode::OK);
-    let draft = load_draft(&app.pool).await.unwrap().unwrap();
+    let draft = load_draft(&app.store).await.unwrap().unwrap();
     assert_eq!(draft.focus_ids, ["Anschluss", "Rhineland"]);
     assert!(saved(&app).await.is_empty());
 }
@@ -306,7 +306,7 @@ async fn the_draft_keeps_the_name_being_typed() {
     let app = TestApp::new().await;
     put_draft(&app, json!({"name": "Barbarossa ru"})).await;
     assert_eq!(
-        load_draft(&app.pool).await.unwrap().unwrap().name,
+        load_draft(&app.store).await.unwrap().unwrap().name,
         "Barbarossa ru"
     );
 }
@@ -321,7 +321,7 @@ async fn writing_the_draft_again_replaces_it() {
     )
     .await;
 
-    let draft = load_draft(&app.pool).await.unwrap().unwrap();
+    let draft = load_draft(&app.store).await.unwrap().unwrap();
     assert_eq!(draft.focus_ids, ["Anschluss", "Rhineland"]);
     assert_eq!(draft.focus_days["Rhineland"], 14);
 }
@@ -337,20 +337,20 @@ async fn the_draft_is_checked_like_a_save_is() {
     ] {
         assert_eq!(put_draft(&app, body).await.status, StatusCode::BAD_REQUEST);
     }
-    assert!(load_draft(&app.pool).await.unwrap().is_none());
+    assert!(load_draft(&app.store).await.unwrap().is_none());
 }
 
 #[tokio::test]
 async fn clearing_throws_the_draft_away() {
     let app = TestApp::new().await;
-    save_draft(&app.pool, "", &fields(&["Anschluss"], "1936-01-01"))
+    save_draft(&app.store, "", &fields(&["Anschluss"], "1936-01-01"))
         .await
         .unwrap();
 
     let answer = app.delete("/api/draft").await;
     assert_eq!(answer.status, StatusCode::OK);
     assert_eq!(answer.json()["cleared"], true);
-    assert!(load_draft(&app.pool).await.unwrap().is_none());
+    assert!(load_draft(&app.store).await.unwrap().is_none());
 }
 
 #[tokio::test]
@@ -365,13 +365,13 @@ async fn clearing_a_plan_that_was_never_kept_is_not_an_error() {
 async fn clearing_the_draft_leaves_the_saved_plans_alone() {
     let app = TestApp::new().await;
     save_plan(
-        &app.pool,
+        &app.store,
         "Barbarossa rush",
         &fields(&["Anschluss"], "1936-01-01"),
     )
     .await
     .unwrap();
-    save_draft(&app.pool, "", &fields(&["Rhineland"], "1936-01-01"))
+    save_draft(&app.store, "", &fields(&["Rhineland"], "1936-01-01"))
         .await
         .unwrap();
 

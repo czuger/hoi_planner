@@ -1,4 +1,4 @@
-//! The app on an in-memory database, driven one request at a time.
+//! The app on a database in a temporary folder, driven one request at a time.
 
 use axum::Router;
 use axum::body::{Body, to_bytes};
@@ -6,17 +6,17 @@ use axum::http::header::CONTENT_TYPE;
 use axum::http::{HeaderMap, Method, Request, StatusCode};
 use std::sync::Arc;
 
-use hoi4_planner::db;
 use hoi4_planner::domain::{Catalog, Catalogs, StaffCatalog, TechnologyCatalog};
 use hoi4_planner::web::{AppState, build_router};
 use serde_json::Value;
-use sqlx::SqlitePool;
 use tower::ServiceExt;
+
+use super::temp_store::TempStore;
 
 pub const DATABASE_NAME: &str = "test.db";
 
 pub struct TestApp {
-    pub pool: SqlitePool,
+    pub store: TempStore,
     pub router: Router,
 }
 
@@ -40,14 +40,14 @@ impl TestApp {
 
     /// The app serving these catalogs.
     pub async fn serving(catalogs: Catalogs) -> TestApp {
-        let pool = db::connect("sqlite::memory:").await.unwrap();
+        let store = TempStore::new();
         let state = AppState {
-            pool: pool.clone(),
+            store: (*store).clone(),
             database_name: DATABASE_NAME.to_string(),
             catalogs: Arc::new(catalogs),
         };
         let router = build_router(state);
-        TestApp { pool, router }
+        TestApp { store, router }
     }
 
     /// The focus catalog.
@@ -81,7 +81,7 @@ impl TestApp {
 
     /// Every call fails from now on, the way a database that cannot be read does.
     pub async fn lose_database(&self) {
-        self.pool.close().await;
+        self.store.close();
     }
 
     pub async fn request(&self, method: Method, path: &str, json: Option<Value>) -> Answer {

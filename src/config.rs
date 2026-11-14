@@ -9,13 +9,13 @@ pub const SOCKET_VAR: &str = "HOI4_PLANNER_SOCKET";
 
 const DEFAULT_DATA_DIR: &str = "data";
 const DEFAULT_BIND_ADDR: &str = "127.0.0.1:5000";
-const DATABASE_FILE: &str = "hoi4_planner.db";
+const DATABASE_FOLDER: &str = "hoi4_planner.polodb";
 
 /// Server settings.
 #[derive(Debug, Clone)]
 pub struct AppConfig {
-    /// The SQLite file, in `data/` or the data folder `cargo deploy` hands over; created if missing.
-    pub database_url: String,
+    /// The PoloDB folder, in `data/` or the data folder `cargo deploy` hands over; created if missing.
+    pub database_path: PathBuf,
     /// TCP address to listen on when no socket is set.
     pub bind_addr: String,
     /// Unix socket to listen on instead of TCP, handed over by `cargo deploy`.
@@ -29,30 +29,24 @@ impl AppConfig {
         let data_dir =
             set(DATA_DIR_VAR).map_or_else(|| PathBuf::from(DEFAULT_DATA_DIR), PathBuf::from);
         AppConfig {
-            database_url: database_path(&data_dir),
+            database_path: database_path(&data_dir),
             bind_addr: DEFAULT_BIND_ADDR.to_string(),
             socket_path: set(SOCKET_VAR).map(PathBuf::from),
         }
     }
 }
 
-/// The database file of a data folder, as the bare path SQLite accepts for a URL.
-pub fn database_path(data_dir: &Path) -> String {
-    data_dir.join(DATABASE_FILE).display().to_string()
+/// The database folder of a data folder.
+pub fn database_path(data_dir: &Path) -> PathBuf {
+    data_dir.join(DATABASE_FOLDER)
 }
 
-/// What a database is called on screen: its file name, whatever the URL around it.
-pub fn database_label(database_url: &str) -> String {
-    let path = database_url.split('?').next().unwrap_or(database_url);
-    if path.contains(":memory:") {
-        return ":memory:".to_string();
-    }
-    Path::new(path.trim_start_matches("sqlite:"))
-        .file_name()
-        .map_or_else(
-            || database_url.to_string(),
-            |name| name.to_string_lossy().into_owned(),
-        )
+/// What a database is called on screen: its folder's name.
+pub fn database_label(database_path: &Path) -> String {
+    database_path.file_name().map_or_else(
+        || database_path.display().to_string(),
+        |name| name.to_string_lossy().into_owned(),
+    )
 }
 
 /// One saved page of the research tree.
@@ -126,18 +120,20 @@ mod tests {
     fn the_database_lives_in_the_data_folder() {
         assert_eq!(
             database_path(Path::new("/srv/app/data")),
-            "/srv/app/data/hoi4_planner.db"
+            Path::new("/srv/app/data/hoi4_planner.polodb")
         );
-        assert_eq!(database_path(Path::new("data")), "data/hoi4_planner.db");
+        assert_eq!(
+            database_path(Path::new("data")),
+            Path::new("data/hoi4_planner.polodb")
+        );
     }
 
     #[test]
-    fn a_database_is_labelled_by_its_file_name() {
+    fn a_database_is_labelled_by_its_folder_name() {
         assert_eq!(
-            database_label("sqlite://data/hoi4_planner.db"),
-            "hoi4_planner.db"
+            database_label(Path::new("data/hoi4_planner.polodb")),
+            "hoi4_planner.polodb"
         );
-        assert_eq!(database_label("/srv/app/plans.db"), "plans.db");
-        assert_eq!(database_label("sqlite::memory:"), ":memory:");
+        assert_eq!(database_label(Path::new("/srv/app/plans")), "plans");
     }
 }

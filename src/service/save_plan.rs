@@ -1,6 +1,4 @@
-use sqlx::SqlitePool;
-
-use crate::db::{NewPlan, PlanRecord};
+use crate::db::{NewPlan, PlanRecord, Store};
 use crate::domain::{Plan, PlanFields, slugify};
 use crate::error::AppError;
 
@@ -10,18 +8,14 @@ use crate::error::AppError;
 ///
 /// # Errors
 /// Refuses a name with nothing to slug, and fails when the database does.
-pub async fn save_plan(
-    pool: &SqlitePool,
-    name: &str,
-    fields: &PlanFields,
-) -> Result<Plan, AppError> {
+pub async fn save_plan(store: &Store, name: &str, fields: &PlanFields) -> Result<Plan, AppError> {
     let name = name.trim();
     let id = slugify(name);
     if id.is_empty() {
         return Err(AppError::PlanNameUnusable);
     }
     PlanRecord::store(
-        pool,
+        store,
         NewPlan {
             id: &id,
             name,

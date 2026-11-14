@@ -1,7 +1,5 @@
 .DS_Store
 /target
-*.db
-*.db-shm
-*.db-wal
+*.polodb/
 .env
 .idea/

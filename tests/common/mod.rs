@@ -4,6 +4,7 @@
 pub mod app;
 pub mod politics_markup;
 pub mod technology_markup;
+pub mod temp_store;
 pub mod wiki_markup;
 
 use hoi4_planner::domain::{Focus, StaffMember, Technology};

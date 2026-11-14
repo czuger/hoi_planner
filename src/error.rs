@@ -11,25 +11,19 @@ use crate::domain::{PlanFieldsError, PlanFileError};
 pub enum AppError {
     /// The database failed.
     #[error("Erreur de base de données.")]
-    Database(#[from] sqlx::Error),
-    /// The database schema could not be migrated.
-    #[error("Impossible de mettre à jour la base de données.")]
-    Migration(#[from] sqlx::migrate::MigrateError),
+    Database(#[from] polodb_core::Error),
+    /// The database was closed, and answers nothing any more.
+    #[error("Erreur de base de données.")]
+    DatabaseClosed,
+    /// A call to the database did not run to its end.
+    #[error("Erreur de base de données.")]
+    DatabaseTask(#[from] tokio::task::JoinError),
     /// The folder holding the database file could not be created.
     #[error("Impossible de créer le dossier de la base de données.")]
     DatabaseFolder(#[source] std::io::Error),
     /// A page could not be rendered.
     #[error("Impossible d'afficher la page.")]
     Template(#[from] askama::Error),
-    /// A stored value could not be read back.
-    #[error("Donnée invalide en base ({column}).")]
-    CorruptData {
-        /// The column holding the value.
-        column: &'static str,
-        /// Why it could not be read.
-        #[source]
-        source: serde_json::Error,
-    },
     /// A value could not be written as JSON.
     #[error("Impossible d'écrire le JSON.")]
     Json(#[from] serde_json::Error),
@@ -103,7 +97,7 @@ impl AppError {
     pub fn is_database(&self) -> bool {
         matches!(
             self,
-            AppError::Database(_) | AppError::Migration(_) | AppError::CorruptData { .. }
+            AppError::Database(_) | AppError::DatabaseClosed | AppError::DatabaseTask(_)
         )
     }
 }

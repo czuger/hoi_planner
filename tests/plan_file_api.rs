@@ -42,7 +42,7 @@ fn disposition(answer: &Answer) -> String {
 }
 
 async fn save(app: &TestApp, fields: PlanFields) {
-    save_plan(&app.pool, "Barbarossa rush", &fields)
+    save_plan(&app.store, "Barbarossa rush", &fields)
         .await
         .unwrap();
 }
@@ -277,8 +277,8 @@ async fn importing_stores_nothing() {
     let app = TestApp::with_catalog().await;
     app.post("/api/plans/import", a_file()).await;
 
-    assert!(PlanRecord::list_saved(&app.pool).await.unwrap().is_empty());
-    assert!(load_draft(&app.pool).await.unwrap().is_none());
+    assert!(PlanRecord::list_saved(&app.store).await.unwrap().is_empty());
+    assert!(load_draft(&app.store).await.unwrap().is_none());
 }
 
 #[tokio::test]

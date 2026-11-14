@@ -1,24 +1,31 @@
 use std::collections::BTreeMap;
 
 use chrono::Utc;
-use serde::de::DeserializeOwned;
-use sqlx::{FromRow, SqlitePool};
+use polodb_core::bson::doc;
+use polodb_core::{CollectionT, Database};
+use serde::{Deserialize, Serialize};
 
+use crate::db::store::{PLANS, Store};
 use crate::domain::rules::DEFAULT_START_TEXT;
 use crate::domain::{DRAFT_PLAN_ID, Plan, PlanFields};
 use crate::error::AppError;
 
-#[derive(FromRow)]
-struct PlanRow {
+/// A plan as stored.
+///
+/// The maps are kept as lists of pairs: their keys are ids, which may hold the dots and dollars
+/// a document's field names cannot.
+#[derive(Serialize, Deserialize)]
+struct PlanDocument {
+    #[serde(rename = "_id")]
     id: String,
     name: String,
-    focus_ids: String,
+    focus_ids: Vec<String>,
     start_date: String,
     days_per_focus: i64,
-    focus_days: String,
-    focus_technologies: String,
-    focus_staff: String,
-    focus_comments: String,
+    focus_days: Vec<(String, i64)>,
+    focus_technologies: Vec<(String, Vec<String>)>,
+    focus_staff: Vec<(String, Vec<String>)>,
+    focus_comments: Vec<(String, Vec<String>)>,
     created_at: String,
     updated_at: String,
 }
@@ -34,7 +41,7 @@ pub struct NewPlan<'a> {
     pub fields: &'a PlanFields,
 }
 
-/// The `plans` table: the saved plans, and the draft under its fixed id.
+/// The `plans` collection: the saved plans, and the draft under its fixed id.
 #[derive(Debug, Clone)]
 pub struct PlanRecord;
 
@@ -42,109 +49,124 @@ impl PlanRecord {
     /// Every saved plan, most recently touched first; the draft is left out.
     ///
     /// # Errors
-    /// Fails when the database does or a stored value cannot be read.
-    pub async fn list_saved(pool: &SqlitePool) -> Result<Vec<Plan>, AppError> {
-        let rows: Vec<PlanRow> = sqlx::query_as(
-            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, focus_comments, created_at, updated_at
-             FROM plans WHERE id <> ? ORDER BY updated_at DESC, id ASC",
-        )
-            .bind(DRAFT_PLAN_ID)
-            .fetch_all(pool)
+    /// Fails when the database does or a stored plan cannot be read.
+    pub async fn list_saved(store: &Store) -> Result<Vec<Plan>, AppError> {
+        // Filtered here: PoloDB 5.3 answers `$ne` on `_id` with the very documents it excludes.
+        let mut plans: Vec<Plan> = store
+            .run(|database| {
+                database
+                    .collection::<PlanDocument>(PLANS)
+                    .find(doc! {})
+                    .run()?
+                    .map(|document| Ok(into_plan(document?)))
+                    .filter(|plan| !matches!(plan, Ok(plan) if plan.id == DRAFT_PLAN_ID))
+                    .collect()
+            })
             .await?;
-        rows.into_iter().map(into_plan).collect()
+        plans.sort_by(|a, b| {
+            b.updated_at
+                .cmp(&a.updated_at)
+                .then_with(|| a.id.cmp(&b.id))
+        });
+        Ok(plans)
     }
 
     /// One plan, or `None` when there is no such id.
     ///
     /// # Errors
-    /// Fails when the database does or a stored value cannot be read.
-    pub async fn find(pool: &SqlitePool, plan_id: &str) -> Result<Option<Plan>, AppError> {
-        let row: Option<PlanRow> = sqlx::query_as(
-            "SELECT id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, focus_comments, created_at, updated_at
-             FROM plans WHERE id = ?",
-        )
-            .bind(plan_id)
-            .fetch_optional(pool)
+    /// Fails when the database does or the stored plan cannot be read.
+    pub async fn find(store: &Store, plan_id: &str) -> Result<Option<Plan>, AppError> {
+        let plan_id = plan_id.to_string();
+        let document = store
+            .run(move |database| {
+                Ok(database
+                    .collection::<PlanDocument>(PLANS)
+                    .find_one(doc! { "_id": plan_id })?)
+            })
             .await?;
-        row.map(into_plan).transpose()
+        Ok(document.map(into_plan))
     }
 
     /// Writes one plan and hands back what was stored.
     ///
-    /// `created_at` is kept from an existing row, as an overwrite is the same plan revised.
+    /// `created_at` is kept from an existing plan, as an overwrite is the same plan revised.
     /// `focus_days` is trimmed to the order being stored: a focus dragged out of the plan
     /// takes its term with it, rather than leaving a mark nothing on the page can see or clear.
     /// `focus_technologies`, `focus_staff` and `focus_comments` are trimmed the same way, as a
     /// technology or a member has no date without its focus, and a comment no line to sit on.
     ///
     /// # Errors
-    /// Fails when the database does or a stored value cannot be read.
-    pub async fn store(pool: &SqlitePool, plan: NewPlan<'_>) -> Result<Plan, AppError> {
+    /// Fails when the database does.
+    pub async fn store(store: &Store, plan: NewPlan<'_>) -> Result<Plan, AppError> {
         let fields = plan.fields;
-        let marks: BTreeMap<&String, i64> = fields
-            .focus_days
-            .iter()
-            .filter(|(focus_id, _)| fields.focus_ids.contains(focus_id))
-            .map(|(focus_id, days)| (focus_id, *days))
-            .collect();
-        let technologies = attached_to_order(&fields.focus_technologies, &fields.focus_ids);
-        let staff = attached_to_order(&fields.focus_staff, &fields.focus_ids);
-        let comments = attached_to_order(&fields.focus_comments, &fields.focus_ids);
         let stamp = now();
-        let row: PlanRow = sqlx::query_as(
-            "INSERT INTO plans
-                 (id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, focus_comments, created_at, updated_at)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-             ON CONFLICT (id) DO UPDATE SET
-                 name = excluded.name,
-                 focus_ids = excluded.focus_ids,
-                 start_date = excluded.start_date,
-                 days_per_focus = excluded.days_per_focus,
-                 focus_days = excluded.focus_days,
-                 focus_technologies = excluded.focus_technologies,
-                 focus_staff = excluded.focus_staff,
-                 focus_comments = excluded.focus_comments,
-                 updated_at = excluded.updated_at
-             RETURNING id, name, focus_ids, start_date, days_per_focus, focus_days, focus_technologies, focus_staff, focus_comments, created_at, updated_at",
-        )
-            .bind(plan.id)
-            .bind(plan.name)
-            .bind(serde_json::to_string(&fields.focus_ids)?)
-            .bind(fields.start_date.as_deref().unwrap_or(DEFAULT_START_TEXT))
-            .bind(fields.days_per_focus)
-            .bind(serde_json::to_string(&marks)?)
-            .bind(serde_json::to_string(&technologies)?)
-            .bind(serde_json::to_string(&staff)?)
-            .bind(serde_json::to_string(&comments)?)
-            .bind(&stamp)
-            .bind(&stamp)
-            .fetch_one(pool)
+        let document = PlanDocument {
+            id: plan.id.to_string(),
+            name: plan.name.to_string(),
+            focus_ids: fields.focus_ids.clone(),
+            start_date: fields
+                .start_date
+                .clone()
+                .unwrap_or_else(|| DEFAULT_START_TEXT.to_string()),
+            days_per_focus: fields.days_per_focus,
+            focus_days: fields
+                .focus_days
+                .iter()
+                .filter(|(focus_id, _)| fields.focus_ids.contains(focus_id))
+                .map(|(focus_id, days)| (focus_id.clone(), *days))
+                .collect(),
+            focus_technologies: attached_to_order(&fields.focus_technologies, &fields.focus_ids),
+            focus_staff: attached_to_order(&fields.focus_staff, &fields.focus_ids),
+            focus_comments: attached_to_order(&fields.focus_comments, &fields.focus_ids),
+            created_at: stamp.clone(),
+            updated_at: stamp,
+        };
+        let stored = store
+            .run(move |database| replace(database, document))
             .await?;
-        into_plan(row)
+        Ok(into_plan(stored))
     }
 
     /// Throws one plan away, and says whether there was one to throw.
     ///
     /// # Errors
     /// Fails when the database does.
-    pub async fn delete(pool: &SqlitePool, plan_id: &str) -> Result<bool, AppError> {
-        let result = sqlx::query("DELETE FROM plans WHERE id = ?")
-            .bind(plan_id)
-            .execute(pool)
-            .await?;
-        Ok(result.rows_affected() > 0)
+    pub async fn delete(store: &Store, plan_id: &str) -> Result<bool, AppError> {
+        let plan_id = plan_id.to_string();
+        store
+            .run(move |database| {
+                let result = database
+                    .collection::<PlanDocument>(PLANS)
+                    .delete_one(doc! { "_id": plan_id })?;
+                Ok(result.deleted_count > 0)
+            })
+            .await
     }
 }
 
-/// What the focuses of `focus_ids` carry (ids, or comments), leaving out the focuses no longer planned and the
-/// empty lists.
-fn attached_to_order<'a>(
-    attached: &'a BTreeMap<String, Vec<String>>,
+/// Puts `document` in place of the plan with its id, keeping that plan's `created_at`.
+fn replace(database: &Database, mut document: PlanDocument) -> Result<PlanDocument, AppError> {
+    let transaction = database.start_transaction()?;
+    let plans = transaction.collection::<PlanDocument>(PLANS);
+    if let Some(existing) = plans.find_one(doc! { "_id": &document.id })? {
+        document.created_at = existing.created_at;
+        plans.delete_one(doc! { "_id": &document.id })?;
+    }
+    plans.insert_one(&document)?;
+    transaction.commit()?;
+    Ok(document)
+}
+
+/// What the focuses of `focus_ids` carry (ids, or comments), leaving out the focuses no longer
+/// planned and the empty lists.
+fn attached_to_order(
+    attached: &BTreeMap<String, Vec<String>>,
     focus_ids: &[String],
-) -> BTreeMap<&'a String, &'a Vec<String>> {
+) -> Vec<(String, Vec<String>)> {
     attached
         .iter()
         .filter(|(focus_id, ids)| !ids.is_empty() && focus_ids.contains(focus_id))
+        .map(|(focus_id, ids)| (focus_id.clone(), ids.clone()))
         .collect()
 }
 
@@ -153,23 +175,18 @@ fn now() -> String {
     Utc::now().format("%Y-%m-%dT%H:%M:%S%.6fZ").to_string()
 }
 
-fn into_plan(row: PlanRow) -> Result<Plan, AppError> {
-    Ok(Plan {
-        focus_ids: read_json("plans.focus_ids", &row.focus_ids)?,
-        focus_days: read_json("plans.focus_days", &row.focus_days)?,
-        focus_technologies: read_json("plans.focus_technologies", &row.focus_technologies)?,
-        focus_staff: read_json("plans.focus_staff", &row.focus_staff)?,
-        focus_comments: read_json("plans.focus_comments", &row.focus_comments)?,
-        id: row.id,
-        name: row.name,
-        start_date: row.start_date,
-        days_per_focus: row.days_per_focus,
-        created_at: row.created_at,
-        updated_at: row.updated_at,
-    })
-}
-
-/// Reads a JSON column back.
-fn read_json<T: DeserializeOwned>(column: &'static str, text: &str) -> Result<T, AppError> {
-    serde_json::from_str(text).map_err(|source| AppError::CorruptData { column, source })
+fn into_plan(document: PlanDocument) -> Plan {
+    Plan {
+        id: document.id,
+        name: document.name,
+        focus_ids: document.focus_ids,
+        start_date: document.start_date,
+        days_per_focus: document.days_per_focus,
+        focus_days: document.focus_days.into_iter().collect(),
+        focus_technologies: document.focus_technologies.into_iter().collect(),
+        focus_staff: document.focus_staff.into_iter().collect(),
+        focus_comments: document.focus_comments.into_iter().collect(),
+        created_at: document.created_at,
+        updated_at: document.updated_at,
+    }
 }
